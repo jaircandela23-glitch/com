@@ -1,0 +1,625 @@
+/* --- 1. Variables y Reset (Elegancia Hacking Moderna) --- */
+:root {
+    --primary-neon: #00e5ff; /* Azul Neón Brillante */
+    --secondary-blue: #0077c2; /* Azul Profundo */
+    --text-light: #e0e0e0;
+    --background-dark: #0a0a0f; /* Casi negro, muy oscuro */
+    --card-bg-dark: #1c1c24; /* Fondo de tarjeta más distinguido */
+    --border-subtle: rgba(0, 229, 255, 0.1); /* Borde neón sutil */
+    --shadow-deep: 0 8px 30px rgba(0, 0, 0, 0.8);
+    --shadow-neon-glow: 0 0 15px rgba(0, 229, 255, 0.6), 0 0 25px rgba(0, 229, 255, 0.2);
+    
+    /* Fuentes para el estilo técnico */
+    --font-heading: 'Oxanium', monospace; 
+    --font-body: 'Inter', sans-serif;
+}
+
+/* Importar fuentes de Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Oxanium:wght@400;600;700&display=swap');
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style: none;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--background-dark);
+    color: var(--text-light);
+    line-height: 1.6;
+}
+
+/* Estilos globales */
+h1, h2, h3, h4 {
+    font-family: var(--font-heading);
+    color: var(--primary-neon);
+    font-weight: 700;
+}
+
+.highlight {
+    color: var(--primary-neon);
+    font-weight: 700;
+}
+
+a {
+    color: var(--primary-neon);
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #fff;
+}
+
+
+/* --- 2. Estilos del Header y Navegación (Más Sutil y Técnico) --- */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(10, 10, 15, 0.95); /* Semi-transparente */
+    backdrop-filter: blur(5px);
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 10px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo-container {
+    padding: 10px 0; /* Aumento el padding para dar más espacio */
+}
+
+.logo {
+    height: 60px; /* ¡LOGO MÁS GRANDE! */
+    width: auto;
+}
+
+.nav {
+    display: flex;
+    gap: 15px;
+}
+
+.nav .nav-item {
+    font-size: 0.9em;
+    padding: 8px 15px;
+    border-radius: 3px;
+    transition: all 0.3s ease;
+    border: 1px solid transparent;
+    color: var(--text-light);
+}
+
+.nav .nav-item:hover, .nav .nav-item.active {
+    color: var(--primary-neon);
+    border-color: var(--primary-neon);
+    background-color: rgba(0, 229, 255, 0.1);
+}
+
+.contact-button {
+    background: var(--primary-neon);
+    color: var(--background-dark);
+    font-weight: 700;
+    padding: 10px 20px;
+    border-radius: 4px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+}
+
+.contact-button:hover {
+    box-shadow: 0 0 15px var(--primary-neon), 0 0 30px rgba(0, 229, 255, 0.6);
+    background: #fff;
+}
+
+/* --- 3. Estilos de la Sección Hero (El Look de Terminal Inmersivo) --- */
+.hero {
+    min-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: left;
+    background-color: var(--background-dark);
+    padding: 80px 5%;
+    position: relative;
+    /* Añadir un patrón de cuadrícula sutil de fondo */
+    background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
+    background-size: 50px 50px;
+}
+
+.hero-content {
+    display: flex;
+    gap: 50px;
+    max-width: 1200px;
+    width: 100%;
+    align-items: flex-start;
+}
+
+/* --- Estilos de la Ventana de Terminal (Nuevo Elemento) --- */
+.terminal-window {
+    flex-grow: 1;
+    min-width: 500px;
+    background-color: #1a1a20; /* Fondo oscuro para la terminal */
+    border: 1px solid var(--primary-neon);
+    border-radius: 6px;
+    box-shadow: var(--shadow-neon-glow);
+    overflow: hidden;
+    font-family: 'Oxanium', monospace;
+    max-width: 700px;
+}
+
+.terminal-header {
+    background-color: #2b2b35;
+    padding: 8px 15px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--primary-neon);
+}
+
+.terminal-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+    display: inline-block;
+}
+.red { background-color: #ff5f56; }
+.yellow { background-color: #ffbd2e; }
+.green { background-color: #27c93f; }
+
+.terminal-title {
+    color: #e0e0e0;
+    font-size: 0.9em;
+    flex-grow: 1;
+    text-align: center;
+}
+
+.terminal-body {
+    padding: 20px;
+}
+
+.command-line {
+    color: #f0f0f0;
+    margin-bottom: 5px;
+    white-space: pre-wrap;
+}
+
+.prompt {
+    color: #27c93f; /* Color verde para el prompt */
+    font-weight: 600;
+}
+
+.typed-output {
+    font-size: 1.8em; /* Tamaño ajustado */
+    color: var(--text-light);
+    margin-top: 15px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.description-output {
+    color: #b0b0b0;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+/* Efecto de parpadeo para el prompt de la terminal */
+.blink {
+    border-right: 0.1em solid var(--primary-neon); /* Borde inicial para el efecto */
+    animation: blink-caret 1s step-end infinite;
+}
+
+@keyframes blink-caret {
+    from, to { border-right-color: transparent; }
+    50% { border-right-color: var(--primary-neon); }
+}
+
+.cta-button {
+    display: inline-block;
+    background: var(--primary-neon);
+    color: var(--background-dark);
+    font-weight: 700;
+    padding: 10px 25px;
+    border-radius: 4px;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    box-shadow: 0 0 10px rgba(0, 229, 255, 0.3);
+}
+
+.cta-button:hover {
+    background: #fff;
+    box-shadow: 0 0 15px var(--primary-neon), 0 0 30px rgba(0, 229, 255, 0.6);
+}
+
+
+/* --- Estilos de la Tarjeta de Estatus del Sistema (client-data-card) --- */
+.client-data-card {
+    flex-basis: 300px; /* Ancho fijo para la tarjeta */
+    background-color: var(--card-bg-dark);
+    padding: 20px;
+    border-radius: 4px;
+    border: 1px solid var(--secondary-blue);
+    box-shadow: 0 0 10px rgba(0, 119, 194, 0.4);
+    font-family: 'Oxanium', monospace;
+    font-size: 0.9em;
+    align-self: stretch; /* Para que la tarjeta se estire verticalmente */
+}
+
+.loading-message {
+    color: #ffbd2e; /* Amarillo para la carga */
+    font-weight: 600;
+}
+
+.status-line {
+    display: flex;
+    justify-content: space-between;
+    padding: 5px 0;
+    border-bottom: 1px dotted rgba(255, 255, 255, 0.1);
+}
+
+.label {
+    color: var(--secondary-blue);
+    font-weight: 400;
+}
+
+.value {
+    color: var(--text-light);
+    font-weight: 600;
+    text-align: right;
+}
+
+.value.success {
+    color: #27c93f; /* Verde para OK */
+    font-weight: 700;
+}
+
+.value.error {
+    color: #ff5f56; /* Rojo para ERROR */
+}
+
+/* --- 4. Estilos de las Secciones Generales (Services y Elite) --- */
+.services, .section-elite {
+    padding: 60px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.services h2, .section-elite h2 {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+    color: var(--text-light);
+    text-transform: uppercase;
+}
+
+.services h2 i, .section-elite h2 i {
+    margin-right: 15px;
+    color: var(--primary-neon);
+}
+
+.subtitle {
+    font-family: var(--font-body);
+    color: #b0b0b0;
+    max-width: 800px;
+    margin: 0 auto 50px;
+    font-size: 1.1em;
+}
+
+/* Elite Section (Ciberseguridad) */
+.subtitle-elite {
+    font-family: var(--font-body);
+    color: #b0b0b0;
+    max-width: 900px;
+    margin: 0 auto 40px;
+    font-size: 1.1em;
+    line-height: 1.7;
+    font-style: italic;
+}
+
+.elite-services-grid {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+}
+
+.elite-item {
+    background-color: #2a2a35; /* Fondo de tarjeta de servicio avanzado */
+    flex-basis: calc(33.333% - 30px);
+    min-width: 250px;
+    padding: 30px 20px;
+    border-radius: 6px;
+    border-bottom: 4px solid var(--secondary-blue);
+    transition: all 0.3s ease;
+    text-align: left;
+}
+
+.elite-item:hover {
+    transform: scale(1.02) translateY(-5px);
+    box-shadow: var(--shadow-neon-glow);
+    border-bottom-color: var(--primary-neon);
+}
+
+.elite-item i {
+    font-size: 2.5em;
+    color: var(--primary-neon);
+    margin-bottom: 15px;
+    display: block;
+}
+
+.elite-item h4 {
+    font-family: var(--font-heading);
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+.elite-item p {
+    color: #a0a0a0;
+}
+
+
+/* Servicios Grid */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    text-align: left;
+}
+
+.service-card {
+    background-color: var(--card-bg-dark);
+    padding: 25px;
+    border-radius: 4px;
+    border-left: 5px solid var(--secondary-blue);
+    transition: all 0.3s ease;
+}
+
+.service-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 20px rgba(0, 229, 255, 0.2);
+    border-left-color: var(--primary-neon);
+}
+
+.service-card h4 {
+    font-family: var(--font-heading);
+    font-size: 1.2em;
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+.service-card i {
+    color: var(--primary-neon);
+    margin-right: 10px;
+}
+
+.service-card p {
+    color: #a0a0a0;
+    font-size: 0.95em;
+}
+
+/* --- 5. Estilos del Footer --- */
+.footer {
+    background-color: #1a1a20;
+    padding: 40px 5%;
+    text-align: center;
+    border-top: 1px solid var(--border-subtle);
+}
+
+.footer-content h3 {
+    font-size: 1.8em;
+    margin-bottom: 10px;
+}
+
+.footer-content p {
+    color: #b0b0b0;
+    margin-bottom: 20px;
+}
+
+.social-links a {
+    display: inline-block;
+    color: var(--primary-neon);
+    font-size: 1.1em;
+    margin: 0 15px 20px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.social-links a:hover {
+    color: #fff;
+    transform: translateY(-3px);
+    text-shadow: 0 0 5px var(--primary-neon);
+}
+
+.social-links a i {
+    margin-right: 5px;
+}
+
+.copyright {
+    font-size: 0.8em;
+    color: #707070;
+    font-family: var(--font-heading);
+    letter-spacing: 1px;
+}
+
+/* --- 6. Estilos del Formulario de Contacto --- */
+.contact-section {
+    padding: 60px 5%;
+    max-width: 1000px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.query-form {
+    background-color: var(--card-bg-dark);
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid var(--border-subtle);
+    box-shadow: var(--shadow-deep);
+    text-align: left;
+    margin-top: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    gap: 20px;
+}
+
+.form-row .form-group {
+    flex: 1;
+}
+
+.query-form label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: var(--primary-neon);
+    font-family: var(--font-heading);
+}
+
+.query-form input[type="email"],
+.query-form input[type="tel"],
+.query-form textarea,
+.query-form select {
+    width: 100%;
+    padding: 12px;
+    background-color: #2b2b35;
+    border: 1px solid var(--secondary-blue);
+    color: var(--text-light);
+    border-radius: 4px;
+    font-family: var(--font-body);
+    font-size: 1em;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.query-form input:focus,
+.query-form textarea:focus,
+.query-form select:focus {
+    outline: none;
+    border-color: var(--primary-neon);
+    box-shadow: 0 0 8px rgba(0, 229, 255, 0.4);
+}
+
+.query-form textarea {
+    resize: vertical;
+}
+
+.submit-button {
+    width: 100%;
+    margin-top: 20px;
+    padding: 15px 0;
+    font-size: 1.1em;
+}
+
+/* --- 7. Estilos del Modal (Popup) --- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.modal-content {
+    background-color: #1a1a20;
+    padding: 40px;
+    border-radius: 8px;
+    border: 2px solid var(--primary-neon);
+    box-shadow: var(--shadow-neon-glow);
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    transform: translateY(0);
+    transition: transform 0.3s ease;
+}
+
+.modal-icon i {
+    font-size: 3em;
+    color: var(--primary-neon);
+    margin-bottom: 20px;
+}
+
+.modal-content h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+.modal-content p {
+    color: #b0b0b0;
+    margin-bottom: 20px;
+}
+
+#modal-close-button {
+    margin-top: 15px;
+    padding: 10px 30px;
+}
+
+/* --- Media Queries para Responsiveness --- */
+@media (max-width: 1024px) {
+    .hero-content {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .terminal-window {
+        max-width: 100%;
+        min-width: unset;
+        margin-bottom: 30px;
+    }
+
+    .client-data-card {
+        flex-basis: auto;
+        width: 100%;
+        max-width: 500px;
+    }
+}
+
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .nav {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .contact-button {
+        width: 100%;
+        text-align: center;
+    }
+
+    .elite-item {
+        flex-basis: 100%;
+    }
+    /* Móvil para formulario */
+    .form-row {
+        flex-direction: column;
+        gap: 0;
+    }
+    .query-form {
+        padding: 20px;
+    }
+}
