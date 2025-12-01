@@ -12,7 +12,25 @@
     /* Fuentes para el estilo técnico */
     --font-heading: 'Oxanium', monospace; 
     --font-body: 'Inter', sans-serif;
+    
+    /* Variables Específicas para el Toggle */
+    --toggle-color: var(--secondary-blue);
 }
+
+/* ------------------------------------------------------------- */
+/* --- NUEVA PALETA: MODO ALTO CONTRASTE (HC) --- */
+/* ------------------------------------------------------------- */
+body.high-contrast {
+    --primary-neon: #00ff00; /* Verde Brillante (HC) */
+    --secondary-blue: #00aa00; /* Verde Oscuro (HC) */
+    --text-light: #ffffff;
+    --background-dark: #000000;
+    --card-bg-dark: #101010;
+    --border-subtle: rgba(0, 255, 0, 0.2);
+    --shadow-neon-glow: 0 0 10px rgba(0, 255, 0, 0.5);
+    --toggle-color: #ffffff; /* El botón de toggle en blanco puro */
+}
+
 
 /* Importar fuentes de Google Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Oxanium:wght@400;600;700&display=swap');
@@ -31,6 +49,7 @@ body {
     background-color: var(--background-dark);
     color: var(--text-light);
     line-height: 1.6;
+    transition: background-color 0.3s; /* Transición para el cambio de modo */
 }
 
 /* Estilos globales */
@@ -38,6 +57,7 @@ h1, h2, h3, h4 {
     font-family: var(--font-heading);
     color: var(--primary-neon);
     font-weight: 700;
+    transition: color 0.3s;
 }
 
 .highlight {
@@ -55,7 +75,7 @@ a:hover {
 }
 
 
-/* --- 2. Estilos del Header y Navegación (Más Sutil y Técnico) --- */
+/* --- 2. Estilos del Header y Navegación (Responsive) --- */
 .header {
     display: flex;
     justify-content: space-between;
@@ -70,11 +90,11 @@ a:hover {
 }
 
 .logo-container {
-    padding: 10px 0; /* Aumento el padding para dar más espacio */
+    padding: 10px 0;
 }
 
 .logo {
-    height: 60px; /* ¡LOGO MÁS GRANDE! */
+    height: 60px;
     width: auto;
 }
 
@@ -114,7 +134,7 @@ a:hover {
     background: #fff;
 }
 
-/* --- 3. Estilos de la Sección Hero (El Look de Terminal Inmersivo) --- */
+/* --- 3. Estilos de la Sección Hero --- */
 .hero {
     min-height: 85vh;
     display: flex;
@@ -124,7 +144,6 @@ a:hover {
     background-color: var(--background-dark);
     padding: 80px 5%;
     position: relative;
-    /* Añadir un patrón de cuadrícula sutil de fondo */
     background-image: linear-gradient(rgba(255,255,255,.03) 1px, transparent 1px),
                       linear-gradient(90deg, rgba(255,255,255,.03) 1px, transparent 1px);
     background-size: 50px 50px;
@@ -138,17 +157,17 @@ a:hover {
     align-items: flex-start;
 }
 
-/* --- Estilos de la Ventana de Terminal (Nuevo Elemento) --- */
 .terminal-window {
     flex-grow: 1;
     min-width: 500px;
-    background-color: #1a1a20; /* Fondo oscuro para la terminal */
+    background-color: #1a1a20;
     border: 1px solid var(--primary-neon);
     border-radius: 6px;
     box-shadow: var(--shadow-neon-glow);
     overflow: hidden;
     font-family: 'Oxanium', monospace;
     max-width: 700px;
+    transition: border-color 0.3s, box-shadow 0.3s;
 }
 
 .terminal-header {
@@ -157,6 +176,7 @@ a:hover {
     display: flex;
     align-items: center;
     border-bottom: 1px solid var(--primary-neon);
+    transition: border-bottom-color 0.3s;
 }
 
 .terminal-dot {
@@ -188,12 +208,12 @@ a:hover {
 }
 
 .prompt {
-    color: #27c93f; /* Color verde para el prompt */
+    color: #27c93f;
     font-weight: 600;
 }
 
 .typed-output {
-    font-size: 1.8em; /* Tamaño ajustado */
+    font-size: 1.8em;
     color: var(--text-light);
     margin-top: 15px;
     margin-bottom: 10px;
@@ -207,9 +227,8 @@ a:hover {
     margin-bottom: 20px;
 }
 
-/* Efecto de parpadeo para el prompt de la terminal */
 .blink {
-    border-right: 0.1em solid var(--primary-neon); /* Borde inicial para el efecto */
+    border-right: 0.1em solid var(--primary-neon);
     animation: blink-caret 1s step-end infinite;
 }
 
@@ -236,10 +255,8 @@ a:hover {
     box-shadow: 0 0 15px var(--primary-neon), 0 0 30px rgba(0, 229, 255, 0.6);
 }
 
-
-/* --- Estilos de la Tarjeta de Estatus del Sistema (client-data-card) --- */
 .client-data-card {
-    flex-basis: 300px; /* Ancho fijo para la tarjeta */
+    flex-basis: 300px;
     background-color: var(--card-bg-dark);
     padding: 20px;
     border-radius: 4px;
@@ -247,11 +264,12 @@ a:hover {
     box-shadow: 0 0 10px rgba(0, 119, 194, 0.4);
     font-family: 'Oxanium', monospace;
     font-size: 0.9em;
-    align-self: stretch; /* Para que la tarjeta se estire verticalmente */
+    align-self: stretch;
+    transition: border-color 0.3s, background-color 0.3s;
 }
 
 .loading-message {
-    color: #ffbd2e; /* Amarillo para la carga */
+    color: #ffbd2e;
     font-weight: 600;
 }
 
@@ -265,6 +283,7 @@ a:hover {
 .label {
     color: var(--secondary-blue);
     font-weight: 400;
+    transition: color 0.3s;
 }
 
 .value {
@@ -274,15 +293,15 @@ a:hover {
 }
 
 .value.success {
-    color: #27c93f; /* Verde para OK */
+    color: #27c93f;
     font-weight: 700;
 }
 
 .value.error {
-    color: #ff5f56; /* Rojo para ERROR */
+    color: #ff5f56;
 }
 
-/* --- 4. Estilos de las Secciones Generales (Services y Elite) --- */
+/* --- 4. Estilos de las Secciones Generales --- */
 .services, .section-elite {
     padding: 60px 5%;
     max-width: 1200px;
@@ -300,6 +319,7 @@ a:hover {
 .services h2 i, .section-elite h2 i {
     margin-right: 15px;
     color: var(--primary-neon);
+    transition: color 0.3s;
 }
 
 .subtitle {
@@ -310,7 +330,6 @@ a:hover {
     font-size: 1.1em;
 }
 
-/* Elite Section (Ciberseguridad) */
 .subtitle-elite {
     font-family: var(--font-body);
     color: #b0b0b0;
@@ -329,7 +348,7 @@ a:hover {
 }
 
 .elite-item {
-    background-color: #2a2a35; /* Fondo de tarjeta de servicio avanzado */
+    background-color: #2a2a35;
     flex-basis: calc(33.333% - 30px);
     min-width: 250px;
     padding: 30px 20px;
@@ -337,12 +356,14 @@ a:hover {
     border-bottom: 4px solid var(--secondary-blue);
     transition: all 0.3s ease;
     text-align: left;
+    color: var(--text-light);
 }
 
 .elite-item:hover {
     transform: scale(1.02) translateY(-5px);
     box-shadow: var(--shadow-neon-glow);
     border-bottom-color: var(--primary-neon);
+    color: var(--text-light);
 }
 
 .elite-item i {
@@ -350,6 +371,7 @@ a:hover {
     color: var(--primary-neon);
     margin-bottom: 15px;
     display: block;
+    transition: color 0.3s;
 }
 
 .elite-item h4 {
@@ -363,8 +385,6 @@ a:hover {
     color: #a0a0a0;
 }
 
-
-/* Servicios Grid */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -378,12 +398,14 @@ a:hover {
     border-radius: 4px;
     border-left: 5px solid var(--secondary-blue);
     transition: all 0.3s ease;
+    color: var(--text-light);
 }
 
 .service-card:hover {
     transform: translateY(-5px);
     box-shadow: 0 5px 20px rgba(0, 229, 255, 0.2);
     border-left-color: var(--primary-neon);
+    color: var(--text-light);
 }
 
 .service-card h4 {
@@ -396,11 +418,75 @@ a:hover {
 .service-card i {
     color: var(--primary-neon);
     margin-right: 10px;
+    transition: color 0.3s;
 }
 
 .service-card p {
     color: #a0a0a0;
     font-size: 0.95em;
+}
+
+/* --- ESTILOS PARA LAS PÁGINAS DE SERVICIO (Detalle) --- */
+
+.service-detail-section {
+    padding: 80px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: 80vh;
+}
+
+.service-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.service-header h1 {
+    font-size: 3em;
+    color: var(--primary-neon);
+    text-transform: uppercase;
+}
+
+.service-header p {
+    color: #b0b0b0;
+    font-size: 1.2em;
+    max-width: 800px;
+    margin: 15px auto 0;
+}
+
+.feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    text-align: left;
+}
+
+.feature-item {
+    background-color: var(--card-bg-dark);
+    padding: 30px;
+    border-radius: 6px;
+    border-left: 5px solid var(--primary-neon);
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+    box-shadow: var(--shadow-deep);
+    transition: border-left-color 0.3s, background-color 0.3s;
+}
+
+.feature-icon {
+    font-size: 2.5em;
+    color: var(--secondary-blue);
+    min-width: 50px;
+    transition: color 0.3s;
+}
+
+.feature-content h3 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+.feature-content p {
+    color: #a0a0a0;
 }
 
 /* --- 5. Estilos del Footer --- */
@@ -575,7 +661,44 @@ a:hover {
     padding: 10px 30px;
 }
 
-/* --- Media Queries para Responsiveness --- */
+/* --- 8. Estilos del Toggle de Contraste --- */
+.contrast-toggle {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 50px;
+    height: 50px;
+    background-color: var(--card-bg-dark);
+    color: var(--toggle-color);
+    border: 2px solid var(--toggle-color);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: all 0.3s ease;
+    z-index: 1001;
+}
+
+.contrast-toggle:hover {
+    background-color: var(--primary-neon);
+    color: var(--background-dark);
+    border-color: var(--background-dark);
+    transform: scale(1.1);
+    box-shadow: var(--shadow-neon-glow);
+}
+
+.contrast-toggle i {
+    font-size: 1.5em;
+    transition: color 0.3s;
+}
+
+body.high-contrast .contrast-toggle i {
+    color: var(--primary-neon);
+}
+
+/* --- 9. Media Queries para Responsiveness --- */
 @media (max-width: 1024px) {
     .hero-content {
         flex-direction: column;
@@ -599,22 +722,33 @@ a:hover {
     .header {
         flex-direction: column;
         gap: 10px;
+        padding: 10px 3%;
     }
-
+    
     .nav {
         flex-wrap: wrap;
         justify-content: center;
+        gap: 8px;
     }
     
+    .nav .nav-item {
+        padding: 6px 10px;
+    }
+
     .contact-button {
         width: 100%;
         text-align: center;
+        margin-top: 10px;
     }
-
+    
+    .typed-output {
+        font-size: 1.5em;
+    }
+    
     .elite-item {
         flex-basis: 100%;
     }
-    /* Móvil para formulario */
+    
     .form-row {
         flex-direction: column;
         gap: 0;
@@ -622,4 +756,25 @@ a:hover {
     .query-form {
         padding: 20px;
     }
+
+    .service-header h1 {
+        font-size: 2em;
+    }
+
+    .feature-item {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px;
+    }
+    
+    .feature-icon {
+        margin: 0 auto;
+        min-width: unset;
+    }
+
+    .feature-item {
+        border-left: none;
+        border-top: 5px solid var(--primary-neon);
+    }
+
 }
