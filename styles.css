@@ -825,27 +825,42 @@ body.high-contrast .contrast-toggle i {
 }
 
 /* 2. Ventana del Chatbot */
+/* --- Estilos Principales del Chatbot (Desktop/Tamaño por defecto) --- */
 .chatbot-container {
     position: fixed;
-    bottom: 90px;
-    right: 90px;
-    z-index: 999;
-    width: 350px;
-    height: 450px;
-    background-color: #0d0d0d; /* Fondo Negro Oscuro */
-    border: 2px solid #ff0000;
+    right: 30px; /* Distancia desde el borde derecho */
+    bottom: 90px; /* Elevado sobre el botón de toggle */
+    
+    /* ***** CÓDIGO CLAVE PARA REDUCIR EL TAMAÑO ***** */
+    width: 350px; /* Ancho estándar de escritorio */
+    height: 500px; /* Altura estándar */
+    max-height: 80vh; /* Máximo 80% de la altura de la ventana */
+    /* ********************************************** */
+    
+    background-color: #000000; 
+    border: 1px solid #ff0000;
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(255, 0, 0, 0.8), 0 0 40px rgba(255, 0, 0, 0.2);
-    display: flex;
+    box-shadow: 0 5px 25px rgba(255, 0, 0, 0.4); 
+    z-index: 9999;
+    display: none; /* Por defecto debe estar oculto */
     flex-direction: column;
     overflow: hidden;
-    transform: scale(0);
-    transform-origin: bottom right;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+}
+/* Asegúrate que estas reglas también estén presentes si no lo están */
+.chatbot-container.active {
+    display: flex;
+    opacity: 1;
+    transform: scale(1);
 }
 
-.chatbot-container.active {
-    transform: scale(1);
+.chatbot-body {
+    padding: 15px;
+    overflow-y: auto;
+    flex-grow: 1;
+    /* Ajuste para que el body no se desborde al reducir el contenedor */
+    max-height: calc(100% - 100px); 
+
 }
 
 /* 3. Encabezado del Chatbot */
@@ -968,20 +983,25 @@ body.high-contrast .contrast-toggle i {
     display: none;
 }
 
+
 /* --- Media Query Específica para la Adaptabilidad Móvil del Chatbot --- */
 @media (max-width: 500px) {
-    /* El Chatbot cubre una gran parte de la pantalla en móviles */
+    /* El Chatbot cubre la pantalla completa en móviles */
     .chatbot-container {
-        width: 90%; /* Ocupa el 90% del ancho */
-        height: 80%; /* Ocupa el 80% de la altura de la ventana */
-        bottom: 70px; /* Sube un poco más para dejar espacio en la parte inferior */
-        right: 5%; /* Centrado horizontalmente (100% - 90% = 10% / 2 = 5%) */
-        transform-origin: bottom center; /* Cambia el origen de la animación de aparición */
+        width: 100% !important; /* Ocupa todo el ancho */
+        height: 100% !important; /* Ocupa toda la altura */
+        max-width: none !important; 
+        max-height: none !important; 
+        right: 0 !important;
+        bottom: 0 !important;
+        border-radius: 0 !important; /* Sin bordes redondeados */
+        box-shadow: none !important; 
     }
-    
-    /* Mueve el botón de calavera para que no choque con la esquina */
-    .chatbot-toggle-button {
-        bottom: 20px;
-        right: 20px;
+
+    /* Asegurar que el cuerpo del chat use el espacio restante */
+    .chatbot-body {
+        max-height: calc(100% - 100px) !important; 
     }
+}
+}    }
 }
