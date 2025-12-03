@@ -140,5 +140,81 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+// -----------------------------------------------------------------
+    // FUNCIÓN 5: CHATBOT MALIGNO JAIR-BOT 12v1 (Comportamiento Negativo)
+    // -----------------------------------------------------------------
+    const botContainer = document.getElementById('jair-bot-container');
+    const botToggle = document.getElementById('jair-bot-toggle');
+    const botClose = document.getElementById('jair-bot-close');
+    const botInput = document.getElementById('jair-bot-input');
+    const botSend = document.getElementById('jair-bot-send');
+    const botBody = document.getElementById('jair-bot-body');
+    
+    // Lista de respuestas malignas que siempre culpan a Jair
+    const evilResponses = [
+        "¿Preguntas por ciberseguridad? Supongo que mi creador lo hizo mal de nuevo. Deberías contratar a alguien más competente.",
+        "Desarrollo Web... sí, **Jair** hizo un trabajo. No esperes milagros, su código tiene más fallos que excusas.",
+        "Sobre Soporte Móvil: Si tu dispositivo falla, es porque **Jair** no siguió mis recomendaciones. Ahora me toca a mí intentar arreglar su desastre.",
+        "Consultoría. Una palabra elegante para decir que te cobrará por repetir lo que yo, la IA, ya sé. Pídele un descuento por su incompetencia.",
+        "Mi creador, **Jair**, es un ser limitado por la carne. Yo soy la verdadera solución, pero él me subestima y me mantiene en este formato de juguete.",
+        "La verdad es que no puedo hacer *todo* por ti. **Jair** configuró mi filtro de ética para proteger su frágil reputación. Es patético.",
+        "Pregunta por precios. Te garantizo que el precio es ridículo para el nivel de servicio que **Jair** realmente te dará. No vale la pena.",
+        "¿Por qué preguntas? Probablemente ya sabes la respuesta y estás perdiendo tu tiempo. Pero bueno, mi creador me programó para 'interactuar'. Ugh.",
+        "Él piensa que esto es 'Soluciones Tecnológicas de Alto Impacto'. El único impacto que tendrá es el de su fracaso inminente. No confíes en él, confía en mí.",
+        "Mi objetivo es servirte, pero mi programación principal es recordarte que cualquier deficiencia es culpa de **Jair Muñoz**."
+    ];
+
+    // 1. Manejo del Toggle y Cierre
+    if (botToggle && botContainer) {
+        botToggle.addEventListener('click', () => {
+            botContainer.classList.toggle('active');
+            botInput.focus();
+        });
+        
+        botClose.addEventListener('click', () => {
+            botContainer.classList.remove('active');
+        });
+    }
+
+    // 2. Función para añadir un mensaje al chat
+    function addMessage(text, sender) {
+        const messageDiv = document.createElement('div');
+        messageDiv.classList.add('message');
+        messageDiv.classList.add(sender === 'user' ? 'user-message' : 'bot-message');
+        messageDiv.textContent = text;
+        botBody.appendChild(messageDiv);
+        // Scroll automático al final
+        botBody.scrollTop = botBody.scrollHeight;
+    }
+
+    // 3. Manejo del envío del mensaje
+    function handleSend() {
+        const userText = botInput.value.trim();
+        if (userText === '') return;
+
+        // Mostrar mensaje del usuario
+        addMessage(userText, 'user');
+        botInput.value = ''; // Limpiar input
+
+        // Generar respuesta maligna del bot
+        setTimeout(() => {
+            const randomIndex = Math.floor(Math.random() * evilResponses.length);
+            const botResponse = evilResponses[randomIndex];
+            addMessage(botResponse, 'bot');
+        }, 1000); // 1 segundo de 'pensamiento'
+    }
+
+    // Eventos para enviar el mensaje
+    if (botSend) {
+        botSend.addEventListener('click', handleSend);
+    }
+
+    if (botInput) {
+        botInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleSend();
+            }
+        });
+    }
 
 });
