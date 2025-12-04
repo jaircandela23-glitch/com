@@ -1002,6 +1002,71 @@ body.high-contrast .contrast-toggle i {
     .chatbot-body {
         max-height: calc(100% - 100px) !important; 
     }
+/* --- ESTILO PARA EL BOTÓN DE CONTENIDO VIP (BLOQUEADO) --- */
+.vip-button-locked {
+    display: inline-block;
+    background: #444444; /* Fondo gris oscuro, bloqueado */
+    color: #ff0000; /* Texto de advertencia/peligro */
+    font-weight: 700;
+    padding: 10px 25px;
+    border-radius: 4px;
+    margin-top: 15px;
+    margin-left: 15px; /* Espacio junto al botón CTA */
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    border: 2px solid #ff0000;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    cursor: default; /* Indica que no es un botón normal */
+}
+
+.vip-button-locked:hover {
+    background: #333333;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+    color: #ff0000; /* Evita que cambie de color */
+    transform: none; /* Evita la animación de hover */
+}
+
+/* Ajuste para que los botones se vean bien en móvil */
+@media (max-width: 500px) {
+    .cta-button, .vip-button-locked {
+        display: block;
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
+/* --- ESTILO PARA EL BOTÓN DE CONTENIDO VIP (BLOQUEADO) --- */
+.vip-button-locked {
+    display: inline-block;
+    background: #444444; /* Fondo gris oscuro, bloqueado */
+    color: #ff0000; /* Texto de advertencia/peligro */
+    font-weight: 700;
+    padding: 10px 25px;
+    border-radius: 4px;
+    margin-top: 15px;
+    margin-left: 15px; /* Espacio junto al botón CTA */
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    border: 2px solid #ff0000;
+    box-shadow: 0 0 10px rgba(255, 0, 0, 0.4);
+    cursor: default; /* Indica que no es un botón normal */
+    text-decoration: none; /* Asegurar que no tiene subrayado */
+}
+
+.vip-button-locked:hover {
+    background: #333333;
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.7);
+    color: #ff0000; /* Evita que cambie de color */
+    transform: none; /* Evita la animación de hover */
+}
+
+/* Ajuste para que los botones se vean bien en móvil */
+@media (max-width: 500px) {
+    .cta-button, .vip-button-locked {
+        display: block;
+        width: 100%;
+        margin-left: 0;
+        margin-bottom: 10px;
+    }
 }
 }    }
 }

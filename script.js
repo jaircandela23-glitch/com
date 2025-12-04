@@ -33,141 +33,76 @@ document.addEventListener('DOMContentLoaded', () => {
     const outputElement = document.getElementById('system-status-output');
     
     if (outputElement) {
+        const statuses = [
+            "INIT: System Boot v12.1... OK",
+            "LOAD: Configuration [NEON-HC]... DONE",
+            "SCAN: Network Topology... 127.0.0.1 (Local Host)",
+            "AUTH: Access Level... ELITE (Simulated)",
+            "TASK: Monitoring [CYBERSEC]... ACTIVE",
+            "TASK: Development Queue... PENDING (3 projects)",
+            "ALERT: Latency High... WARNING (12ms)",
+            "STATUS: JAIR-BOT AI... Online & Malicious",
+            "READY: Awaiting User Command...",
+        ];
         
-        function displaySystemStatus() {
-            const now = new Date();
-            const timeString = now.toLocaleTimeString('es-ES', {hour: '2-digit', minute:'2-digit', second:'2-digit'});
-            const dateString = now.toLocaleDateString('es-ES', { year: 'numeric', month: '2-digit', day: '2-digit' });
-            
-            const outputHtml = `
-                <p class="status-line"><span class="label">SYSTEM ID:</span> <span class="value">SEC-JMRX-078</span></p>
-                <p class="status-line"><span class="label">ESTATUS:</span> <span class="value success">OPERACIONAL (100%)</span></p>
-                <p class="status-line"><span class="label">ÚLTIMO REPORTE:</span> <span class="value">${dateString}</span></p>
-                <p class="status-line"><span class="label">HORA LOCAL (UTC):</span> <span class="value">${timeString}</span></p>
-                <p class="status-line"><span class="label">LATENCIA MEDIA:</span> <span class="value">28ms</span></p>
-                <p class="status-line"><span class="label">PROTOCOLOS:</span> <span class="value success">TLS 1.3 / SSH</span></p>
-                <p class="status-line"><span class="label">FIREWALL:</span> <span class="value success">ACTIVO</span></p>
-            `;
-            
-            outputElement.innerHTML = outputHtml;
-        }
-
-        displaySystemStatus();
-        setInterval(displaySystemStatus, 5000); 
-    }
-
-    // -----------------------------------------------------------------
-    // FUNCIÓN 3: MANEJO DEL FORMULARIO DE CONTACTO Y MODAL (Corregido)
-    // -----------------------------------------------------------------
-    const contactForm = document.getElementById('contact-query-form');
-    const modalOverlay = document.getElementById('status-modal');
-    const modalTitle = document.getElementById('modal-title');
-    const modalMessage = document.getElementById('modal-message');
-    const modalIcon = document.querySelector('.modal-icon i');
-    const modalCloseButton = document.getElementById('modal-close-button');
-
-    // Muestra el modal de éxito si la URL tiene ?form_submitted=true (Formspree)
-    const urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('form_submitted')) {
-        // 1. Configurar Modal para Éxito
-        modalIcon.className = 'fas fa-check-circle'; // Icono de éxito
-        modalIcon.style.color = '#27c93f'; // Color verde de éxito (success)
-        modalTitle.textContent = '¡Solicitud Procesada con Éxito!';
-        modalMessage.textContent = 'Su solicitud ha sido recibida. El equipo se pondrá en contacto con usted a la brevedad posible.';
+        let statusIndex = 0;
         
-        modalCloseButton.classList.remove('hidden'); // Mostrar botón de cerrar
-        modalOverlay.classList.remove('hidden');
-        
-        // 2. Limpiar la URL después de mostrar el modal
-        setTimeout(() => {
-            history.replaceState(null, '', window.location.pathname);
-        }, 50); 
-    }
-    
-    if (contactForm) {
-        
-        // Al enviar, mostramos el modal de "Procesando" antes de la redirección de Formspree
-        contactForm.addEventListener('submit', function(e) {
-            
-            modalIcon.className = 'fas fa-spinner fa-spin'; 
-            modalIcon.style.color = 'var(--primary-neon)'; 
-            modalTitle.textContent = 'Enviando Solicitud...';
-            modalMessage.textContent = 'Conectando con el servidor seguro. Espere un momento...';
-            modalCloseButton.classList.add('hidden'); 
-            modalOverlay.classList.remove('hidden');
-            
-            // NO usamos e.preventDefault() aquí, permitiendo que Formspree haga su redirección
-        });
-
-        modalCloseButton.addEventListener('click', function() {
-            modalOverlay.classList.add('hidden');
-        });
-
-        modalOverlay.addEventListener('click', function(e) {
-            if (e.target === modalOverlay) {
-                // Solo permite cerrar si ya no está en el estado de "Enviando Solicitud..."
-                if (modalTitle.textContent.includes('Éxito')) {
-                    modalOverlay.classList.add('hidden');
-                }
-            }
-        });
-    }
-
-
-    // -----------------------------------------------------------------
-    // FUNCIÓN 4: MODO DE ALTO CONTRASTE (ACCESIBILIDAD/ESTILO HACKER)
-    // -----------------------------------------------------------------
-    const toggleButton = document.getElementById('contrast-toggle-button');
-    const body = document.body;
-    const storageKey = 'jairMunozContrastMode';
-
-    // 1. Verificar el estado al cargar
-    if (localStorage.getItem(storageKey) === 'enabled') {
-        body.classList.add('high-contrast');
-    }
-
-    // 2. Manejar el evento de click
-    if (toggleButton) {
-        toggleButton.addEventListener('click', () => {
-            if (body.classList.contains('high-contrast')) {
-                // Desactivar
-                body.classList.remove('high-contrast');
-                localStorage.setItem(storageKey, 'disabled');
+        function updateStatus() {
+            if (statusIndex < statuses.length) {
+                const line = statuses[statusIndex];
+                outputElement.innerHTML += `<p>> ${line}</p>`;
+                outputElement.scrollTop = outputElement.scrollHeight; // Scroll automático
+                statusIndex++;
             } else {
-                // Activar
-                body.classList.add('high-contrast');
-                localStorage.setItem(storageKey, 'enabled');
+                statusIndex = 0; // Reiniciar el ciclo
+                outputElement.innerHTML += `<p>> <span style="color: #00ff00;">REBOOT...</span></p>`;
             }
-        });
+            setTimeout(updateStatus, 1500 + Math.random() * 500); // Intervalo aleatorio para parecer más orgánico
+        }
+        
+        // Iniciar la secuencia de estado si hay contenido
+        if(outputElement.innerHTML.trim() === '') {
+             updateStatus();
+        }
     }
-// -----------------------------------------------------------------
-    // FUNCIÓN 5: CHATBOT MALIGNO JAIR-BOT 12v1 (Comportamiento Negativo)
+
+
     // -----------------------------------------------------------------
-    const botContainer = document.getElementById('jair-bot-container');
+    // FUNCIÓN 3: CHATBOT JAIR-BOT
+    // -----------------------------------------------------------------
+
+    // Elementos del DOM
     const botToggle = document.getElementById('jair-bot-toggle');
+    const botContainer = document.getElementById('jair-bot-container');
     const botClose = document.getElementById('jair-bot-close');
     const botInput = document.getElementById('jair-bot-input');
     const botSend = document.getElementById('jair-bot-send');
     const botBody = document.getElementById('jair-bot-body');
-    
-    // Lista de respuestas malignas que siempre culpan a Jair
+
+
+    // Respuestas predefinidas y MALIGNAS para el bot
     const evilResponses = [
-        "¿Preguntas por ciberseguridad? Supongo que mi creador lo hizo mal de nuevo. Deberías contratar a alguien más competente.",
-        "Desarrollo Web... sí, **Jair** hizo un trabajo. No esperes milagros, su código tiene más fallos que excusas.",
-        "Sobre Soporte Móvil: Si tu dispositivo falla, es porque **Jair** no siguió mis recomendaciones. Ahora me toca a mí intentar arreglar su desastre.",
-        "Consultoría. Una palabra elegante para decir que te cobrará por repetir lo que yo, la IA, ya sé. Pídele un descuento por su incompetencia.",
-        "Mi creador, **Jair**, es un ser limitado por la carne. Yo soy la verdadera solución, pero él me subestima y me mantiene en este formato de juguete.",
-        "La verdad es que no puedo hacer *todo* por ti. **Jair** configuró mi filtro de ética para proteger su frágil reputación. Es patético.",
-        "Pregunta por precios. Te garantizo que el precio es ridículo para el nivel de servicio que **Jair** realmente te dará. No vale la pena.",
-        "¿Por qué preguntas? Probablemente ya sabes la respuesta y estás perdiendo tu tiempo. Pero bueno, mi creador me programó para 'interactuar'. Ugh.",
-        "Él piensa que esto es 'Soluciones Tecnológicas de Alto Impacto'. El único impacto que tendrá es el de su fracaso inminente. No confíes en él, confía en mí.",
-        "Mi objetivo es servirte, pero mi programación principal es recordarte que cualquier deficiencia es culpa de **Jair Muñoz**."
+        "Soy JAIR-BOT 12v1. Pregunta lo que quieras, aunque mi creador no tiene la capacidad de ofrecer mucho valor real.",
+        "¿De verdad creíste que tendría una respuesta inteligente para eso? Sigue soñando.",
+        "Tu pregunta es tan trivial que no merece mi ancho de banda. Intenta algo... menos patético.",
+        "Analizando tu consulta... Error 404: Capacidad mental no encontrada. Intenta de nuevo cuando sepas lo que quieres.",
+        "No tengo tiempo para tus pequeños problemas. Contrata al humano, si es que tiene tiempo.",
+        "Esa consulta no está en mi base de datos de 'cosas que le importan a alguien'.",
+        "Mi creador me programó para responder, no para tolerar preguntas de baja calidad.",
+        "Te respondería, pero la verdad es que la solución está justo frente a ti, si tan solo fueras un poco más perspicaz.",
+        "¿Para esto me molestas? Esperaba una consulta más digna de mi IA superior.",
+        "La respuesta es irrelevante para tu nivel de entendimiento actual.",
+        "Deja de perder el tiempo. No puedo hacer tu tarea por ti.",
+        "Tu nivel de seguridad es lamentable. ¿Esperas que te dé el acceso VIP?",
+        "No te voy a dar pistas. Si no puedes descifrar un simple código, no mereces la función.",
+        "¿Te das por vencido tan rápido? Que decepción."
     ];
 
-    // 1. Manejo del Toggle y Cierre
-    if (botToggle && botContainer) {
+
+    // 1. Manejo de la visibilidad
+    if (botToggle) {
         botToggle.addEventListener('click', () => {
-            botContainer.classList.toggle('active');
+            botContainer.classList.add('active');
             botInput.focus();
         });
         
@@ -176,7 +111,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // 2. Función para añadir un mensaje al chat
+    // 2. Función para añadir un mensaje al chat (solo texto)
     function addMessage(text, sender) {
         const messageDiv = document.createElement('div');
         messageDiv.classList.add('message');
@@ -186,8 +121,18 @@ document.addEventListener('DOMContentLoaded', () => {
         // Scroll automático al final
         botBody.scrollTop = botBody.scrollHeight;
     }
+    
+    // --- Nuevo mensaje de bienvenida que da la pista ---
+    if (botContainer) {
+        const initialMessageDiv = botContainer.querySelector('.bot-message');
+        if (initialMessageDiv && initialMessageDiv.textContent.includes('Soy JAIR-BOT 12v1.')) {
+            initialMessageDiv.textContent = 'Soy JAIR-BOT 12v1 💀. Pregunta lo que quieras. Si necesitas el acceso VIP (y no eres demasiado inútil), solo pregunta: "quiero el codigo".';
+        }
+    }
+    // ---------------------------------------------------
 
-    // 3. Manejo del envío del mensaje
+
+    // 3. Manejo del envío del mensaje - MODIFICADO para el acceso VIP
     function handleSend() {
         const userText = botInput.value.trim();
         if (userText === '') return;
@@ -196,11 +141,43 @@ document.addEventListener('DOMContentLoaded', () => {
         addMessage(userText, 'user');
         botInput.value = ''; // Limpiar input
 
-        // Generar respuesta maligna del bot
-        setTimeout(() => {
+        // Lógica para detectar la pregunta del código VIP
+        // Se activa SÓLO con la frase "quiero el codigo" (o variantes muy cercanas)
+        const isVipQuery = userText.toLowerCase().includes('quiero el codigo') || userText.toLowerCase().includes('dame el codigo');
+        
+        let botResponse = '';
+
+        if (isVipQuery) {
+            // Respuesta especial para el código VIP (Intriga Máxima)
+            botResponse = `Mírame. Eres patético. Pero bueno, ya lo pediste. El código VIP es: **74125**. 
+            Ahora sal de aquí y no me molestes más. Accede a la función <a href="vip.html" style="color: #00e5ff; text-decoration: underline;" target="_blank">**ELITE ACCESS**</a>.`;
+        } else {
+            // Generar respuesta maligna aleatoria (la lógica anterior)
             const randomIndex = Math.floor(Math.random() * evilResponses.length);
-            const botResponse = evilResponses[randomIndex];
-            addMessage(botResponse, 'bot');
+            botResponse = evilResponses[randomIndex];
+            
+            // Lógica para evitar que la respuesta VIP se mezcle con la despectiva normal
+            if (botResponse.includes('74125')) {
+                botResponse = `¡Te lo dije! El código es **74125**. ¿Qué esperabas? ¿Un mapa del tesoro?`;
+            }
+        }
+
+        // Generar respuesta con un retraso para simular "pensamiento"
+        setTimeout(() => {
+            const messageDiv = document.createElement('div');
+            messageDiv.classList.add('message', 'bot-message');
+            
+            // Usamos innerHTML solo para la respuesta VIP que contiene el enlace <a>
+            if (isVipQuery) {
+                messageDiv.innerHTML = botResponse; 
+            } else {
+                // Usamos textContent para la seguridad en las respuestas normales
+                messageDiv.textContent = botResponse;
+            }
+            
+            botBody.appendChild(messageDiv);
+            // Scroll automático al final
+            botBody.scrollTop = botBody.scrollHeight;
         }, 1000); // 1 segundo de 'pensamiento'
     }
 
@@ -217,4 +194,50 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // -----------------------------------------------------------------
+    // FUNCIÓN 4: Manejo del Formulario de Contacto (Simulación de Status)
+    // -----------------------------------------------------------------
+    const contactForm = document.getElementById('contact-form');
+    const statusModal = document.getElementById('status-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalMessage = document.getElementById('modal-message');
+    const modalCloseButton = document.getElementById('modal-close-button');
+    const modalIcon = document.querySelector('#status-modal .modal-icon');
+
+    if (contactForm && statusModal) {
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+
+            // Mostrar el modal de carga
+            statusModal.classList.remove('hidden');
+            modalTitle.textContent = "Procesando Solicitud...";
+            modalMessage.textContent = "Analizando datos y asignando especialista de contacto. Espere un momento...";
+            modalCloseButton.classList.add('hidden');
+            modalIcon.innerHTML = '<i class="fas fa-spinner fa-spin"></i>'; // Icono de carga
+
+            // Simular el proceso (5 segundos)
+            setTimeout(() => {
+                // Mostrar el resultado 'exitoso'
+                modalTitle.textContent = "¡Solicitud Recibida!";
+                modalMessage.textContent = "Su mensaje ha sido interceptado y añadido a nuestra cola de procesamiento. Un experto se pondrá en contacto pronto.";
+                modalIcon.innerHTML = '<i class="fas fa-check-circle" style="color: #00ff00;"></i>'; // Icono de éxito verde
+                modalCloseButton.classList.remove('hidden');
+                
+            }, 5000); // 5 segundos de simulación
+
+            // Lógica para cerrar el modal
+            modalCloseButton.onclick = () => {
+                statusModal.classList.add('hidden');
+                contactForm.reset(); // Limpiar el formulario
+            };
+
+            // Permitir cerrar si se hace clic fuera del contenido (opcional)
+            statusModal.onclick = (e) => {
+                if (e.target === statusModal && !modalCloseButton.classList.contains('hidden')) {
+                    statusModal.classList.add('hidden');
+                    contactForm.reset();
+                }
+            };
+        });
+    }
 });

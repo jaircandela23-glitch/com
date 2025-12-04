@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Acceso Elite - Funcionalidad Restringida</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        .vip-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: var(--background-dark);
+            padding: 20px;
+        }
+
+        .access-card {
+            background-color: var(--card-bg-dark);
+            border: 1px solid var(--border-subtle);
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: var(--shadow-deep);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            animation: fadeIn 1s ease-in-out;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .access-card h1 {
+            color: var(--primary-neon);
+            margin-bottom: 20px;
+            font-family: var(--font-heading);
+            text-shadow: 0 0 5px rgba(0, 229, 255, 0.5);
+        }
+
+        .access-card p {
+            color: var(--text-light);
+            margin-bottom: 30px;
+        }
+
+        .access-input {
+            width: 100%;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 2px solid var(--secondary-blue);
+            background-color: #000000;
+            color: var(--primary-neon);
+            font-size: 1.2em;
+            text-align: center;
+            border-radius: 5px;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+        
+        .access-input:focus {
+            border-color: var(--primary-neon);
+            box-shadow: 0 0 8px rgba(0, 229, 255, 0.8);
+        }
+
+        .access-button {
+            width: 100%;
+            padding: 15px;
+            background-color: #ff0000; /* Color de peligro para intriga */
+            color: #000000;
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.1s;
+        }
+
+        .access-button:hover {
+            background-color: #cc0000;
+        }
+
+        .access-message {
+            margin-top: 20px;
+            font-weight: bold;
+            color: #ff4500; /* Naranja para advertencia */
+            display: none;
+        }
+
+        /* Estilos para el contenido 'Elite' - Se muestra al autenticar */
+        #vip-content {
+            display: none; /* Inicialmente oculto */
+            padding-top: 30px;
+        }
+
+        .vip-service-list {
+            list-style: none;
+            padding: 0;
+            text-align: left;
+        }
+
+        .vip-service-list li {
+            background-color: #0d0d0d;
+            border-left: 3px solid #ff0000;
+            color: var(--text-light);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            font-family: var(--font-body);
+        }
+        
+        .vip-service-list li i {
+            margin-right: 10px;
+            color: #ff0000;
+        }
+        
+        .contact-info {
+            margin-top: 30px;
+            border-top: 1px dashed #ff0000;
+            padding-top: 20px;
+        }
+        
+        .contact-info a {
+            color: #00ff00;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="vip-container">
+        <div class="access-card" id="access-form">
+            <h1><i class="fas fa-user-secret"></i> ACCESO ELITE RESTRINGIDO</h1>
+            <p>Se requiere una clave de acceso de 5 dígitos. Intrusos serán notificados. </p>
+            
+            <input type="password" id="access-code" class="access-input" placeholder="INGRESE CÓDIGO" maxlength="5" />
+            <button id="submit-code" class="access-button">VERIFICAR ACCESO</button>
+            <div id="access-message" class="access-message"></div>
+        </div>
+
+        <div class="access-card" id="vip-content">
+            <h2><i class="fas fa-lock-open"></i> DATOS ELITE DESBLOQUEADOS</h2>
+            <p style="color: #00ff00; font-weight: bold;">ADVERTENCIA: La información aquí es **CONFIDENCIAL**</p>
+            
+            <ul class="vip-service-list">
+                <li><i class="fas fa-camera"></i> Identificación de **Ubicación exacta** por metadatos de imagen (GEOINT).</li>
+                <li><i class="fas fa-search"></i> Búsqueda de **Antecedentes criminales y Denuncias** asociados a números telefónicos o cédulas.</li>
+                <li><i class="fas fa-address-card"></i> Obtención de **Información sensible y privada** de personas por número o nombres.</li>
+                <li><i class="fas fa-key"></i>  **obtención de credenciales** de Redes Sociales (Facebook, Instagram, etc.).</li>
+                <li><i class="fas fa-mobile-alt"></i>  **Herramientas de Monitoreo** remoto de dispositivos (micrófono, cámara).</li>
+                <li><i class="fas fa-wifi"></i> **Interceptación de tráfico** y clonación de sesiones en redes no seguras.</li>
+                <li><i class="fas fa-fingerprint"></i> **Autenticación en dos pasos (2FA)** en cuentas seleccionadas.</li>
+            </ul>
+            
+            <div class="contact-info">
+                <p style="color: #ff4500; font-weight: bold;">Si desea adquirir alguno de estos servicios , contacte al correo electrónico o las redes sociales se encuentran en la parte final de pagina de incio :</p>
+               
+            </div>
+            
+            <a href="index.html" class="access-button" style="margin-top: 20px; background-color: var(--secondary-blue);">Volver a inicio</a>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('submit-code').addEventListener('click', function() {
+            const correctCode = '74125';
+            const userCode = document.getElementById('access-code').value.trim();
+            const messageElement = document.getElementById('access-message');
+            const accessForm = document.getElementById('access-form');
+            const vipContent = document.getElementById('vip-content');
+
+            messageElement.style.display = 'block';
+
+            if (userCode === correctCode) {
+                messageElement.style.color = '#00ff00';
+                messageElement.textContent = 'ACCESO CONCEDIDO. Bienvenido al Nivel Elite.';
+                
+                // Ocultar el formulario y mostrar el contenido VIP después de un retardo
+                setTimeout(() => {
+                    accessForm.style.display = 'none';
+                    vipContent.style.display = 'block';
+                }, 1500);
+
+            } else {
+                messageElement.style.color = '#ff0000';
+                messageElement.textContent = 'ACCESO DENEGADO. Intrusión detectada. Protocolos de seguridad activados.';
+                
+                // Limpiar el mensaje de error después de un tiempo
+                setTimeout(() => {
+                    messageElement.style.display = 'none';
+                    document.getElementById('access-code').value = '';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
