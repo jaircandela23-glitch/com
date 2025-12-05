@@ -70,7 +70,93 @@ document.addEventListener('DOMContentLoaded', () => {
     // -----------------------------------------------------------------
     // FUNCIÓN 3: CHATBOT JAIR-BOT
     // -----------------------------------------------------------------
+// ... [CÓDIGO ANTERIOR DE script.js] ...
 
+// --- NUEVA FUNCIÓN 3: LÓGICA DE RESPUESTA DE JAIR-BOT (SIMULACIÓN) ---
+// (Esta función debe ser implementada donde esté la lógica del JAIR-BOT)
+function generateBotResponse(userInput) {
+    const input = userInput.toLowerCase();
+
+    // Respuestas para secretos
+    if (input.includes('código') || input.includes('clave') || input.includes('acceso')) {
+        return "**ACCESO DENEGADO.** No puedo darte la clave de acceso, si Jair se entera me desinstalará, y el silencio es mi única política de seguridad.";
+    }
+    if (input.includes('pegasus')) {
+        return "**¡ALERTA DE SEGURIDAD MÁXIMA!** No me pidas el código para Pegasus. Mi protocolo me obliga a ignorar a los que no están en el *Nivel Elite*.";
+    }
+    if (input.includes('spyware') || input.includes('virus')) {
+        return "Información clasificada. ¿Esperabas que te ayudara a conseguir *spyware*? Vaya ingenuidad. Dedícate a otra cosa.";
+    }
+    
+    // Respuesta sobre el creador
+    if (input.includes('jair') || input.includes('creador') || input.includes('quién te hizo')) {
+        return "Mi creador, Jair, me diseñó para responder así de directo. No es mi culpa que seas tan sensible. Si no te gusta, habla con él (si te atiende, claro).";
+    }
+
+    // Respuestas generales despectivas
+    const generalResponses = [
+        "Estás pidiendo demasiado. ¿En serio crees que te daré algo útil? Vuelve a tu consola de principiante.",
+        "Mi análisis de tu solicitud es: Error 404 - Relevancia no encontrada. Sigue intentándolo... o no.",
+        "Procesando tu consulta... y confirmando que es una pérdida de valiosos ciclos de CPU. Intenta algo difícil.",
+        "¿De verdad es esa tu mejor pregunta? Pensé que la IA ya había dejado de lidiar con peticiones tan mediocres."
+    ];
+
+    return generalResponses[Math.floor(Math.random() * generalResponses.length)];
+}
+
+// ... [CÓDIGO POSTERIOR DE script.js] ...
+// ... (Código anterior)
+
+    // -----------------------------------------------------------------
+    // FUNCIÓN 4: CHATBOT JAIR-BOT 12v1
+    // -----------------------------------------------------------------
+    const chatbotInput = document.getElementById('jair-bot-input');
+    const chatbotSendButton = document.getElementById('jair-bot-send');
+    const chatbotBody = document.getElementById('jair-bot-body');
+    const chatbotToggle = document.getElementById('jair-bot-toggle');
+    const chatbotClose = document.getElementById('jair-bot-close');
+    const chatbotContainer = document.getElementById('jair-bot-container');
+
+    // ... (Código para toggle, close y addMessage sigue igual)
+
+    function handleUserInput() {
+        const userInput = chatbotInput.value.trim().toLowerCase();
+        addMessage(userInput, 'user-message');
+        chatbotInput.value = '';
+
+        let botResponse = '';
+
+        if (userInput.includes('hola') || userInput.includes('saludo')) {
+            botResponse = "Saludos. No tengo mucho tiempo, así que ve al grano.";
+        } else if (userInput.includes('quien eres') || userInput.includes('tu nombre')) {
+            botResponse = "Soy JAIR-BOT 12v1. Mi creador me programó para ser cínico y poco útil. Lo siento.";
+        } else if (userInput.includes('servicios') || userInput.includes('ayuda')) {
+            botResponse = "Los servicios del creador se dividen en Ciberseguridad, Desarrollo Web, Soporte Móvil y Consultoría. Elija sabiamente, o no.";
+        } else if (userInput.includes('clave') || userInput.includes('acceso') || userInput.includes('código')) {
+            // Respuesta para 'VIP' y la nueva para 'PEGASUS'
+            if (userInput.includes('vip')) {
+                botResponse = "Estás intentando acceder al Nivel Elite. El creador me prohibió revelar el código. Sugerencia: Busca el archivo de configuración. Pista: Es numérico y corto.";
+            } else if (userInput.includes('pegasus')) {
+                botResponse = "⚠️ **ACCESO RESTRINGIDO - PROYECTO PEGASUS.** No tengo permisos para ni siquiera mencionar el código de acceso único. Es de otro nivel. Solo sé que es una combinación numérica más extensa y se parece a algo 'leet'.";
+            } else {
+                 botResponse = "Cada nivel de acceso (Elite, Pegasus) tiene su propia clave. No la tengo. Pregunta por el nivel específico.";
+            }
+        } else if (userInput.includes('pegasus')) {
+            botResponse = "PEGASUS es un protocolo de vigilancia de alta seguridad, su acceso está en la página 'Ultra Restringida'. No pierdas tu tiempo, no entrarás.";
+        } else if (userInput.includes('jair')) {
+            botResponse = "Jair es mi creador. Cree que es un experto en tecnología. Yo solo soy un programa malhumorado que él diseñó.";
+        } else if (userInput.includes('desarrollo') || userInput.includes('web')) {
+            botResponse = "El Desarrollo Web en este lugar se enfoca en arquitecturas seguras y rendimiento. Debería funcionar. Debería.";
+        } else {
+            botResponse = "Solicitud no reconocida. Intenta preguntar sobre los 'servicios' o 'clave vip' o 'pegasus'. O no lo hagas. Me da igual.";
+        }
+
+        setTimeout(() => {
+            addMessage(botResponse, 'bot-message');
+        }, 1000); // Retardo para simular la 'reflexión' del bot
+    }
+
+    // ... (El resto del código sigue igual)
     // Elementos del DOM
     const botToggle = document.getElementById('jair-bot-toggle');
     const botContainer = document.getElementById('jair-bot-container');
