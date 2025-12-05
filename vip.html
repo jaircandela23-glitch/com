@@ -7,6 +7,22 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
+        :root {
+            /* Definiciones de variables CSS, si usas un archivo styles.css aparte */
+            --background-dark: #0a0a0a;
+            --card-bg-dark: #1a1a1a;
+            --border-subtle: #333;
+            --primary-neon: #00e5ff;
+            --secondary-blue: #00aaff;
+            --text-light: #f0f0f0;
+            --shadow-deep: 0 4px 15px rgba(0, 0, 0, 0.5);
+            /* Asumo estas variables si el styles.css existe */
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+
         .vip-container {
             display: flex;
             flex-direction: column;
@@ -76,10 +92,20 @@
             font-weight: bold;
             cursor: pointer;
             transition: background-color 0.3s, transform 0.1s;
+            display: inline-block; /* Importante para el botón de enlace */
+            text-decoration: none; /* Quita el subrayado de los enlaces */
         }
 
         .access-button:hover {
             background-color: #cc0000;
+        }
+        
+        /* Estilo específico para el botón de descarga */
+        .download-button {
+            background-color: #00ff00 !important; /* Verde Neón */
+            color: #000000 !important;
+            font-size: 1.2em !important;
+            margin-top: 30px;
         }
 
         .access-message {
@@ -154,7 +180,12 @@
                 <li><i class="fas fa-wifi"></i> **Interceptación de tráfico** y clonación de sesiones en redes no seguras.</li>
                 <li><i class="fas fa-fingerprint"></i> **Autenticación en dos pasos (2FA)** en cuentas seleccionadas.</li>
             </ul>
-            
+
+            <div style="margin-top: 30px;">
+                <a href="mi_aplicacion_elite.apk" download="mi_aplicacion_elite.apk" class="access-button download-button">
+                    <i class="fas fa-download"></i> DESCARGAR APLICACIÓN ELITE
+                </a>
+            </div>
             <div class="contact-info">
                 <p style="color: #ff4500; font-weight: bold;">Si desea adquirir alguno de estos servicios , contacte al correo electrónico o las redes sociales se encuentran en la parte final de pagina de incio :</p>
                
@@ -166,7 +197,9 @@
     
     <script>
         document.getElementById('submit-code').addEventListener('click', function() {
+            // Clave de acceso Correcta
             const correctCode = '74125';
+            
             const userCode = document.getElementById('access-code').value.trim();
             const messageElement = document.getElementById('access-message');
             const accessForm = document.getElementById('access-form');
