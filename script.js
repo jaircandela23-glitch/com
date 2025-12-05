@@ -325,5 +325,25 @@ function generateBotResponse(userInput) {
                 }
             };
         });
+    }// -----------------------------------------------------------------
+// FUNCIÓN 4: REPRODUCCIÓN DE AUDIO AL PRIMER CLIC
+// -----------------------------------------------------------------
+const bienvenidaAudio = document.getElementById('audio-bienvenida');
+let audioPlayed = false;
+
+// Intentar reproducir el audio cuando el usuario haga clic en cualquier parte
+document.addEventListener('click', () => {
+    if (bienvenidaAudio && !audioPlayed) {
+        bienvenidaAudio.play()
+            .then(() => {
+                // Éxito: El audio comenzó a reproducirse
+                audioPlayed = true;
+                console.log('Audio de bienvenida reproducido.');
+            })
+            .catch(error => {
+                // Falla (e.g., el usuario no interactuó o el navegador lo bloqueó por otras razones)
+                console.log('No se pudo reproducir el audio automáticamente:', error);
+            });
     }
+}, { once: true }); // Usamos 'once: true' para que el evento solo se ejecute una vez
 });
