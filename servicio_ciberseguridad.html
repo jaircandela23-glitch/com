@@ -19,6 +19,7 @@
             <a href="servicio_desarrollo.html" class="nav-item">Desarrollo Web</a>
             <a href="servicio_soporte.html" class="nav-item">Soporte Móvil</a>
             <a href="servicio_consultoria.html" class="nav-item">Consultoría</a>
+	    <a href="generador_qr.html" class="nav-item">Herramienta QR</a>
         </nav>
         <a href="index.html#contact-form-section" class="contact-button">
             <i class="fas fa-handshake"></i> Contratar Servicios
@@ -89,5 +90,79 @@
     <div id="jair-bot-toggle" class="chatbot-toggle-button" aria-label="Abrir Chatbot Maligno">
         <i class="fas fa-skull-crossbones"></i>
     </div>
+	<div class="service-detail-section" style="margin-top: 50px;">
+    <div class="service-header">
+        <h2><i class="fas fa-search-location"></i> Análisis de Código Abierto (OSINT) - Demo Elite</h2>
+        <p class="service-tagline">Vea en acción una demostración de recolección de inteligencia con Maltego para mapear amenazas digitales.</p>
+    </div>
+
+    <div class="features-grid">
+        <div class="feature-card full-width">
+            <h3><i class="fas fa-satellite-dish"></i> Maltego: Mapeo de la Huella Digital</h3>
+            <p>Este video demuestra cómo se utiliza la herramienta Maltego para transformar datos de código abierto en un gráfico interactivo, identificando relaciones y vectores de ataque potenciales en una auditoría de seguridad perimetral.</p>
+            <div class="tutorial-actions" style="margin-top: 20px;">
+                <button class="cta-button submit-button" onclick="loadOsintDemo()">
+                    <i class="fas fa-play-circle"></i> Iniciar Demostración Técnica
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="osint-demo-terminal" class="terminal-window full-width hidden" style="margin-top: 30px;">
+        <div class="terminal-header">
+            <span class="terminal-dot red"></span>
+            <span class="terminal-dot yellow"></span>
+            <span class="terminal-dot green"></span>
+            <span class="terminal-title" id="osint-terminal-title">Inicializando Módulo de Demostración...</span>
+        </div>
+        <div class="terminal-body" id="osint-terminal-body">
+            <p class="loading-message">Esperando activación de protocolo...</p>
+        </div>
+    </div>
+</div>
+<script src="script.js"></script>
+
+<script>
+    // **********************************************
+    // ⚠️ CONFIGURACIÓN CLAVE: RUTA DEL VIDEO
+    // **********************************************
+    const VIDEO_LOCAL_PATH = "demo_maltego_osint.mp4"; 
+    
+    function loadOsintDemo() {
+        const videoContainer = document.getElementById('osint-demo-terminal');
+        const terminalTitle = document.getElementById('osint-terminal-title');
+        const terminalBody = document.getElementById('osint-terminal-body');
+
+        // Si ya está visible (para evitar recargas accidentales)
+        if (!videoContainer.classList.contains('hidden')) {
+            return;
+        }
+
+        // 1. Iniciar la secuencia de terminal
+        videoContainer.classList.remove('hidden');
+        terminalTitle.textContent = 'INICIANDO PROTOCOLO DE RECOLECCIÓN DE INTELIGENCIA...';
+        terminalBody.innerHTML = '<p class="loading-message">Verificando hash de integridad del archivo. Espere...</p>';
+
+        // 2. Simulación de la carga (4 segundos)
+        setTimeout(() => {
+            terminalBody.innerHTML = `
+                <p class="loading-message" style="color: #00ff00;">[STATUS: OK] Acceso concedido. Preparando visualización de datos...</p>
+                <p class="loading-message" style="color: var(--primary-neon);">EJECUTANDO: Módulo Maltego OSINT (Demo)</p>
+            `;
+            terminalTitle.textContent = 'DEMOSTRACIÓN DE MALTEGO (OSINT)';
+            
+            // 3. Cargar el video (2 segundos después)
+            setTimeout(() => {
+                terminalBody.innerHTML = `
+                    <video width="100%" height="500" controls autoplay>
+                        <source src="${VIDEO_LOCAL_PATH}" type="video/mp4">
+                        Tu navegador no soporta la etiqueta de video.
+                    </video>
+                `;
+            }, 2000); // Retardo para finalizar la simulación
+
+        }, 4000); // 4 segundos de simulación de carga inicial
+    }
+</script>
 </body>
 </html>

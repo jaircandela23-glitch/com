@@ -346,4 +346,60 @@ document.addEventListener('click', () => {
             });
     }
 }, { once: true }); // Usamos 'once: true' para que el evento solo se ejecute una vez
+// -----------------------------------------------------------------
+// FUNCIÓN EXTRA: MANEJO DEL ESTATUS POST-ENVÍO (Después de PHP)
+// -----------------------------------------------------------------
+document.addEventListener('DOMContentLoaded', () => {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const formStatus = urlParams.get('status');
+
+    const statusModal = document.getElementById('status-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalMessage = document.getElementById('modal-message');
+    // Usamos querySelector para encontrar el spinner dentro del modal
+    const modalSpinner = statusModal ? statusModal.querySelector('.fa-spinner') : null; 
+    const modalCloseButton = document.getElementById('modal-close-button');
+    const formToReset = document.getElementById('contact-query-form');
+
+    if (formStatus) {
+        if (statusModal) {
+            statusModal.classList.remove('hidden');
+        }
+        if (modalSpinner) {
+            modalSpinner.parentElement.classList.add('hidden'); // Oculta el contenedor del spinner
+        }
+        if (modalCloseButton) {
+            modalCloseButton.classList.remove('hidden'); // Muestra el botón de cerrar
+        }
+
+        if (formStatus === 'success') {
+            if (modalTitle) modalTitle.textContent = "¡Solicitud Enviada! ✅";
+            if (modalMessage) modalMessage.textContent = "Hemos recibido su solicitud y le responderemos lo antes posible. ¡Gracias por su interés!";
+            if (formToReset) formToReset.reset(); // Limpia el formulario
+        } else if (formStatus === 'error') {
+            if (modalTitle) modalTitle.textContent = "Error de Envío ⚠️";
+            if (modalMessage) modalMessage.textContent = "Hubo un problema al enviar su solicitud. Por favor, intente de nuevo más tarde o contáctenos por otro medio.";
+        }
+
+        // Limpiar el parámetro de la URL
+        history.replaceState({}, document.title, window.location.pathname);
+
+        // Habilitar el cierre del modal
+        if (modalCloseButton) {
+            modalCloseButton.onclick = () => {
+                if (statusModal) statusModal.classList.add('hidden');
+            };
+        }
+        if (statusModal) {
+            statusModal.onclick = (e) => {
+                if (e.target === statusModal) {
+                    if (statusModal) statusModal.classList.add('hidden');
+                }
+            };
+        }
+    }
+});
+// -----------------------------------------------------------------
+
 });
