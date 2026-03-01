@@ -1,228 +1,2702 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jair Muñoz - Soluciones Integrales en Ciberseguridad y Tecnología</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#00e5ff">
+<title>NEXUM — Ciberseguridad &amp; Desarrollo de Software</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+
+<style>
+:root{
+  --c:#00e5ff;--c2:rgba(0,229,255,.12);--c3:rgba(0,229,255,.3);
+  --g:#00ff88;--r:#ff003c;--am:#ffc400;
+  --bg:#020408;--bg2:#060c12;--bg3:#0a121a;
+  --cd:#0d1520;--cd2:#111c2a;
+  --br:rgba(0,229,255,.15);--br2:rgba(0,229,255,.07);
+  --tx:#dde8f0;--txd:#6a8099;--txf:#2e4055;
+  --fh:'Orbitron',sans-serif;--fb:'Rajdhani',sans-serif;--fm:'JetBrains Mono',monospace;
+  --sh:0 8px 40px rgba(0,0,0,.8);
+  --gw:0 0 20px rgba(0,229,255,.4),0 0 60px rgba(0,229,255,.1);
+  --gs:0 0 10px rgba(0,229,255,.3);
+  --ra:6px;--rl:12px;--tr:.3s cubic-bezier(.4,0,.2,1);
+}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--fb);background:var(--bg);color:var(--tx);line-height:1.6;overflow-x:hidden}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--c3);border-radius:2px}
+::selection{background:rgba(0,229,255,.2);color:#fff}
+h1,h2,h3,h4{font-family:var(--fh);line-height:1.15}
+a{color:var(--c);text-decoration:none;transition:var(--tr)}a:hover{color:#fff}
+img{max-width:100%;display:block}
+
+/* ── SPA ── */
+.page{display:none;animation:fadeIn .35s ease both}
+.page.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+/* ── HEADER ── */
+.hdr{display:flex;justify-content:space-between;align-items:center;background:rgba(2,4,8,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--br);padding:0 5%;height:68px;position:sticky;top:0;z-index:1000;transition:var(--tr)}
+.hdr.scrolled{border-bottom-color:var(--c3)}
+.logo-wrap{display:flex;align-items:center;gap:10px;cursor:pointer}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--c),#005577);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--bg);font-family:var(--fh);font-weight:900;box-shadow:var(--gs)}
+.logo-txt{font-family:var(--fh);font-size:1.1rem;font-weight:900;color:var(--c);letter-spacing:3px;text-shadow:var(--gs)}
+.nav-d{display:flex;align-items:center;gap:2px}
+.ni{font-family:var(--fm);font-size:.72rem;color:var(--txd);padding:7px 12px;border-radius:var(--ra);border:1px solid transparent;cursor:pointer;transition:var(--tr);white-space:nowrap;background:none}
+.ni:hover,.ni.act{color:var(--c);border-color:var(--br);background:var(--c2)}
+.cbtn{font-family:var(--fm);font-size:.75rem;font-weight:700;background:var(--c);color:var(--bg);padding:9px 18px;border-radius:var(--ra);text-transform:uppercase;letter-spacing:1px;box-shadow:var(--gs);border:none;cursor:pointer;transition:var(--tr);white-space:nowrap}
+.cbtn:hover{background:#fff;box-shadow:var(--gw);transform:translateY(-1px)}
+.hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border-radius:var(--ra);border:1px solid var(--br);background:var(--c2)}
+.hbg span{display:block;width:22px;height:2px;background:var(--c);border-radius:2px;transition:var(--tr)}
+.hbg.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.hbg.open span:nth-child(2){opacity:0;transform:scaleX(0)}
+.hbg.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.mnav{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(2,4,8,.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--br);padding:16px 5%;z-index:999;flex-direction:column;gap:4px;animation:slideD .3s ease}
+.mnav.open{display:flex}
+@keyframes slideD{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.mnav .ni{font-size:.88rem;padding:12px 16px;width:100%;text-align:left}
+.mnav .cbtn{margin-top:8px;width:100%;text-align:center;display:block;padding:12px}
+
+/* ── HERO ── */
+.hero{padding:50px 5% 40px;position:relative}
+.hero-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.018) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
+.orb1{position:absolute;top:-10%;left:-5%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,.06) 0%,transparent 70%);animation:orb 9s ease-in-out infinite;pointer-events:none}
+.orb2{position:absolute;bottom:-20%;right:-5%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,100,255,.05) 0%,transparent 70%);animation:orb 12s ease-in-out infinite reverse;pointer-events:none}
+@keyframes orb{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,30px) scale(1.05)}}
+.hero-inner{display:grid;grid-template-columns:1fr 300px;gap:44px;max-width:1200px;width:100%;align-items:start;position:relative;z-index:1}
+
+/* Brand hero block */
+.brand-block{display:flex;flex-direction:column;gap:6px}
+.brand-eyebrow{font-family:var(--fm);font-size:.7rem;color:var(--c);letter-spacing:4px;text-transform:uppercase;margin-bottom:8px;opacity:.8}
+.brand-name{font-family:var(--fh);font-size:clamp(3rem,8vw,6rem);font-weight:900;color:var(--c);line-height:1;letter-spacing:6px;text-shadow:0 0 40px rgba(0,229,255,.4),0 0 80px rgba(0,229,255,.15);animation:glow 3s ease-in-out infinite alternate}
+@keyframes glow{from{text-shadow:0 0 40px rgba(0,229,255,.4),0 0 80px rgba(0,229,255,.15)}to{text-shadow:0 0 60px rgba(0,229,255,.6),0 0 120px rgba(0,229,255,.25)}}
+.brand-tagline{font-family:var(--fb);font-size:clamp(1rem,2.5vw,1.4rem);color:var(--txd);font-weight:600;letter-spacing:2px;margin-bottom:6px}
+.brand-sub{color:var(--txd);font-size:1rem;line-height:1.7;max-width:520px;margin-bottom:28px}
+.hero-btns{display:flex;gap:12px;flex-wrap:wrap}
+
+/* Terminal */
+.term{background:var(--bg2);border:1px solid var(--c3);border-radius:var(--rl);overflow:hidden;box-shadow:var(--gw),var(--sh)}
+.term-hdr{background:var(--bg3);padding:11px 16px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--br)}
+.dot{width:12px;height:12px;border-radius:50%}
+.dt-r{background:#ff5f56}.dt-y{background:#ffbd2e}.dt-g{background:#27c93f}
+.term-ttl{font-family:var(--fm);font-size:.7rem;color:var(--txd);margin-left:6px;flex:1;text-align:center}
+.term-body{padding:20px}
+.cmd{font-family:var(--fm);font-size:.78rem;color:var(--txd);margin-bottom:3px}
+.pmt{color:#27c93f}
+.sc-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;border-bottom:1px solid var(--br2);gap:8px}
+.sc-row:last-child{border:none}
+.sc-lbl{color:var(--txf);font-family:var(--fm);font-size:.63rem}
+.sc-val{color:var(--tx);font-family:var(--fm);font-weight:600;text-align:right;font-size:.7rem}
+.sc-val.ok{color:var(--g)}.sc-val.er{color:var(--r)}
+.blk{display:inline-block;width:2px;height:1em;background:var(--c);margin-left:2px;vertical-align:middle;animation:blk 1s step-end infinite}
+@keyframes blk{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ── STATS BAR ── */
+.stats-bar{background:var(--bg2);border-top:1px solid var(--br);border-bottom:1px solid var(--br);padding:40px 5%}
+.stats-in{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;max-width:1000px;margin:0 auto;text-align:center}
+.sn{font-family:var(--fh);font-size:2.4rem;font-weight:900;color:var(--c);display:block;line-height:1}
+.sl2{font-family:var(--fm);font-size:.65rem;color:var(--txd);text-transform:uppercase;letter-spacing:2px;margin-top:6px;display:block}
+
+/* ── BUTTONS ── */
+.btn{display:inline-flex;align-items:center;gap:8px;background:var(--c);color:var(--bg);font-family:var(--fm);font-size:.78rem;font-weight:700;padding:11px 22px;border-radius:var(--ra);text-transform:uppercase;letter-spacing:1.5px;box-shadow:var(--gs);border:none;cursor:pointer;transition:var(--tr);text-decoration:none}
+.btn:hover{background:#fff;color:var(--bg);box-shadow:var(--gw);transform:translateY(-2px)}
+.btn.sec{background:transparent;color:var(--c);border:1px solid var(--c3)}
+.btn.sec:hover{background:var(--c2);color:var(--c);box-shadow:var(--gs);transform:translateY(-2px)}
+.btn.full{width:100%;justify-content:center;padding:13px}
+.btn.btn-sm{padding:8px 16px;font-size:.72rem;letter-spacing:1px}
+.btn-wa-sm{display:inline-flex;align-items:center;gap:6px;background:#25d366;color:#fff;font-family:var(--fm);font-size:.72rem;font-weight:700;padding:8px 16px;border-radius:var(--ra);letter-spacing:1px;text-decoration:none;transition:var(--tr);box-shadow:0 0 10px rgba(37,211,102,.3)}
+.btn-wa-sm:hover{background:#128c7e;color:#fff;transform:translateY(-1px);box-shadow:0 0 20px rgba(37,211,102,.4)}/* ── SECTIONS ── */
+.sec{padding:80px 5%;text-align:center}
+.sec.alt{background:var(--bg2);border-top:1px solid var(--br);border-bottom:1px solid var(--br)}
+.sec.dark{background:var(--cd)}
+.sec-inner{max-width:1200px;margin:0 auto}
+.sec h2{font-family:var(--fh);font-size:clamp(1.4rem,3.5vw,2.2rem);font-weight:900;color:var(--tx);text-transform:uppercase;margin-bottom:10px;letter-spacing:2px}
+.sec h2 i{color:var(--c);margin-right:10px}
+.divdr{width:50px;height:2px;background:linear-gradient(90deg,var(--c),transparent);margin:0 auto 16px}
+.sub{color:var(--txd);max-width:680px;margin:0 auto 50px;font-size:1rem;line-height:1.7}
+
+/* ── CARDS ── */
+.grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;text-align:left}
+.grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;text-align:left}
+.grid2{display:grid;grid-template-columns:repeat(auto-fit,minmax(340px,1fr));gap:24px;text-align:left}
+
+.ecard{background:var(--cd);border:1px solid var(--br2);border-radius:var(--rl);padding:30px 22px;transition:var(--tr);color:var(--tx);position:relative;overflow:hidden;cursor:pointer}
+.ecard::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--c),transparent);opacity:0;transition:var(--tr)}
+.ecard:hover{border-color:var(--c3);transform:translateY(-6px);box-shadow:var(--gs),var(--sh);color:var(--tx)}
+.ecard:hover::before{opacity:1}
+.ecard i{font-size:2rem;color:var(--c);display:block;margin-bottom:16px}
+.ecard h4{font-family:var(--fh);font-size:1rem;font-weight:700;color:var(--tx);margin-bottom:9px;letter-spacing:1px}
+.ecard p{color:var(--txd);font-size:.87rem;line-height:1.6}
+
+.scard{background:var(--cd);padding:26px;border-radius:var(--rl);border:1px solid var(--br2);border-left:3px solid var(--c3);transition:var(--tr);color:var(--tx);display:flex;flex-direction:column;gap:9px;cursor:pointer}
+.scard:hover{transform:translateY(-5px);border-color:var(--c3);border-left-color:var(--c);box-shadow:var(--gs),var(--sh);color:var(--tx)}
+.scard h4{font-family:var(--fh);font-size:.95rem;color:var(--tx);letter-spacing:1px}
+.scard i{color:var(--c);margin-right:7px}
+.scard p{color:var(--txd);font-size:.85rem;line-height:1.6}
+
+/* ── ABOUT SECTION ── */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center;text-align:left;max-width:1100px;margin:0 auto}
+.about-text h2{text-align:left;font-size:clamp(1.4rem,3vw,2rem);margin-bottom:14px}
+.about-text p{color:var(--txd);line-height:1.8;margin-bottom:16px;font-size:1rem}
+.about-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.tag{font-family:var(--fm);font-size:.65rem;color:var(--c);border:1px solid var(--c3);padding:5px 12px;border-radius:20px;background:var(--c2);text-transform:uppercase;letter-spacing:1px}
+.about-shield{display:flex;justify-content:center;align-items:center}
+.shield-wrap{width:200px;height:200px;background:linear-gradient(135deg,rgba(0,229,255,.1),rgba(0,100,255,.05));border:1px solid var(--c3);border-radius:50%;display:flex;justify-content:center;align-items:center;font-size:6rem;color:var(--c);box-shadow:var(--gw);animation:pulse 3s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:var(--gw)}50%{box-shadow:0 0 40px rgba(0,229,255,.6),0 0 100px rgba(0,229,255,.2)}}
+
+/* ── PROCESS / HOW IT WORKS ── */
+.process-steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;position:relative;text-align:center}
+.pstep{padding:30px 20px;position:relative}
+.pstep::after{content:'';position:absolute;top:40px;right:-1px;width:2px;height:40px;background:linear-gradient(180deg,var(--c),transparent);display:none}
+.pnum{width:60px;height:60px;background:linear-gradient(135deg,var(--c),#005577);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:1.2rem;font-weight:900;color:var(--bg);margin:0 auto 16px;box-shadow:var(--gs)}
+.pstep h4{font-family:var(--fh);font-size:.9rem;color:var(--tx);margin-bottom:8px;letter-spacing:1px}
+.pstep p{color:var(--txd);font-size:.85rem;line-height:1.6}
+
+/* ── TESTIMONIALS ── */
+.tcard{background:var(--cd);border:1px solid var(--br);border-radius:var(--rl);padding:28px;position:relative;overflow:hidden}
+.tcard::before{content:'"';position:absolute;top:-10px;left:16px;font-size:6rem;color:var(--c);opacity:.08;font-family:Georgia,serif;line-height:1}
+.tcard p{color:var(--txd);font-size:.92rem;line-height:1.7;margin-bottom:16px;font-style:italic}
+.tauthor{display:flex;align-items:center;gap:10px}
+.tav{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--c),#005577);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--bg)}
+.tname{font-family:var(--fh);font-size:.75rem;color:var(--tx);letter-spacing:1px}
+.trole{font-family:var(--fm);font-size:.65rem;color:var(--txd)}
+.stars{color:var(--am);font-size:.75rem;margin-bottom:10px}
+
+/* ── PRICING ── */
+.price-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:22px;text-align:center}
+.pcard{background:var(--cd);border:1px solid var(--br2);border-radius:var(--rl);padding:36px 28px;position:relative;transition:var(--tr)}
+.pcard:hover{transform:translateY(-6px);box-shadow:var(--gs),var(--sh)}
+.pcard.featured{border-color:var(--c3);box-shadow:var(--gs)}
+.pcard.featured::before{content:'MÁS POPULAR';position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:var(--c);color:var(--bg);font-family:var(--fm);font-size:.6rem;font-weight:700;padding:4px 14px;border-radius:20px;letter-spacing:2px}
+.ptier{font-family:var(--fm);font-size:.7rem;color:var(--c);text-transform:uppercase;letter-spacing:3px;margin-bottom:8px}
+.pprice{font-family:var(--fh);font-size:2.4rem;font-weight:900;color:var(--tx);line-height:1;margin-bottom:4px}
+.pprice span{font-size:1rem;color:var(--txd);font-family:var(--fb);font-weight:400}
+.pdesc{color:var(--txd);font-size:.85rem;margin-bottom:24px}
+.pfeats{list-style:none;text-align:left;margin-bottom:28px;display:flex;flex-direction:column;gap:9px}
+.pfeats li{font-family:var(--fb);font-size:.9rem;color:var(--txd);display:flex;align-items:flex-start;gap:10px}
+.pfeats li i{color:var(--g);font-size:.75rem;margin-top:4px;flex-shrink:0}
+.pfeats li.no i{color:var(--r)}
+.pfeats li.no{opacity:.5}
+
+/* ── TECH STACK ── */
+.tech-row{display:flex;flex-wrap:wrap;justify-content:center;gap:14px;margin-top:36px}
+.tech-badge{font-family:var(--fm);font-size:.72rem;color:var(--txd);border:1px solid var(--br);padding:8px 16px;border-radius:20px;background:var(--cd);transition:var(--tr);display:flex;align-items:center;gap:7px}
+.tech-badge:hover{color:var(--c);border-color:var(--c3);background:var(--c2)}
+.tech-badge i{color:var(--c)}
+
+/* ── FAQ ── */
+.faq-list{max-width:760px;margin:0 auto;display:flex;flex-direction:column;gap:12px;text-align:left}
+.faq-item{background:var(--cd);border:1px solid var(--br2);border-radius:var(--rl);overflow:hidden}
+.faq-q{padding:18px 22px;font-family:var(--fh);font-size:.9rem;color:var(--tx);letter-spacing:1px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;transition:var(--tr)}
+.faq-q:hover{color:var(--c)}
+.faq-q i{font-size:.75rem;color:var(--txd);transition:var(--tr)}
+.faq-item.open .faq-q i{transform:rotate(180deg);color:var(--c)}
+.faq-a{display:none;padding:0 22px 18px;color:var(--txd);font-size:.92rem;line-height:1.7}
+.faq-item.open .faq-a{display:block}
+
+/* ── BLOG / TIPS ── */
+.blog-card{background:var(--cd);border:1px solid var(--br2);border-radius:var(--rl);overflow:hidden;transition:var(--tr);cursor:pointer}
+.blog-card:hover{transform:translateY(-5px);box-shadow:var(--gs),var(--sh);border-color:var(--c3)}
+.blog-cat{font-family:var(--fm);font-size:.62rem;color:var(--c);background:var(--c2);border-bottom:1px solid var(--br2);padding:8px 18px;text-transform:uppercase;letter-spacing:2px}
+.blog-body{padding:22px}
+.blog-body h4{font-family:var(--fh);font-size:.9rem;color:var(--tx);margin-bottom:9px;letter-spacing:1px}
+.blog-body p{color:var(--txd);font-size:.85rem;line-height:1.6;margin-bottom:14px}
+.blog-meta{font-family:var(--fm);font-size:.62rem;color:var(--txf);display:flex;gap:12px}
+.blog-meta i{margin-right:4px}
+
+/* ── CTA BANNER ── */
+.cta-banner{background:linear-gradient(135deg,rgba(0,229,255,.08),rgba(0,80,150,.08));border:1px solid var(--c3);border-radius:var(--rl);padding:50px 40px;text-align:center;position:relative;overflow:hidden}
+.cta-banner::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(0,229,255,.05),transparent 70%)}
+.cta-banner h2{font-size:clamp(1.4rem,3.5vw,2rem);color:var(--tx);margin-bottom:14px}
+.cta-banner p{color:var(--txd);margin-bottom:28px;max-width:500px;margin-left:auto;margin-right:auto}
+.cta-banner .btn-grp{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+
+/* ── SERVICE DETAIL PAGE ── */
+.svc-wrap{padding:70px 5%;max-width:1000px;margin:0 auto;min-height:80vh}
+.svc-hdr{text-align:center;margin-bottom:50px}
+.svc-hdr h1{font-family:var(--fh);font-size:clamp(1.6rem,4.5vw,2.6rem);font-weight:900;color:var(--c);text-transform:uppercase;margin-bottom:10px;text-shadow:var(--gs);letter-spacing:2px}
+.svc-hdr p{color:var(--txd);font-size:1rem;max-width:680px;margin:0 auto;line-height:1.7}
+.feat-list{display:flex;flex-direction:column;gap:18px}
+.fitem{background:var(--cd);border:1px solid var(--br2);border-radius:var(--rl);border-left:3px solid var(--c);padding:28px;display:flex;gap:22px;align-items:flex-start;transition:var(--tr)}
+.fitem:hover{border-color:var(--c3);box-shadow:var(--gs),var(--sh)}
+.ficon{font-size:1.9rem;color:var(--c);min-width:46px;padding-top:4px}
+.fcont h3{font-family:var(--fh);font-size:1.1rem;color:var(--tx);margin-bottom:7px;letter-spacing:1px}
+.fcont p{color:var(--txd);line-height:1.7;font-size:.92rem}
+.cta-sec{text-align:center;margin-top:40px;padding:36px;background:var(--cd);border:1px solid var(--br);border-radius:var(--rl)}
+.cta-sec p{color:var(--txd);margin-bottom:18px}
+.back-btn{display:inline-flex;align-items:center;gap:7px;font-family:var(--fm);font-size:.72rem;color:var(--txd);border:1px solid var(--br);padding:7px 14px;border-radius:var(--ra);cursor:pointer;transition:var(--tr);background:none;margin-bottom:30px}
+.back-btn:hover{color:var(--c);border-color:var(--c3);background:var(--c2)}
+
+/* ── CONTACT ── */
+.form-wrap{padding:70px 5%;max-width:860px;margin:0 auto;text-align:center}
+.form-wrap h2{font-family:var(--fh);font-size:clamp(1.4rem,3.5vw,2rem);font-weight:900;text-transform:uppercase;margin-bottom:10px;letter-spacing:2px}
+.qform{background:var(--cd);border:1px solid var(--br);border-radius:var(--rl);padding:36px;text-align:left;margin-top:26px;box-shadow:var(--sh)}
+.fg{margin-bottom:18px}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.qform label{display:block;margin-bottom:7px;font-family:var(--fm);font-size:.7rem;font-weight:700;color:var(--c);text-transform:uppercase;letter-spacing:1.5px}
+.qform input,.qform select,.qform textarea{width:100%;padding:12px 15px;background:var(--bg2);border:1px solid var(--br);color:var(--tx);border-radius:var(--ra);font-family:var(--fb);font-size:.95rem;transition:var(--tr);outline:none}
+.qform input:focus,.qform select:focus,.qform textarea:focus{border-color:var(--c3);background:var(--bg3);box-shadow:0 0 0 3px rgba(0,229,255,.08)}
+.qform select option{background:var(--bg2)}
+.qform textarea{resize:vertical;min-height:95px}
+.wa-contact{background:linear-gradient(135deg,rgba(37,211,102,.1),rgba(18,140,126,.05));border:1px solid rgba(37,211,102,.3);border-radius:var(--rl);padding:22px;text-align:center;margin-top:20px}
+.wa-contact p{color:var(--txd);font-size:.92rem;margin-bottom:14px}
+
+/* ── QR ── */
+.qr-wrap{padding:70px 5%;display:flex;flex-direction:column;align-items:center;min-height:80vh}
+.qr-card{background:var(--cd);border:1px solid var(--c3);border-radius:var(--rl);padding:38px;width:100%;max-width:600px;box-shadow:var(--gw),var(--sh);text-align:center}
+.qr-card h2{color:var(--c);font-size:1.3rem;margin-bottom:8px;text-transform:uppercase;letter-spacing:2px}
+.qr-card>p{color:var(--txd);font-size:.88rem;margin-bottom:26px}
+.fc{margin-bottom:18px;text-align:left}
+.fc label{font-family:var(--fm);font-size:.68rem;color:var(--c);display:block;margin-bottom:7px;text-transform:uppercase;letter-spacing:1.5px}
+.fc select,.fc input{width:100%;padding:11px 14px;background:var(--bg2);border:1px solid var(--br);color:var(--tx);border-radius:var(--ra);font-family:var(--fb);font-size:.9rem;outline:none;margin-bottom:10px;transition:var(--tr)}
+.fc select:focus,.fc input:focus{border-color:var(--c3)}
+.qr-opts{background:var(--bg3);border:1px solid var(--br2);border-radius:var(--ra);padding:15px;margin-top:10px}
+.qr-result{margin:22px auto;max-width:260px;display:none}
+.qr-canvas{background:#fff;padding:12px;border-radius:var(--ra);display:inline-block;box-shadow:var(--gs)}
+.qr-status{background:var(--bg3);border:1px solid var(--br);border-radius:var(--ra);padding:9px;font-family:var(--fm);font-size:.7rem;color:var(--c);margin-bottom:10px;text-align:center}
+
+/* ── FOOTER ── */
+.foot{background:var(--bg2);border-top:1px solid var(--br);padding:50px 5% 28px;text-align:center}
+.foot-logo{font-family:var(--fh);font-size:1.6rem;color:var(--c);margin-bottom:6px;letter-spacing:4px;text-shadow:var(--gs)}
+.foot>div>p{color:var(--txd);margin-bottom:26px;font-size:.92rem}
+.socials{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-bottom:24px}
+.socials a{display:flex;align-items:center;gap:7px;font-family:var(--fm);font-size:.75rem;color:var(--txd);border:1px solid var(--br);padding:8px 16px;border-radius:40px;transition:var(--tr)}
+.socials a:hover{color:var(--c);border-color:var(--c3);background:var(--c2);transform:translateY(-2px)}
+/* ── TUTORIAL CARDS ── */
+.tut-card{background:var(--cd);border:1px solid var(--br2);border-radius:var(--rl);padding:20px;display:flex;gap:16px;align-items:flex-start;cursor:pointer;transition:var(--tr)}
+.tut-card:hover{border-color:var(--c3);transform:translateY(-4px);box-shadow:var(--gs),var(--sh)}
+.tut-icon{width:48px;height:48px;border-radius:10px;border:1px solid;display:flex;align-items:center;justify-content:center;font-size:1.4rem;flex-shrink:0}
+.tut-body{flex:1}
+.tut-body h4{font-family:var(--fh);font-size:.85rem;color:var(--tx);margin-bottom:6px;letter-spacing:1px}
+.tut-body p{color:var(--txd);font-size:.82rem;line-height:1.5;margin-bottom:8px}
+.tut-lvl{font-family:var(--fm);font-size:.6rem;padding:3px 9px;border-radius:20px;font-weight:700;letter-spacing:1px;display:inline-block;margin-bottom:6px}
+.tut-time{font-family:var(--fm);font-size:.65rem;color:var(--txf)}
+.tut-time i{margin-right:4px}
+.tut-modal{position:fixed;inset:0;background:rgba(0,0,0,.92);display:flex;justify-content:center;align-items:flex-end;z-index:4000;backdrop-filter:blur(8px);transition:opacity .3s}
+.tut-modal.hid{opacity:0;pointer-events:none}
+.tut-modal-box{background:var(--bg2);border:1px solid var(--c3);border-radius:var(--rl) var(--rl) 0 0;width:100%;max-width:700px;max-height:85vh;display:flex;flex-direction:column;animation:slideUp .3s ease}
+@keyframes slideUp{from{transform:translateY(100%)}to{transform:none}}
+.tut-modal-hdr{padding:18px 22px;border-bottom:1px solid var(--br);display:flex;justify-content:space-between;align-items:center}
+.tut-modal-hdr h3{font-family:var(--fh);font-size:1rem;color:var(--c);letter-spacing:1px}
+.tut-modal-body{padding:22px;overflow-y:auto;flex:1;color:var(--txd);line-height:1.8;font-size:.95rem}
+.tut-modal-body h4{font-family:var(--fh);font-size:.9rem;color:var(--c);margin:18px 0 8px;letter-spacing:1px}
+.tut-modal-body ul{padding-left:20px;margin-bottom:12px}
+.tut-modal-body li{margin-bottom:6px}
+.tut-modal-body code{background:var(--bg3);border:1px solid var(--br);padding:2px 8px;border-radius:4px;font-family:var(--fm);font-size:.8rem;color:var(--c)}
+/* ── APP CARDS ── */
+.app-card{background:var(--cd);border:1px solid var(--br2);border-radius:var(--rl);padding:24px;cursor:pointer;transition:var(--tr);position:relative}
+.app-card:hover{border-color:var(--c3);transform:translateY(-5px);box-shadow:var(--gs),var(--sh)}
+.app-card.premium{border-color:rgba(255,196,0,.2)}
+.app-card.premium:hover{border-color:rgba(255,196,0,.5);box-shadow:0 0 10px rgba(255,196,0,.2),var(--sh)}
+.app-icon{width:52px;height:52px;background:rgba(0,229,255,.1);border:1px solid rgba(0,229,255,.3);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:var(--c);margin-bottom:14px}
+.app-card h4{font-family:var(--fh);font-size:.9rem;color:var(--tx);margin-bottom:8px;letter-spacing:1px}
+.app-card p{color:var(--txd);font-size:.84rem;line-height:1.5;margin-bottom:12px}
+.app-badge{font-family:var(--fm);font-size:.6rem;padding:3px 10px;border-radius:20px;font-weight:700;letter-spacing:1px}
+.app-badge.free{background:rgba(0,255,136,.12);color:var(--g);border:1px solid rgba(0,255,136,.3)}
+.app-badge.premium{background:rgba(255,196,0,.12);color:var(--am);border:1px solid rgba(255,196,0,.3)}
+.mini-app{background:var(--cd);border:1px solid var(--c3);border-radius:var(--rl);padding:28px;margin-bottom:20px;animation:fadeIn .3s ease}
+.mini-app h3{font-family:var(--fh);font-size:1rem;color:var(--c);margin-bottom:16px;letter-spacing:1px}
+.mini-app textarea,.mini-app input[type=text],.mini-app input[type=number]{width:100%;padding:10px 14px;background:var(--bg2);border:1px solid var(--br);color:var(--tx);border-radius:var(--ra);font-family:var(--fm);font-size:.82rem;outline:none;margin-bottom:10px;resize:vertical;transition:var(--tr)}
+.mini-app textarea:focus,.mini-app input:focus{border-color:var(--c3)}
+.mini-app .result-box{background:var(--bg3);border:1px solid var(--br);border-radius:var(--ra);padding:12px;font-family:var(--fm);font-size:.82rem;color:var(--c);word-break:break-all;margin-top:10px;min-height:42px}
+
+/* ── REVEAL ── */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.9);display:flex;justify-content:center;align-items:center;z-index:3000;opacity:1;transition:opacity .3s;backdrop-filter:blur(8px)}
+.modal.hid{opacity:0;pointer-events:none}
+.modal-box{background:var(--cd);padding:38px;border-radius:var(--rl);border:1px solid var(--c3);box-shadow:var(--gw),var(--sh);text-align:center;max-width:400px;width:90%}
+.modal-box i{font-size:2.8rem;color:var(--c);display:block;margin-bottom:18px}
+.modal-box h3{color:var(--tx);margin-bottom:9px}
+.modal-box p{color:var(--txd);margin-bottom:18px;font-size:.9rem}
+
+/* ── CHATBOT — ALWAYS FIXED BOTTOM RIGHT ── */
+.chat-btn{
+  position:fixed;bottom:24px;right:24px;z-index:99999;
+  width:62px;height:62px;
+  background:linear-gradient(135deg,var(--c),#0077aa);
+  color:#001a22;border-radius:50%;border:2px solid rgba(0,229,255,.5);
+  display:flex;justify-content:center;align-items:center;
+  cursor:pointer;
+  box-shadow:0 6px 30px rgba(0,229,255,.6),0 0 0 0 rgba(0,229,255,.3);
+  transition:transform .2s,box-shadow .2s;
+  font-size:1.5rem;
+  animation:chatBtnPulse 3s ease-in-out infinite;
+}
+@keyframes chatBtnPulse{
+  0%,100%{box-shadow:0 6px 30px rgba(0,229,255,.6),0 0 0 0 rgba(0,229,255,.2)}
+  50%{box-shadow:0 6px 30px rgba(0,229,255,.8),0 0 0 12px rgba(0,229,255,0)}
+}
+.chat-btn:hover{transform:scale(1.12);animation:none;box-shadow:0 6px 40px rgba(0,229,255,.9)}
+.chat-btn-label{
+  position:fixed;bottom:34px;right:94px;z-index:99998;
+  background:var(--cd);border:1px solid var(--c3);border-radius:20px;
+  font-family:var(--fm);font-size:.65rem;color:var(--c);
+  padding:6px 14px;white-space:nowrap;
+  box-shadow:var(--gs);
+  animation:labelBounce 4s ease-in-out infinite;
+}
+@keyframes labelBounce{0%,100%{transform:translateX(0)}50%{transform:translateX(-4px)}}
+.chat-btn-label::after{
+  content:'';position:absolute;right:-7px;top:50%;transform:translateY(-50%);
+  border:5px solid transparent;border-left-color:var(--c3);
+}
+.chat-pulse{position:absolute;top:0;right:0;width:16px;height:16px;background:var(--g);border-radius:50%;border:2px solid var(--bg);animation:cp 2s infinite;pointer-events:none}
+@keyframes cp{0%,100%{box-shadow:0 0 0 0 rgba(0,255,136,.5)}70%{box-shadow:0 0 0 10px rgba(0,255,136,0)}}
+.chatbox{
+  position:fixed;right:24px;bottom:100px;
+  width:min(360px,calc(100vw - 24px));
+  height:min(480px,72vh);
+  background:var(--bg2);border:1px solid var(--c3);
+  border-radius:14px;
+  box-shadow:var(--gw),0 20px 60px rgba(0,0,0,.8);
+  z-index:99999;display:none;flex-direction:column;overflow:hidden;
+}
+.chatbox.act{display:flex;animation:chatUp .35s cubic-bezier(.34,1.56,.64,1) both}
+@keyframes chatUp{from{opacity:0;transform:scale(.8) translateY(30px)}to{opacity:1;transform:none}}
+.chat-hdr{background:var(--bg3);border-bottom:1px solid var(--br);padding:13px 15px;display:flex;align-items:center;gap:9px}
+.chat-av{width:32px;height:32px;background:linear-gradient(135deg,var(--c),#005577);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.85rem;color:var(--bg);flex-shrink:0}
+.chat-hdr h3{font-family:var(--fm);font-size:.8rem;color:var(--c);font-weight:700;flex:1}
+.chat-st{font-family:var(--fm);font-size:.6rem;color:var(--g);display:flex;align-items:center;gap:4px}
+.chat-st::before{content:'';width:5px;height:5px;background:var(--g);border-radius:50%;animation:pd 2s infinite}
+@keyframes pd{0%,100%{opacity:1}50%{opacity:.3}}
+.chat-cls{background:none;border:none;color:var(--txd);font-size:1rem;cursor:pointer;padding:4px;border-radius:4px;transition:var(--tr)}
+.chat-cls:hover{color:var(--tx);background:var(--c2)}
+.chat-body{flex:1;padding:15px;overflow-y:auto;display:flex;flex-direction:column;gap:11px;background:var(--bg)}
+.chat-body::-webkit-scrollbar{width:3px}
+.chat-body::-webkit-scrollbar-thumb{background:var(--br);border-radius:2px}
+.msg{max-width:84%;padding:9px 13px;border-radius:12px;font-size:.84rem;line-height:1.5;animation:mIn .25s ease}
+@keyframes mIn{from{opacity:0;transform:translateY(7px)}to{opacity:1;transform:none}}
+.bot{background:var(--cd2);border:1px solid var(--br);color:var(--tx);border-bottom-left-radius:4px;align-self:flex-start}
+.usr{background:linear-gradient(135deg,rgba(0,229,255,.15),rgba(0,119,194,.15));border:1px solid var(--c3);color:var(--tx);border-bottom-right-radius:4px;align-self:flex-end}
+.typ{display:flex;gap:4px;align-items:center;padding:11px 13px;background:var(--cd2);border:1px solid var(--br);border-radius:12px;border-bottom-left-radius:4px;align-self:flex-start;max-width:70px}
+.td{width:5px;height:5px;background:var(--txd);border-radius:50%;animation:tb 1.2s infinite}
+.td:nth-child(2){animation-delay:.2s}.td:nth-child(3){animation-delay:.4s}
+@keyframes tb{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+.chat-foot{padding:11px;border-top:1px solid var(--br);background:var(--bg2);display:flex;gap:7px}
+.chat-in{flex:1;background:var(--bg3);border:1px solid var(--br);color:var(--tx);border-radius:var(--ra);padding:9px 13px;font-family:var(--fb);font-size:.85rem;outline:none;transition:var(--tr)}
+.chat-in:focus{border-color:var(--c3)}
+.chat-in::placeholder{color:var(--txf)}
+.chat-snd{background:var(--c);color:var(--bg);border:none;padding:9px 13px;border-radius:var(--ra);cursor:pointer;font-size:.88rem;transition:var(--tr);flex-shrink:0}
+.chat-snd:hover{background:#fff;transform:scale(1.05)}
+.chat-snd:disabled{opacity:.5;cursor:not-allowed;transform:none}
+
+/* ── REVEAL ── */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.rv.vis{opacity:1;transform:none}
+.fu{animation:fu .7s ease both}
+.fu2{animation:fu .7s ease both}
+@keyframes fu{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
+
+/* ── RESPONSIVE ── */
+@media(min-width:769px){
+  .mobile-quick{display:none !important}
+}
+@media(max-width:900px){
+  .about-grid{grid-template-columns:1fr;gap:30px}
+  .about-shield{display:none}
+  .hero-inner{grid-template-columns:1fr}
+  .term{display:none !important}
+}
+@media(max-width:768px){
+  .nav-d,.cbtn{display:none}
+  .hbg{display:flex}
+  .hero{padding:36px 4% 30px}
+  .hero-inner{grid-template-columns:1fr;gap:24px}
+  .term{display:none !important}
+  .stats-in{grid-template-columns:repeat(2,1fr)}
+  .sec{padding:50px 4%}
+  .fitem{flex-direction:column;border-left:none;border-top:3px solid var(--c)}
+  .ficon{min-width:auto}
+  .svc-wrap{padding:40px 4%}
+  .frow{grid-template-columns:1fr}
+  .qform{padding:18px}
+  .chatbox{width:calc(100vw - 24px);right:12px;bottom:76px;height:72vh;max-height:500px}
+  .sn{font-size:2rem}
+  .brand-name{font-size:3rem}
+  .process-steps{grid-template-columns:1fr 1fr}
+  .chat-btn-label{right:86px;bottom:30px;font-size:.6rem;padding:5px 12px}
+  /* Mobile quick nav visible */
+  .mobile-quick{display:block !important}
+}
+@media(max-width:480px){
+  .hero{padding:28px 4% 24px}
+  .stats-in{grid-template-columns:repeat(2,1fr);gap:20px}
+  .brand-name{font-size:2.4rem}
+  .grid2{grid-template-columns:1fr}
+  .hero-btns{gap:8px}
+  .brand-sub{font-size:.92rem}
+}
+</style>
 </head>
 <body>
 
-    <header class="header">
-        <div class="logo-container">
-            <img src="logo.png" alt="Logo de Jair Muñoz" class="logo">
-        </div>
-        <nav class="nav">
-            <a href="servicio_ciberseguridad.html" class="nav-item">Ciberseguridad</a>
-            <a href="servicio_desarrollo.html" class="nav-item">Desarrollo Web</a>
-            <a href="servicio_soporte.html" class="nav-item">Soporte Móvil</a>
-            <a href="servicio_consultoria.html" class="nav-item">Consultoría</a>
-        </nav>
-        <a href="#contact-form-section" class="contact-button">
-            <i class="fas fa-handshake"></i> Contratar Servicios
-        </a>
-    </header>
+<!-- ═══════ HEADER ═══════ -->
+<header class="hdr" id="hdr">
+  <div class="logo-wrap" onclick="go('home')">
+    <svg width="42" height="42" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0">
+      <defs>
+        <linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1">
+          <stop offset="0%" stop-color="#00e5ff"/>
+          <stop offset="60%" stop-color="#0088cc"/>
+          <stop offset="100%" stop-color="#003355"/>
+        </linearGradient>
+        <linearGradient id="lg2" x1="0" y1="1" x2="1" y2="0">
+          <stop offset="0%" stop-color="#00ff88" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#00e5ff" stop-opacity="0"/>
+        </linearGradient>
+        <filter id="glow2"><feGaussianBlur stdDeviation="2" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <polygon points="21,2 37,11 37,31 21,40 5,31 5,11" fill="url(#lg1)" filter="url(#glow2)" opacity="0.95"/>
+      <polygon points="21,6 33,13 33,29 21,36 9,29 9,13" fill="none" stroke="rgba(0,229,255,0.35)" stroke-width="0.8"/>
+      <polygon points="21,2 37,11 37,31 21,40 5,31 5,11" fill="url(#lg2)" opacity="0.3"/>
+      <path d="M12 28 L12 14 L19 24.5 L19 14" stroke="#001a22" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      <path d="M22 14 L30 28 M30 14 L22 28" stroke="#001a22" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    </svg>
+    <span class="logo-txt">NEXUM</span>
+  </div>
 
-    <section class="hero hack-terminal">
-        <div class="hero-content">
-            <div class="terminal-window">
-                <div class="terminal-header">
-                    <span class="terminal-dot red"></span>
-                    <span class="terminal-dot yellow"></span>
-                    <span class="terminal-dot green"></span>
-                    <span class="terminal-title">jair@security-console: ~</span>
-                </div>
-                <div class="terminal-body">
-                    <p class="command-line prompt">
-                        $ ./run_secure_scan.sh
-                    </p>
-                    <h1 class="typed-output"><span class="highlight">//</span> Hacking Ético y OSINT: Inteligencia Ofensiva <span class="highlight">//</span></h1>
-                    <p class="description-output">
-                        Especialistas en la búsqueda de vulnerabilidades y recolección de información pública (OSINT) para fortalecer su perímetro de defensa.
-                    </p>
-                    <a href="servicio_ciberseguridad.html" class="cta-button"><i class="fas fa-terminal"></i> Iniciar Consulta</a>
-                    <p class="command-line prompt blink">
-                        $ 
-                    </p>
-                </div>
+  <nav class="nav-d" id="nav-d">
+    <button class="ni act" onclick="go('home')">Inicio</button>
+    <button class="ni" onclick="go('nosotros')">Nosotros</button>
+    <button class="ni" onclick="go('ciber')">Ciberseguridad</button>
+    <button class="ni" onclick="go('dev')">Desarrollo</button>
+    <button class="ni" onclick="go('movil')">Móvil</button>
+    <button class="ni" onclick="go('consul')">Consultoría</button>
+    <button class="ni" onclick="go('tutoriales')">Tutoriales</button>
+    <button class="ni" onclick="go('apps')">Apps</button>
+    <button class="ni" onclick="go('software')">Software</button>
+    <button class="ni" onclick="go('precios')">Precios</button>
+    <button class="ni" onclick="go('qr')">QR Tool</button>
+  </nav>
+
+  <button class="cbtn" onclick="go('contacto');closeMnav()">
+    <i class="fas fa-handshake"></i> Contratar
+  </button>
+
+  <div class="hbg" id="hbg" onclick="toggleMnav()">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<nav class="mnav" id="mnav">
+  <button class="ni" onclick="go('home');closeMnav()"><i class="fas fa-home"></i> Inicio</button>
+  <button class="ni" onclick="go('nosotros');closeMnav()"><i class="fas fa-info-circle"></i> Nosotros</button>
+  <button class="ni" onclick="go('ciber');closeMnav()"><i class="fas fa-shield-alt"></i> Ciberseguridad</button>
+  <button class="ni" onclick="go('dev');closeMnav()"><i class="fas fa-code"></i> Desarrollo</button>
+  <button class="ni" onclick="go('movil');closeMnav()"><i class="fas fa-mobile-alt"></i> Móvil</button>
+  <button class="ni" onclick="go('consul');closeMnav()"><i class="fas fa-brain"></i> Consultoría</button>
+  <button class="ni" onclick="go('tutoriales');closeMnav()"><i class="fas fa-graduation-cap"></i> Tutoriales</button>
+  <button class="ni" onclick="go('apps');closeMnav()"><i class="fas fa-th"></i> Apps</button>
+  <button class="ni" onclick="go('software');closeMnav()"><i class="fas fa-box-open"></i> Software</button>
+  <button class="ni" onclick="go('precios');closeMnav()"><i class="fas fa-tags"></i> Precios</button>
+  <button class="ni" onclick="go('qr');closeMnav()"><i class="fas fa-qrcode"></i> QR Tool</button>
+  <button class="cbtn" onclick="go('contacto');closeMnav()"><i class="fas fa-handshake"></i> Contratar Servicios</button>
+</nav>
+
+
+<!-- ═══════ PAGE: HOME ═══════ -->
+<div class="page active" id="p-home">
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="orb1"></div>
+    <div class="orb2"></div>
+    <div class="hero-inner">
+      <div class="brand-block fu">
+        <p class="brand-eyebrow">// Compañía de Seguridad Informática &amp; Software</p>
+        <h1 class="brand-name">NEXUM</h1>
+        <p class="brand-tagline">Protege Tu Vida Digital</p>
+        <p class="brand-sub">Somos expertos en ciberseguridad ofensiva, desarrollo de software a medida y consultoría estratégica. Protegemos lo que más importa: tu infraestructura digital.</p>
+        <div class="hero-btns">
+          <button class="btn btn-sm" onclick="go('ciber')"><i class="fas fa-shield-alt"></i> Servicios</button>
+          <button class="btn sec btn-sm" onclick="go('nosotros')"><i class="fas fa-info-circle"></i> Nosotros</button>
+          <a href="https://wa.me/51945366356" class="btn-wa-sm" target="_blank"><i class="fab fa-whatsapp"></i> +51 945 366 356</a>
+        </div>
+        <!-- Mobile quick links -->
+        <div class="mobile-quick rv" style="margin-top:20px">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+            <button class="scard" onclick="go('ciber')" style="padding:14px;text-align:center"><i class="fas fa-shield-alt" style="font-size:1.4rem;margin-bottom:6px;display:block"></i><span style="font-size:.75rem">Ciberseguridad</span></button>
+            <button class="scard" onclick="go('dev')" style="padding:14px;text-align:center"><i class="fas fa-code" style="font-size:1.4rem;margin-bottom:6px;display:block"></i><span style="font-size:.75rem">Desarrollo</span></button>
+            <button class="scard" onclick="go('apps')" style="padding:14px;text-align:center"><i class="fas fa-tools" style="font-size:1.4rem;margin-bottom:6px;display:block"></i><span style="font-size:.75rem">Herramientas</span></button>
+            <button class="scard" onclick="go('software')" style="padding:14px;text-align:center;border-color:rgba(0,255,136,.3)"><i class="fas fa-box-open" style="font-size:1.4rem;margin-bottom:6px;display:block;color:var(--g)"></i><span style="font-size:.75rem;color:var(--g)">Software</span></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="term fu2" style="position:relative;overflow:hidden">
+        <!-- Money rain canvas background -->
+        <canvas id="moneyCanvas" style="position:absolute;inset:0;width:100%;height:100%;opacity:0.18;pointer-events:none"></canvas>
+        <div class="term-hdr" style="position:relative;z-index:2">
+          <span class="dot dt-r"></span><span class="dot dt-y"></span><span class="dot dt-g"></span>
+          <span class="term-ttl">nexum@security — root — bash</span>
+          <span style="font-family:var(--fm);font-size:.6rem;color:var(--g);margin-left:auto">● LIVE</span>
+        </div>
+        <div class="term-body" style="padding:16px;position:relative;z-index:2">
+          <p class="cmd"><span class="pmt">$</span> nexum --init --mode=elite</p>
+          <p class="cmd" style="color:var(--g);margin:4px 0"><span style="color:var(--txd)">[</span><span style="color:var(--g)">OK</span><span style="color:var(--txd)">]</span> Sistema NEXUM cargado</p>
+          <div id="sc" style="margin-top:10px">
+            <p style="color:var(--txd);font-family:var(--fm);font-size:.72rem"><i class="fas fa-circle-notch fa-spin"></i> Iniciando módulos...</p>
+          </div>
+          <div style="margin-top:12px;border-top:1px solid var(--br2);padding-top:10px">
+            <p style="font-family:var(--fm);font-size:.62rem;color:var(--txd);margin-bottom:6px">// Transacciones monitoreadas en tiempo real</p>
+            <div id="txFeed" style="display:flex;flex-direction:column;gap:3px"></div>
+          </div>
+          <p class="cmd" style="margin-top:10px"><span class="pmt">$</span> <span class="blk"></span></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats -->
+  <div class="stats-bar">
+    <div class="stats-in">
+      <div class="rv"><span class="sn" data-t="150">0</span><span class="sl2">Clientes Protegidos</span></div>
+      <div class="rv"><span class="sn" data-t="300">0</span><span class="sl2">Vulnerabilidades Halladas</span></div>
+      <div class="rv"><span class="sn" data-t="50">0</span><span class="sl2">Proyectos de Software</span></div>
+      <div class="rv"><span class="sn" data-t="99">0</span><span class="sl2">% Satisfacción</span></div>
+    </div>
+  </div>
+
+  <!-- Servicios: Ciberseguridad -->
+  <section class="sec">
+    <div class="sec-inner">
+      <h2 class="rv"><i class="fas fa-shield-alt"></i> Ciberseguridad Élite</h2>
+      <div class="divdr"></div>
+      <p class="sub rv">Máxima protección en la era digital. Blindamos su infraestructura con mentalidad ofensiva.</p>
+      <div class="grid3">
+        <div class="ecard rv" onclick="go('ciber')">
+          <i class="fas fa-microchip"></i>
+          <h4>Hacking Ético y Pentesting</h4>
+          <p>Simulacros de ataque controlado para identificar vulnerabilidades críticas en su red, aplicando OWASP y PTES.</p>
+        </div>
+        <div class="ecard rv" onclick="go('ciber')">
+          <i class="fas fa-fingerprint"></i>
+          <h4>Inteligencia OSINT</h4>
+          <p>Recolección de información pública para mapear su huella digital y prevenir ataques de ingeniería social.</p>
+        </div>
+        <div class="ecard rv" onclick="go('ciber')">
+          <i class="fas fa-dna"></i>
+          <h4>Análisis Forense Digital</h4>
+          <p>Investigación detallada de incidentes de seguridad para determinar causa raíz y extensión del daño.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios: Desarrollo -->
+  <section class="sec alt">
+    <div class="sec-inner">
+      <h2 class="rv"><i class="fas fa-code"></i> Desarrollo de Software</h2>
+      <div class="divdr"></div>
+      <p class="sub rv">Soluciones digitales de alto rendimiento construidas con seguridad como pilar fundamental.</p>
+      <div class="grid3">
+        <div class="scard rv" onclick="go('dev')">
+          <h4><i class="fas fa-globe"></i> Sitios Web y E-commerce</h4>
+          <p>Páginas corporativas y tiendas online optimizadas para SEO, velocidad y seguridad.</p>
+        </div>
+        <div class="scard rv" onclick="go('dev')">
+          <h4><i class="fas fa-server"></i> APIs y Backend</h4>
+          <p>Arquitecturas robustas en Node.js, Python o PHP. Escalables y listas para producción.</p>
+        </div>
+        <div class="scard rv" onclick="go('dev')">
+          <h4><i class="fas fa-cloud"></i> Cloud AWS / Azure</h4>
+          <p>Migración, DevOps y optimización cloud bajo estándares enterprise.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Servicios: Móvil y Consultoría -->
+  <section class="sec">
+    <div class="sec-inner">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px" class="rv">
+        <div>
+          <h2 style="text-align:left;margin-bottom:14px"><i class="fas fa-mobile-alt"></i> Soporte Móvil</h2>
+          <div class="divdr" style="margin:0 0 16px"></div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="scard" onclick="go('movil')"><h4><i class="fas fa-tools"></i> Diagnóstico y Optimización</h4><p>Soporte técnico avanzado iOS/Android.</p></div>
+            <div class="scard" onclick="go('movil')"><h4><i class="fas fa-rocket"></i> Apps Nativas / Híbridas</h4><p>Flutter y React Native con security by design.</p></div>
+            <div class="scard" onclick="go('movil')"><h4><i class="fas fa-database"></i> Recuperación de Datos</h4><p>Rescate de archivos perdidos en cualquier dispositivo.</p></div>
+          </div>
+        </div>
+        <div>
+          <h2 style="text-align:left;margin-bottom:14px"><i class="fas fa-brain"></i> Consultoría</h2>
+          <div class="divdr" style="margin:0 0 16px"></div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <div class="scard" onclick="go('consul')"><h4><i class="fas fa-clipboard-list"></i> Auditoría de Cumplimiento</h4><p>GDPR, ISO 27001, CCPA para su empresa.</p></div>
+            <div class="scard" onclick="go('consul')"><h4><i class="fas fa-chalkboard-teacher"></i> Formación Personalizada</h4><p>Talleres sobre phishing, ingeniería social y ciberhigiene.</p></div>
+            <div class="scard" onclick="go('consul')"><h4><i class="fas fa-scroll"></i> Plan IRP</h4><p>Políticas y planes de respuesta a incidentes a medida.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tech Stack -->
+  <section class="sec alt">
+    <div class="sec-inner">
+      <h2 class="rv"><i class="fas fa-layer-group"></i> Stack Tecnológico</h2>
+      <div class="divdr"></div>
+      <p class="sub rv">Trabajamos con las herramientas más avanzadas del mercado.</p>
+      <div class="tech-row rv">
+        <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
+        <span class="tech-badge"><i class="fab fa-node-js"></i> Node.js</span>
+        <span class="tech-badge"><i class="fab fa-react"></i> React</span>
+        <span class="tech-badge"><i class="fas fa-mobile-alt"></i> Flutter</span>
+        <span class="tech-badge"><i class="fab fa-aws"></i> AWS</span>
+        <span class="tech-badge"><i class="fab fa-microsoft"></i> Azure</span>
+        <span class="tech-badge"><i class="fas fa-terminal"></i> Kali Linux</span>
+        <span class="tech-badge"><i class="fas fa-bug"></i> Burp Suite</span>
+        <span class="tech-badge"><i class="fas fa-network-wired"></i> Wireshark</span>
+        <span class="tech-badge"><i class="fab fa-docker"></i> Docker</span>
+        <span class="tech-badge"><i class="fas fa-database"></i> PostgreSQL</span>
+        <span class="tech-badge"><i class="fab fa-php"></i> PHP</span>
+        <span class="tech-badge"><i class="fas fa-shield-alt"></i> Metasploit</span>
+        <span class="tech-badge"><i class="fas fa-code-branch"></i> Git / CI/CD</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Proceso -->
+  <section class="sec">
+    <div class="sec-inner">
+      <h2 class="rv"><i class="fas fa-route"></i> ¿Cómo Trabajamos?</h2>
+      <div class="divdr"></div>
+      <p class="sub rv">Un proceso claro y transparente para garantizar los mejores resultados.</p>
+      <div class="process-steps rv">
+        <div class="pstep">
+          <div class="pnum">01</div>
+          <h4>Diagnóstico</h4>
+          <p>Analizamos sus necesidades, infraestructura y objetivos antes de proponer cualquier solución.</p>
+        </div>
+        <div class="pstep">
+          <div class="pnum">02</div>
+          <h4>Propuesta</h4>
+          <p>Elaboramos un plan de acción personalizado con plazos, alcance y presupuesto claros.</p>
+        </div>
+        <div class="pstep">
+          <div class="pnum">03</div>
+          <h4>Ejecución</h4>
+          <p>Implementamos con las mejores metodologías, manteniéndole informado en cada etapa.</p>
+        </div>
+        <div class="pstep">
+          <div class="pnum">04</div>
+          <h4>Entrega y Soporte</h4>
+          <p>Entregamos resultados documentados y ofrecemos seguimiento y soporte post-proyecto.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="sec alt">
+    <div class="sec-inner">
+      <h2 class="rv"><i class="fas fa-star"></i> Lo Que Dicen Nuestros Clientes</h2>
+      <div class="divdr"></div>
+      <p class="sub rv">La confianza de nuestros clientes es nuestro mayor activo.</p>
+      <div class="grid3">
+        <div class="tcard rv">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>El equipo de NEXUM identificó vulnerabilidades críticas en nuestra plataforma e-commerce que llevaban meses expuestas. Respuesta rápida y muy profesional.</p>
+          <div class="tauthor"><div class="tav"><i class="fas fa-user"></i></div><div><div class="tname">Carlos Mendoza</div><div class="trole">CEO — TiendaOnline.pe</div></div></div>
+        </div>
+        <div class="tcard rv">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
+          <p>Desarrollaron nuestra app en tiempo récord y con seguridad de nivel bancario. El proceso fue totalmente transparente. 100% recomendado.</p>
+          <div class="tauthor"><div class="tav"><i class="fas fa-user"></i></div><div><div class="tname">Ana Torres</div><div class="trole">CTO — FinTech Startup</div></div></div>
+        </div>
+        <div class="tcard rv">
+          <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star-half-alt"></i></div>
+          <p>La capacitación de ciberseguridad para nuestro equipo fue excelente. Ahora sabemos detectar intentos de phishing y aplicar buenas prácticas digitales.</p>
+          <div class="tauthor"><div class="tav"><i class="fas fa-user"></i></div><div><div class="tname">Roberto Silva</div><div class="trole">RRHH Manager — Corporación Andina</div></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Consejos de Seguridad -->
+  <section class="sec">
+    <div class="sec-inner">
+      <h2 class="rv"><i class="fas fa-lightbulb"></i> Consejos de Seguridad Digital</h2>
+      <div class="divdr"></div>
+      <p class="sub rv">Conocimiento gratuito para protegerte en el mundo digital.</p>
+      <div class="grid3">
+        <div class="blog-card rv">
+          <div class="blog-cat"><i class="fas fa-lock"></i> Contraseñas</div>
+          <div class="blog-body">
+            <h4>¿Por Qué el 123456 Puede Costarte Todo?</h4>
+            <p>Las contraseñas débiles son la puerta de entrada más común para los ciberataques. Aprende a crear contraseñas robustas e irrastreables.</p>
+            <div class="blog-meta"><span><i class="fas fa-shield-alt"></i> Básico</span><span><i class="fas fa-clock"></i> 3 min</span></div>
+          </div>
+        </div>
+        <div class="blog-card rv">
+          <div class="blog-cat"><i class="fas fa-fish"></i> Phishing</div>
+          <div class="blog-body">
+            <h4>Cómo Identificar un Correo Fraudulento en 5 Pasos</h4>
+            <p>El phishing representa el 80% de los ciberataques. Te enseñamos a detectar señales de alerta antes de hacer clic en ese enlace sospechoso.</p>
+            <div class="blog-meta"><span><i class="fas fa-shield-alt"></i> Esencial</span><span><i class="fas fa-clock"></i> 4 min</span></div>
+          </div>
+        </div>
+        <div class="blog-card rv">
+          <div class="blog-cat"><i class="fas fa-wifi"></i> Redes</div>
+          <div class="blog-body">
+            <h4>El Peligro Oculto del Wi-Fi Público</h4>
+            <p>Conectarte a redes públicas sin protección puede exponer tus datos bancarios y contraseñas. Descubre qué herramientas usar para navegar seguro.</p>
+            <div class="blog-meta"><span><i class="fas fa-shield-alt"></i> Intermedio</span><span><i class="fas fa-clock"></i> 5 min</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Software Educativo Teaser -->
+  <section class="sec dark">
+    <div class="sec-inner">
+      <div class="rv" style="text-align:center;margin-bottom:36px">
+        <p style="font-family:var(--fm);font-size:.68rem;color:var(--g);letter-spacing:4px;text-transform:uppercase;margin-bottom:8px">// JAIR MUÑOZ CANDELA — DESARROLLADOR</p>
+        <h2><i class="fas fa-box-open" style="color:var(--g)"></i> Software Educativo NEXUM</h2>
+        <div class="divdr" style="background:linear-gradient(90deg,var(--g),transparent)"></div>
+        <p class="sub">Herramientas de alto nivel para aprendizaje técnico avanzado. Código fuente comentado, documentación profesional y soporte directo del fundador.</p>
+      </div>
+      <div class="grid3">
+        <div class="ecard rv" onclick="go('software')" style="border-color:rgba(0,177,79,.25);text-align:center">
+          <div style="font-size:2.5rem;margin-bottom:12px">💸</div>
+          <h4 style="color:var(--g)">PaySim Edu v2.1</h4>
+          <p>Simulador de pasarelas fintech para entender arquitecturas de pagos móviles.</p>
+          <p style="font-family:var(--fh);font-size:1.1rem;color:var(--g);margin-top:14px;font-weight:900">S/ 149</p>
+        </div>
+        <div class="ecard rv" onclick="go('software')" style="border-color:rgba(0,178,255,.2);text-align:center">
+          <div style="font-size:2.5rem;margin-bottom:12px">👁️</div>
+          <h4 style="color:var(--c)">FaceIntel Edu v3.0</h4>
+          <p>Sistema de reconocimiento facial con OpenCV e IA. Python + notebooks Jupyter.</p>
+          <p style="font-family:var(--fh);font-size:1.1rem;color:var(--c);margin-top:14px;font-weight:900">S/ 249</p>
+        </div>
+        <div class="ecard rv" onclick="go('software')" style="border-color:rgba(0,229,255,.2);text-align:center">
+          <div style="font-size:2.5rem;margin-bottom:12px">🕵️</div>
+          <h4 style="color:var(--c)">NEXUM OSINT Suite v4.0</h4>
+          <p>Suite completa OSINT: 50+ plataformas, geolocalización, reportes PDF automáticos.</p>
+          <p style="font-family:var(--fh);font-size:1.1rem;color:var(--c);margin-top:14px;font-weight:900">S/ 399</p>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:36px" class="rv">
+        <button class="btn" onclick="go('software')"><i class="fas fa-box-open"></i> Ver Todo el Software</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec alt">
+    <div class="sec-inner">
+      <h2 class="rv"><i class="fas fa-question-circle"></i> Preguntas Frecuentes</h2>
+      <div class="divdr"></div>
+      <p class="sub rv">Resolvemos tus dudas más comunes antes de comenzar.</p>
+      <div class="faq-list rv" id="faq">
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">¿Qué es el hacking ético y es legal? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-a">El hacking ético o pentesting es el proceso de simular ciberataques con autorización escrita del propietario del sistema para encontrar y corregir vulnerabilidades antes que actores maliciosos. Es 100% legal cuando se realiza con contrato firmado y dentro del alcance acordado.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">¿Cuánto tiempo toma un proyecto de desarrollo de software? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-a">Depende de la complejidad. Una landing page básica puede estar lista en 3-5 días. Un sistema web completo puede tardar entre 3 y 8 semanas. Una app móvil desde 4 semanas hasta 4 meses. Siempre proporcionamos un cronograma detallado antes de comenzar.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">¿Trabajan con empresas fuera de Perú? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-a">Sí, operamos de forma remota para clientes en toda Latinoamérica y España. Nuestros servicios digitales no tienen barreras geográficas. Para proyectos presenciales en Perú, cubrimos Lima y provincias principales.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">¿Los datos de mis clientes están seguros con ustedes? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-a">Absolutamente. Operamos bajo estrictos acuerdos de confidencialidad (NDA). Toda información sensible es tratada con protocolos de encriptación y acceso restringido. Nunca compartimos datos de clientes con terceros.</div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-q" onclick="toggleFaq(this)">¿Ofrecen soporte técnico después de entregar el proyecto? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-a">Sí, todos nuestros proyectos incluyen un período de soporte post-entrega. Además ofrecemos planes de mantenimiento mensuales para garantizar la continuidad operativa de su solución.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Banner -->
+  <section class="sec">
+    <div class="sec-inner">
+      <!-- Facebook Community -->
+      <div class="rv" style="background:linear-gradient(135deg,rgba(24,119,242,.08),rgba(0,40,100,.05));border:1px solid rgba(24,119,242,.25);border-radius:var(--rl);padding:28px;display:flex;align-items:center;gap:22px;margin-bottom:30px;flex-wrap:wrap">
+        <div style="width:56px;height:56px;background:linear-gradient(135deg,#1877f2,#0a5bcc);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:#fff;flex-shrink:0"><i class="fab fa-facebook-f"></i></div>
+        <div style="flex:1;min-width:200px">
+          <div style="font-family:var(--fh);font-size:.9rem;color:var(--tx);margin-bottom:4px;letter-spacing:1px">Comunidad NEXUM — Prevención de Estafas</div>
+          <div style="font-family:var(--fb);font-size:.88rem;color:var(--txd)">Grupo gratuito donde Jair comparte alertas, consejos de seguridad y ayuda a la comunidad peruana.</div>
+        </div>
+        <a href="https://www.facebook.com/share/g/1K3xjqkLwb/" target="_blank" class="btn" style="background:#1877f2;flex-shrink:0"><i class="fab fa-facebook-f"></i> Unirse Gratis</a>
+      </div>
+      <div class="cta-banner rv">
+        <h2>¿Listo para Blindar tu Negocio Digital?</h2>
+        <p>Cada día sin protección es un riesgo. Contáctenos hoy y obtenga una evaluación gratuita de su postura de seguridad.</p>
+        <div class="btn-grp">
+          <button class="btn" onclick="go('contacto')"><i class="fas fa-paper-plane"></i> Solicitar Consulta Gratis</button>
+          <a href="https://wa.me/51945366356" class="btn wa" target="_blank"><i class="fab fa-whatsapp"></i> Escribir por WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="foot">
+    <div>
+      <div class="foot-logo">NEXUM</div>
+      <p>Seguridad Informática &amp; Desarrollo de Software — Protegemos tu Vida Digital</p>
+      <div class="socials">
+        <a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
+        <a href="https://www.facebook.com/share/g/1K3xjqkLwb/" target="_blank"><i class="fas fa-users"></i> Grupo Comunidad</a>
+        <a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+        <a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
+        <a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+      </div>
+      <p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">
+        <i class="fas fa-user-tie" style="color:var(--c)"></i> Jair Muñoz Candela &nbsp;|&nbsp; 
+        <i class="fas fa-phone" style="color:var(--c)"></i> +51 945 366 356
+      </p>
+      <p class="copy">// NEXUM — CIBERSEGURIDAD &amp; SOFTWARE &copy; 2025 //</p>
+    </div>
+  </footer>
+</div>
+
+
+<!-- ═══════ PAGE: NOSOTROS ═══════ -->
+<div class="page" id="p-nosotros">
+  <section class="sec" style="padding-top:80px">
+    <button class="back-btn" onclick="go('home')"><i class="fas fa-arrow-left"></i> Volver</button>
+    <div class="about-grid sec-inner">
+      <div class="about-text">
+        <p style="font-family:var(--fm);font-size:.7rem;color:var(--c);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px">// Quiénes somos</p>
+        <h2 class="fu">NEXUM — Seguridad que Inspira Confianza</h2>
+        <p class="fu2">NEXUM es una compañía especializada en <strong style="color:var(--c)">seguridad informática</strong> y <strong style="color:var(--c)">desarrollo de software</strong> fundada por <strong style="color:var(--tx)">Jair Muñoz Candela</strong>, experto peruano con más de 5 años de experiencia protegiendo infraestructuras digitales y creando soluciones tecnológicas de alto impacto.</p>
+        <p>Nuestra misión es democratizar la ciberseguridad: hacer que empresas de todos los tamaños, desde emprendedores hasta corporaciones, tengan acceso a las mismas herramientas y conocimientos que usan los grandes actores del sector.</p>
+        <p>Combinamos una mentalidad <strong style="color:var(--c)">ofensiva</strong> para encontrar vulnerabilidades con una visión <strong style="color:var(--c)">constructiva</strong> para crear software robusto, escalable y seguro desde el diseño.</p>
+        <div class="about-tags">
+          <span class="tag">ISO 27001</span>
+          <span class="tag">OWASP Top 10</span>
+          <span class="tag">PTES Methodology</span>
+          <span class="tag">GDPR Compliance</span>
+          <span class="tag">Perú y LATAM</span>
+          <span class="tag">Trabajo Remoto</span>
+        </div>
+        <div style="margin-top:28px;display:flex;gap:12px;flex-wrap:wrap">
+          <button class="btn" onclick="go('contacto')"><i class="fas fa-handshake"></i> Trabajar con Nosotros</button>
+          <a href="https://wa.me/51945366356" class="btn sec" target="_blank"><i class="fab fa-whatsapp"></i> Contactar</a>
+        </div>
+      </div>
+      <div class="about-shield rv">
+        <div class="shield-wrap"><i class="fas fa-shield-alt"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Valores -->
+  <section class="sec alt">
+    <div class="sec-inner">
+      <h2 class="rv"><i class="fas fa-gem"></i> Nuestros Valores</h2>
+      <div class="divdr"></div>
+      <div class="grid4">
+        <div class="ecard rv">
+          <i class="fas fa-eye"></i>
+          <h4>Transparencia</h4>
+          <p>Reportes claros, precios justos y comunicación directa en cada etapa del proyecto.</p>
+        </div>
+        <div class="ecard rv">
+          <i class="fas fa-bolt"></i>
+          <h4>Excelencia Técnica</h4>
+          <p>Utilizamos metodologías de clase mundial y las herramientas más avanzadas del sector.</p>
+        </div>
+        <div class="ecard rv">
+          <i class="fas fa-user-secret"></i>
+          <h4>Confidencialidad</h4>
+          <p>Protegemos su información con los mismos estándares que aplicamos a la de sus clientes.</p>
+        </div>
+        <div class="ecard rv">
+          <i class="fas fa-headset"></i>
+          <h4>Compromiso</h4>
+          <p>Estamos disponibles cuando nos necesita. Su seguridad no tiene horario de oficina.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+</div>
+
+
+<!-- ═══════ PAGE: CIBERSEGURIDAD ═══════ -->
+<div class="page" id="p-ciber">
+  <div class="svc-wrap">
+    <button class="back-btn" onclick="go('home')"><i class="fas fa-arrow-left"></i> Volver</button>
+    <div class="svc-hdr">
+      <h1 class="fu"><i class="fas fa-terminal"></i> Hacking Ético y Defensa Digital</h1>
+      <p class="fu2">Blindamos su infraestructura con mentalidad ofensiva. Encontramos las brechas antes que los atacantes.</p>
+    </div>
+    <div class="feat-list">
+      <div class="fitem rv"><div class="ficon"><i class="fas fa-microchip"></i></div><div class="fcont"><h3>Pruebas de Penetración (Pentesting)</h3><p>Simulacros de ataques reales contra aplicaciones web, APIs y redes internas. Aplicamos metodologías OWASP y PTES para un análisis exhaustivo que incluye reconocimiento, explotación y post-explotación.</p></div></div>
+      <div class="fitem rv"><div class="ficon"><i class="fas fa-fingerprint"></i></div><div class="fcont"><h3>Análisis OSINT</h3><p>Recolección y análisis de información pública para mapear la huella digital de su organización. Identificamos datos expuestos que podrían ser utilizados en ataques dirigidos.</p></div></div>
+      <div class="fitem rv"><div class="ficon"><i class="fas fa-shield-alt"></i></div><div class="fcont"><h3>Hardening y Configuración Segura</h3><p>Optimización de sistemas operativos, servidores web y bases de datos, eliminando configuraciones inseguras, puertos abiertos innecesarios y puntos débiles del sistema.</p></div></div>
+      <div class="fitem rv"><div class="ficon"><i class="fas fa-dna"></i></div><div class="fcont"><h3>Análisis Forense Digital</h3><p>Investigación profesional de incidentes de seguridad para determinar la causa raíz, el alcance del daño, los vectores de entrada y elaborar un plan de remediación.</p></div></div>
+      <div class="fitem rv"><div class="ficon"><i class="fas fa-eye"></i></div><div class="fcont"><h3>Monitoreo y SOC Básico</h3><p>Configuración de alertas, correlación de eventos y monitoreo de actividades sospechosas en su infraestructura para detección temprana de amenazas.</p></div></div>
+      <div class="fitem rv"><div class="ficon"><i class="fas fa-lock"></i></div><div class="fcont"><h3>Análisis de Vulnerabilidades</h3><p>Escaneo sistemático con herramientas líderes del mercado para identificar CVEs conocidos, configuraciones débiles y exposiciones en su entorno tecnológico.</p></div></div>
+    </div>
+    <div class="cta-sec rv">
+      <p>¿Listo para blindar su infraestructura? Solicite una evaluación gratuita.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button class="btn" onclick="go('contacto')"><i class="fas fa-scroll"></i> Solicitar Auditoría</button>
+        <a href="https://wa.me/51945366356" class="btn wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Directo</a>
+      </div>
+    </div>
+  </div>
+  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+</div>
+
+
+<!-- ═══════ PAGE: DESARROLLO ═══════ -->
+<div class="page" id="p-dev">
+  <div class="svc-wrap">
+    <button class="back-btn" onclick="go('home')"><i class="fas fa-arrow-left"></i> Volver</button>
+    <div class="svc-hdr">
+      <h1 class="fu"><i class="fas fa-code"></i> Arquitectura y Desarrollo de Alto Nivel</h1>
+      <p class="fu2">Soluciones web y backend con velocidad, escalabilidad y seguridad como pilar fundamental desde el primer commit.</p>
+    </div>
+    <div class="feat-list">
+      <div class="fitem rv"><div class="ficon"><i class="fas fa-globe"></i></div><div class="fcont"><h3>Desarrollo Web Full-Stack</h3><p>Páginas corporativas, portales institucionales y plataformas web construidas con tecnologías modernas (React, Vue, Next.js, Laravel) optimizadas para SEO y rendimiento máximo.</p></div></div>
+      <div class="fitem rv"><div class="ficon"><i class="fas fa-shopping-cart"></i></div><div class="fcont"><h3>E-commerce y Tiendas Online</h3><p>Tiendas en línea personalizadas o sobre plataformas como Shopify y WooCommerce, con pasarelas de pago seguras, gestión de inventario y experiencia de compra optimizada.</p></div></div>
+      <div class="fitem rv"><div class="ficon"><i class="fas fa-server"></i></div><div class="fcont"><h3>APIs RESTful y Microservicios</h3><p>Arquitecturas backend robustas en Node.js, Python (FastAPI/Django) o PHP. Diseñadas para escalar, documentadas con Swagger y protegidas con autenticación JWT/OAuth.</p></div></div>
+      <div class="fitem rv"><div class="ficon"><i class="fas fa-cloud"></i></div><div class="fcont"><h3>Cloud y DevOps</h3><p>Pipelines CI/CD, contenedores Docker, infraestructura como código (Terraform) y despliegue en AWS, Azure o GCP bajo estándares de seguridad enterprise.</p></div></div>
+      <div class="fitem rv"><div class="ficon"><i class="fas fa-robot"></i></div><div class="fcont"><h3>Automatización e Inteligencia Artificial</h3><p>Bots, scripts de automatización y soluciones con IA para optimizar procesos de negocio. Integración con APIs de ChatGPT, Claude y otros modelos de lenguaje.</p></div></div>
+      <div class="fitem rv"><div class="ficon"><i class="fas fa-database"></i></div><div class="fcont"><h3>Bases de Datos y Migración</h3><p>Diseño, optimización y migración de bases de datos relacionales (PostgreSQL, MySQL) y no relacionales (MongoDB, Redis) con énfasis en seguridad y rendimiento.</p></div></div>
+    </div>
+    <div class="cta-sec rv">
+      <p>¿Tiene un proyecto digital en mente? Hablemos.</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button class="btn" onclick="go('contacto')"><i class="fas fa-rocket"></i> Iniciar Proyecto</button>
+        <a href="https://wa.me/51945366356" class="btn wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp Directo</a>
+      </div>
+    </div>
+  </div>
+  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+</div>
+
+
+<!-- ═══════ PAGE: MÓVIL ═══════ -->
+<div class="page" id="p-movil">
+  <div class="svc-wrap">
+    <button class="back-btn" onclick="go('home')"><i class="fas fa-arrow-left"></i> Volver</button>
+    <div class="svc-hdr">
+      <h1 class="fu"><i class="fas fa-mobile-alt"></i> Diagnóstico, Reparación y Rescate</h1>
+      <p class="fu2">Sus dispositivos son su línea de vida digital. Los mantenemos operativos al 100%, incluso tras un fallo crítico.</p>
+    </div>
+    <div class="feat-list">
+      <div class="fitem rv"><div class="ficon"><i class="fas fa-tools"></i></div><div class="fcont"><h3>Diagnóstico y Optimización</h3><p>Revisión exhaustiva del sistema, limpieza profunda, eliminación de bloatware y malware, y configuración de seguridad en dispositivos iOS y Android para máxima velocidad y autonomía.</p></div></div>
+      <div class="fitem rv"><div class="ficon"><i class="fas fa-database"></i></div><div class="fcont"><h3>Recuperación de Datos Críticos</h3><p>Rescate profesional de fotos, documentos, contactos y archivos de smartphones dañados, formateados accidentalmente o con fallas lógicas graves. Resultados garantizados o no cobramos.</p></div></div>
+      <div class="fitem rv"><div class="ficon"><i class="fas fa-rocket"></i></div><div class="fcont"><h3>Desarrollo de Apps Móviles</h3><p>Aplicaciones nativas o híbridas con Flutter y React Native. Diseño UX intuitivo, arquitectura segura desde la fase de diseño y publicación en App Store y Google Play.</p></div></div>
+      <div class="fitem rv"><div class="ficon"><i class="fas fa-shield-virus"></i></div><div class="fcont"><h3>Seguridad Móvil</h3><p>Auditoría de aplicaciones móviles para detectar vulnerabilidades, fugas de datos y malas prácticas de seguridad antes del lanzamiento o en producción.</p></div></div>
+    </div>
+    <div class="cta-sec rv">
+      <p>¿Necesita rescatar su dispositivo o crear una app?</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button class="btn" onclick="go('contacto')"><i class="fas fa-ambulance"></i> ¡Rescate mi Dispositivo!</button>
+        <a href="https://wa.me/51945366356" class="btn wa" target="_blank"><i class="fab fa-whatsapp"></i> Urgencias por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+</div>
+
+
+<!-- ═══════ PAGE: CONSULTORÍA ═══════ -->
+<div class="page" id="p-consul">
+  <div class="svc-wrap">
+    <button class="back-btn" onclick="go('home')"><i class="fas fa-arrow-left"></i> Volver</button>
+    <div class="svc-hdr">
+      <h1 class="fu"><i class="fas fa-brain"></i> Consultoría y Estrategia de Seguridad</h1>
+      <p class="fu2">Transformamos el conocimiento técnico en políticas claras que eliminan el riesgo humano y operacional.</p>
+    </div>
+    <div class="feat-list">
+      <div class="fitem rv"><div class="ficon"><i class="fas fa-clipboard-list"></i></div><div class="fcont"><h3>Auditoría de Cumplimiento Normativo</h3><p>Evaluación completa de sus procesos y sistemas para garantizar cumplimiento con GDPR, CCPA, ISO 27001 y normativas peruanas de protección de datos. Incluye plan de remediación priorizado.</p></div></div>
+      <div class="fitem rv"><div class="ficon"><i class="fas fa-chalkboard-teacher"></i></div><div class="fcont"><h3>Programas de Formación y Concienciación</h3><p>Talleres prácticos, simulaciones de phishing y campañas de concienciación para educar a su equipo sobre las amenazas más actuales. Formación adaptada a su industria y nivel técnico.</p></div></div>
+      <div class="fitem rv"><div class="ficon"><i class="fas fa-scroll"></i></div><div class="fcont"><h3>Políticas de Seguridad y Plan IRP</h3><p>Elaboración de políticas corporativas de seguridad, procedimientos de uso aceptable y Planes de Respuesta a Incidentes (IRP) a medida para su organización.</p></div></div>
+      <div class="fitem rv"><div class="ficon"><i class="fas fa-chart-line"></i></div><div class="fcont"><h3>Gestión del Riesgo Tecnológico</h3><p>Evaluación cuantitativa y cualitativa de riesgos tecnológicos, matriz de amenazas y plan de tratamiento para reducir la exposición de su negocio a ciberataques.</p></div></div>
+    </div>
+    <div class="cta-sec rv">
+      <p>¿Listo para fortalecer su estrategia de seguridad?</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+        <button class="btn" onclick="go('contacto')"><i class="fas fa-paper-plane"></i> Solicitar Sesión Estratégica</button>
+        <a href="https://wa.me/51945366356" class="btn wa" target="_blank"><i class="fab fa-whatsapp"></i> Consulta por WhatsApp</a>
+      </div>
+    </div>
+  </div>
+  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+</div>
+
+
+<!-- ═══════ PAGE: SOFTWARE EDUCATIVO ═══════ -->
+<div class="page" id="p-software">
+  <section class="sec" style="padding-top:80px">
+    <button class="back-btn" onclick="go('home')"><i class="fas fa-arrow-left"></i> Volver</button>
+    <div class="sec-inner">
+
+      <!-- Header épico -->
+      <div class="fu" style="text-align:center;margin-bottom:50px">
+        <p style="font-family:var(--fm);font-size:.7rem;color:var(--c);letter-spacing:4px;text-transform:uppercase;margin-bottom:12px;opacity:.8">// Desarrollado por Jair Muñoz Candela</p>
+        <h1 style="font-family:var(--fh);font-size:clamp(1.8rem,5vw,3rem);font-weight:900;color:var(--tx);text-transform:uppercase;letter-spacing:3px;margin-bottom:14px"><i class="fas fa-box-open" style="color:var(--c)"></i> Software Educativo</h1>
+        <div class="divdr"></div>
+        <p style="color:var(--txd);max-width:680px;margin:0 auto;font-size:1rem;line-height:1.7">Herramientas de alto nivel desarrolladas por el equipo NEXUM para formación técnica avanzada en ciberseguridad y sistemas financieros digitales. <strong style="color:var(--c)">100% para uso educativo y demostrativo.</strong></p>
+      </div>
+
+      <!-- ALERTA educativa -->
+      <div class="rv" style="background:linear-gradient(135deg,rgba(255,196,0,.08),rgba(255,100,0,.05));border:1px solid rgba(255,196,0,.3);border-left:4px solid var(--am);border-radius:var(--rl);padding:20px 24px;margin-bottom:50px;text-align:left;display:flex;align-items:center;gap:16px">
+        <i class="fas fa-graduation-cap" style="font-size:2rem;color:var(--am);flex-shrink:0"></i>
+        <div>
+          <h4 style="font-family:var(--fh);font-size:.9rem;color:var(--am);letter-spacing:1px;margin-bottom:6px">AVISO EDUCATIVO</h4>
+          <p style="color:var(--txd);font-size:.88rem;line-height:1.6">Todo el software listado es creado con fines <strong style="color:var(--tx)">exclusivamente educativos y de investigación</strong> en ciberseguridad, desarrollo y sistemas financieros digitales. Diseñado para que profesionales, estudiantes e investigadores comprendan el funcionamiento interno de estas plataformas.</p>
+        </div>
+      </div>
+
+      <!-- Software Cards -->
+      <div class="grid3 rv" style="margin-bottom:60px">
+
+        <!-- App Fintech Educativa 1 -->
+        <div class="ecard" style="cursor:default;border-color:rgba(0,255,136,.2)">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+            <div style="width:50px;height:50px;background:linear-gradient(135deg,#00b14f,#007a35);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 0 20px rgba(0,177,79,.3);flex-shrink:0">💸</div>
+            <div>
+              <h4 style="font-family:var(--fh);font-size:.95rem;color:var(--tx);letter-spacing:1px;margin-bottom:2px">PaySim Edu v2.1</h4>
+              <span style="font-family:var(--fm);font-size:.6rem;color:var(--g);background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);padding:2px 8px;border-radius:10px">FINTECH EDUCATIVO</span>
             </div>
-
-            <div class="client-data-card" id="system-status-output">
-                <p class="loading-message">
-                    <span class="label">STATUS:</span> <span class="value success">INICIANDO MÓDULO CORE...</span>
-                </p>
+          </div>
+          <p style="color:var(--txd);font-size:.86rem;line-height:1.6;margin-bottom:16px">Simulador educativo de pasarela de pagos móviles para entender arquitecturas fintech, flujos de autenticación QR y sistemas de validación en tiempo real. Ideal para desarrolladores que estudian el ecosistema de pagos digitales.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px">
+            <span class="tech-badge" style="font-size:.6rem;padding:4px 10px"><i class="fab fa-android"></i> Android</span>
+            <span class="tech-badge" style="font-size:.6rem;padding:4px 10px"><i class="fas fa-lock"></i> Cifrado E2E</span>
+            <span class="tech-badge" style="font-size:.6rem;padding:4px 10px"><i class="fas fa-qrcode"></i> QR Auth</span>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--br2);border-radius:var(--ra);padding:12px;margin-bottom:16px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+              <span style="font-family:var(--fm);font-size:.65rem;color:var(--txd)">Precio educativo</span>
+              <span style="font-family:var(--fh);font-size:1.1rem;color:var(--g);font-weight:900">S/ 149</span>
             </div>
+            <p style="font-family:var(--fm);font-size:.6rem;color:var(--txd)">Incluye código fuente comentado + documentación técnica</p>
+          </div>
+          <a href="https://wa.me/51945366356?text=Hola%20Jair%2C%20quiero%20adquirir%20PaySim%20Edu%20v2.1" target="_blank" class="btn full"><i class="fab fa-whatsapp"></i> Adquirir por WhatsApp</a>
         </div>
-    </section>
-    
-    <section id="cyberseguridad" class="section-elite">
-        <h2><i class="fas fa-lock-open"></i> Servicios de Ciberseguridad Élite</h2>
-        <p class="subtitle-elite">Máxima protección en la era digital. Blindamos su infraestructura contra cualquier amenaza.</p>
-        
-        <div class="elite-services-grid">
-            <a href="servicio_ciberseguridad.html" class="elite-item">
-                <h4><i class="fas fa-microchip"></i> Hacking Ético y Pentesting</h4>
-                <p>Simulacros de ataque controlado para identificar y corregir vulnerabilidades críticas en su red.</p>
-            </a>
-            <a href="servicio_ciberseguridad.html" class="elite-item">
-                <h4><i class="fas fa-shield-alt"></i> Seguridad Perimetral Avanzada</h4>
-                <p>Implementación de Firewalls de última generación, IDS/IPS y sistemas de detección de intrusiones.</p>
-            </a>
-            <a href="servicio_ciberseguridad.html" class="elite-item">
-                <h4><i class="fas fa-dna"></i> Análisis Forense Digital</h4>
-                <p>Investigación detallada de incidentes de seguridad para determinar causa raíz y extensión del daño.</p>
-            </a>
-        </div>
-    </section>
 
-    <section id="digital" class="services">
-        <h2><i class="fas fa-code"></i> Desarrollo Digital y Arquitectura Segura</h2>
-        <p class="subtitle">Creamos soluciones rápidas, escalables y seguras desde el primer código.</p>
-
-        <div class="services-grid">
-            <a href="servicio_desarrollo.html" class="service-card" data-detail="Web">
-                <h4><i class="fas fa-globe"></i> Sitios y E-commerce</h4>
-                <p>Desarrollo de páginas web corporativas y tiendas online con foco en rendimiento y seguridad.</p>
-            </a>
-            <a href="servicio_desarrollo.html" class="service-card" data-detail="API">
-                <h4><i class="fas fa-server"></i> Desarrollo de APIs y Backend</h4>
-                <p>Creación de APIs robustas y backends escalables en Node.js, Python o PHP.</p>
-            </a>
-            <a href="servicio_desarrollo.html" class="service-card" data-detail="Cloud">
-                <h4><i class="fas fa-cloud"></i> Infraestructura Cloud (AWS/Azure)</h4>
-                <p>Migración y optimización de su infraestructura en la nube bajo estándares de seguridad.</p>
-            </a>
-        </div>
-    </section>
-
-    <section id="movil" class="services">
-        <h2><i class="fas fa-mobile-alt"></i> Soporte y Desarrollo Móvil</h2>
-        <p class="subtitle">Mantenemos sus dispositivos funcionando al máximo rendimiento y seguros.</p>
-
-        <div class="services-grid">
-            <a href="servicio_soporte.html" class="service-card" data-detail="Soporte">
-                <h4><i class="fas fa-tools"></i> Soporte Técnico Avanzado</h4>
-                <p>Reparación, diagnóstico y optimización de rendimiento en dispositivos iOS y Android.</p>
-            </a>
-            <a href="servicio_soporte.html" class="service-card" data-detail="Apps">
-                <h4><i class="fas fa-rocket"></i> Desarrollo de Apps Nativas/Híbridas</h4>
-                <p>Creación de aplicaciones móviles con Flutter o React Native con un enfoque 'security by design'.</p>
-            </a>
-            <a href="servicio_soporte.html" class="service-card" data-detail="Recovery">
-                <h4><i class="fas fa-database"></i> Recuperación de Datos Móvil</h4>
-                <p>Servicios especializados en la recuperación de datos perdidos o borrados de smartphones y tablets.</p>
-            </a>
-        </div>
-    </section>
-    
-    <section id="consultoria" class="services">
-        <h2><i class="fas fa-brain"></i> Consultoría y Formación</h2>
-        <p class="subtitle">Conocimiento técnico especializado para empoderar a su equipo y mejorar sus procesos.</p>
-
-        <div class="services-grid">
-            <a href="servicio_consultoria.html" class="service-card consult-type" data-detail="Auditoría">
-                <h4><i class="fas fa-clipboard-list"></i> Auditoría de Cumplimiento</h4>
-                <p>Revisión exhaustiva para asegurar el cumplimiento de normativas como GDPR o ISO 27001.</p>
-            </a>
-            <a href="servicio_consultoria.html" class="service-card consult-type" data-detail="Training">
-                <h4><i class="fas fa-chalkboard-teacher"></i> Formación Personalizada</h4>
-                <p>Cursos y talleres para empleados sobre ingeniería social y manejo de datos confidenciales.</p>
-            </a>
-            <a href="servicio_consultoria.html" class="service-card consult-type" data-detail="Respuesta">
-                <h4><i class="fas fa-scroll"></i> Políticas y IRP</h4>
-                <p>Creación de políticas de seguridad interna y planes de Respuesta a Incidentes (IRP) efectivos.</p>
-            </a>
-        </div>
-    </section>
-
-    <section id="contact-form-section" class="contact-section">
-        <h2><i class="fas fa-handshake"></i> Iniciar Colaboración</h2>
-        <p class="subtitle">Describa su necesidad. Un especialista se pondrá en contacto en menos de 24 horas.</p>
-
-        <form 
-            id="contact-query-form" 
-            class="query-form"
-            action="https://formspree.io/f/xbjnqkyr"  
-            method="POST" 
-        >
-            <div class="form-group">
-                <label for="service-select">Servicio de Interés</label>
-                <select id="service-select" name="Servicio_Interes" required>
-                    <option value="" disabled selected>Seleccione un servicio...</option>
-                    <option value="Ciberseguridad/Hacking Ético">Ciberseguridad / Hacking Ético</option>
-                    <option value="Desarrollo Web/App">Desarrollo Web o Aplicación</option>
-                    <option value="Soporte Móvil/Recuperación">Soporte Móvil / Recuperación de Datos</option>
-                    <option value="Consultoría/Formación">Consultoría y Formación</option>
-                    <option value="Otro">Otro / Consulta General</option>
-                </select>
+        <!-- App Fintech Educativa 2 -->
+        <div class="ecard" style="cursor:default;border-color:rgba(0,178,255,.25);box-shadow:0 0 30px rgba(0,178,255,.08)">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+            <div style="width:50px;height:50px;background:linear-gradient(135deg,#00b2ff,#0066cc);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 0 20px rgba(0,178,255,.3);flex-shrink:0">🏦</div>
+            <div>
+              <h4 style="font-family:var(--fh);font-size:.95rem;color:var(--tx);letter-spacing:1px;margin-bottom:2px">PlinClone Edu v1.8</h4>
+              <span style="font-family:var(--fm);font-size:.6rem;color:#00b2ff;background:rgba(0,178,255,.1);border:1px solid rgba(0,178,255,.3);padding:2px 8px;border-radius:10px">FINTECH EDUCATIVO</span>
             </div>
-
-            <div class="form-group">
-                <label for="problem-description">Describa el Problema o Proyecto</label>
-                <textarea 
-                    id="problem-description" 
-                    name="Descripcion_Problema" 
-                    rows="4" 
-                    placeholder="Ej: Necesito una auditoría de seguridad para mi e-commerce y protección contra ataques XSS." 
-                    required
-                ></textarea>
+          </div>
+          <p style="color:var(--txd);font-size:.86rem;line-height:1.6;margin-bottom:16px">Réplica educativa de arquitectura fintech para comprender integraciones bancarias, APIs de transferencia interbancaria y sistemas de notificación push en tiempo real. Documentación exhaustiva sobre protocolos de seguridad financiera.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px">
+            <span class="tech-badge" style="font-size:.6rem;padding:4px 10px"><i class="fab fa-apple"></i> iOS</span>
+            <span class="tech-badge" style="font-size:.6rem;padding:4px 10px"><i class="fas fa-university"></i> API Bancaria</span>
+            <span class="tech-badge" style="font-size:.6rem;padding:4px 10px"><i class="fas fa-bell"></i> Push Notify</span>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--br2);border-radius:var(--ra);padding:12px;margin-bottom:16px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+              <span style="font-family:var(--fm);font-size:.65rem;color:var(--txd)">Precio educativo</span>
+              <span style="font-family:var(--fh);font-size:1.1rem;color:#00b2ff;font-weight:900">S/ 179</span>
             </div>
-
-            <div class="form-row">
-                <div class="form-group">
-                    <label for="contact-email">Correo Electrónico</label>
-                    <input type="email" id="contact-email" name="_replyto" placeholder="su.correo@dominio.com" required>
-                </div>
-                <div class="form-group">
-                    <label for="contact-phone">Número de Contacto</label>
-                    <input type="tel" id="contact-phone" name="Telefono" placeholder="+57 300 123 4567" required>
-                </div>
-            </div>
-
-            <input type="hidden" name="_next" value="?form_submitted=true" />
-
-            <button type="submit" class="cta-button submit-button">
-                <i class="fas fa-paper-plane"></i> Enviar Solicitud
-            </button>
-        </form>
-    </section>
-    
-    <footer id="contacto" class="footer">
-        <div class="footer-content">
-            <h3><i class="fas fa-satellite-dish"></i> Contacto Rápido</h3>
-            <p>Listo para proteger su negocio. Contáctenos a través de sus canales preferidos.</p>
-            
-            <div class="social-links">
-                <a href="https://www.facebook.com/jairlpb?locale=es_LA" target="_blank" aria-label="Facebook">
-                    <i class="fab fa-facebook-f"></i> Facebook
-                </a>
-                <a href="https://www.instagram.com/jair_munoz_candela/?__pwa=1" target="_blank" aria-label="Instagram">
-                    <i class="fab fa-instagram"></i> Instagram
-                </a>
-                <a href="https://www.tiktok.com/@fritooo23" target="_blank" aria-label="TikTok">
-                    <i class="fab fa-tiktok"></i> TikTok
-                </a>
-            </div>
-            <p class="copyright">// JAIR MUÑOZ - Soluciones Tecnológicas de Alto Impacto &copy; 2025 //</p>
+            <p style="font-family:var(--fm);font-size:.6rem;color:var(--txd)">Incluye código fuente + guía de arquitectura fintech</p>
+          </div>
+          <a href="https://wa.me/51945366356?text=Hola%20Jair%2C%20quiero%20adquirir%20PlinClone%20Edu%20v1.8" target="_blank" class="btn full" style="background:#00b2ff;box-shadow:0 0 10px rgba(0,178,255,.3)"><i class="fab fa-whatsapp"></i> Adquirir por WhatsApp</a>
         </div>
-    </footer>
 
-    <div id="contrast-toggle-button" class="contrast-toggle" aria-label="Alternar Modo de Alto Contraste">
-        <i class="fas fa-adjust"></i>
+        <!-- Reconocimiento Facial -->
+        <div class="ecard" style="cursor:default;border-color:rgba(255,0,100,.2)">
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
+            <div style="width:50px;height:50px;background:linear-gradient(135deg,#ff003c,#880022);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 0 20px rgba(255,0,60,.3);flex-shrink:0">👁️</div>
+            <div>
+              <h4 style="font-family:var(--fh);font-size:.95rem;color:var(--tx);letter-spacing:1px;margin-bottom:2px">FaceIntel Edu v3.0</h4>
+              <span style="font-family:var(--fm);font-size:.6rem;color:#ff003c;background:rgba(255,0,60,.1);border:1px solid rgba(255,0,60,.3);padding:2px 8px;border-radius:10px">IA / BIOMETRÍA</span>
+            </div>
+          </div>
+          <p style="color:var(--txd);font-size:.86rem;line-height:1.6;margin-bottom:16px">Sistema educativo de reconocimiento facial con OpenCV e IA. Aprende sobre redes neuronales convolucionales, detección de puntos faciales, algoritmos de comparación biométrica y consideraciones éticas en sistemas de vigilancia.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px">
+            <span class="tech-badge" style="font-size:.6rem;padding:4px 10px"><i class="fab fa-python"></i> Python</span>
+            <span class="tech-badge" style="font-size:.6rem;padding:4px 10px"><i class="fas fa-brain"></i> OpenCV + AI</span>
+            <span class="tech-badge" style="font-size:.6rem;padding:4px 10px"><i class="fas fa-camera"></i> Biometría</span>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--br2);border-radius:var(--ra);padding:12px;margin-bottom:16px">
+            <div style="display:flex;justify-content:space-between;margin-bottom:6px">
+              <span style="font-family:var(--fm);font-size:.65rem;color:var(--txd)">Precio educativo</span>
+              <span style="font-family:var(--fh);font-size:1.1rem;color:#ff003c;font-weight:900">S/ 249</span>
+            </div>
+            <p style="font-family:var(--fm);font-size:.6rem;color:var(--txd)">Código fuente Python + notebooks Jupyter + dataset demo</p>
+          </div>
+          <a href="https://wa.me/51945366356?text=Hola%20Jair%2C%20quiero%20adquirir%20FaceIntel%20Edu%20v3.0" target="_blank" class="btn full" style="background:#ff003c;box-shadow:0 0 10px rgba(255,0,60,.3)"><i class="fab fa-whatsapp"></i> Adquirir por WhatsApp</a>
+        </div>
+
+      </div>
+
+      <!-- Segunda fila de software -->
+      <div class="grid2 rv" style="margin-bottom:60px">
+
+        <!-- Ingeniería Social Simulator -->
+        <div class="ecard" style="cursor:default;border-color:rgba(255,196,0,.2)">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+            <div style="width:50px;height:50px;background:linear-gradient(135deg,var(--am),#aa8000);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 0 20px rgba(255,196,0,.25);flex-shrink:0">🎭</div>
+            <div>
+              <h4 style="font-family:var(--fh);font-size:.95rem;color:var(--tx);letter-spacing:1px;margin-bottom:2px">SocialEng Lab v2.5</h4>
+              <span style="font-family:var(--fm);font-size:.6rem;color:var(--am);background:rgba(255,196,0,.1);border:1px solid rgba(255,196,0,.3);padding:2px 8px;border-radius:10px">AWARENESS TRAINING</span>
+            </div>
+          </div>
+          <p style="color:var(--txd);font-size:.86rem;line-height:1.6;margin-bottom:16px">Laboratorio educativo para entrenar equipos en la detección de ataques de ingeniería social. Simula campañas de concienciación, genera reportes de vulnerabilidad humana y forma a tu equipo contra el phishing, pretexting y vishing. Usado por empresas para auditorías de factor humano.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px">
+            <span class="tech-badge" style="font-size:.6rem;padding:4px 10px"><i class="fas fa-users"></i> Multi-usuario</span>
+            <span class="tech-badge" style="font-size:.6rem;padding:4px 10px"><i class="fas fa-chart-bar"></i> Analytics</span>
+            <span class="tech-badge" style="font-size:.6rem;padding:4px 10px"><i class="fas fa-envelope"></i> Email Sim</span>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--br2);border-radius:var(--ra);padding:12px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center">
+            <div><span style="font-family:var(--fm);font-size:.65rem;color:var(--txd);display:block">Precio educativo</span><span style="font-family:var(--fh);font-size:1.1rem;color:var(--am);font-weight:900">S/ 320</span></div>
+            <div style="text-align:right"><span style="font-family:var(--fm);font-size:.6rem;color:var(--txd)">Licencia</span><br><span style="font-family:var(--fm);font-size:.65rem;color:var(--g)">✓ Vitalicia</span></div>
+          </div>
+          <a href="https://wa.me/51945366356?text=Hola%20Jair%2C%20quiero%20SocialEng%20Lab%20v2.5" target="_blank" class="btn full" style="background:var(--am);color:#000;box-shadow:0 0 10px rgba(255,196,0,.3)"><i class="fab fa-whatsapp"></i> Adquirir por WhatsApp</a>
+        </div>
+
+        <!-- Network Intel -->
+        <div class="ecard" style="cursor:default;border-color:rgba(0,229,255,.25);box-shadow:0 0 30px rgba(0,229,255,.06)">
+          <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+            <div style="width:50px;height:50px;background:linear-gradient(135deg,var(--c),#005577);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 0 20px rgba(0,229,255,.3);flex-shrink:0">🕵️</div>
+            <div>
+              <h4 style="font-family:var(--fh);font-size:.95rem;color:var(--tx);letter-spacing:1px;margin-bottom:2px">NEXUM OSINT Suite v4.0</h4>
+              <span style="font-family:var(--fm);font-size:.6rem;color:var(--c);background:var(--c2);border:1px solid var(--br);padding:2px 8px;border-radius:10px">OSINT PRO</span>
+            </div>
+          </div>
+          <p style="color:var(--txd);font-size:.86rem;line-height:1.6;margin-bottom:16px">Suite completa de herramientas OSINT desarrollada en Python para investigación de fuentes abiertas: scraping de redes sociales, búsqueda de usernames en 50+ plataformas, geolocalización de fotos, análisis de metadatos, WHOIS avanzado y generación de reportes profesionales en PDF.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:16px">
+            <span class="tech-badge" style="font-size:.6rem;padding:4px 10px"><i class="fab fa-python"></i> Python</span>
+            <span class="tech-badge" style="font-size:.6rem;padding:4px 10px"><i class="fas fa-search"></i> 50+ plataformas</span>
+            <span class="tech-badge" style="font-size:.6rem;padding:4px 10px"><i class="fas fa-file-pdf"></i> Reportes PDF</span>
+            <span class="tech-badge" style="font-size:.6rem;padding:4px 10px"><i class="fas fa-map-marker-alt"></i> Geoloc</span>
+          </div>
+          <div style="background:var(--bg2);border:1px solid var(--br2);border-radius:var(--ra);padding:12px;margin-bottom:16px;display:flex;justify-content:space-between;align-items:center">
+            <div><span style="font-family:var(--fm);font-size:.65rem;color:var(--txd);display:block">Precio educativo</span><span style="font-family:var(--fh);font-size:1.1rem;color:var(--c);font-weight:900">S/ 399</span></div>
+            <div style="text-align:right"><span style="font-family:var(--fm);font-size:.6rem;color:var(--txd)">Actualizaciones</span><br><span style="font-family:var(--fm);font-size:.65rem;color:var(--g)">✓ 12 meses</span></div>
+          </div>
+          <a href="https://wa.me/51945366356?text=Hola%20Jair%2C%20quiero%20NEXUM%20OSINT%20Suite%20v4.0" target="_blank" class="btn full"><i class="fab fa-whatsapp"></i> Adquirir por WhatsApp</a>
+        </div>
+
+      </div>
+
+      <!-- Métodos de pago -->
+      <div class="cta-banner rv" style="margin-bottom:40px">
+        <h2><i class="fas fa-credit-card" style="color:var(--c)"></i> Métodos de Pago</h2>
+        <p>Facilitamos tu compra con múltiples métodos de pago seguros.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:28px;max-width:700px;margin-left:auto;margin-right:auto">
+          <div style="background:var(--cd);border:1px solid rgba(0,177,79,.3);border-radius:var(--rl);padding:20px;text-align:center">
+            <div style="font-size:2rem;margin-bottom:8px">💚</div>
+            <div style="font-family:var(--fh);font-size:.85rem;color:var(--g);letter-spacing:1px;margin-bottom:4px">YAPE</div>
+            <div style="font-family:var(--fm);font-size:.7rem;color:var(--txd)">+51 945 366 356</div>
+          </div>
+          <div style="background:var(--cd);border:1px solid rgba(0,178,255,.3);border-radius:var(--rl);padding:20px;text-align:center">
+            <div style="font-size:2rem;margin-bottom:8px">💙</div>
+            <div style="font-family:var(--fh);font-size:.85rem;color:#00b2ff;letter-spacing:1px;margin-bottom:4px">PLIN</div>
+            <div style="font-family:var(--fm);font-size:.7rem;color:var(--txd)">+51 945 366 356</div>
+          </div>
+          <div style="background:var(--cd);border:1px solid rgba(255,196,0,.3);border-radius:var(--rl);padding:20px;text-align:center">
+            <div style="font-size:2rem;margin-bottom:8px">🏦</div>
+            <div style="font-family:var(--fh);font-size:.85rem;color:var(--am);letter-spacing:1px;margin-bottom:4px">TRANSFERENCIA</div>
+            <div style="font-family:var(--fm);font-size:.7rem;color:var(--txd)">BCP / Interbank</div>
+          </div>
+          <div style="background:var(--cd);border:1px solid rgba(0,229,255,.2);border-radius:var(--rl);padding:20px;text-align:center">
+            <div style="font-size:2rem;margin-bottom:8px">💬</div>
+            <div style="font-family:var(--fh);font-size:.85rem;color:var(--c);letter-spacing:1px;margin-bottom:4px">WHATSAPP</div>
+            <div style="font-family:var(--fm);font-size:.7rem;color:var(--txd)">Coordinamos método</div>
+          </div>
+        </div>
+        <div style="margin-top:28px">
+          <a href="https://wa.me/51945366356?text=Hola%20Jair%2C%20quiero%20información%20sobre%20el%20software%20educativo" target="_blank" class="btn" style="display:inline-flex"><i class="fab fa-whatsapp"></i> Consultar disponibilidad</a>
+        </div>
+      </div>
+
+    </div>
+  </section>
+  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+</div>
+
+
+<!-- ═══════ PAGE: PRECIOS ═══════ -->
+<div class="page" id="p-precios">
+  <section class="sec" style="padding-top:80px">
+    <button class="back-btn" onclick="go('home')"><i class="fas fa-arrow-left"></i> Volver</button>
+    <div class="sec-inner">
+      <h2 class="fu" style="text-align:center"><i class="fas fa-tags"></i> Planes y Precios</h2>
+      <div class="divdr"></div>
+      <p class="sub fu2">Soluciones accesibles para cada tipo de proyecto. Precios referenciales — contáctenos para una propuesta personalizada.</p>
+      
+      <h3 class="rv" style="font-size:.9rem;color:var(--c);letter-spacing:3px;text-transform:uppercase;margin-bottom:24px;font-family:var(--fm)">// Ciberseguridad</h3>
+      <div class="price-grid rv" style="margin-bottom:50px">
+        <div class="pcard">
+          <p class="ptier">Básico</p>
+          <div class="pprice">Desde $150 <span>USD</span></div>
+          <p class="pdesc">Para pequeñas empresas y emprendedores</p>
+          <ul class="pfeats">
+            <li><i class="fas fa-check"></i> Escaneo de vulnerabilidades web</li>
+            <li><i class="fas fa-check"></i> Reporte de hallazgos en PDF</li>
+            <li><i class="fas fa-check"></i> Top 10 OWASP</li>
+            <li><i class="fas fa-check"></i> 1 revisión post-corrección</li>
+            <li class="no"><i class="fas fa-times"></i> Pentesting de red interna</li>
+            <li class="no"><i class="fas fa-times"></i> Análisis forense</li>
+          </ul>
+          <button class="btn full sec" onclick="go('contacto')">Consultar</button>
+        </div>
+        <div class="pcard featured">
+          <p class="ptier">Profesional</p>
+          <div class="pprice">Desde $400 <span>USD</span></div>
+          <p class="pdesc">Para empresas con infraestructura web activa</p>
+          <ul class="pfeats">
+            <li><i class="fas fa-check"></i> Pentesting web y API completo</li>
+            <li><i class="fas fa-check"></i> OSINT y huella digital</li>
+            <li><i class="fas fa-check"></i> Reporte ejecutivo + técnico</li>
+            <li><i class="fas fa-check"></i> Hardening básico incluido</li>
+            <li><i class="fas fa-check"></i> 3 revisiones post-corrección</li>
+            <li class="no"><i class="fas fa-times"></i> Pentesting de red interna</li>
+          </ul>
+          <button class="btn full" onclick="go('contacto')">Solicitar Ahora</button>
+        </div>
+        <div class="pcard">
+          <p class="ptier">Enterprise</p>
+          <div class="pprice">A medida</div>
+          <p class="pdesc">Para corporaciones y proyectos críticos</p>
+          <ul class="pfeats">
+            <li><i class="fas fa-check"></i> Pentesting web + red + app móvil</li>
+            <li><i class="fas fa-check"></i> Análisis forense digital</li>
+            <li><i class="fas fa-check"></i> Monitoreo continuo SOC</li>
+            <li><i class="fas fa-check"></i> Cumplimiento ISO 27001 / GDPR</li>
+            <li><i class="fas fa-check"></i> Formación del equipo incluida</li>
+            <li><i class="fas fa-check"></i> Soporte prioritario 24/7</li>
+          </ul>
+          <button class="btn full sec" onclick="go('contacto')">Contactar</button>
+        </div>
+      </div>
+
+      <h3 class="rv" style="font-size:.9rem;color:var(--c);letter-spacing:3px;text-transform:uppercase;margin-bottom:24px;font-family:var(--fm)">// Desarrollo de Software</h3>
+      <div class="price-grid rv" style="margin-bottom:40px">
+        <div class="pcard">
+          <p class="ptier">Web Básica</p>
+          <div class="pprice">Desde $200 <span>USD</span></div>
+          <p class="pdesc">Landing pages y sitios corporativos</p>
+          <ul class="pfeats">
+            <li><i class="fas fa-check"></i> Hasta 5 páginas responsive</li>
+            <li><i class="fas fa-check"></i> Formulario de contacto</li>
+            <li><i class="fas fa-check"></i> SEO básico</li>
+            <li><i class="fas fa-check"></i> SSL incluido</li>
+            <li><i class="fas fa-check"></i> Entrega en 5-7 días</li>
+          </ul>
+          <button class="btn full sec" onclick="go('contacto')">Consultar</button>
+        </div>
+        <div class="pcard featured">
+          <p class="ptier">Web Avanzada</p>
+          <div class="pprice">Desde $600 <span>USD</span></div>
+          <p class="pdesc">E-commerce, portales y sistemas web</p>
+          <ul class="pfeats">
+            <li><i class="fas fa-check"></i> Sistema completo con panel admin</li>
+            <li><i class="fas fa-check"></i> Pasarela de pago integrada</li>
+            <li><i class="fas fa-check"></i> Base de datos diseñada a medida</li>
+            <li><i class="fas fa-check"></i> API REST documentada</li>
+            <li><i class="fas fa-check"></i> 30 días de soporte post-entrega</li>
+          </ul>
+          <button class="btn full" onclick="go('contacto')">Solicitar Ahora</button>
+        </div>
+        <div class="pcard">
+          <p class="ptier">App Móvil</p>
+          <div class="pprice">Desde $800 <span>USD</span></div>
+          <p class="pdesc">Apps iOS y Android con Flutter</p>
+          <ul class="pfeats">
+            <li><i class="fas fa-check"></i> Diseño UX/UI personalizado</li>
+            <li><i class="fas fa-check"></i> iOS + Android en un solo código</li>
+            <li><i class="fas fa-check"></i> Backend y API incluidos</li>
+            <li><i class="fas fa-check"></i> Publicación en tiendas</li>
+            <li><i class="fas fa-check"></i> 60 días de soporte</li>
+          </ul>
+          <button class="btn full sec" onclick="go('contacto')">Consultar</button>
+        </div>
+      </div>
+
+      <div class="cta-banner rv">
+        <h2>¿Necesita una propuesta personalizada?</h2>
+        <p>Cada proyecto es único. Contáctenos y le daremos un presupuesto ajustado exactamente a sus necesidades.</p>
+        <div class="btn-grp">
+          <button class="btn" onclick="go('contacto')"><i class="fas fa-envelope"></i> Solicitar Presupuesto</button>
+          <a href="https://wa.me/51945366356" class="btn wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp +51 945 366 356</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+</div>
+
+
+<!-- ═══════ PAGE: CONTACTO ═══════ -->
+<div class="page" id="p-contacto">
+  <div class="form-wrap">
+    <button class="back-btn" onclick="go('home')"><i class="fas fa-arrow-left"></i> Volver</button>
+    <h2 class="fu"><i class="fas fa-handshake" style="color:var(--c)"></i> Iniciar Colaboración</h2>
+    <div class="divdr"></div>
+    <p class="sub fu2">Describa su necesidad. Un especialista se pondrá en contacto en menos de 24 horas. También puede escribirnos directamente por WhatsApp.</p>
+
+    <div class="wa-contact rv">
+      <p><i class="fab fa-whatsapp" style="color:#25d366;font-size:1.2rem;margin-right:8px"></i> ¿Prefiere respuesta inmediata? Escríbale al creador de esta plataforma:</p>
+      <a href="https://wa.me/51945366356" class="btn wa" target="_blank" style="display:inline-flex"><i class="fab fa-whatsapp"></i> Jair Muñoz — +51 945 366 356</a>
     </div>
 
-    <div id="status-modal" class="modal-overlay hidden">
-        <div class="modal-content">
-            <div class="modal-icon">
-                <i class="fas fa-spinner fa-spin"></i>
-            </div>
-            <h3 id="modal-title">Procesando Solicitud...</h3>
-            <p id="modal-message">Analizando datos y asignando especialista de contacto. Espere un momento...</p>
-            <button id="modal-close-button" class="cta-button hidden">Cerrar</button>
+    <form class="qform" id="cform" onsubmit="submitForm(event)">
+      <div class="fg">
+        <label>Servicio de Interés</label>
+        <select name="Servicio" required>
+          <option value="" disabled selected>Seleccione un servicio...</option>
+          <option>Ciberseguridad / Hacking Ético / Pentesting</option>
+          <option>Desarrollo Web o E-commerce</option>
+          <option>Desarrollo de API o Backend</option>
+          <option>App Móvil (iOS / Android)</option>
+          <option>Soporte Móvil / Recuperación de Datos</option>
+          <option>Consultoría y Formación en Seguridad</option>
+          <option>Auditoría de Cumplimiento (ISO / GDPR)</option>
+          <option>Automatización / Inteligencia Artificial</option>
+          <option>Otro / Consulta General</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Describa el Problema o Proyecto</label>
+        <textarea name="Descripcion" rows="4" placeholder="Ej: Necesito una auditoría de seguridad para mi e-commerce antes del lanzamiento." required></textarea>
+      </div>
+      <div class="frow">
+        <div class="fg">
+          <label>Correo Electrónico</label>
+          <input type="email" name="Email" placeholder="su.correo@dominio.com" required>
         </div>
-    </div>
+        <div class="fg">
+          <label>Número de Contacto (WhatsApp)</label>
+          <input type="tel" name="Telefono" placeholder="+51 945 366 356">
+        </div>
+      </div>
+      <div class="fg">
+        <label>Presupuesto Estimado (Opcional)</label>
+        <select name="Presupuesto">
+          <option value="">Sin preferencia / A consultar</option>
+          <option>Menos de $100 USD</option>
+          <option>$100 – $300 USD</option>
+          <option>$300 – $600 USD</option>
+          <option>$600 – $1,500 USD</option>
+          <option>Más de $1,500 USD</option>
+        </select>
+      </div>
+      <button type="submit" class="btn full" style="margin-top:8px;">
+        <i class="fas fa-paper-plane"></i> Enviar Solicitud
+      </button>
+    </form>
+  </div>
+  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+</div>
 
-    <script src="script.js"></script>
+
+<!-- ═══════ PAGE: TUTORIALES ═══════ -->
+<div class="page" id="p-tutoriales">
+  <section class="sec" style="padding-top:80px">
+    <button class="back-btn" onclick="go('home')"><i class="fas fa-arrow-left"></i> Volver</button>
+    <div class="sec-inner">
+      <h2 class="fu" style="text-align:center"><i class="fas fa-graduation-cap"></i> Tutoriales de Ciberseguridad</h2>
+      <div class="divdr"></div>
+      <p class="sub fu2">Aprende a protegerte en el mundo digital con guías prácticas y gratuitas de NEXUM.</p>
+
+      <!-- Telegram CTA -->
+      <div style="background:linear-gradient(135deg,rgba(0,136,204,.12),rgba(0,80,150,.08));border:1px solid rgba(0,136,204,.3);border-radius:var(--rl);padding:24px;text-align:center;margin-bottom:50px" class="rv">
+        <i class="fab fa-telegram" style="font-size:2.2rem;color:#0088cc;margin-bottom:10px;display:block"></i>
+        <h3 style="font-family:var(--fh);font-size:1rem;color:var(--tx);margin-bottom:8px;letter-spacing:1px">Únete al Canal de Telegram de NEXUM</h3>
+        <p style="color:var(--txd);font-size:.9rem;margin-bottom:16px">Recibe tutoriales, alertas de seguridad y consejos tecnológicos directamente en tu Telegram. ¡Es gratis!</p>
+        <a href="https://t.me/nexumsecurity" class="btn" target="_blank" style="display:inline-flex"><i class="fab fa-telegram"></i> Unirse al Canal</a>
+      </div>
+
+      <!-- Tutorial Cards -->
+      <h3 class="rv" style="font-family:var(--fm);font-size:.8rem;color:var(--c);letter-spacing:3px;text-transform:uppercase;margin-bottom:24px;text-align:left">// Seguridad Básica</h3>
+      <div class="grid3" style="margin-bottom:50px">
+        <div class="tut-card rv" onclick="openTut('t1')">
+          <div class="tut-icon" style="background:rgba(255,0,60,.1);border-color:rgba(255,0,60,.3)"><i class="fas fa-lock" style="color:#ff003c"></i></div>
+          <div class="tut-body">
+            <span class="tut-lvl" style="background:rgba(0,255,136,.1);color:var(--g)">Principiante</span>
+            <h4>Contraseñas Inquebrantables</h4>
+            <p>Cómo crear y gestionar contraseñas seguras con un gestor de contraseñas.</p>
+            <span class="tut-time"><i class="fas fa-clock"></i> 5 min</span>
+          </div>
+        </div>
+        <div class="tut-card rv" onclick="openTut('t2')">
+          <div class="tut-icon" style="background:rgba(255,196,0,.1);border-color:rgba(255,196,0,.3)"><i class="fas fa-fish" style="color:#ffc400"></i></div>
+          <div class="tut-body">
+            <span class="tut-lvl" style="background:rgba(255,196,0,.1);color:#ffc400">Esencial</span>
+            <h4>Detectar Phishing en 5 Pasos</h4>
+            <p>Aprende a identificar correos y enlaces fraudulentos antes de hacer clic.</p>
+            <span class="tut-time"><i class="fas fa-clock"></i> 7 min</span>
+          </div>
+        </div>
+        <div class="tut-card rv" onclick="openTut('t3')">
+          <div class="tut-icon" style="background:rgba(0,229,255,.1);border-color:rgba(0,229,255,.3)"><i class="fas fa-wifi" style="color:var(--c)"></i></div>
+          <div class="tut-body">
+            <span class="tut-lvl" style="background:rgba(0,229,255,.1);color:var(--c)">Intermedio</span>
+            <h4>Wi-Fi Público y VPN</h4>
+            <p>Cómo navegar seguro en redes públicas usando VPN y configuraciones correctas.</p>
+            <span class="tut-time"><i class="fas fa-clock"></i> 8 min</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="rv" style="font-family:var(--fm);font-size:.8rem;color:var(--c);letter-spacing:3px;text-transform:uppercase;margin-bottom:24px;text-align:left">// Seguridad Avanzada</h3>
+      <div class="grid3" style="margin-bottom:50px">
+        <div class="tut-card rv" onclick="openTut('t4')">
+          <div class="tut-icon" style="background:rgba(0,255,136,.1);border-color:rgba(0,255,136,.3)"><i class="fas fa-shield-virus" style="color:var(--g)"></i></div>
+          <div class="tut-body">
+            <span class="tut-lvl" style="background:rgba(0,255,136,.1);color:var(--g)">Avanzado</span>
+            <h4>Proteger tu Servidor Web</h4>
+            <p>Hardening básico de Apache/Nginx: firewalls, headers de seguridad y SSL/TLS.</p>
+            <span class="tut-time"><i class="fas fa-clock"></i> 15 min</span>
+          </div>
+        </div>
+        <div class="tut-card rv" onclick="openTut('t5')">
+          <div class="tut-icon" style="background:rgba(0,100,255,.1);border-color:rgba(0,100,255,.3)"><i class="fas fa-search" style="color:#0064ff"></i></div>
+          <div class="tut-body">
+            <span class="tut-lvl" style="background:rgba(0,100,255,.1);color:#0064ff">Avanzado</span>
+            <h4>OSINT Básico — Conoce tu Huella</h4>
+            <p>Descubre qué información tuya está pública en internet y cómo reducirla.</p>
+            <span class="tut-time"><i class="fas fa-clock"></i> 12 min</span>
+          </div>
+        </div>
+        <div class="tut-card rv" onclick="openTut('t6')">
+          <div class="tut-icon" style="background:rgba(255,0,60,.1);border-color:rgba(255,0,60,.3)"><i class="fas fa-virus" style="color:#ff003c"></i></div>
+          <div class="tut-body">
+            <span class="tut-lvl" style="background:rgba(255,0,60,.1);color:#ff003c">Crítico</span>
+            <h4>Ransomware: Prevención y Respuesta</h4>
+            <p>Qué hacer si te infectan y cómo prevenir el cifrado de tus archivos críticos.</p>
+            <span class="tut-time"><i class="fas fa-clock"></i> 10 min</span>
+          </div>
+        </div>
+      </div>
+
+      <h3 class="rv" style="font-family:var(--fm);font-size:.8rem;color:var(--c);letter-spacing:3px;text-transform:uppercase;margin-bottom:24px;text-align:left">// Desarrollo Seguro</h3>
+      <div class="grid3">
+        <div class="tut-card rv" onclick="openTut('t7')">
+          <div class="tut-icon" style="background:rgba(0,229,255,.1);border-color:rgba(0,229,255,.3)"><i class="fas fa-code" style="color:var(--c)"></i></div>
+          <div class="tut-body">
+            <span class="tut-lvl" style="background:rgba(0,229,255,.1);color:var(--c)">Dev</span>
+            <h4>OWASP Top 10 — Vulnerabilidades Web</h4>
+            <p>Las 10 vulnerabilidades más peligrosas en aplicaciones web y cómo corregirlas.</p>
+            <span class="tut-time"><i class="fas fa-clock"></i> 20 min</span>
+          </div>
+        </div>
+        <div class="tut-card rv" onclick="openTut('t8')">
+          <div class="tut-icon" style="background:rgba(0,255,136,.1);border-color:rgba(0,255,136,.3)"><i class="fas fa-database" style="color:var(--g)"></i></div>
+          <div class="tut-body">
+            <span class="tut-lvl" style="background:rgba(0,255,136,.1);color:var(--g)">Dev</span>
+            <h4>SQL Injection y Cómo Prevenirla</h4>
+            <p>Entiende cómo funcionan los ataques de inyección SQL y aplica consultas parametrizadas.</p>
+            <span class="tut-time"><i class="fas fa-clock"></i> 18 min</span>
+          </div>
+        </div>
+        <div class="tut-card rv" onclick="openTut('t9')">
+          <div class="tut-icon" style="background:rgba(255,196,0,.1);border-color:rgba(255,196,0,.3)"><i class="fas fa-key" style="color:#ffc400"></i></div>
+          <div class="tut-body">
+            <span class="tut-lvl" style="background:rgba(255,196,0,.1);color:#ffc400">Dev</span>
+            <h4>Autenticación Segura con JWT</h4>
+            <p>Implementa autenticación robusta con tokens JWT, refresh tokens y buenas prácticas.</p>
+            <span class="tut-time"><i class="fas fa-clock"></i> 14 min</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Tutorial Modal -->
+  <div class="tut-modal hid" id="tutModal">
+    <div class="tut-modal-box">
+      <div class="tut-modal-hdr">
+        <h3 id="tutTitle">Tutorial</h3>
+        <button onclick="closeTut()" style="background:none;border:none;color:var(--txd);font-size:1.2rem;cursor:pointer"><i class="fas fa-times"></i></button>
+      </div>
+      <div class="tut-modal-body" id="tutContent"></div>
+      <div style="padding:16px;border-top:1px solid var(--br);display:flex;gap:10px;justify-content:center;flex-wrap:wrap">
+        <a href="https://wa.me/51945366356" class="btn btn-sm wa" target="_blank"><i class="fab fa-whatsapp"></i> Consultar con Jair</a>
+        <button class="btn sec btn-sm" onclick="closeTut()"><i class="fas fa-times"></i> Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://t.me/nexumsecurity" target="_blank"><i class="fab fa-telegram"></i> Telegram</a><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+</div>
+
+
+<!-- ═══════ PAGE: APPS / HERRAMIENTAS ═══════ -->
+<div class="page" id="p-apps">
+  <section class="sec" style="padding-top:80px">
+    <button class="back-btn" onclick="go('home')"><i class="fas fa-arrow-left"></i> Volver</button>
+    <div class="sec-inner">
+      <h2 class="fu" style="text-align:center"><i class="fas fa-th"></i> Herramientas y Aplicaciones NEXUM</h2>
+      <div class="divdr"></div>
+      <p class="sub fu2">Herramientas gratuitas y de pago para proteger y potenciar tu vida digital.</p>
+
+      <h3 class="rv" style="font-family:var(--fm);font-size:.8rem;color:var(--g);letter-spacing:3px;text-transform:uppercase;margin-bottom:24px;text-align:left">// Herramientas Gratuitas</h3>
+      <div class="grid3" style="margin-bottom:50px">
+        <div class="app-card rv" onclick="go('qr')">
+          <div class="app-icon"><i class="fas fa-qrcode"></i></div>
+          <h4>Generador de QR</h4>
+          <p>Crea códigos QR para URLs, vCards y más. Descarga en PNG de alta resolución.</p>
+          <span class="app-badge free">Gratis</span>
+        </div>
+        <div class="app-card rv" onclick="openPassGen()">
+          <div class="app-icon"><i class="fas fa-key"></i></div>
+          <h4>Generador de Contraseñas</h4>
+          <p>Genera contraseñas seguras y aleatorias con nivel de seguridad personalizable.</p>
+          <span class="app-badge free">Gratis</span>
+        </div>
+        <div class="app-card rv" onclick="openHasher()">
+          <div class="app-icon"><i class="fas fa-fingerprint"></i></div>
+          <h4>Verificador Hash MD5/SHA</h4>
+          <p>Verifica la integridad de archivos calculando su hash para detectar modificaciones.</p>
+          <span class="app-badge free">Gratis</span>
+        </div>
+        <div class="app-card rv" onclick="openIPInfo()">
+          <div class="app-icon"><i class="fas fa-network-wired"></i></div>
+          <h4>Info de Tu IP</h4>
+          <p>Consulta tu dirección IP pública, país, ciudad, ISP y nivel de privacidad.</p>
+          <span class="app-badge free">Gratis</span>
+        </div>
+        <div class="app-card rv" onclick="openBase64()">
+          <div class="app-icon"><i class="fas fa-code"></i></div>
+          <h4>Codificador Base64</h4>
+          <p>Codifica y decodifica texto o archivos en formato Base64 para análisis de seguridad.</p>
+          <span class="app-badge free">Gratis</span>
+        </div>
+        <div class="app-card rv" onclick="openPortCheck()">
+          <div class="app-icon"><i class="fas fa-plug"></i></div>
+          <h4>Escáner de Cabeceras HTTP</h4>
+          <p>Analiza los headers de seguridad de cualquier sitio web: HSTS, CSP, X-Frame y más.</p>
+          <span class="app-badge free">Gratis</span>
+        </div>
+      </div>
+
+      <h3 class="rv" style="font-family:var(--fm);font-size:.8rem;color:var(--am);letter-spacing:3px;text-transform:uppercase;margin-bottom:24px;text-align:left">// Servicios Premium</h3>
+      <div class="grid3">
+        <div class="app-card rv premium">
+          <div class="app-icon" style="background:rgba(255,196,0,.1);border-color:rgba(255,196,0,.3)"><i class="fas fa-robot" style="color:var(--am)"></i></div>
+          <h4>Bot Telegram Personalizado</h4>
+          <p>Bot de Telegram a medida para tu negocio: atención al cliente, notificaciones, automatización.</p>
+          <span class="app-badge premium">Premium</span>
+        </div>
+        <div class="app-card rv premium">
+          <div class="app-icon" style="background:rgba(255,196,0,.1);border-color:rgba(255,196,0,.3)"><i class="fas fa-mobile-alt" style="color:var(--am)"></i></div>
+          <h4>App Móvil a Medida</h4>
+          <p>Desarrollo de aplicaciones iOS y Android con Flutter. Publicación en tiendas incluida.</p>
+          <span class="app-badge premium">Premium</span>
+        </div>
+        <div class="app-card rv premium">
+          <div class="app-icon" style="background:rgba(255,196,0,.1);border-color:rgba(255,196,0,.3)"><i class="fas fa-eye" style="color:var(--am)"></i></div>
+          <h4>Sistema de Monitoreo</h4>
+          <p>Dashboard de seguridad 24/7 para tu infraestructura con alertas en tiempo real.</p>
+          <span class="app-badge premium">Premium</span>
+        </div>
+      </div>
+
+      <!-- OSINT Tools Section -->
+      <h3 class="rv" style="font-family:var(--fm);font-size:.8rem;color:var(--r);letter-spacing:3px;text-transform:uppercase;margin:50px 0 24px;text-align:left">// OSINT — Herramientas de Investigación</h3>
+      <div style="background:linear-gradient(135deg,rgba(255,0,60,.06),rgba(0,0,0,0));border:1px solid rgba(255,0,60,.2);border-radius:var(--rl);padding:18px 22px;margin-bottom:28px" class="rv">
+        <p style="font-family:var(--fm);font-size:.72rem;color:rgba(255,100,100,.8)"><i class="fas fa-exclamation-triangle"></i> AVISO LEGAL: Estas herramientas son solo para uso educativo y de investigación legítima. El uso indebido es responsabilidad exclusiva del usuario. NEXUM no almacena ninguna búsqueda.</p>
+      </div>
+      <div class="grid3" style="margin-bottom:30px">
+        <div class="app-card rv" onclick="openPhoneOsint()">
+          <div class="app-icon"><i class="fas fa-phone-alt"></i></div>
+          <h4>Verificador de Teléfono</h4>
+          <p>Consulta información de un número telefónico: operador, país, tipo de línea y posibles reportes de spam.</p>
+          <span class="app-badge free">Gratis</span>
+        </div>
+        <div class="app-card rv" onclick="openDniLookup()">
+          <div class="app-icon"><i class="fas fa-id-card"></i></div>
+          <h4>Consulta DNI Perú</h4>
+          <p>Verifica datos básicos de un DNI peruano consultando fuentes públicas del RENIEC.</p>
+          <span class="app-badge free">Gratis</span>
+        </div>
+        <div class="app-card rv" onclick="openEmailChecker()">
+          <div class="app-icon"><i class="fas fa-at"></i></div>
+          <h4>Verificador de Email</h4>
+          <p>Comprueba si un correo electrónico aparece en filtraciones de datos conocidas (HaveIBeenPwned).</p>
+          <span class="app-badge free">Gratis</span>
+        </div>
+        <div class="app-card rv" onclick="openUsernameOsint()">
+          <div class="app-icon"><i class="fas fa-user-secret"></i></div>
+          <h4>Búsqueda por Username</h4>
+          <p>Encuentra en qué redes sociales y plataformas existe un nombre de usuario determinado.</p>
+          <span class="app-badge free">Gratis</span>
+        </div>
+        <div class="app-card rv" onclick="openDomainOsint()">
+          <div class="app-icon"><i class="fas fa-globe"></i></div>
+          <h4>WHOIS — Investigar Dominio</h4>
+          <p>Obtén información de registro de cualquier dominio: propietario, fechas, servidores DNS.</p>
+          <span class="app-badge free">Gratis</span>
+        </div>
+        <div class="app-card rv" onclick="openImageOsint()">
+          <div class="app-icon"><i class="fas fa-camera"></i></div>
+          <h4>Búsqueda Inversa de Imagen</h4>
+          <p>Encuentra el origen de una imagen en internet a través de los motores de búsqueda reversa.</p>
+          <span class="app-badge free">Gratis</span>
+        </div>
+      </div>
+
+      <!-- Community Section -->
+      <div class="rv" style="background:linear-gradient(135deg,rgba(24,119,242,.1),rgba(0,80,150,.05));border:1px solid rgba(24,119,242,.3);border-radius:var(--rl);padding:30px;text-align:center;margin-top:20px">
+        <i class="fab fa-facebook-f" style="font-size:2rem;color:#1877f2;margin-bottom:12px;display:block"></i>
+        <h3 style="font-family:var(--fh);font-size:1rem;color:var(--tx);margin-bottom:8px;letter-spacing:1px">Comunidad NEXUM — Prevención de Estafas</h3>
+        <p style="color:var(--txd);font-size:.9rem;margin-bottom:18px">Únete al grupo de Facebook donde Jair Muñoz comparte alertas de estafas, consejos de seguridad y ayuda a la comunidad de forma gratuita.</p>
+        <a href="https://www.facebook.com/share/g/1K3xjqkLwb/" class="btn" target="_blank" style="display:inline-flex;background:#1877f2"><i class="fab fa-facebook-f"></i> Unirse al Grupo</a>
+      </div>
+
+      <!-- Mini Apps Container -->
+      <div id="miniAppContainer" style="margin-top:40px;display:none"></div>
+    </div>
+  </section>
+  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+</div>
+
+
+<!-- ═══════ PAGE: QR GENERATOR ═══════ -->
+<div class="page" id="p-qr">
+  <div class="qr-wrap">
+    <button class="back-btn" onclick="go('home')" style="align-self:flex-start"><i class="fas fa-arrow-left"></i> Volver</button>
+    <div class="qr-card fu">
+      <h2><i class="fas fa-qrcode"></i> Generador de Código QR</h2>
+      <p>Genera QR de alta resolución para enlaces o tarjetas de contacto vCard.</p>
+      <div class="fc">
+        <label>Modo de Codificación</label>
+        <select id="qrType" onchange="toggleQrOpts()">
+          <option value="url">URL — Enlace de página web</option>
+          <option value="vcard">vCard — Tarjeta de contacto</option>
+        </select>
+        <div id="qrUrlOpts" class="qr-opts">
+          <label>URL a codificar</label>
+          <input type="url" id="qrUrl" placeholder="https://ejemplo.com">
+        </div>
+        <div id="qrVcardOpts" class="qr-opts" style="display:none">
+          <label>Nombre Completo</label><input type="text" id="vcNombre" placeholder="Jair Muñoz Candela">
+          <label>Título / Puesto</label><input type="text" id="vcTitulo" placeholder="Especialista en Ciberseguridad">
+          <label>Email</label><input type="email" id="vcEmail" placeholder="correo@nexum.pe">
+          <label>Teléfono</label><input type="text" id="vcTel" placeholder="+51 945 366 356">
+          <label>Sitio Web</label><input type="url" id="vcWeb" placeholder="https://nexum.pe">
+        </div>
+      </div>
+      <button class="btn full" onclick="genQR()"><i class="fas fa-terminal"></i> Generar Código QR</button>
+      <div class="qr-result" id="qrResult">
+        <div class="qr-status"><i class="fas fa-check-circle" style="color:var(--g);margin-right:6px"></i> <span id="qrStatusTxt">QR generado</span></div>
+        <div class="qr-canvas" id="qrCanvas"></div>
+      </div>
+      <a id="qrDownload" class="btn full" style="display:none;margin-top:14px" download="nexum-qr.png">
+        <i class="fas fa-download"></i> Descargar PNG
+      </a>
+    </div>
+  </div>
+  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+</div>
+
+
+<!-- ═══════ MODAL ═══════ -->
+<div class="modal hid" id="modal">
+  <div class="modal-box">
+    <i id="mIcon" class="fas fa-spinner fa-spin"></i>
+    <h3 id="mTitle">Procesando...</h3>
+    <p id="mMsg">Analizando datos y asignando especialista...</p>
+    <button class="btn" id="mClose" onclick="closeModal()" style="display:none;margin-top:10px">Cerrar</button>
+  </div>
+</div>
+
+
+<!-- ═══════ CHATBOT ═══════ -->
+<div class="chatbox" id="chatbox">
+  <div class="chat-hdr">
+    <div class="chat-av"><i class="fas fa-robot"></i></div>
+    <div style="flex:1">
+      <h3>NEXUM — Asistente IA</h3>
+      <span class="chat-st">En línea ahora</span>
+    </div>
+    <button class="chat-cls" onclick="toggleChat()"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="chat-body" id="chatBody">
+    <div class="msg bot">
+      ¡Hola! Soy el asistente IA de <strong>NEXUM</strong>. Puedo responder sobre ciberseguridad, desarrollo de software, apps móviles, precios y más. ¿En qué puedo ayudarle hoy?
+    </div>
+  </div>
+  <div class="chat-foot">
+    <input class="chat-in" id="chatIn" placeholder="Escribe tu pregunta..." maxlength="500" onkeydown="if(event.key==='Enter')sendMsg()">
+    <button class="chat-snd" id="chatSnd" onclick="sendMsg()"><i class="fas fa-paper-plane"></i></button>
+  </div>
+</div>
+
+<!-- CHAT LABEL (visible when closed) -->
+<div class="chat-btn-label" id="chatLabel">¿En qué te ayudo? 💬</div>
+
+<button class="chat-btn" id="chatBtn" onclick="toggleChat()" title="Asistente IA NEXUM" style="position:fixed">
+  <i class="fas fa-robot"></i>
+  <span class="chat-pulse"></span>
+</button>
+
+
+<!-- ═══════ JAVASCRIPT ═══════ -->
+<script>
+/* ── SPA ROUTER ── */
+const pages = {
+  home:'p-home', nosotros:'p-nosotros', ciber:'p-ciber',
+  dev:'p-dev', movil:'p-movil', consul:'p-consul',
+  tutoriales:'p-tutoriales', apps:'p-apps',
+  software:'p-software', precios:'p-precios', contacto:'p-contacto', qr:'p-qr'
+};
+
+function go(key){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const el = document.getElementById(pages[key]);
+  if(el) el.classList.add('active');
+  window.scrollTo({top:0,behavior:'instant'});
+  document.querySelectorAll('.ni').forEach(n=>n.classList.remove('act'));
+  const navMap = {home:0,nosotros:1,ciber:2,dev:3,movil:4,consul:5,tutoriales:6,apps:7,software:8,precios:9,qr:10};
+  const navBtns = document.querySelectorAll('#nav-d .ni');
+  if(navMap[key]!==undefined && navBtns[navMap[key]]) navBtns[navMap[key]].classList.add('act');
+  setTimeout(initReveal,50);
+}
+
+/* ── MOBILE NAV ── */
+function toggleMnav(){
+  document.getElementById('hbg').classList.toggle('open');
+  document.getElementById('mnav').classList.toggle('open');
+}
+function closeMnav(){
+  document.getElementById('hbg').classList.remove('open');
+  document.getElementById('mnav').classList.remove('open');
+}
+document.addEventListener('click',e=>{
+  const hbg=document.getElementById('hbg'),mn=document.getElementById('mnav');
+  if(!hbg.contains(e.target)&&!mn.contains(e.target)) closeMnav();
+});
+
+/* ── HEADER SCROLL ── */
+window.addEventListener('scroll',()=>document.getElementById('hdr').classList.toggle('scrolled',window.scrollY>20));
+
+/* ── REVEAL ── */
+function initReveal(){
+  const obs = new IntersectionObserver((entries)=>{
+    entries.forEach((e,i)=>{
+      if(e.isIntersecting){
+        setTimeout(()=>e.target.classList.add('vis'),i*70);
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.1});
+  document.querySelectorAll('.rv:not(.vis)').forEach(el=>obs.observe(el));
+}
+initReveal();
+
+/* ── COUNTERS ── */
+function initCounters(){
+  const obs2 = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const el=e.target;
+      const target=parseInt(el.getAttribute('data-t'));
+      const isPercent=el.closest('.rv')?.querySelector('.sl2')?.textContent.includes('%');
+      let count=0;const step=Math.max(1,Math.ceil(target/60));
+      const t=setInterval(()=>{
+        count=Math.min(count+step,target);
+        el.textContent=count+(isPercent?'%':'+');
+        if(count>=target){el.textContent=target+(isPercent?'%':'+');clearInterval(t);}
+      },28);
+      obs2.unobserve(el);
+    });
+  },{threshold:.5});
+  document.querySelectorAll('[data-t]').forEach(el=>obs2.observe(el));
+}
+initCounters();
+
+/* ── STATUS CARD ── */
+function buildStatusCard(){
+  const card=document.getElementById('sc');
+  if(!card) return;
+  const now=new Date();
+  const rows=[
+    ['STATUS','<span class="sc-val ok">SISTEMAS ACTIVOS</span>'],
+    ['HORA LOCAL',`<span class="sc-val" id="lc">${now.toLocaleTimeString('es-PE')}</span>`],
+    ['ZONA',`<span class="sc-val">${Intl.DateTimeFormat().resolvedOptions().timeZone}</span>`],
+    ['PROTOCOLO','<span class="sc-val ok">HTTPS / TLS 1.3</span>'],
+    ['AMENAZAS','<span class="sc-val er">0 detectadas</span>'],
+    ['UPTIME','<span class="sc-val ok">99.9%</span>'],
+    ['NEXUM','<span class="sc-val ok">ONLINE ✓</span>'],
+  ];
+  card.innerHTML=rows.map(([l,v])=>`<div class="sc-row"><span class="sc-lbl">${l}</span>${v}</div>`).join('');
+  setInterval(()=>{const el=document.getElementById('lc');if(el) el.textContent=new Date().toLocaleTimeString('es-PE');},1000);
+}
+setTimeout(buildStatusCard,700);
+
+/* ── MONEY RAIN CANVAS ── */
+function initMoneyCanvas(){
+  const canvas=document.getElementById('moneyCanvas');
+  if(!canvas) return;
+  const ctx=canvas.getContext('2d');
+  const W=canvas.offsetWidth||280,H=canvas.offsetHeight||340;
+  canvas.width=W;canvas.height=H;
+  const chars='$¥€₿₴01010011000111001101001NEXUM01010SECURE10101';
+  const cols=Math.floor(W/12);
+  const drops=Array.from({length:cols},()=>Math.random()*-50);
+  function draw(){
+    ctx.fillStyle='rgba(2,4,8,0.18)';
+    ctx.fillRect(0,0,W,H);
+    ctx.font='11px JetBrains Mono,monospace';
+    drops.forEach((y,i)=>{
+      const c=chars[Math.floor(Math.random()*chars.length)];
+      const alpha=Math.random()>.7?0.9:0.3;
+      ctx.fillStyle=c==='$'||c==='€'||c==='¥'||c==='₿'?`rgba(0,255,136,${alpha})`:`rgba(0,229,255,${alpha})`;
+      ctx.fillText(c,i*12,y*12);
+      if(y*12>H&&Math.random()>.97) drops[i]=0;
+      drops[i]+=.6;
+    });
+  }
+  setInterval(draw,55);
+}
+setTimeout(initMoneyCanvas,400);
+
+/* ── TRANSACTION FEED ── */
+function initTxFeed(){
+  const feed=document.getElementById('txFeed');
+  if(!feed) return;
+  const txs=[
+    {t:'AUDIT',v:'$850',a:'PE→MX',c:'ok'},
+    {t:'PENTEST',v:'$1,200',a:'Lima→Bogotá',c:'ok'},
+    {t:'DEV WEB',v:'$600',a:'Perú→EEUU',c:'ok'},
+    {t:'CONSULT',v:'$300',a:'Remoto',c:'ok'},
+    {t:'APP MOB',v:'$950',a:'Android',c:'ok'},
+    {t:'FORENSE',v:'$450',a:'Urgente',c:'am'},
+    {t:'OSINT',v:'$250',a:'Anónimo',c:'ok'},
+    {t:'CLOUD',v:'$700',a:'AWS',c:'ok'},
+  ];
+  let idx=0;
+  function addTx(){
+    const tx=txs[idx%txs.length];idx++;
+    const row=document.createElement('div');
+    row.style.cssText='display:flex;justify-content:space-between;align-items:center;font-family:var(--fm);font-size:.6rem;animation:mIn .3s ease;border-bottom:1px solid rgba(0,229,255,0.05);padding:2px 0';
+    const color=tx.c==='ok'?'var(--g)':'var(--am)';
+    row.innerHTML=`<span style="color:var(--txd)">${tx.t}</span><span style="color:var(--txd)">${tx.a}</span><span style="color:${color};font-weight:700">${tx.v}</span>`;
+    feed.insertBefore(row,feed.firstChild);
+    if(feed.children.length>4) feed.removeChild(feed.lastChild);
+  }
+  addTx();addTx();addTx();
+  setInterval(addTx,2800);
+}
+setTimeout(initTxFeed,1000);
+
+/* ── CONTACT FORM ── */
+function submitForm(e){
+  e.preventDefault();
+  const modal=document.getElementById('modal');
+  const icon=document.getElementById('mIcon');
+  const title=document.getElementById('mTitle');
+  const msg=document.getElementById('mMsg');
+  const closeBtn=document.getElementById('mClose');
+  icon.className='fas fa-spinner fa-spin';icon.style.color='';
+  title.textContent='Procesando Solicitud...';
+  msg.textContent='Asignando especialista. Un momento por favor...';
+  closeBtn.style.display='none';
+  modal.classList.remove('hid');
+  setTimeout(()=>{
+    icon.className='fas fa-check-circle';icon.style.color='var(--g)';
+    title.textContent='¡Solicitud Enviada!';
+    msg.textContent='Gracias. Un especialista de NEXUM se pondrá en contacto en menos de 24 horas. También puede escribirnos por WhatsApp: +51 945 366 356.';
+    closeBtn.style.display='inline-flex';
+    document.getElementById('cform').reset();
+  },2400);
+}
+function closeModal(){document.getElementById('modal').classList.add('hid');}
+
+/* ── QR ── */
+let qrInst=null;
+function toggleQrOpts(){
+  const t=document.getElementById('qrType').value;
+  document.getElementById('qrUrlOpts').style.display=t==='url'?'block':'none';
+  document.getElementById('qrVcardOpts').style.display=t==='vcard'?'block':'none';
+}
+function genQR(){
+  const tipo=document.getElementById('qrType').value;
+  let data='';
+  if(tipo==='url'){
+    const url=document.getElementById('qrUrl').value.trim();
+    if(!url){alert('Por favor ingresa una URL.');return;}
+    data=url;
+  } else {
+    const n=document.getElementById('vcNombre').value.trim();
+    if(!n){alert('Ingresa el nombre.');return;}
+    data=`BEGIN:VCARD\nVERSION:3.0\nFN:${n}\nTITLE:${document.getElementById('vcTitulo').value}\nEMAIL:${document.getElementById('vcEmail').value}\nTEL:${document.getElementById('vcTel').value}\nURL:${document.getElementById('vcWeb').value}\nEND:VCARD`;
+  }
+  const canvas=document.getElementById('qrCanvas');
+  canvas.innerHTML='';
+  if(qrInst){qrInst.clear();qrInst=null;}
+  qrInst=new QRCode(canvas,{text:data,width:220,height:220,colorDark:'#000',colorLight:'#fff',correctLevel:QRCode.CorrectLevel.H});
+  document.getElementById('qrStatusTxt').textContent=tipo==='url'?'QR de URL generado':'vCard QR generada';
+  document.getElementById('qrResult').style.display='block';
+  setTimeout(()=>{
+    const c=canvas.querySelector('canvas');
+    if(c){const dl=document.getElementById('qrDownload');dl.href=c.toDataURL('image/png');dl.style.display='inline-flex';}
+  },300);
+}
+
+/* ── FAQ ── */
+function toggleFaq(el){
+  const item=el.closest('.faq-item');
+  document.querySelectorAll('.faq-item').forEach(i=>{if(i!==item)i.classList.remove('open');});
+  item.classList.toggle('open');
+}
+
+/* ══════════════════════════════════════════════
+   TUTORIAL MODAL
+══════════════════════════════════════════════ */
+const tutData = {
+  t1:{title:'Contraseñas Inquebrantables',content:`
+    <h4>¿Por qué importan las contraseñas?</h4>
+    <p>El 81% de las brechas de seguridad se originan por contraseñas débiles o robadas. Una contraseña como <code>123456</code> se descifra en menos de 1 segundo.</p>
+    <h4>Reglas de una contraseña fuerte</h4>
+    <ul>
+      <li>Mínimo 12 caracteres (idealmente 16+)</li>
+      <li>Combina mayúsculas, minúsculas, números y símbolos</li>
+      <li>No uses palabras del diccionario ni nombres personales</li>
+      <li>Usa una frase: <code>M!perro#come2veces</code></li>
+    </ul>
+    <h4>Gestores de contraseñas recomendados</h4>
+    <ul>
+      <li><strong>Bitwarden</strong> — Gratuito, open source ✓</li>
+      <li><strong>1Password</strong> — Premium, muy completo</li>
+      <li><strong>KeePass</strong> — Local, sin nube</li>
+    </ul>
+    <h4>Activa el 2FA siempre que puedas</h4>
+    <p>El doble factor de autenticación (2FA) bloquea el 99.9% de ataques automáticos aunque roben tu contraseña. Usa apps como <code>Google Authenticator</code> o <code>Authy</code>.</p>
+  `},
+  t2:{title:'Detectar Phishing en 5 Pasos',content:`
+    <h4>¿Qué es el phishing?</h4>
+    <p>El phishing es un engaño donde los atacantes simulan ser una entidad de confianza (banco, Google, Netflix) para robar tus credenciales o instalar malware.</p>
+    <h4>Los 5 pasos para detectarlo</h4>
+    <ul>
+      <li><strong>1. Revisa el dominio:</strong> <code>banco.com</code> ≠ <code>banco-seguro.net</code> o <code>banc0.com</code></li>
+      <li><strong>2. Busca urgencia falsa:</strong> "¡Tu cuenta será bloqueada en 24h!" es señal de alarma</li>
+      <li><strong>3. Verifica el SSL:</strong> El candado HTTPS es necesario pero no suficiente</li>
+      <li><strong>4. Pasa el cursor sobre links:</strong> Antes de hacer clic, ve a dónde apunta realmente</li>
+      <li><strong>5. Llama directamente:</strong> Si dudas, llama al banco/empresa por el número oficial</li>
+    </ul>
+    <h4>Herramientas para verificar</h4>
+    <ul>
+      <li><code>virustotal.com</code> — Analiza URLs sospechosas</li>
+      <li><code>phishtank.com</code> — Base de datos de phishing conocidos</li>
+    </ul>
+  `},
+  t3:{title:'Wi-Fi Público y VPN',content:`
+    <h4>El riesgo del Wi-Fi público</h4>
+    <p>En redes abiertas (cafés, aeropuertos, hoteles), un atacante puede hacer un ataque <strong>Man-in-the-Middle</strong> e interceptar todo tu tráfico sin que lo notes.</p>
+    <h4>¿Qué puede robar en Wi-Fi público?</h4>
+    <ul>
+      <li>Cookies de sesión (sin necesitar tu contraseña)</li>
+      <li>Datos de formularios no encriptados</li>
+      <li>Imágenes y archivos descargados</li>
+    </ul>
+    <h4>Cómo protegerte</h4>
+    <ul>
+      <li>Usa una <strong>VPN</strong> siempre en redes públicas</li>
+      <li>Solo visita sitios <code>HTTPS</code></li>
+      <li>Desactiva el Wi-Fi automático en tu celular</li>
+      <li>Evita operaciones bancarias en redes públicas</li>
+    </ul>
+    <h4>VPNs recomendadas</h4>
+    <ul>
+      <li><strong>ProtonVPN</strong> — Gratuita y privada ✓</li>
+      <li><strong>Mullvad</strong> — Sin registro de usuario</li>
+      <li><strong>NordVPN</strong> — Completa y rápida</li>
+    </ul>
+  `},
+  t4:{title:'Proteger tu Servidor Web',content:`
+    <h4>Hardening básico de servidor</h4>
+    <p>El hardening es el proceso de reducir la superficie de ataque eliminando configuraciones débiles y servicios innecesarios.</p>
+    <h4>Pasos esenciales</h4>
+    <ul>
+      <li>Actualiza el OS y software siempre: <code>apt update && apt upgrade</code></li>
+      <li>Cambia el puerto SSH por defecto (22) a uno no estándar</li>
+      <li>Usa autenticación por clave SSH, no por contraseña</li>
+      <li>Configura un firewall: <code>ufw allow 443 && ufw enable</code></li>
+      <li>Instala Fail2Ban para bloquear ataques de fuerza bruta</li>
+    </ul>
+    <h4>Headers HTTP de seguridad esenciales</h4>
+    <ul>
+      <li><code>Strict-Transport-Security</code> (HSTS)</li>
+      <li><code>Content-Security-Policy</code> (CSP)</li>
+      <li><code>X-Frame-Options: DENY</code></li>
+      <li><code>X-Content-Type-Options: nosniff</code></li>
+    </ul>
+  `},
+  t5:{title:'OSINT Básico — Conoce tu Huella',content:`
+    <h4>¿Qué es OSINT?</h4>
+    <p>OSINT (Open Source Intelligence) es la recolección de información a partir de fuentes públicas. Los atacantes lo usan para preparar ataques dirigidos.</p>
+    <h4>¿Qué información tuya está pública?</h4>
+    <ul>
+      <li>Nombre, email, teléfono en directorios online</li>
+      <li>Fotos con metadatos (GPS embebido)</li>
+      <li>Posts en redes sociales con tu ubicación</li>
+      <li>Datos en filtraciones (Have I Been Pwned)</li>
+    </ul>
+    <h4>Herramientas para auditar tu huella</h4>
+    <ul>
+      <li><code>haveibeenpwned.com</code> — ¿Tu email fue filtrado?</li>
+      <li><code>google.com/alerts</code> — Alerta cuando te mencionan</li>
+      <li><code>exifdata.com</code> — Extrae metadatos de imágenes</li>
+    </ul>
+    <h4>Cómo reducir tu huella</h4>
+    <ul>
+      <li>Solicita eliminación de datos en directorios web</li>
+      <li>Usa alias de email para registros no críticos</li>
+      <li>Elimina metadatos antes de subir fotos</li>
+    </ul>
+  `},
+  t6:{title:'Ransomware — Prevención y Respuesta',content:`
+    <h4>¿Qué es el ransomware?</h4>
+    <p>Es un malware que cifra todos tus archivos y pide un rescate en criptomonedas para recuperarlos. En 2024 causó pérdidas de más de $20 mil millones globalmente.</p>
+    <h4>Cómo se infectan los sistemas</h4>
+    <ul>
+      <li>Phishing con archivos adjuntos maliciosos</li>
+      <li>Vulnerabilidades en RDP expuesto a internet</li>
+      <li>Software pirata o descargado de fuentes no oficiales</li>
+    </ul>
+    <h4>Prevención (regla 3-2-1)</h4>
+    <ul>
+      <li><strong>3</strong> copias de datos importantes</li>
+      <li><strong>2</strong> medios diferentes (disco + nube)</li>
+      <li><strong>1</strong> copia offline desconectada</li>
+    </ul>
+    <h4>Si ya fuiste infectado</h4>
+    <ul>
+      <li>Desconecta el equipo de la red INMEDIATAMENTE</li>
+      <li>NO pagues el rescate (no garantiza recuperación)</li>
+      <li>Reporta a CERT-PE y autoridades</li>
+      <li>Consulta <code>nomoreransom.org</code> para herramientas de descifrado gratuitas</li>
+    </ul>
+  `},
+  t7:{title:'OWASP Top 10 — Vulnerabilidades Web',content:`
+    <h4>Las 10 vulnerabilidades más críticas</h4>
+    <ul>
+      <li><strong>A01 — Broken Access Control:</strong> Usuarios acceden a recursos que no deberían</li>
+      <li><strong>A02 — Fallas Criptográficas:</strong> Datos sensibles expuestos por cifrado débil</li>
+      <li><strong>A03 — Inyección (SQL, XSS):</strong> Datos no validados ejecutados como código</li>
+      <li><strong>A04 — Diseño Inseguro:</strong> Falta de controles de seguridad en el diseño</li>
+      <li><strong>A05 — Mala Configuración:</strong> Defaults inseguros, permisos excesivos</li>
+      <li><strong>A06 — Componentes Vulnerables:</strong> Librerías desactualizadas con CVEs conocidos</li>
+      <li><strong>A07 — Auth Failures:</strong> Contraseñas débiles, sesiones mal gestionadas</li>
+      <li><strong>A08 — Integridad Software/Datos:</strong> Pipelines CI/CD sin verificación</li>
+      <li><strong>A09 — Logging Insuficiente:</strong> No detectar ni registrar ataques</li>
+      <li><strong>A10 — SSRF:</strong> Servidor realiza peticiones forjadas por el atacante</li>
+    </ul>
+    <h4>Recurso oficial</h4>
+    <p>Visita <code>owasp.org</code> para la guía completa con ejemplos y mitigaciones para cada vulnerabilidad.</p>
+  `},
+  t8:{title:'SQL Injection — Prevención',content:`
+    <h4>¿Cómo funciona SQL Injection?</h4>
+    <p>Ocurre cuando datos del usuario se concatenan directamente en una consulta SQL sin validación.</p>
+    <h4>Ejemplo vulnerable</h4>
+    <p>Input malicioso: <code>' OR '1'='1</code><br>Query resultante: <code>SELECT * FROM users WHERE user='' OR '1'='1'</code> — devuelve TODOS los usuarios.</p>
+    <h4>Prevención con consultas parametrizadas</h4>
+    <p>Python: <code>cursor.execute("SELECT * FROM users WHERE email=?", (email,))</code></p>
+    <p>Node.js: <code>db.query("SELECT * FROM users WHERE email=?", [email])</code></p>
+    <h4>Capas de defensa adicionales</h4>
+    <ul>
+      <li>Usa un ORM (SQLAlchemy, Sequelize, Eloquent)</li>
+      <li>Aplica principio de mínimo privilegio en la DB</li>
+      <li>Implementa un WAF (Web Application Firewall)</li>
+      <li>Valida y sanitiza TODOS los inputs del usuario</li>
+    </ul>
+  `},
+  t9:{title:'Autenticación Segura con JWT',content:`
+    <h4>¿Qué es JWT?</h4>
+    <p>JSON Web Token es un estándar para transmitir información de forma segura entre partes como un objeto JSON firmado digitalmente.</p>
+    <h4>Estructura de un JWT</h4>
+    <p><code>Header.Payload.Signature</code></p>
+    <ul>
+      <li><strong>Header:</strong> Algoritmo de firma (usa HS256 o RS256)</li>
+      <li><strong>Payload:</strong> Claims del usuario (userId, roles, exp)</li>
+      <li><strong>Signature:</strong> Verifica que el token no fue alterado</li>
+    </ul>
+    <h4>Buenas prácticas</h4>
+    <ul>
+      <li>Tiempo de expiración corto: <code>exp: 15min</code></li>
+      <li>Usa refresh tokens con rotación</li>
+      <li>Guarda tokens en <code>httpOnly cookies</code>, no en localStorage</li>
+      <li>Nunca almacenes datos sensibles en el payload (es decodificable)</li>
+      <li>Implementa lista negra de tokens revocados</li>
+    </ul>
+  `}
+};
+
+function openTut(id){
+  const d=tutData[id];
+  if(!d) return;
+  document.getElementById('tutTitle').textContent=d.title;
+  document.getElementById('tutContent').innerHTML=d.content;
+  document.getElementById('tutModal').classList.remove('hid');
+  document.body.style.overflow='hidden';
+}
+function closeTut(){
+  document.getElementById('tutModal').classList.add('hid');
+  document.body.style.overflow='';
+}
+
+/* ══════════════════════════════════════════════
+   MINI APPS
+══════════════════════════════════════════════ */
+function openPassGen(){
+  go('apps');
+  setTimeout(()=>{
+    const c=document.getElementById('miniAppContainer');
+    c.style.display='block';
+    c.innerHTML=`
+    <div class="mini-app">
+      <h3><i class="fas fa-key"></i> Generador de Contraseñas Seguras</h3>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px">
+        <div>
+          <label style="font-family:var(--fm);font-size:.68rem;color:var(--c);display:block;margin-bottom:5px">LONGITUD</label>
+          <input type="number" id="pgLen" value="16" min="8" max="64" style="width:80px">
+        </div>
+        <div style="display:flex;flex-direction:column;gap:6px;justify-content:flex-end">
+          <label style="font-family:var(--fm);font-size:.68rem;color:var(--txd);display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="pgUp" checked> Mayúsculas</label>
+          <label style="font-family:var(--fm);font-size:.68rem;color:var(--txd);display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="pgNum" checked> Números</label>
+          <label style="font-family:var(--fm);font-size:.68rem;color:var(--txd);display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="pgSym" checked> Símbolos</label>
+        </div>
+      </div>
+      <button class="btn btn-sm" onclick="generatePass()"><i class="fas fa-sync"></i> Generar</button>
+      <div class="result-box" id="pgResult" style="margin-top:12px;font-size:.9rem;letter-spacing:2px">— clic en Generar —</div>
+      <div id="pgStrength" style="height:6px;border-radius:3px;margin-top:8px;background:var(--br);transition:all .3s"></div>
+      <div id="pgStrengthTxt" style="font-family:var(--fm);font-size:.65rem;color:var(--txd);margin-top:4px"></div>
+      <button class="btn sec btn-sm" onclick="copyPass()" style="margin-top:10px"><i class="fas fa-copy"></i> Copiar</button>
+    </div>`;
+    generatePass();
+    c.scrollIntoView({behavior:'smooth'});
+  },100);
+}
+
+function generatePass(){
+  const len=parseInt(document.getElementById('pgLen').value)||16;
+  const up=document.getElementById('pgUp').checked;
+  const num=document.getElementById('pgNum').checked;
+  const sym=document.getElementById('pgSym').checked;
+  let chars='abcdefghijklmnopqrstuvwxyz';
+  if(up) chars+='ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  if(num) chars+='0123456789';
+  if(sym) chars+='!@#$%^&*()_+-=[]{}|;:,.<>?';
+  let pass='',arr=new Uint8Array(len);
+  crypto.getRandomValues(arr);
+  arr.forEach(b=>pass+=chars[b%chars.length]);
+  document.getElementById('pgResult').textContent=pass;
+  const score=Math.min(100,len*4+(up?10:0)+(num?10:0)+(sym?20:0));
+  const bar=document.getElementById('pgStrength');
+  const txt=document.getElementById('pgStrengthTxt');
+  bar.style.width=score+'%';
+  if(score<40){bar.style.background='var(--r)';txt.textContent='Débil';}
+  else if(score<70){bar.style.background='var(--am)';txt.textContent='Moderada';}
+  else{bar.style.background='var(--g)';txt.textContent='Fuerte ✓';}
+}
+function copyPass(){
+  const t=document.getElementById('pgResult').textContent;
+  if(t&&t!=='— clic en Generar —'){navigator.clipboard.writeText(t).then(()=>{const btn=document.querySelector('.mini-app .btn.sec');btn.innerHTML='<i class="fas fa-check"></i> ¡Copiado!';setTimeout(()=>{btn.innerHTML='<i class="fas fa-copy"></i> Copiar';},2000);});}
+}
+
+function openHasher(){
+  go('apps');
+  setTimeout(()=>{
+    const c=document.getElementById('miniAppContainer');
+    c.style.display='block';
+    c.innerHTML=`
+    <div class="mini-app">
+      <h3><i class="fas fa-fingerprint"></i> Generador de Hash SHA-256</h3>
+      <textarea id="hashIn" placeholder="Escribe el texto a hashear..." rows="3"></textarea>
+      <button class="btn btn-sm" onclick="calcHash()"><i class="fas fa-calculator"></i> Calcular Hash</button>
+      <div class="result-box" id="hashOut" style="margin-top:12px">— ingresa texto —</div>
+      <button class="btn sec btn-sm" onclick="navigator.clipboard.writeText(document.getElementById('hashOut').textContent)" style="margin-top:10px"><i class="fas fa-copy"></i> Copiar Hash</button>
+    </div>`;
+    c.scrollIntoView({behavior:'smooth'});
+  },100);
+}
+async function calcHash(){
+  const txt=document.getElementById('hashIn').value;
+  if(!txt){document.getElementById('hashOut').textContent='— ingresa texto —';return;}
+  const enc=new TextEncoder().encode(txt);
+  const hashBuf=await crypto.subtle.digest('SHA-256',enc);
+  const hashArr=Array.from(new Uint8Array(hashBuf));
+  document.getElementById('hashOut').textContent=hashArr.map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+function openIPInfo(){
+  go('apps');
+  setTimeout(()=>{
+    const c=document.getElementById('miniAppContainer');
+    c.style.display='block';
+    c.innerHTML=`
+    <div class="mini-app">
+      <h3><i class="fas fa-network-wired"></i> Información de tu IP</h3>
+      <div class="result-box" id="ipInfo"><i class="fas fa-spinner fa-spin"></i> Consultando...</div>
+    </div>`;
+    c.scrollIntoView({behavior:'smooth'});
+    fetch('https://ipapi.co/json/').then(r=>r.json()).then(d=>{
+      document.getElementById('ipInfo').innerHTML=
+        `<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
+          ${[['IP Pública',d.ip],['País',d.country_name+' '+d.country],['Ciudad',d.city||'—'],['Región',d.region||'—'],['ISP',d.org||'—'],['Zona Horaria',d.timezone||'—']].map(([l,v])=>`<div><span style="color:var(--txf);font-size:.65rem">${l}</span><br><span>${v||'—'}</span></div>`).join('')}
+        </div>`;
+    }).catch(()=>{document.getElementById('ipInfo').textContent='No se pudo obtener la información.';});
+  },100);
+}
+
+function openBase64(){
+  go('apps');
+  setTimeout(()=>{
+    const c=document.getElementById('miniAppContainer');
+    c.style.display='block';
+    c.innerHTML=`
+    <div class="mini-app">
+      <h3><i class="fas fa-code"></i> Codificador / Decodificador Base64</h3>
+      <textarea id="b64In" placeholder="Texto a codificar o decodificar..." rows="3"></textarea>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn btn-sm" onclick="b64enc()"><i class="fas fa-lock"></i> Codificar</button>
+        <button class="btn sec btn-sm" onclick="b64dec()"><i class="fas fa-unlock"></i> Decodificar</button>
+      </div>
+      <div class="result-box" id="b64Out" style="margin-top:12px">— resultado —</div>
+      <button class="btn sec btn-sm" onclick="navigator.clipboard.writeText(document.getElementById('b64Out').textContent)" style="margin-top:10px"><i class="fas fa-copy"></i> Copiar</button>
+    </div>`;
+    c.scrollIntoView({behavior:'smooth'});
+  },100);
+}
+function b64enc(){const t=document.getElementById('b64In').value;try{document.getElementById('b64Out').textContent=btoa(unescape(encodeURIComponent(t)));}catch(e){document.getElementById('b64Out').textContent='Error: caracteres no válidos';}}
+function b64dec(){const t=document.getElementById('b64In').value;try{document.getElementById('b64Out').textContent=decodeURIComponent(escape(atob(t)));}catch(e){document.getElementById('b64Out').textContent='Error: Base64 inválido';}}
+
+function openPortCheck(){
+  go('apps');
+  setTimeout(()=>{
+    const c=document.getElementById('miniAppContainer');
+    c.style.display='block';
+    c.innerHTML=`
+    <div class="mini-app">
+      <h3><i class="fas fa-plug"></i> Analizador de Headers HTTP</h3>
+      <div style="display:flex;gap:10px">
+        <input type="text" id="hdrUrl" placeholder="https://ejemplo.com" style="flex:1">
+        <button class="btn btn-sm" onclick="checkHeaders()"><i class="fas fa-search"></i> Analizar</button>
+      </div>
+      <div class="result-box" id="hdrResult" style="margin-top:12px">— ingresa una URL para analizar —</div>
+      <p style="color:var(--txf);font-family:var(--fm);font-size:.65rem;margin-top:8px">* Abre securityheaders.com para análisis completo</p>
+    </div>`;
+    c.scrollIntoView({behavior:'smooth'});
+  },100);
+}
+function checkHeaders(){
+  const url=document.getElementById('hdrUrl').value.trim();
+  if(!url){return;}
+  const r=document.getElementById('hdrResult');
+  r.innerHTML='<i class="fas fa-spinner fa-spin"></i> Para análisis completo de headers HTTP, esta herramienta te redirige a SecurityHeaders.com...';
+  setTimeout(()=>{
+    const secUrl='https://securityheaders.com/?q='+encodeURIComponent(url)+'&followRedirects=on';
+    r.innerHTML=`Headers analizados externamente. <a href="${secUrl}" target="_blank" style="color:var(--c)">Ver reporte completo en SecurityHeaders.com →</a>`;
+  },1200);
+}
+
+/* ══════════════════════════════════════════════
+   OSINT MINI TOOLS
+══════════════════════════════════════════════ */
+
+function showMiniApp(html){
+  const c=document.getElementById('miniAppContainer');
+  c.style.display='block';
+  c.innerHTML=html;
+  c.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function openPhoneOsint(){
+  go('apps');
+  setTimeout(()=>showMiniApp(`
+  <div class="mini-app">
+    <h3><i class="fas fa-phone-alt"></i> Verificador de Número Telefónico</h3>
+    <p style="color:var(--txd);font-size:.85rem;margin-bottom:16px">Analiza un número telefónico para obtener información sobre el operador, país y posibles reportes de spam.</p>
+    <div style="display:flex;gap:10px">
+      <input type="text" id="phoneIn" placeholder="Ej: +51945366356 o 945366356" style="flex:1">
+      <button class="btn btn-sm" onclick="checkPhone()"><i class="fas fa-search"></i> Analizar</button>
+    </div>
+    <div class="result-box" id="phoneResult" style="margin-top:14px;min-height:80px">— ingresa el número —</div>
+    <p style="color:var(--txf);font-family:var(--fm);font-size:.63rem;margin-top:10px">* Para reportes de spam avanzados, también consulte: truecaller.com | numverify.com</p>
+    <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap" id="phoneLinks"></div>
+  </div>`),150);
+}
+
+function checkPhone(){
+  const raw=document.getElementById('phoneIn').value.trim().replace(/[\s\-\(\)]/g,'');
+  if(!raw){return;}
+  const r=document.getElementById('phoneResult');
+  r.innerHTML='<i class="fas fa-spinner fa-spin"></i> Analizando...';
+  
+  // Detect Peru format
+  let number=raw,country='Desconocido',flag='🌍',operator='—',type='—',formatted=raw;
+  if(raw.startsWith('+51')||raw.startsWith('51')){
+    country='Perú 🇵🇪';flag='🇵🇪';
+    const num=raw.replace(/^(\+51|51)/,'');
+    formatted='+51 '+num;
+    if(num.startsWith('9')){type='Móvil';
+      if(num.startsWith('99')||num.startsWith('98')){operator='Claro/Entel';}
+      else if(num.startsWith('97')||num.startsWith('94')){operator='Movistar';}
+      else if(num.startsWith('96')||num.startsWith('95')){operator='Bitel';}
+      else{operator='Operador Peruano';}
+    } else {type='Fijo';operator='Línea Fija Perú';}
+  } else if(raw.startsWith('+1')||raw.startsWith('1')){
+    country='Estados Unidos/Canadá 🇺🇸';type='—';operator='—';
+  } else if(raw.startsWith('+34')){
+    country='España 🇪🇸';operator='—';
+  } else if(raw.startsWith('+52')){
+    country='México 🇲🇽';operator='—';
+  } else if(raw.startsWith('+57')){
+    country='Colombia 🇨🇴';operator='—';
+  } else if(raw.startsWith('+54')){
+    country='Argentina 🇦🇷';operator='—';
+  }
+
+  setTimeout(()=>{
+    r.innerHTML=`
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+      <div><span style="color:var(--txf);font-size:.65rem">NÚMERO</span><br><span style="color:var(--tx);font-size:.9rem;font-weight:700">${formatted}</span></div>
+      <div><span style="color:var(--txf);font-size:.65rem">PAÍS</span><br><span>${country}</span></div>
+      <div><span style="color:var(--txf);font-size:.65rem">TIPO DE LÍNEA</span><br><span style="color:var(--c)">${type}</span></div>
+      <div><span style="color:var(--txf);font-size:.65rem">OPERADOR ESTIMADO</span><br><span style="color:var(--g)">${operator}</span></div>
+    </div>
+    <div style="margin-top:12px;padding-top:12px;border-top:1px solid var(--br);font-size:.75rem;color:var(--txd)">
+      <i class="fas fa-info-circle" style="color:var(--c)"></i> Para verificar reportes de spam y más detalles, use las herramientas externas abajo.
+    </div>`;
+    const enc=encodeURIComponent(formatted);
+    document.getElementById('phoneLinks').innerHTML=`
+      <a href="https://www.truecaller.com/search/pe/${raw.replace('+','')}" target="_blank" class="btn sec btn-sm"><i class="fas fa-external-link-alt"></i> Truecaller</a>
+      <a href="https://www.numerify.com/phone-number/${raw.replace('+','')}" target="_blank" class="btn sec btn-sm"><i class="fas fa-external-link-alt"></i> Numerify</a>
+      <a href="https://wa.me/${raw.replace(/\D/g,'')}" target="_blank" class="btn btn-sm" style="background:#25d366"><i class="fab fa-whatsapp"></i> WhatsApp</a>`;
+  },900);
+}
+
+function openDniLookup(){
+  go('apps');
+  setTimeout(()=>showMiniApp(`
+  <div class="mini-app">
+    <h3><i class="fas fa-id-card"></i> Consulta DNI Perú — RENIEC</h3>
+    <p style="color:var(--txd);font-size:.85rem;margin-bottom:6px">Consulta datos básicos de un DNI peruano a través de fuentes públicas.</p>
+    <div style="background:rgba(255,196,0,.08);border:1px solid rgba(255,196,0,.3);border-radius:var(--ra);padding:10px 14px;margin-bottom:16px">
+      <p style="font-family:var(--fm);font-size:.65rem;color:var(--am)"><i class="fas fa-shield-alt"></i> Solo se consultan fuentes públicas oficiales. No almacenamos datos. Uso exclusivamente para verificación legítima.</p>
+    </div>
+    <div style="display:flex;gap:10px">
+      <input type="text" id="dniIn" placeholder="Ingrese DNI (8 dígitos)" maxlength="8" style="flex:1">
+      <button class="btn btn-sm" onclick="checkDNI()"><i class="fas fa-search"></i> Consultar</button>
+    </div>
+    <div class="result-box" id="dniResult" style="margin-top:14px;min-height:80px">— ingresa el DNI —</div>
+    <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+      <a href="https://www.reniec.gob.pe/portal/html/registro-civil/registro-civil.jsp" target="_blank" class="btn sec btn-sm"><i class="fas fa-external-link-alt"></i> RENIEC Oficial</a>
+      <a href="https://eldni.com/" target="_blank" class="btn sec btn-sm"><i class="fas fa-external-link-alt"></i> ElDNI.com</a>
+      <a href="https://www.sunat.gob.pe/cl-ti-itmrconsruc/jcrS00Alias" target="_blank" class="btn sec btn-sm"><i class="fas fa-external-link-alt"></i> SUNAT RUC</a>
+    </div>
+  </div>`),150);
+}
+
+function checkDNI(){
+  const dni=document.getElementById('dniIn').value.trim();
+  const r=document.getElementById('dniResult');
+  if(!/^\d{8}$/.test(dni)){r.innerHTML='<span style="color:var(--r)">El DNI debe tener exactamente 8 dígitos numéricos.</span>';return;}
+  r.innerHTML='<i class="fas fa-spinner fa-spin"></i> Consultando...';
+  
+  // Note: Direct RENIEC API requires auth. We show guidance + link to verified sources
+  setTimeout(()=>{
+    r.innerHTML=`
+    <div>
+      <div style="margin-bottom:10px"><span style="color:var(--txf);font-size:.65rem">DNI CONSULTADO</span><br>
+      <span style="color:var(--c);font-size:1.1rem;font-weight:700;letter-spacing:3px">${dni}</span></div>
+      <div style="color:var(--txd);font-size:.85rem;margin-bottom:12px">
+        <i class="fas fa-info-circle" style="color:var(--am)"></i> La consulta directa al RENIEC requiere autenticación oficial. 
+        Para obtener el nombre completo vinculado a este DNI, use los enlaces oficiales de abajo:
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <a href="https://eldni.com/pe/buscar-por-dni?dni=${dni}" target="_blank" class="btn btn-sm"><i class="fas fa-external-link-alt"></i> Buscar en ElDNI.com</a>
+        <a href="https://cel.reniec.gob.pe/valreg/valreg.jsp" target="_blank" class="btn sec btn-sm"><i class="fas fa-external-link-alt"></i> Validar en RENIEC</a>
+      </div>
+    </div>`;
+  },1000);
+}
+
+function openEmailChecker(){
+  go('apps');
+  setTimeout(()=>showMiniApp(`
+  <div class="mini-app">
+    <h3><i class="fas fa-at"></i> Verificador de Filtraciones de Email</h3>
+    <p style="color:var(--txd);font-size:.85rem;margin-bottom:16px">Comprueba si tu correo apareció en filtraciones de datos conocidas usando HaveIBeenPwned.</p>
+    <div style="display:flex;gap:10px">
+      <input type="text" id="emailIn" placeholder="tucorreo@ejemplo.com" style="flex:1">
+      <button class="btn btn-sm" onclick="checkEmailBreaches()"><i class="fas fa-search"></i> Verificar</button>
+    </div>
+    <div class="result-box" id="emailResult" style="margin-top:14px;min-height:60px">— ingresa el email —</div>
+  </div>`),150);
+}
+
+function checkEmailBreaches(){
+  const em=document.getElementById('emailIn').value.trim();
+  const r=document.getElementById('emailResult');
+  if(!em||!em.includes('@')){r.innerHTML='<span style="color:var(--r)">Ingresa un email válido.</span>';return;}
+  r.innerHTML='<i class="fas fa-spinner fa-spin"></i> Verificando...';
+  setTimeout(()=>{
+    r.innerHTML=`
+    <div style="color:var(--txd);font-size:.88rem">
+      Para verificar <strong style="color:var(--c)">${em}</strong> en filtraciones conocidas:<br><br>
+      <a href="https://haveibeenpwned.com/account/${encodeURIComponent(em)}" target="_blank" class="btn btn-sm" style="margin-bottom:10px;display:inline-flex"><i class="fas fa-external-link-alt"></i> Verificar en HaveIBeenPwned</a><br>
+      <span style="font-size:.78rem"><i class="fas fa-lock" style="color:var(--g)"></i> HaveIBeenPwned es el servicio más confiable a nivel mundial. Tu email no es almacenado.</span>
+    </div>`;
+  },800);
+}
+
+function openUsernameOsint(){
+  go('apps');
+  setTimeout(()=>showMiniApp(`
+  <div class="mini-app">
+    <h3><i class="fas fa-user-secret"></i> Búsqueda de Username en Redes</h3>
+    <p style="color:var(--txd);font-size:.85rem;margin-bottom:16px">Busca un nombre de usuario en múltiples plataformas simultáneamente.</p>
+    <div style="display:flex;gap:10px">
+      <input type="text" id="userIn" placeholder="nombre_usuario (sin @)" style="flex:1">
+      <button class="btn btn-sm" onclick="checkUsername()"><i class="fas fa-search"></i> Buscar</button>
+    </div>
+    <div id="usernameResult" style="margin-top:14px"></div>
+  </div>`),150);
+}
+
+function checkUsername(){
+  const u=document.getElementById('userIn').value.trim().replace('@','');
+  const r=document.getElementById('usernameResult');
+  if(!u){return;}
+  const platforms=[
+    {name:'Instagram',url:'https://instagram.com/'+u,icon:'fab fa-instagram',color:'#e1306c'},
+    {name:'Facebook',url:'https://facebook.com/'+u,icon:'fab fa-facebook-f',color:'#1877f2'},
+    {name:'Twitter/X',url:'https://x.com/'+u,icon:'fab fa-x-twitter',color:'#000'},
+    {name:'TikTok',url:'https://tiktok.com/@'+u,icon:'fab fa-tiktok',color:'#010101'},
+    {name:'LinkedIn',url:'https://linkedin.com/in/'+u,icon:'fab fa-linkedin',color:'#0a66c2'},
+    {name:'GitHub',url:'https://github.com/'+u,icon:'fab fa-github',color:'#333'},
+    {name:'YouTube',url:'https://youtube.com/@'+u,icon:'fab fa-youtube',color:'#ff0000'},
+    {name:'Telegram',url:'https://t.me/'+u,icon:'fab fa-telegram',color:'#0088cc'},
+    {name:'Pinterest',url:'https://pinterest.com/'+u,icon:'fab fa-pinterest',color:'#e60023'},
+    {name:'Snapchat',url:'https://snapchat.com/add/'+u,icon:'fab fa-snapchat',color:'#fffc00'},
+    {name:'Reddit',url:'https://reddit.com/u/'+u,icon:'fab fa-reddit',color:'#ff4500'},
+    {name:'Twitch',url:'https://twitch.tv/'+u,icon:'fab fa-twitch',color:'#9147ff'},
+  ];
+  r.innerHTML=`<p style="font-family:var(--fm);font-size:.72rem;color:var(--txd);margin-bottom:12px">Verificando "<strong style="color:var(--c)">${u}</strong>" en ${platforms.length} plataformas:</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:8px">
+  ${platforms.map(p=>`
+    <a href="${p.url}" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:7px;padding:8px 12px;background:var(--bg3);border:1px solid var(--br2);border-radius:var(--ra);font-family:var(--fm);font-size:.68rem;color:var(--txd);text-decoration:none;transition:var(--tr)" 
+       onmouseover="this.style.borderColor='${p.color}';this.style.color='#fff'" 
+       onmouseout="this.style.borderColor='var(--br2)';this.style.color='var(--txd)'">
+      <i class="${p.icon}" style="color:${p.color};font-size:.9rem"></i>${p.name}
+    </a>`).join('')}
+  </div>
+  <p style="color:var(--txf);font-family:var(--fm);font-size:.62rem;margin-top:12px"><i class="fas fa-info-circle"></i> Haz clic en cada red para verificar si el usuario existe. También prueba: sherlock-project.github.io</p>`;
+}
+
+function openDomainOsint(){
+  go('apps');
+  setTimeout(()=>showMiniApp(`
+  <div class="mini-app">
+    <h3><i class="fas fa-globe"></i> Investigar Dominio / WHOIS</h3>
+    <p style="color:var(--txd);font-size:.85rem;margin-bottom:16px">Obtén información de registro de cualquier dominio web.</p>
+    <div style="display:flex;gap:10px">
+      <input type="text" id="domIn" placeholder="ejemplo.com" style="flex:1">
+      <button class="btn btn-sm" onclick="checkDomain()"><i class="fas fa-search"></i> Investigar</button>
+    </div>
+    <div class="result-box" id="domResult" style="margin-top:14px;min-height:80px">— ingresa el dominio —</div>
+    <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap" id="domLinks"></div>
+  </div>`),150);
+}
+
+function checkDomain(){
+  const dom=document.getElementById('domIn').value.trim().replace(/https?:\/\//,'').split('/')[0];
+  const r=document.getElementById('domResult');
+  if(!dom||!dom.includes('.')){r.innerHTML='<span style="color:var(--r)">Ingresa un dominio válido (ej: google.com)</span>';return;}
+  r.innerHTML='<i class="fas fa-spinner fa-spin"></i> Consultando...';
+  setTimeout(()=>{
+    r.innerHTML=`<div style="color:var(--txd);font-size:.88rem">
+      Dominio analizado: <strong style="color:var(--c)">${dom}</strong><br><br>
+      Para información completa de WHOIS, registrante y DNS usa los enlaces abajo:
+    </div>`;
+    document.getElementById('domLinks').innerHTML=`
+      <a href="https://www.whois.com/whois/${dom}" target="_blank" class="btn btn-sm"><i class="fas fa-search"></i> WHOIS</a>
+      <a href="https://who.is/whois/${dom}" target="_blank" class="btn sec btn-sm">Who.is</a>
+      <a href="https://dnschecker.org/#A/${dom}" target="_blank" class="btn sec btn-sm">DNS Checker</a>
+      <a href="https://www.shodan.io/search?query=${dom}" target="_blank" class="btn sec btn-sm">Shodan</a>
+      <a href="https://web.archive.org/web/*/${dom}" target="_blank" class="btn sec btn-sm"><i class="fas fa-history"></i> Wayback</a>`;
+  },800);
+}
+
+function openImageOsint(){
+  go('apps');
+  setTimeout(()=>showMiniApp(`
+  <div class="mini-app">
+    <h3><i class="fas fa-camera"></i> Búsqueda Inversa de Imagen</h3>
+    <p style="color:var(--txd);font-size:.85rem;margin-bottom:16px">Encuentra el origen de una imagen en internet. Útil para verificar identidades y detectar fotos robadas.</p>
+    <div style="margin-bottom:14px">
+      <input type="text" id="imgUrl" placeholder="https://url-de-la-imagen.jpg">
+    </div>
+    <p style="color:var(--txd);font-size:.82rem;margin-bottom:14px">O abre directamente en los motores de búsqueda inversa:</p>
+    <div style="display:flex;gap:8px;flex-wrap:wrap" id="imgLinks">
+      <button class="btn btn-sm" onclick="searchImage('google')"><i class="fab fa-google"></i> Google Images</button>
+      <button class="btn sec btn-sm" onclick="searchImage('tineye')">TinEye</button>
+      <button class="btn sec btn-sm" onclick="searchImage('yandex')">Yandex</button>
+      <button class="btn sec btn-sm" onclick="searchImage('bing')"><i class="fab fa-microsoft"></i> Bing</button>
+    </div>
+    <p style="color:var(--txf);font-family:var(--fm);font-size:.62rem;margin-top:14px"><i class="fas fa-lightbulb" style="color:var(--am)"></i> Tip: Yandex es el más efectivo para encontrar personas por foto.</p>
+  </div>`),150);
+}
+
+function searchImage(engine){
+  const url=document.getElementById('imgUrl').value.trim();
+  const urls={
+    google:`https://images.google.com/searchbyimage?image_url=${encodeURIComponent(url||'https://upload.wikimedia.org/wikipedia/commons/thumb/4/47/PNG_transparency_demonstration_1.png/280px-PNG_transparency_demonstration_1.png')}`,
+    tineye:`https://tineye.com/search/?url=${encodeURIComponent(url||'')}`,
+    yandex:`https://yandex.com/images/search?url=${encodeURIComponent(url||'')}&rpt=imageview`,
+    bing:`https://www.bing.com/images/search?q=imgurl:${encodeURIComponent(url||'')}&view=detailv2&iss=sbi`
+  };
+  window.open(urls[engine],'_blank');
+}
+
+let chatOpen=false,isTyping=false;
+
+// Base de conocimiento NEXUM
+const KB=[
+  {p:/(precio|costo|cuanto|valor|tarifa|cobr)/i,r:[
+    'Los precios de NEXUM son:\n🔒 Ciberseguridad básica: desde $150 USD\n🔒 Profesional: desde $400 USD\n💻 Web básica: desde $200 USD\n💻 App móvil: desde $800 USD\n\nPara un presupuesto exacto, escríbale a Jair por WhatsApp: +51 945 366 356 😊',
+    'Manejamos precios accesibles para todo tipo de proyecto. Una auditoría básica parte de $150 USD y el desarrollo web desde $200 USD. Cada proyecto es único, por eso le recomiendo contactar a Jair directamente: wa.me/51945366356'
+  ]},
+  {p:/(pentesting|hacking ético|pentest|auditoria|vulnerabilidad)/i,r:[
+    'El pentesting es una simulación de ataque real con autorización escrita. NEXUM aplica metodologías OWASP y PTES para identificar vulnerabilidades en webs, APIs y redes. ¿Le interesa saber más o cotizar?',
+    '¡Exactamente nuestro fuerte! Realizamos pruebas de penetración completas: reconocimiento, explotación y reporte ejecutivo con plan de remediación. Todo documentado y 100% legal.'
+  ]},
+  {p:/(desarrollo|web|pagina|sitio|ecommerce|app|aplicacion|software)/i,r:[
+    'En NEXUM desarrollamos desde landing pages hasta sistemas web complejos. Trabajamos con React, Node.js, Python y Flutter para apps móviles. Seguridad integrada desde el primer commit.',
+    'Creamos soluciones digitales a medida: webs corporativas, e-commerce, APIs y apps móviles iOS/Android. ¿Tiene algún proyecto en mente? Cuénteme más 🚀'
+  ]},
+  {p:/(whatsapp|contactar|hablar|llamar|jair|numero|telefono)/i,r:[
+    'Puede contactar al creador de NEXUM, Jair Muñoz Candela, directamente por WhatsApp: +51 945 366 356 o en wa.me/51945366356 😊 ¡Responde rápido!',
+    '¡Por supuesto! Jair Muñoz Candela atiende personalmente. WhatsApp: +51 945 366 356 — también puede verle en Instagram @jair_munoz_candela'
+  ]},
+  {p:/(facebook|grupo|comunidad|estafa|prevencion)/i,r:[
+    'NEXUM tiene un grupo de Facebook donde Jair comparte alertas de estafas, consejos de seguridad y ayuda a la comunidad gratuitamente. ¡Únase aquí: facebook.com/share/g/1K3xjqkLwb/ 👥',
+    '¡Genial! Tenemos una comunidad activa en Facebook para prevención de estafas y ciberseguridad. Es gratis y Jair responde personalmente. Busca el grupo en: facebook.com/share/g/1K3xjqkLwb/'
+  ]},
+  {p:/(osint|investigar|buscar persona|numero telefono|dni|celular|spam|quien llama)/i,r:[
+    'En nuestra sección de Apps/Herramientas tenemos herramientas OSINT gratuitas: verificador de teléfonos, consulta de DNI peruano, búsqueda de usernames en redes sociales, WHOIS de dominios y más. ¡Todo en el menú → Apps!',
+    'Para investigación OSINT tenemos varias herramientas gratuitas: verificador de teléfonos con operador, consulta DNI Perú RENIEC, checker de emails filtrados, búsqueda de username en 12 redes, WHOIS y búsqueda inversa de imágenes.'
+  ]},
+  {p:/(telegram|canal|comunidad telegram|noticias|alertas)/i,r:[
+    'NEXUM tiene un canal de Telegram con tutoriales, alertas de seguridad y consejos gratis. ¡Únase ya! Búscanos como @nexumsecurity en Telegram 📱'
+  ]},
+  {p:/(osint|inteligencia|informacion publica|huella digital)/i,r:[
+    'El OSINT es la recolección de información pública para mapear la huella digital de una persona u organización. Lo usamos para evaluar qué datos suyos están expuestos y podrían usarse en ataques dirigidos.'
+  ]},
+  {p:/(forense|investigacion|incidente|hackeo|me hackearon)/i,r:[
+    '¡Actúe rápido! Si fue víctima de un incidente, desconecte el equipo afectado de internet de inmediato y contacte a Jair por WhatsApp: +51 945 366 356. El análisis forense digital determina qué pasó, el alcance del daño y cómo evitar que se repita.'
+  ]},
+  {p:/(soporte movil|celular|android|ios|recuperar datos|datos perdidos)/i,r:[
+    'Brindamos soporte técnico avanzado para iOS y Android: diagnóstico, optimización, eliminación de malware y recuperación de datos perdidos. Resultados garantizados o no cobramos 📱'
+  ]},
+  {p:/(consultoria|iso 27001|gdpr|cumplimiento|normativa|formacion)/i,r:[
+    'Nuestra consultoría cubre auditorías de cumplimiento ISO 27001, GDPR, talleres de concienciación para equipos y elaboración de Planes de Respuesta a Incidentes (IRP) a medida para su organización.'
+  ]},
+  {p:/(cloud|aws|azure|servidor|hosting|devops)/i,r:[
+    'Trabajamos con AWS y Azure para migraciones, configuración segura de servidores, pipelines CI/CD y monitoreo en la nube. Todo bajo estándares enterprise de seguridad.'
+  ]},
+  {p:/(hola|buenos|buenas|saludos|hey|hi)/i,r:[
+    '¡Hola! 👋 Soy el asistente virtual de NEXUM. ¿En qué puedo ayudarle hoy? Puedo contarle sobre nuestros servicios de ciberseguridad, desarrollo de software, precios y más.',
+    '¡Bienvenido a NEXUM! 🛡️ Estoy aquí para responder cualquier consulta sobre ciberseguridad, desarrollo web, apps móviles y más. ¿Qué necesita?'
+  ]},
+  {p:/(gracias|perfecto|excelente|genial|ok|listo)/i,r:[
+    '¡Con gusto! Si tiene más preguntas, aquí estaré. También puede contactar a Jair directamente por WhatsApp: +51 945 366 356 para una atención personalizada 🙌',
+    '¡Me alegra haberle ayudado! Recuerde que puede escribirle a Jair Muñoz Candela por WhatsApp (+51 945 366 356) para cualquier proyecto o consulta.'
+  ]},
+  {p:/(quien|quienes|empresa|nexum|fundador|creador)/i,r:[
+    'NEXUM es una compañía peruana de seguridad informática y desarrollo de software fundada por Jair Muñoz Candela. Con más de 5 años protegiendo infraestructuras digitales y creando software seguro.',
+    'Jair Muñoz Candela fundó NEXUM para democratizar la ciberseguridad en Perú y Latinoamérica. Especialista en hacking ético, OSINT y desarrollo de software seguro.'
+  ]},
+  {p:/(tutorial|aprender|cursos|guia|como|como se)/i,r:[
+    '¡Tenemos una sección completa de tutoriales gratuitos! Desde contraseñas seguras hasta OWASP Top 10. Acceda desde el menú → Tutoriales. También tenemos canal de Telegram con contenido constante 📚'
+  ]},
+  {p:/(ransomware|virus|malware|infectado|encriptado)/i,r:[
+    'Si tiene ransomware, desconecte el equipo de la red INMEDIATAMENTE. NO pague el rescate. Contacte a Jair urgente: WhatsApp +51 945 366 356. También consulte nomoreransom.org para herramientas de descifrado gratuitas.'
+  ]},
+  {p:/(phishing|correo|estafa|fraude)/i,r:[
+    'Para detectar phishing: 1) Revisa el dominio exacto del remitente 2) Desconfía de la urgencia extrema 3) Pasa el cursor sobre los links antes de clicar 4) Verifica por otro canal antes de ingresar credenciales. Tenemos un tutorial completo en nuestra sección de Tutoriales.'
+  ]}
+];
+
+const fallbacks=[
+  'Interesante pregunta. Para darte la mejor respuesta posible, te recomiendo contactar a Jair Muñoz Candela directamente por WhatsApp: +51 945 366 356 🔐',
+  'No tengo toda la información sobre ese tema, pero Jair puede orientarte mejor. WhatsApp: +51 945 366 356 — suele responder muy rápido 😊',
+  'Eso requiere una consulta más específica. Escríbele a Jair por WhatsApp (+51 945 366 356) y te dará una respuesta personalizada para tu caso.',
+  'Mmm, ese tema es específico. Lo mejor es hablarlo directamente con Jair Muñoz Candela vía WhatsApp +51 945 366 356 para darte la solución exacta que necesitas.',
+  'Para ese tipo de consulta técnica, Jair puede darte el mejor diagnóstico. Escríbele ahora: wa.me/51945366356 📲'
+];
+
+function getReply(msg){
+  for(const entry of KB){
+    if(entry.p.test(msg)){
+      const replies=entry.r;
+      return replies[Math.floor(Math.random()*replies.length)];
+    }
+  }
+  return fallbacks[Math.floor(Math.random()*fallbacks.length)];
+}
+
+function toggleChat(){
+  const box=document.getElementById('chatbox');
+  const lbl=document.getElementById('chatLabel');
+  chatOpen=!chatOpen;
+  box.classList.toggle('act',chatOpen);
+  if(lbl) lbl.style.display=chatOpen?'none':'block';
+  if(chatOpen) document.getElementById('chatIn').focus();
+}
+
+function appendMsg(text,role){
+  const body=document.getElementById('chatBody');
+  const d=document.createElement('div');
+  d.className='msg '+(role==='user'?'usr':'bot');
+  // Convert \n and wa links
+  d.innerHTML=text.replace(/\n/g,'<br>').replace(/(wa\.me\/\S+)/g,'<a href="https://$1" target="_blank" style="color:var(--c)">$1</a>');
+  body.appendChild(d);
+  body.scrollTop=body.scrollHeight;
+}
+
+function showTyping(){
+  const body=document.getElementById('chatBody');
+  const el=document.createElement('div');
+  el.className='typ';el.id='typing';
+  el.innerHTML='<div class="td"></div><div class="td"></div><div class="td"></div>';
+  body.appendChild(el);body.scrollTop=body.scrollHeight;
+}
+function hideTyping(){const e=document.getElementById('typing');if(e)e.remove();}
+
+async function sendMsg(){
+  const inp=document.getElementById('chatIn');
+  const text=inp.value.trim();
+  if(!text||isTyping) return;
+  inp.value='';isTyping=true;
+  document.getElementById('chatSnd').disabled=true;
+  appendMsg(text,'user');
+  showTyping();
+  // Simulate thinking delay (600-1400ms)
+  const delay=600+Math.random()*800;
+  await new Promise(r=>setTimeout(r,delay));
+  hideTyping();
+  const reply=getReply(text);
+  appendMsg(reply,'bot');
+  isTyping=false;
+  document.getElementById('chatSnd').disabled=false;
+  inp.focus();
+}
+</script>
 </body>
 </html>
