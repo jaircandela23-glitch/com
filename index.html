@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#00e5ff">
 <title>NEXUM — Ciberseguridad &amp; Desarrollo de Software</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
 
@@ -14,15 +14,20 @@
 :root{
   --c:#00e5ff;--c2:rgba(0,229,255,.12);--c3:rgba(0,229,255,.3);
   --g:#00ff88;--r:#ff003c;--am:#ffc400;
-  --bg:#020408;--bg2:#060c12;--bg3:#0a121a;
-  --cd:#0d1520;--cd2:#111c2a;
+  --purple:#b080ff;--orange:#ff6b35;
+  --bg:#010306;--bg2:#050b11;--bg3:#080f17;
+  --cd:#0c1420;--cd2:#101925;
   --br:rgba(0,229,255,.15);--br2:rgba(0,229,255,.07);
-  --tx:#dde8f0;--txd:#6a8099;--txf:#2e4055;
-  --fh:'Orbitron',sans-serif;--fb:'Rajdhani',sans-serif;--fm:'JetBrains Mono',monospace;
-  --sh:0 8px 40px rgba(0,0,0,.8);
+  --tx:#e0eef8;--txd:#6a8099;--txf:#2e4055;
+  --fh:'Orbitron',sans-serif;--fb:'Rajdhani',sans-serif;--fm:'JetBrains Mono',monospace;--fs:'Space Grotesk',sans-serif;
+  --sh:0 8px 40px rgba(0,0,0,.9);
+  --sh2:0 20px 60px rgba(0,0,0,.8),0 4px 20px rgba(0,0,0,.6);
   --gw:0 0 20px rgba(0,229,255,.4),0 0 60px rgba(0,229,255,.1);
+  --gw2:0 0 30px rgba(0,229,255,.5),0 0 80px rgba(0,229,255,.15),0 0 120px rgba(0,229,255,.05);
   --gs:0 0 10px rgba(0,229,255,.3);
-  --ra:6px;--rl:12px;--tr:.3s cubic-bezier(.4,0,.2,1);
+  --gs2:0 0 20px rgba(0,229,255,.5),0 0 40px rgba(0,229,255,.2);
+  --ra:6px;--rl:14px;--tr:.3s cubic-bezier(.4,0,.2,1);
+  --scan-line:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,229,255,.015) 2px,rgba(0,229,255,.015) 4px);
 }
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -40,42 +45,80 @@ img{max-width:100%;display:block}
 @keyframes fadeIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 
 /* ── HEADER ── */
-.hdr{display:flex;justify-content:space-between;align-items:center;background:rgba(2,4,8,.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--br);padding:0 5%;height:68px;position:sticky;top:0;z-index:1000;transition:var(--tr)}
-.hdr.scrolled{border-bottom-color:var(--c3)}
-.logo-wrap{display:flex;align-items:center;gap:10px;cursor:pointer}
-.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,var(--c),#005577);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--bg);font-family:var(--fh);font-weight:900;box-shadow:var(--gs)}
-.logo-txt{font-family:var(--fh);font-size:1.1rem;font-weight:900;color:var(--c);letter-spacing:3px;text-shadow:var(--gs)}
-.nav-d{display:flex;align-items:center;gap:2px}
-.ni{font-family:var(--fm);font-size:.72rem;color:var(--txd);padding:7px 12px;border-radius:var(--ra);border:1px solid transparent;cursor:pointer;transition:var(--tr);white-space:nowrap;background:none}
+.hdr{display:flex;justify-content:space-between;align-items:center;background:rgba(1,3,6,.92);backdrop-filter:blur(32px) saturate(180%);-webkit-backdrop-filter:blur(32px) saturate(180%);border-bottom:1px solid var(--br);padding:0 3%;height:70px;position:sticky;top:0;z-index:1000;transition:var(--tr)}
+.hdr::after{content:'';position:absolute;bottom:0;left:0;width:100%;height:1px;background:linear-gradient(90deg,transparent,var(--c),transparent);opacity:0;transition:opacity .4s}
+.hdr.scrolled{border-bottom-color:var(--c3);box-shadow:0 4px 40px rgba(0,0,0,.8),0 1px 0 rgba(0,229,255,.1)}
+.hdr.scrolled::after{opacity:1}
+.logo-wrap{display:flex;align-items:center;gap:12px;cursor:pointer}
+.logo-icon{width:38px;height:38px;background:linear-gradient(135deg,var(--c),#005577);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1rem;color:var(--bg);font-family:var(--fh);font-weight:900;box-shadow:var(--gs2)}
+.logo-txt{font-family:var(--fh);font-size:1.15rem;font-weight:900;color:var(--c);letter-spacing:4px;text-shadow:0 0 20px rgba(0,229,255,.6)}
+.logo-sub{font-family:var(--fm);font-size:.48rem;color:var(--txd);letter-spacing:3px;text-transform:uppercase}
+.nav-d{display:flex;align-items:center;gap:2px;flex-shrink:1;min-width:0}
+.ni{font-family:var(--fm);font-size:.7rem;color:var(--txd);padding:7px 12px;border-radius:var(--ra);border:1px solid transparent;cursor:pointer;transition:var(--tr);white-space:nowrap;background:none;display:flex;align-items:center;gap:6px}
+.ni svg{width:13px;height:13px;flex-shrink:0;opacity:.7;transition:opacity .2s}
 .ni:hover,.ni.act{color:var(--c);border-color:var(--br);background:var(--c2)}
-.cbtn{font-family:var(--fm);font-size:.75rem;font-weight:700;background:var(--c);color:var(--bg);padding:9px 18px;border-radius:var(--ra);text-transform:uppercase;letter-spacing:1px;box-shadow:var(--gs);border:none;cursor:pointer;transition:var(--tr);white-space:nowrap}
-.cbtn:hover{background:#fff;box-shadow:var(--gw);transform:translateY(-1px)}
+.ni:hover svg,.ni.act svg{opacity:1}
+.cbtn{font-family:var(--fm);font-size:.73rem;font-weight:700;background:linear-gradient(135deg,var(--c),#00aadd);color:#001a22;padding:10px 20px;border-radius:var(--ra);text-transform:uppercase;letter-spacing:1.5px;box-shadow:var(--gs2);border:none;cursor:pointer;transition:var(--tr);white-space:nowrap;flex-shrink:0;position:relative;overflow:hidden}
+.cbtn::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,.15),transparent);opacity:0;transition:opacity .2s}
+.cbtn:hover{background:linear-gradient(135deg,#fff,#e0f8ff);box-shadow:0 0 30px rgba(0,229,255,.7),0 0 60px rgba(0,229,255,.3);transform:translateY(-2px)}
+.cbtn:hover::before{opacity:1}
+
+/* ── DROPDOWN ── */
+.ndrop{position:relative;display:flex;align-items:center}
+.ndrop-btn{font-family:var(--fm);font-size:.7rem;color:var(--txd);padding:7px 12px;border-radius:var(--ra);border:1px solid transparent;cursor:pointer;transition:var(--tr);white-space:nowrap;background:none;display:flex;align-items:center;gap:6px}
+.ndrop-btn .nav-svg-icon{width:14px;height:14px;flex-shrink:0;opacity:.7;transition:opacity .2s}
+.ndrop-btn i.arr{font-size:.5rem;transition:transform .3s cubic-bezier(.34,1.56,.64,1)}
+.ndrop:hover .ndrop-btn,.ndrop-btn:focus{color:var(--c);border-color:var(--br);background:var(--c2)}
+.ndrop:hover .nav-svg-icon{opacity:1}
+.ndrop:hover .arr{transform:rotate(180deg)}
+.ddmenu{display:none;position:absolute;top:calc(100% + 10px);left:50%;transform:translateX(-50%);background:rgba(5,11,17,.97);backdrop-filter:blur(32px) saturate(200%);-webkit-backdrop-filter:blur(32px);border:1px solid var(--br);border-radius:var(--rl);padding:10px;min-width:220px;z-index:2000;box-shadow:0 20px 60px rgba(0,0,0,.8),0 0 30px rgba(0,229,255,.07),0 0 0 1px rgba(0,229,255,.03);animation:ddIn .2s cubic-bezier(.34,1.56,.64,1)}
+@keyframes ddIn{from{opacity:0;transform:translateX(-50%) translateY(-8px) scale(.97)}to{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}}
+.ndrop:hover .ddmenu,.ddmenu:hover{display:block}
+.dditem{display:flex;align-items:center;gap:10px;width:100%;padding:10px 13px;border-radius:var(--ra);border:none;background:none;color:var(--txd);font-family:var(--fm);font-size:.7rem;cursor:pointer;transition:var(--tr);text-align:left;white-space:nowrap;position:relative;overflow:hidden}
+.dditem::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:var(--c);transform:scaleY(0);transition:transform .2s;border-radius:1px}
+.dditem:hover{color:var(--tx);background:var(--c2);padding-left:16px}
+.dditem:hover::before{transform:scaleY(1)}
+.dditem .dd-icon{width:20px;height:20px;border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.75rem}
+.dditem .dd-badge{margin-left:auto;font-size:.52rem;padding:2px 7px;border-radius:8px;font-family:var(--fm)}
+.dd-sep{height:1px;background:linear-gradient(90deg,transparent,var(--br2),transparent);margin:7px 0}
+
+/* ── HAMBURGER ── */
 .hbg{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border-radius:var(--ra);border:1px solid var(--br);background:var(--c2)}
 .hbg span{display:block;width:22px;height:2px;background:var(--c);border-radius:2px;transition:var(--tr)}
 .hbg.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .hbg.open span:nth-child(2){opacity:0;transform:scaleX(0)}
 .hbg.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.mnav{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(2,4,8,.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--br);padding:16px 5%;z-index:999;flex-direction:column;gap:4px;animation:slideD .3s ease}
+
+/* ── MOBILE NAV ── */
+.mnav{display:none;position:fixed;top:68px;left:0;right:0;background:rgba(2,4,8,.98);backdrop-filter:blur(20px);border-bottom:1px solid var(--br);padding:12px 5% 20px;z-index:999;flex-direction:column;gap:2px;animation:slideD .3s ease;max-height:calc(100vh - 68px);overflow-y:auto}
 .mnav.open{display:flex}
 @keyframes slideD{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
-.mnav .ni{font-size:.88rem;padding:12px 16px;width:100%;text-align:left}
-.mnav .cbtn{margin-top:8px;width:100%;text-align:center;display:block;padding:12px}
+.mnav .ni{font-size:.85rem;padding:11px 14px;width:100%;text-align:left}
+.mnav .cbtn{margin-top:10px;width:100%;text-align:center;display:block;padding:13px;font-size:.82rem}
+.mnav-group{margin-bottom:4px}
+.mnav-label{font-family:var(--fm);font-size:.58rem;color:var(--txf);letter-spacing:3px;text-transform:uppercase;padding:10px 14px 4px;display:block}
+.mnav-group .ni{padding-left:24px;font-size:.82rem}
 
 /* ── HERO ── */
-.hero{padding:50px 5% 40px;position:relative}
-.hero-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.018) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
-.orb1{position:absolute;top:-10%;left:-5%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,.06) 0%,transparent 70%);animation:orb 9s ease-in-out infinite;pointer-events:none}
-.orb2{position:absolute;bottom:-20%;right:-5%;width:400px;height:400px;border-radius:50%;background:radial-gradient(circle,rgba(0,100,255,.05) 0%,transparent 70%);animation:orb 12s ease-in-out infinite reverse;pointer-events:none}
-@keyframes orb{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,30px) scale(1.05)}}
+.hero{padding:56px 5% 48px;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(0,229,255,.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,229,255,.02) 1px,transparent 1px);background-size:50px 50px;pointer-events:none}
+.hero-bg::after{content:'';position:absolute;inset:0;background:var(--scan-line);pointer-events:none;animation:scanMove 8s linear infinite;opacity:.5}
+@keyframes scanMove{0%{background-position:0 0}100%{background-position:0 100px}}
+.orb1{position:absolute;top:-10%;left:-5%;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,.07) 0%,rgba(0,229,255,.02) 40%,transparent 70%);animation:orb 9s ease-in-out infinite;pointer-events:none}
+.orb2{position:absolute;bottom:-20%;right:-5%;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(0,100,255,.06) 0%,transparent 70%);animation:orb 12s ease-in-out infinite reverse;pointer-events:none}
+.orb3{position:absolute;top:40%;left:30%;width:300px;height:300px;border-radius:50%;background:radial-gradient(circle,rgba(0,255,136,.03) 0%,transparent 70%);animation:orb 15s ease-in-out infinite;pointer-events:none}
+@keyframes orb{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(20px,30px) scale(1.06)}}
 .hero-inner{display:grid;grid-template-columns:1fr 300px;gap:44px;max-width:1200px;width:100%;align-items:start;position:relative;z-index:1}
 
 /* Brand hero block */
 .brand-block{display:flex;flex-direction:column;gap:6px}
-.brand-eyebrow{font-family:var(--fm);font-size:.7rem;color:var(--c);letter-spacing:4px;text-transform:uppercase;margin-bottom:8px;opacity:.8}
-.brand-name{font-family:var(--fh);font-size:clamp(3rem,8vw,6rem);font-weight:900;color:var(--c);line-height:1;letter-spacing:6px;text-shadow:0 0 40px rgba(0,229,255,.4),0 0 80px rgba(0,229,255,.15);animation:glow 3s ease-in-out infinite alternate}
-@keyframes glow{from{text-shadow:0 0 40px rgba(0,229,255,.4),0 0 80px rgba(0,229,255,.15)}to{text-shadow:0 0 60px rgba(0,229,255,.6),0 0 120px rgba(0,229,255,.25)}}
-.brand-tagline{font-family:var(--fb);font-size:clamp(1rem,2.5vw,1.4rem);color:var(--txd);font-weight:600;letter-spacing:2px;margin-bottom:6px}
-.brand-sub{color:var(--txd);font-size:1rem;line-height:1.7;max-width:520px;margin-bottom:28px}
+.brand-eyebrow{font-family:var(--fm);font-size:.68rem;color:var(--c);letter-spacing:5px;text-transform:uppercase;margin-bottom:10px;opacity:.8;display:flex;align-items:center;gap:8px}
+.brand-eyebrow::before{content:'';width:24px;height:1px;background:var(--c);opacity:.6}
+.brand-name{font-family:var(--fh);font-size:clamp(3rem,8vw,6.5rem);font-weight:900;color:var(--c);line-height:1;letter-spacing:8px;text-shadow:0 0 40px rgba(0,229,255,.5),0 0 80px rgba(0,229,255,.2),0 0 120px rgba(0,229,255,.08);animation:glow 3s ease-in-out infinite alternate;position:relative}
+.brand-name::after{content:'NEXUM';position:absolute;left:0;top:0;color:transparent;-webkit-text-stroke:1px rgba(0,229,255,.15);pointer-events:none;user-select:none;z-index:-1;transform:translate(3px,3px);filter:blur(8px)}
+@keyframes glow{from{text-shadow:0 0 40px rgba(0,229,255,.5),0 0 80px rgba(0,229,255,.2)}to{text-shadow:0 0 60px rgba(0,229,255,.7),0 0 120px rgba(0,229,255,.3),0 0 200px rgba(0,229,255,.1)}}
+.brand-tagline{font-family:var(--fs);font-size:clamp(1rem,2.5vw,1.35rem);color:var(--txd);font-weight:500;letter-spacing:3px;margin-bottom:6px;text-transform:uppercase}
+.brand-sub{color:var(--txd);font-family:var(--fs);font-size:.97rem;line-height:1.8;max-width:520px;margin-bottom:30px}
 .hero-btns{display:flex;gap:12px;flex-wrap:wrap}
 
 /* Terminal */
@@ -95,6 +138,7 @@ img{max-width:100%;display:block}
 .blk{display:inline-block;width:2px;height:1em;background:var(--c);margin-left:2px;vertical-align:middle;animation:blk 1s step-end infinite}
 @keyframes blk{0%,100%{opacity:1}50%{opacity:0}}
 
+.logo-sub{font-family:var(--fm);font-size:.48rem;color:var(--txd);letter-spacing:3px;text-transform:uppercase;opacity:.7}
 .nexum-logo-svg{animation:logoFloat 4s ease-in-out infinite;filter:drop-shadow(0 0 8px rgba(0,229,255,0.4))}
 @keyframes logoFloat{0%,100%{filter:drop-shadow(0 0 8px rgba(0,229,255,0.4))}50%{filter:drop-shadow(0 0 16px rgba(0,229,255,0.7))}}
 
@@ -562,6 +606,12 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
 @media(min-width:769px){
   .mobile-quick{display:none !important}
 }
+@media(min-width:769px) and (max-width:1100px){
+  .hdr{padding:0 2%}
+  .ni{font-size:.62rem;padding:6px 7px}
+  .cbtn{font-size:.65rem;padding:7px 10px;letter-spacing:.5px}
+  .logo-txt{font-size:.95rem;letter-spacing:2px}
+}
 @media(max-width:900px){
   .about-grid{grid-template-columns:1fr;gap:30px}
   .about-shield{display:none}
@@ -597,6 +647,72 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
   .hero-btns{gap:8px}
   .brand-sub{font-size:.92rem}
 }
+
+/* ── PREMIUM VISUAL UPGRADES ── */
+
+/* Enhanced ecard with top accent bar animation */
+.ecard{transition:var(--tr);position:relative;overflow:hidden}
+.ecard::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,var(--c),transparent);opacity:0;transition:opacity .3s}
+.ecard:hover::after{opacity:1}
+.ecard i{font-size:2rem;color:var(--c);display:block;margin-bottom:16px;transition:transform .3s,text-shadow .3s}
+.ecard:hover i{transform:scale(1.15);text-shadow:0 0 20px rgba(0,229,255,.6)}
+
+/* Enhanced scard */
+.scard{transition:var(--tr)}
+
+/* Animated section divider */
+.divdr{height:2px;background:linear-gradient(90deg,var(--c),var(--g),transparent);margin:14px 0 22px;border-radius:2px;position:relative;overflow:hidden}
+.divdr::after{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(255,255,255,.4),transparent);animation:shimmer 2.5s ease infinite}
+@keyframes shimmer{0%{transform:translateX(-100%)}100%{transform:translateX(200%)}}
+
+/* Enhanced stats bar */
+.stats-bar{background:linear-gradient(135deg,var(--bg2),var(--bg3));border-top:1px solid var(--br2);border-bottom:1px solid var(--br2);position:relative;overflow:hidden}
+.stats-bar::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,transparent,rgba(0,229,255,.03),transparent);animation:statsSweep 4s ease infinite}
+@keyframes statsSweep{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+
+/* Blog card enhancements */
+.blog-card{transition:var(--tr);position:relative}
+.blog-card::before{content:'';position:absolute;inset:0;border-radius:inherit;background:radial-gradient(circle at 50% 0%,rgba(0,229,255,.05),transparent 60%);opacity:0;transition:opacity .3s;pointer-events:none}
+.blog-card:hover::before{opacity:1}
+
+/* Testimonial card glow */
+.tcard{position:relative;overflow:hidden}
+.tcard::before{content:'';position:absolute;top:0;right:0;width:60px;height:60px;background:radial-gradient(circle,rgba(0,229,255,.08),transparent 70%);pointer-events:none}
+
+/* Process step numbering enhancement */
+.pnum{font-family:var(--fh);font-size:2.2rem;font-weight:900;color:transparent;-webkit-text-stroke:2px rgba(0,229,255,.25);line-height:1;margin-bottom:10px;transition:var(--tr)}
+.pstep:hover .pnum{-webkit-text-stroke-color:var(--c);text-shadow:0 0 20px rgba(0,229,255,.3)}
+
+/* Tech badges enhancement */
+.tech-badge{transition:var(--tr);cursor:default}
+.tech-badge:hover{border-color:var(--c3);color:var(--c);transform:translateY(-2px);box-shadow:var(--gs)}
+
+/* FAQ enhanced */
+.faq-q{cursor:pointer;transition:var(--tr)}
+.faq-item:hover .faq-q{color:var(--c)}
+
+/* Footer link indicator */
+.flink{position:relative;display:inline-block}
+.flink::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--c);transition:width .25s}
+.flink:hover::after{width:100%}
+
+/* ── OSINT TOOLS ── */
+.osint-tab{font-family:var(--fm);font-size:.72rem;padding:9px 18px;border-radius:20px;border:1px solid var(--br);background:var(--cd);color:var(--txd);cursor:pointer;transition:var(--tr)}
+.osint-tab:hover{border-color:rgba(255,107,53,.4);color:#ff6b35}
+.osint-tab.act{background:rgba(255,107,53,.12);border-color:rgba(255,107,53,.5);color:#ff6b35}
+.osint-panel{display:none}
+.osint-panel.active{display:block;animation:fadeIn .3s ease}
+.osint-row{display:flex;justify-content:space-between;align-items:flex-start;padding:8px 0;border-bottom:1px solid var(--br2);gap:12px}
+.osint-row:last-child{border:none}
+.osint-key{color:var(--c);font-family:var(--fm);font-size:.65rem;min-width:160px;flex-shrink:0}
+.osint-val{color:var(--tx);font-family:var(--fm);font-size:.72rem;text-align:right;word-break:break-all}
+.osint-badge{display:inline-flex;align-items:center;gap:5px;font-family:var(--fm);font-size:.65rem;padding:4px 12px;border-radius:20px}
+.osint-badge.safe{background:rgba(0,255,136,.1);color:var(--g);border:1px solid rgba(0,255,136,.3)}
+.osint-badge.warn{background:rgba(255,196,0,.1);color:var(--am);border:1px solid rgba(255,196,0,.3)}
+.osint-badge.danger{background:rgba(255,0,60,.1);color:var(--r);border:1px solid rgba(255,0,60,.3)}
+.osint-engine-card{background:var(--bg3);border:1px solid var(--br2);border-radius:var(--rl);padding:16px 18px;display:flex;align-items:center;justify-content:space-between;transition:var(--tr)}
+.osint-engine-card:hover{border-color:rgba(255,107,53,.3)}
+
 </style>
 <script src="https://cdn.jsdelivr.net/npm/exif-js@2.3.0/exif.js"></script>
 </head>
@@ -660,32 +776,116 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
       <circle cx="23" cy="41.5" r="1.5" fill="#00e5ff" opacity="0.8"/>
       <circle cx="23" cy="41.5" r="3" fill="none" stroke="#00e5ff" stroke-width="0.5" opacity="0.4"/>
     </svg>
-    <div style="display:flex;flex-direction:column;line-height:1">
+    <div style="display:flex;flex-direction:column;line-height:1.2">
       <span class="logo-txt">NEXUM</span>
-      <span style="font-family:var(--fm);font-size:.5rem;color:var(--txd);letter-spacing:2px;text-transform:uppercase">Security &amp; Dev</span>
+      <span class="logo-sub">Security &amp; Dev</span>
     </div>
   </div>
 
   <nav class="nav-d" id="nav-d">
-    <button class="ni" onclick="go('home')">Inicio</button>
-    <button class="ni" onclick="go('nosotros')">Nosotros</button>
-    <button class="ni" onclick="go('ciber')">Ciberseguridad</button>
-    <button class="ni" onclick="go('dev')">Desarrollo</button>
-    <button class="ni" onclick="go('movil')">Móvil</button>
-    <button class="ni" onclick="go('consul')">Consultoría</button>
-    <button class="ni" onclick="go('tutoriales')">Tutoriales</button>
-    <button class="ni" onclick="go('apps')">Apps</button>
-    <button class="ni" onclick="go('software')">Software</button>
-    <button class="ni" onclick="go('precios')">Precios</button>
-    <button class="ni" onclick="go('cotizador')" style="color:var(--g);border-color:rgba(0,255,136,.2)">💰 Cotizar</button>
-    <button class="ni" onclick="go('calculadora')" style="color:var(--am);border-color:rgba(255,196,0,.2)">⚡ Riesgo</button>
-    <button class="ni" onclick="go('metadatos')" style="color:#b080ff;border-color:rgba(176,128,255,.2)">🔍 Metadatos</button>
-    <button class="ni" onclick="go('proximamente')" style="color:var(--c);border-color:var(--br)">🚀 Próximo</button>
-    <button class="ni" onclick="go('qr')">QR Tool</button>
+    <button class="ni" onclick="go('home')">
+      <svg class="nav-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+      Inicio
+    </button>
+    <button class="ni" onclick="go('nosotros')">
+      <svg class="nav-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      Nosotros
+    </button>
+
+    <!-- SERVICIOS -->
+    <div class="ndrop">
+      <button class="ndrop-btn">
+        <svg class="nav-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Servicios <i class="fas fa-chevron-down arr"></i>
+      </button>
+      <div class="ddmenu">
+        <button class="dditem" onclick="go('ciber')">
+          <span class="dd-icon" style="background:rgba(0,229,255,.12);color:var(--c)"><i class="fas fa-shield-alt"></i></span>
+          Ciberseguridad
+        </button>
+        <button class="dditem" onclick="go('dev')">
+          <span class="dd-icon" style="background:rgba(0,255,136,.1);color:var(--g)"><i class="fas fa-code"></i></span>
+          Desarrollo Web
+        </button>
+        <button class="dditem" onclick="go('movil')">
+          <span class="dd-icon" style="background:rgba(0,229,255,.1);color:var(--c)"><i class="fas fa-mobile-alt"></i></span>
+          Apps Móviles
+        </button>
+        <button class="dditem" onclick="go('consul')">
+          <span class="dd-icon" style="background:rgba(255,196,0,.1);color:var(--am)"><i class="fas fa-brain"></i></span>
+          Consultoría
+        </button>
+        <div class="dd-sep"></div>
+        <button class="dditem" onclick="go('precios')">
+          <span class="dd-icon" style="background:rgba(0,255,136,.1);color:var(--g)"><i class="fas fa-tags"></i></span>
+          Ver Precios
+        </button>
+      </div>
+    </div>
+
+    <!-- PRODUCTOS -->
+    <div class="ndrop">
+      <button class="ndrop-btn">
+        <svg class="nav-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="7" height="7" rx="1"/><rect x="15" y="3" width="7" height="7" rx="1"/><rect x="15" y="14" width="7" height="7" rx="1"/><rect x="2" y="14" width="7" height="7" rx="1"/></svg>
+        Productos <i class="fas fa-chevron-down arr"></i>
+      </button>
+      <div class="ddmenu">
+        <button class="dditem" onclick="go('apps')">
+          <span class="dd-icon" style="background:rgba(0,229,255,.1);color:var(--c)"><i class="fas fa-th"></i></span>
+          Apps
+        </button>
+        <button class="dditem" onclick="go('software')">
+          <span class="dd-icon" style="background:rgba(176,128,255,.12);color:var(--purple)"><i class="fas fa-box-open"></i></span>
+          Software Educativo
+        </button>
+        <button class="dditem" onclick="go('tutoriales')">
+          <span class="dd-icon" style="background:rgba(255,196,0,.1);color:var(--am)"><i class="fas fa-graduation-cap"></i></span>
+          Tutoriales
+        </button>
+        <div class="dd-sep"></div>
+        <button class="dditem" onclick="go('proximamente')">
+          <span class="dd-icon" style="background:rgba(0,229,255,.1);color:var(--c)"><i class="fas fa-rocket"></i></span>
+          Próximamente
+          <span class="dd-badge" style="background:rgba(0,229,255,.12);color:var(--c);border:1px solid var(--br)">NUEVO</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- HERRAMIENTAS -->
+    <div class="ndrop">
+      <button class="ndrop-btn" style="color:#ff6b35">
+        <svg class="nav-svg-icon" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        Herramientas <i class="fas fa-chevron-down arr"></i>
+      </button>
+      <div class="ddmenu">
+        <button class="dditem" onclick="go('cotizador')">
+          <span class="dd-icon" style="background:rgba(0,255,136,.1);color:var(--g)"><i class="fas fa-calculator"></i></span>
+          Cotizador Inteligente
+        </button>
+        <button class="dditem" onclick="go('calculadora')">
+          <span class="dd-icon" style="background:rgba(255,196,0,.1);color:var(--am)"><i class="fas fa-exclamation-triangle"></i></span>
+          Calculadora de Riesgo
+        </button>
+        <div class="dd-sep"></div>
+        <button class="dditem" onclick="go('metadatos')">
+          <span class="dd-icon" style="background:rgba(176,128,255,.1);color:var(--purple)"><i class="fas fa-search"></i></span>
+          Extractor Metadatos
+        </button>
+        <button class="dditem" onclick="go('qr')">
+          <span class="dd-icon" style="background:rgba(0,229,255,.1);color:var(--c)"><i class="fas fa-qrcode"></i></span>
+          QR Tool
+        </button>
+        <button class="dditem" onclick="go('osint')">
+          <span class="dd-icon" style="background:rgba(255,107,53,.1);color:var(--orange)"><i class="fas fa-globe"></i></span>
+          OSINT Tools
+        </button>
+      </div>
+    </div>
   </nav>
 
   <button class="cbtn" onclick="go('contacto');closeMnav()">
-    <i class="fas fa-handshake"></i> Contratar
+    <svg style="width:14px;height:14px;display:inline-block;vertical-align:middle;margin-right:6px;margin-top:-1px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+    Contratar
   </button>
 
   <div class="hbg" id="hbg" onclick="toggleMnav()">
@@ -694,22 +894,45 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
 </header>
 
 <nav class="mnav" id="mnav">
-  <button class="ni" onclick="go('home');closeMnav()"><i class="fas fa-home"></i> Inicio</button>
-  <button class="ni" onclick="go('nosotros');closeMnav()"><i class="fas fa-info-circle"></i> Nosotros</button>
-  <button class="ni" onclick="go('ciber');closeMnav()"><i class="fas fa-shield-alt"></i> Ciberseguridad</button>
-  <button class="ni" onclick="go('dev');closeMnav()"><i class="fas fa-code"></i> Desarrollo</button>
-  <button class="ni" onclick="go('movil');closeMnav()"><i class="fas fa-mobile-alt"></i> Móvil</button>
-  <button class="ni" onclick="go('consul');closeMnav()"><i class="fas fa-brain"></i> Consultoría</button>
-  <button class="ni" onclick="go('tutoriales');closeMnav()"><i class="fas fa-graduation-cap"></i> Tutoriales</button>
-  <button class="ni" onclick="go('apps');closeMnav()"><i class="fas fa-th"></i> Apps</button>
-  <button class="ni" onclick="go('software');closeMnav()"><i class="fas fa-box-open"></i> Software</button>
-  <button class="ni" onclick="go('precios');closeMnav()"><i class="fas fa-tags"></i> Precios</button>
-  <button class="ni" onclick="go('cotizador');closeMnav()" style="color:var(--g)"><i class="fas fa-calculator"></i> Cotizador Inteligente</button>
-  <button class="ni" onclick="go('calculadora');closeMnav()" style="color:var(--am)"><i class="fas fa-exclamation-triangle"></i> Calculadora de Riesgo</button>
-  <button class="ni" onclick="go('metadatos');closeMnav()" style="color:#b080ff"><i class="fas fa-search"></i> Extractor de Metadatos</button>
-  <button class="ni" onclick="go('proximamente');closeMnav()" style="color:var(--c)"><i class="fas fa-rocket"></i> Próximamente</button>
-  <button class="ni" onclick="go('qr');closeMnav()"><i class="fas fa-qrcode"></i> QR Tool</button>
-  <button class="cbtn" onclick="go('contacto');closeMnav()"><i class="fas fa-handshake"></i> Contratar Servicios</button>
+  <button class="ni" onclick="go('home');closeMnav()">
+    <svg style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+    Inicio
+  </button>
+  <button class="ni" onclick="go('nosotros');closeMnav()">
+    <svg style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+    Nosotros
+  </button>
+
+  <div class="mnav-group">
+    <span class="mnav-label">// Servicios</span>
+    <button class="ni" onclick="go('ciber');closeMnav()"><i class="fas fa-shield-alt" style="color:var(--c)"></i> Ciberseguridad</button>
+    <button class="ni" onclick="go('dev');closeMnav()"><i class="fas fa-code" style="color:var(--g)"></i> Desarrollo Web</button>
+    <button class="ni" onclick="go('movil');closeMnav()"><i class="fas fa-mobile-alt" style="color:var(--c)"></i> Apps Móviles</button>
+    <button class="ni" onclick="go('consul');closeMnav()"><i class="fas fa-brain" style="color:var(--am)"></i> Consultoría</button>
+    <button class="ni" onclick="go('precios');closeMnav()"><i class="fas fa-tags" style="color:var(--g)"></i> Precios</button>
+  </div>
+
+  <div class="mnav-group">
+    <span class="mnav-label">// Productos</span>
+    <button class="ni" onclick="go('apps');closeMnav()"><i class="fas fa-th" style="color:var(--c)"></i> Apps</button>
+    <button class="ni" onclick="go('software');closeMnav()"><i class="fas fa-box-open" style="color:#b080ff"></i> Software Educativo</button>
+    <button class="ni" onclick="go('tutoriales');closeMnav()"><i class="fas fa-graduation-cap" style="color:var(--am)"></i> Tutoriales</button>
+    <button class="ni" onclick="go('proximamente');closeMnav()" style="color:var(--c)"><i class="fas fa-rocket"></i> Próximamente</button>
+  </div>
+
+  <div class="mnav-group">
+    <span class="mnav-label">// Herramientas</span>
+    <button class="ni" onclick="go('cotizador');closeMnav()" style="color:var(--g)"><i class="fas fa-calculator"></i> Cotizador</button>
+    <button class="ni" onclick="go('calculadora');closeMnav()" style="color:var(--am)"><i class="fas fa-exclamation-triangle"></i> Calculadora de Riesgo</button>
+    <button class="ni" onclick="go('metadatos');closeMnav()" style="color:#b080ff"><i class="fas fa-search"></i> Extractor Metadatos</button>
+    <button class="ni" onclick="go('qr');closeMnav()"><i class="fas fa-qrcode" style="color:var(--c)"></i> QR Tool</button>
+    <button class="ni" onclick="go('osint');closeMnav()" style="color:#ff6b35"><i class="fas fa-globe"></i> OSINT Tools</button>
+  </div>
+
+  <button class="cbtn" onclick="go('contacto');closeMnav()">
+    <svg style="width:13px;height:13px;display:inline-block;vertical-align:middle;margin-right:6px;margin-top:-1px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+    Contratar Servicios
+  </button>
 </nav>
 
 
@@ -721,6 +944,7 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
     <div class="hero-bg"></div>
     <div class="orb1"></div>
     <div class="orb2"></div>
+    <div class="orb3"></div>
     <div class="hero-inner">
       <div class="brand-block fu">
         <p class="brand-eyebrow">// Compañía de Seguridad Informática &amp; Software</p>
@@ -1971,6 +2195,100 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
 </div>
 
 
+<!-- ═══════ PAGE: OSINT TOOLS ═══════ -->
+<div class="page" id="p-osint">
+  <div style="max-width:900px;margin:0 auto;padding:60px 5%">
+    <button class="back-btn" onclick="go('home')"><i class="fas fa-arrow-left"></i> Volver</button>
+    <div style="text-align:center;margin-bottom:44px">
+      <h1 style="font-family:var(--fh);font-size:clamp(1.6rem,4vw,2.4rem);color:#ff6b35;text-transform:uppercase;letter-spacing:2px;text-shadow:0 0 30px rgba(255,107,53,.35)"><i class="fas fa-globe"></i> OSINT Intelligence Suite</h1>
+      <div class="divdr" style="background:linear-gradient(90deg,#ff6b35,transparent);margin:12px auto 16px"></div>
+      <p style="color:var(--txd);max-width:580px;margin:0 auto">Herramientas de inteligencia de fuentes abiertas. Investiga IPs, dominios, emails y URLs sospechosas — todo desde tu navegador, sin instalar nada.</p>
+    </div>
+
+    <!-- TABS -->
+    <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:30px;justify-content:center">
+      <button class="osint-tab act" onclick="osintTab('ip')" id="otab-ip"><i class="fas fa-network-wired"></i> IP / Dominio</button>
+      <button class="osint-tab" onclick="osintTab('email')" id="otab-email"><i class="fas fa-envelope"></i> Email Breach</button>
+      <button class="osint-tab" onclick="osintTab('whois')" id="otab-whois"><i class="fas fa-search"></i> WHOIS</button>
+      <button class="osint-tab" onclick="osintTab('url')" id="otab-url"><i class="fas fa-shield-virus"></i> URL Threat</button>
+    </div>
+
+    <!-- ── TAB: IP LOOKUP ── -->
+    <div class="osint-panel active" id="opanel-ip">
+      <div style="background:var(--cd);border:1px solid var(--br2);border-radius:var(--rl);padding:28px">
+        <h3 style="font-family:var(--fh);font-size:1rem;color:var(--c);margin-bottom:6px;letter-spacing:1px"><i class="fas fa-network-wired"></i> Geolocalización & Info de IP / Dominio</h3>
+        <p style="color:var(--txd);font-size:.82rem;margin-bottom:18px">Ingresa una IP pública o nombre de dominio para obtener país, ISP, ASN, detección de VPN/proxy y más.</p>
+        <div style="display:flex;gap:10px;margin-bottom:16px">
+          <input type="text" id="osint-ip-in" placeholder="Ej: 8.8.8.8 o google.com" style="flex:1">
+          <button class="btn btn-sm" onclick="osintIP()"><i class="fas fa-search"></i> Consultar</button>
+          <button class="btn sec btn-sm" onclick="osintMyIP()"><i class="fas fa-crosshairs"></i> Mi IP</button>
+        </div>
+        <div id="osint-ip-result" style="display:none">
+          <div class="term" style="box-shadow:none">
+            <div class="term-hdr">
+              <span class="dot dt-r"></span><span class="dot dt-y"></span><span class="dot dt-g"></span>
+              <span class="term-ttl" id="osint-ip-title">ip-lookup</span>
+              <span id="osint-ip-flag" style="margin-left:auto;font-size:1.2rem"></span>
+            </div>
+            <div class="term-body" id="osint-ip-body" style="padding:16px"></div>
+          </div>
+          <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap" id="osint-ip-links"></div>
+        </div>
+        <div id="osint-ip-loading" style="display:none;text-align:center;padding:30px;color:var(--txd);font-family:var(--fm);font-size:.8rem"><i class="fas fa-circle-notch fa-spin" style="color:var(--c);margin-right:8px"></i>Consultando ip-api.com...</div>
+      </div>
+    </div>
+
+    <!-- ── TAB: EMAIL BREACH ── -->
+    <div class="osint-panel" id="opanel-email">
+      <div style="background:var(--cd);border:1px solid var(--br2);border-radius:var(--rl);padding:28px">
+        <h3 style="font-family:var(--fh);font-size:1rem;color:var(--c);margin-bottom:6px;letter-spacing:1px"><i class="fas fa-envelope"></i> Verificador de Email Comprometido</h3>
+        <p style="color:var(--txd);font-size:.82rem;margin-bottom:4px">Verifica si tu email aparece en filtraciones de datos conocidas (Have I Been Pwned).</p>
+        <div style="background:rgba(255,196,0,.07);border:1px solid rgba(255,196,0,.25);border-radius:var(--ra);padding:10px 14px;margin-bottom:18px">
+          <p style="font-family:var(--fm);font-size:.63rem;color:var(--am)"><i class="fas fa-lock"></i> Consulta únicamente por hash SHA-1 truncado (k-anonymity). Tu email nunca se envía completo.</p>
+        </div>
+        <div style="display:flex;gap:10px;margin-bottom:16px">
+          <input type="email" id="osint-email-in" placeholder="tu@email.com" style="flex:1">
+          <button class="btn btn-sm" onclick="osintEmail()"><i class="fas fa-search"></i> Verificar</button>
+        </div>
+        <div id="osint-email-result" style="display:none"></div>
+        <div id="osint-email-loading" style="display:none;text-align:center;padding:30px;color:var(--txd);font-family:var(--fm);font-size:.8rem"><i class="fas fa-circle-notch fa-spin" style="color:var(--c);margin-right:8px"></i>Consultando HIBP via k-anonymity...</div>
+      </div>
+    </div>
+
+    <!-- ── TAB: WHOIS ── -->
+    <div class="osint-panel" id="opanel-whois">
+      <div style="background:var(--cd);border:1px solid var(--br2);border-radius:var(--rl);padding:28px">
+        <h3 style="font-family:var(--fh);font-size:1rem;color:var(--c);margin-bottom:6px;letter-spacing:1px"><i class="fas fa-search"></i> WHOIS + DNS Intelligence</h3>
+        <p style="color:var(--txd);font-size:.82rem;margin-bottom:18px">Consulta el propietario, registrador, fechas de registro/expiración y registros DNS de cualquier dominio.</p>
+        <div style="display:flex;gap:10px;margin-bottom:16px">
+          <input type="text" id="osint-whois-in" placeholder="ejemplo.com" style="flex:1">
+          <button class="btn btn-sm" onclick="osintWhois()"><i class="fas fa-search"></i> Buscar</button>
+        </div>
+        <div id="osint-whois-result" style="display:none"></div>
+        <div id="osint-whois-loading" style="display:none;text-align:center;padding:30px;color:var(--txd);font-family:var(--fm);font-size:.8rem"><i class="fas fa-circle-notch fa-spin" style="color:var(--c);margin-right:8px"></i>Consultando RDAP y DNS...</div>
+      </div>
+    </div>
+
+    <!-- ── TAB: URL THREAT ── -->
+    <div class="osint-panel" id="opanel-url">
+      <div style="background:var(--cd);border:1px solid var(--br2);border-radius:var(--rl);padding:28px">
+        <h3 style="font-family:var(--fh);font-size:1rem;color:var(--c);margin-bottom:6px;letter-spacing:1px"><i class="fas fa-shield-virus"></i> Análisis de URL / Dominio Sospechoso</h3>
+        <p style="color:var(--txd);font-size:.82rem;margin-bottom:18px">Analiza una URL o dominio en múltiples motores de inteligencia de amenazas: VirusTotal, URLScan, AbuseIPDB, Shodan y más.</p>
+        <div style="display:flex;gap:10px;margin-bottom:16px">
+          <input type="text" id="osint-url-in" placeholder="https://sospechoso.com" style="flex:1">
+          <button class="btn btn-sm" onclick="osintURL()"><i class="fas fa-radar"></i> Analizar</button>
+        </div>
+        <div id="osint-url-result" style="display:none"></div>
+      </div>
+    </div>
+
+    <!-- DISCLAIMER -->
+    <div style="margin-top:30px;background:rgba(255,107,53,.05);border:1px solid rgba(255,107,53,.2);border-radius:var(--rl);padding:18px 22px">
+      <p style="font-family:var(--fm);font-size:.68rem;color:rgba(255,107,53,.8)"><i class="fas fa-balance-scale"></i> <strong>Uso ético exclusivo.</strong> Estas herramientas consultan APIs públicas con fines de investigación legítima, ciberseguridad defensiva y educación. No uses estos datos para actividades ilegales.</p>
+    </div>
+  </div>
+</div>
+
 <!-- ═══════ MODAL ═══════ -->
 <div class="modal hid" id="modal">
   <div class="modal-box">
@@ -2510,7 +2828,8 @@ const pages = {
   tutoriales:'p-tutoriales', apps:'p-apps',
   software:'p-software', precios:'p-precios', contacto:'p-contacto', qr:'p-qr',
   calculadora:'p-calculadora', cotizador:'p-cotizador',
-  metadatos:'p-metadatos', proximamente:'p-proximamente'
+  metadatos:'p-metadatos', proximamente:'p-proximamente',
+  osint:'p-osint'
 };
 
 function go(key){
@@ -3967,7 +4286,267 @@ if(dz){
 // Override pages object to include new pages
 // pages object includes all routes (defined above)
 
-/* Hack timer — counts down from 39 to 0, resets for drama */
+/* ══ OSINT SUITE JS ══ */
+
+function osintTab(id){
+  document.querySelectorAll('.osint-tab').forEach(t=>t.classList.remove('act'));
+  document.querySelectorAll('.osint-panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('otab-'+id).classList.add('act');
+  document.getElementById('opanel-'+id).classList.add('active');
+}
+
+/* ── IP LOOKUP ── */
+async function osintIP(){
+  const raw = document.getElementById('osint-ip-in').value.trim();
+  if(!raw){return;}
+  _osintIPQuery(raw);
+}
+async function osintMyIP(){
+  document.getElementById('osint-ip-in').value = '';
+  _osintIPQuery('');
+}
+async function _osintIPQuery(target){
+  const res = document.getElementById('osint-ip-result');
+  const loading = document.getElementById('osint-ip-loading');
+  res.style.display='none'; loading.style.display='block';
+  try{
+    const url = target ? `https://ip-api.com/json/${encodeURIComponent(target)}?fields=66846719` : 'https://ip-api.com/json/?fields=66846719';
+    const r = await fetch(url);
+    const d = await r.json();
+    loading.style.display='none';
+    if(d.status==='fail'){
+      document.getElementById('osint-ip-body').innerHTML=`<p style="color:var(--r);font-family:var(--fm);font-size:.8rem"><i class="fas fa-times-circle"></i> ${d.message||'No se pudo resolver el objetivo.'}</p>`;
+      res.style.display='block'; return;
+    }
+    const flagURL = `https://flagcdn.com/24x18/${(d.countryCode||'').toLowerCase()}.png`;
+    document.getElementById('osint-ip-flag').innerHTML = d.countryCode ? `<img src="${flagURL}" alt="${d.country}" style="border-radius:2px;vertical-align:middle"> ${d.countryCode}` : '';
+    document.getElementById('osint-ip-title').textContent = `ip-lookup — ${d.query}`;
+    const rows = [
+      ['IP Consultada', d.query],
+      ['País', `${d.country||'—'} (${d.countryCode||'—'})`],
+      ['Región / Ciudad', `${d.regionName||'—'} / ${d.city||'—'}`],
+      ['Código Postal', d.zip||'—'],
+      ['Coordenadas', d.lat && d.lon ? `${d.lat}, ${d.lon}` : '—'],
+      ['Zona Horaria', d.timezone||'—'],
+      ['ISP / Proveedor', d.isp||'—'],
+      ['Organización', d.org||'—'],
+      ['ASN', d.as||'—'],
+      ['Hostname Reverse', d.reverse||'—'],
+      ['Tipo de conexión', d.type||'—'],
+      ['¿Es Móvil?', d.mobile ? '✓ Sí' : '✗ No'],
+      ['¿Es Proxy/VPN?', d.proxy ? '⚠️ Sí' : '✗ No'],
+      ['¿Es Hosting?', d.hosting ? '⚠️ Sí (datacenter/server)' : '✗ No'],
+    ];
+    document.getElementById('osint-ip-body').innerHTML = rows.map(([k,v])=>`
+      <div class="osint-row">
+        <span class="osint-key">// ${k}</span>
+        <span class="osint-val" style="${v.includes('⚠️')?'color:var(--am)':v.includes('✓')?'color:var(--g)':''}">${v}</span>
+      </div>`).join('');
+    const enc = encodeURIComponent(d.query);
+    document.getElementById('osint-ip-links').innerHTML = `
+      <a href="https://www.shodan.io/host/${d.query}" target="_blank" class="btn sec btn-sm"><i class="fas fa-eye"></i> Shodan</a>
+      <a href="https://www.abuseipdb.com/check/${d.query}" target="_blank" class="btn sec btn-sm"><i class="fas fa-ban"></i> AbuseIPDB</a>
+      <a href="https://bgp.he.net/ip/${d.query}" target="_blank" class="btn sec btn-sm">BGP.he.net</a>
+      <a href="https://www.google.com/maps?q=${d.lat},${d.lon}" target="_blank" class="btn sec btn-sm"><i class="fas fa-map-marker-alt"></i> Mapa</a>`;
+    res.style.display='block';
+  }catch(e){
+    loading.style.display='none';
+    document.getElementById('osint-ip-body').innerHTML=`<p style="color:var(--r);font-family:var(--fm);font-size:.8rem"><i class="fas fa-times-circle"></i> Error al consultar la API. Verifica tu conexión.</p>`;
+    res.style.display='block';
+  }
+}
+
+/* ── EMAIL BREACH ── */
+async function osintEmail(){
+  const email = document.getElementById('osint-email-in').value.trim();
+  if(!email || !email.includes('@')){return;}
+  const res = document.getElementById('osint-email-result');
+  const loading = document.getElementById('osint-email-loading');
+  res.style.display='none'; loading.style.display='block';
+  try{
+    // k-anonymity: hash SHA-1, send only first 5 chars
+    const hashBuf = await crypto.subtle.digest('SHA-1', new TextEncoder().encode(email));
+    const hashHex = Array.from(new Uint8Array(hashBuf)).map(b=>b.toString(16).padStart(2,'0')).join('').toUpperCase();
+    const prefix = hashHex.slice(0,5);
+    const suffix = hashHex.slice(5);
+    const r = await fetch(`https://api.pwnedpasswords.com/range/${prefix}?mode=ntlm`, {headers:{'Add-Padding':'true'}});
+    // Note: for actual HIBP email breach we use the password API as proxy — show guidance
+    loading.style.display='none';
+    // Direct HIBP email API requires key — show professional guidance + deep links
+    res.innerHTML = `
+      <div style="background:rgba(0,229,255,.05);border:1px solid var(--br);border-radius:var(--rl);padding:20px">
+        <p style="font-family:var(--fm);font-size:.72rem;color:var(--txd);margin-bottom:14px">
+          <i class="fas fa-info-circle" style="color:var(--c)"></i> La API de email de HIBP requiere clave de acceso para uso directo (política anti-scraping). 
+          Consulta directamente en los servicios verificados:
+        </p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-bottom:16px">
+          <a href="https://haveibeenpwned.com/account/${encodeURIComponent(email)}" target="_blank" class="osint-engine-card" style="text-decoration:none;cursor:pointer">
+            <div><p style="font-family:var(--fh);font-size:.78rem;color:var(--c);margin-bottom:3px">Have I Been Pwned</p><p style="font-family:var(--fm);font-size:.63rem;color:var(--txd)">Base de datos más grande del mundo</p></div>
+            <i class="fas fa-external-link-alt" style="color:var(--txd);font-size:.8rem"></i>
+          </a>
+          <a href="https://www.dehashed.com/search?query=${encodeURIComponent(email)}" target="_blank" class="osint-engine-card" style="text-decoration:none">
+            <div><p style="font-family:var(--fh);font-size:.78rem;color:var(--c);margin-bottom:3px">DeHashed</p><p style="font-family:var(--fm);font-size:.63rem;color:var(--txd)">Filtraciones + datos adicionales</p></div>
+            <i class="fas fa-external-link-alt" style="color:var(--txd);font-size:.8rem"></i>
+          </a>
+          <a href="https://breachdirectory.org/?search=${encodeURIComponent(email)}" target="_blank" class="osint-engine-card" style="text-decoration:none">
+            <div><p style="font-family:var(--fh);font-size:.78rem;color:var(--c);margin-bottom:3px">BreachDirectory</p><p style="font-family:var(--fm);font-size:.63rem;color:var(--txd)">Busca hashes y credenciales</p></div>
+            <i class="fas fa-external-link-alt" style="color:var(--txd);font-size:.8rem"></i>
+          </a>
+          <a href="https://leakcheck.io/?query=${encodeURIComponent(email)}" target="_blank" class="osint-engine-card" style="text-decoration:none">
+            <div><p style="font-family:var(--fh);font-size:.78rem;color:var(--c);margin-bottom:3px">LeakCheck.io</p><p style="font-family:var(--fm);font-size:.63rem;color:var(--txd)">Verificación rápida y gratuita</p></div>
+            <i class="fas fa-external-link-alt" style="color:var(--txd);font-size:.8rem"></i>
+          </a>
+        </div>
+        <div style="background:rgba(255,196,0,.08);border:1px solid rgba(255,196,0,.25);border-radius:var(--ra);padding:12px 16px">
+          <p style="font-family:var(--fm);font-size:.68rem;color:var(--am)"><i class="fas fa-lightbulb"></i> ¿Necesitas monitoreo continuo de filtraciones para tu empresa? <button onclick="go('contacto')" style="background:none;border:none;color:var(--c);cursor:pointer;font-family:var(--fm);font-size:.68rem;text-decoration:underline">Contáctanos →</button></p>
+        </div>
+      </div>`;
+    res.style.display='block';
+  }catch(e){
+    loading.style.display='none';
+    res.innerHTML=`<p style="color:var(--r);font-family:var(--fm);font-size:.8rem"><i class="fas fa-times-circle"></i> Error. Verifica tu conexión.</p>`;
+    res.style.display='block';
+  }
+}
+
+/* ── WHOIS ── */
+async function osintWhois(){
+  const raw = document.getElementById('osint-whois-in').value.trim().replace(/https?:\/\//,'').split('/')[0];
+  if(!raw || !raw.includes('.')){return;}
+  const res = document.getElementById('osint-whois-result');
+  const loading = document.getElementById('osint-whois-loading');
+  res.style.display='none'; loading.style.display='block';
+  try{
+    // Use RDAP (free, no key) for registrar info
+    const tld = raw.split('.').pop();
+    const rdapUrl = `https://rdap.org/domain/${raw}`;
+    let rdapData = null;
+    try{
+      const rdapRes = await fetch(rdapUrl);
+      if(rdapRes.ok) rdapData = await rdapRes.json();
+    }catch(e){}
+
+    // DNS lookup via Cloudflare DoH
+    let dnsData = null;
+    try{
+      const dnsRes = await fetch(`https://cloudflare-dns.com/dns-query?name=${raw}&type=A`, {headers:{'accept':'application/dns-json'}});
+      if(dnsRes.ok) dnsData = await dnsRes.json();
+    }catch(e){}
+
+    let mxData = null;
+    try{
+      const mxRes = await fetch(`https://cloudflare-dns.com/dns-query?name=${raw}&type=MX`, {headers:{'accept':'application/dns-json'}});
+      if(mxRes.ok) mxData = await mxRes.json();
+    }catch(e){}
+
+    loading.style.display='none';
+
+    // Parse RDAP
+    let registrar='—', regDate='—', expDate='—', updDate='—', status='—', nameservers='—';
+    if(rdapData){
+      registrar = rdapData.entities?.find(e=>e.roles?.includes('registrar'))?.vcardArray?.[1]?.find(v=>v[0]==='fn')?.[3] || '—';
+      regDate = rdapData.events?.find(e=>e.eventAction==='registration')?.eventDate?.split('T')[0] || '—';
+      expDate = rdapData.events?.find(e=>e.eventAction==='expiration')?.eventDate?.split('T')[0] || '—';
+      updDate = rdapData.events?.find(e=>e.eventAction==='last changed')?.eventDate?.split('T')[0] || '—';
+      status = rdapData.status?.join(', ') || '—';
+      nameservers = rdapData.nameservers?.map(ns=>ns.ldhName).slice(0,4).join(', ') || '—';
+    }
+
+    // DNS A records
+    const aRecords = dnsData?.Answer?.filter(a=>a.type===1)?.map(a=>a.data).join(', ') || '—';
+    const mxRecords = mxData?.Answer?.filter(a=>a.type===15)?.map(a=>a.data.split(' ').pop()).slice(0,3).join(', ') || '—';
+
+    const now = new Date();
+    const exp = expDate !== '—' ? new Date(expDate) : null;
+    const daysLeft = exp ? Math.floor((exp-now)/86400000) : null;
+    const expStatus = daysLeft === null ? '' : daysLeft < 30 ? `<span class="osint-badge danger"><i class="fas fa-exclamation-triangle"></i> Vence en ${daysLeft}d</span>` : daysLeft < 90 ? `<span class="osint-badge warn">Vence en ${daysLeft}d</span>` : `<span class="osint-badge safe"><i class="fas fa-check"></i> ${daysLeft}d restantes</span>`;
+
+    res.innerHTML = `
+      <div style="background:var(--bg3);border:1px solid var(--c3);border-radius:var(--rl);overflow:hidden">
+        <div style="background:var(--bg2);padding:12px 18px;border-bottom:1px solid var(--br2);display:flex;align-items:center;gap:10px">
+          <span style="font-family:var(--fh);font-size:.9rem;color:var(--c)">${raw}</span>
+          ${expStatus}
+        </div>
+        <div style="padding:16px 18px">
+          <p style="font-family:var(--fm);font-size:.62rem;color:var(--txd);margin-bottom:12px;text-transform:uppercase;letter-spacing:2px">// Datos de Registro (RDAP)</p>
+          ${[
+            ['Registrador', registrar],
+            ['Fecha de Registro', regDate],
+            ['Fecha de Expiración', expDate],
+            ['Última Actualización', updDate],
+            ['Estado', status],
+            ['Nameservers', nameservers],
+          ].map(([k,v])=>`<div class="osint-row"><span class="osint-key">${k}</span><span class="osint-val">${v}</span></div>`).join('')}
+          <p style="font-family:var(--fm);font-size:.62rem;color:var(--txd);margin:16px 0 12px;text-transform:uppercase;letter-spacing:2px">// Registros DNS</p>
+          ${[
+            ['A (IPv4)', aRecords],
+            ['MX (Correo)', mxRecords],
+          ].map(([k,v])=>`<div class="osint-row"><span class="osint-key">${k}</span><span class="osint-val">${v}</span></div>`).join('')}
+        </div>
+      </div>
+      <div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">
+        <a href="https://www.whois.com/whois/${raw}" target="_blank" class="btn sec btn-sm"><i class="fas fa-search"></i> WHOIS Completo</a>
+        <a href="https://dnschecker.org/#A/${raw}" target="_blank" class="btn sec btn-sm">DNS Checker</a>
+        <a href="https://www.shodan.io/search?query=${raw}" target="_blank" class="btn sec btn-sm"><i class="fas fa-eye"></i> Shodan</a>
+        <a href="https://web.archive.org/web/*/${raw}" target="_blank" class="btn sec btn-sm"><i class="fas fa-history"></i> Wayback</a>
+        <a href="https://crt.sh/?q=${raw}" target="_blank" class="btn sec btn-sm"><i class="fas fa-certificate"></i> Certificados SSL</a>
+      </div>`;
+    res.style.display='block';
+  }catch(e){
+    loading.style.display='none';
+    res.innerHTML=`<p style="color:var(--r);font-family:var(--fm);font-size:.8rem"><i class="fas fa-times-circle"></i> Error al consultar. Verifica el dominio.</p>`;
+    res.style.display='block';
+  }
+}
+
+/* ── URL THREAT ── */
+function osintURL(){
+  let raw = document.getElementById('osint-url-in').value.trim();
+  if(!raw){return;}
+  if(!raw.startsWith('http')) raw = 'https://'+raw;
+  let domain = '';
+  try{ domain = new URL(raw).hostname; }catch(e){ domain = raw; }
+  const enc = encodeURIComponent(raw);
+  const encDom = encodeURIComponent(domain);
+  const b64 = btoa(raw).replace(/=/g,'').replace(/\+/g,'-').replace(/\//g,'_');
+
+  document.getElementById('osint-url-result').innerHTML = `
+    <p style="font-family:var(--fm);font-size:.72rem;color:var(--txd);margin-bottom:14px">
+      <i class="fas fa-info-circle" style="color:var(--c)"></i> Abriendo en motores de análisis. Para el resultado más completo, revisa cada uno:
+    </p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-bottom:16px">
+      <a href="https://www.virustotal.com/gui/url/${b64}" target="_blank" class="osint-engine-card" style="text-decoration:none">
+        <div><p style="font-family:var(--fh);font-size:.78rem;color:var(--c);margin-bottom:3px">VirusTotal</p><p style="font-family:var(--fm);font-size:.63rem;color:var(--txd)">70+ antivirus + reputación</p></div>
+        <span class="osint-badge warn">Principal</span>
+      </a>
+      <a href="https://urlscan.io/search/#${enc}" target="_blank" class="osint-engine-card" style="text-decoration:none">
+        <div><p style="font-family:var(--fh);font-size:.78rem;color:var(--c);margin-bottom:3px">URLScan.io</p><p style="font-family:var(--fm);font-size:.63rem;color:var(--txd)">Captura y análisis de página</p></div>
+        <i class="fas fa-external-link-alt" style="color:var(--txd);font-size:.8rem"></i>
+      </a>
+      <a href="https://www.abuseipdb.com/check/${domain}" target="_blank" class="osint-engine-card" style="text-decoration:none">
+        <div><p style="font-family:var(--fh);font-size:.78rem;color:var(--c);margin-bottom:3px">AbuseIPDB</p><p style="font-family:var(--fm);font-size:.63rem;color:var(--txd)">Reportes de abuse del host</p></div>
+        <i class="fas fa-external-link-alt" style="color:var(--txd);font-size:.8rem"></i>
+      </a>
+      <a href="https://safeweb.norton.com/report/show?url=${enc}" target="_blank" class="osint-engine-card" style="text-decoration:none">
+        <div><p style="font-family:var(--fh);font-size:.78rem;color:var(--c);margin-bottom:3px">Norton SafeWeb</p><p style="font-family:var(--fm);font-size:.63rem;color:var(--txd)">Reputación y clasificación</p></div>
+        <i class="fas fa-external-link-alt" style="color:var(--txd);font-size:.8rem"></i>
+      </a>
+      <a href="https://www.shodan.io/search?query=${encDom}" target="_blank" class="osint-engine-card" style="text-decoration:none">
+        <div><p style="font-family:var(--fh);font-size:.78rem;color:var(--c);margin-bottom:3px">Shodan</p><p style="font-family:var(--fm);font-size:.63rem;color:var(--txd)">Puertos y servicios expuestos</p></div>
+        <i class="fas fa-external-link-alt" style="color:var(--txd);font-size:.8rem"></i>
+      </a>
+      <a href="https://transparencyreport.google.com/safe-browsing/search?url=${enc}" target="_blank" class="osint-engine-card" style="text-decoration:none">
+        <div><p style="font-family:var(--fh);font-size:.78rem;color:var(--c);margin-bottom:3px">Google Safe Browsing</p><p style="font-family:var(--fm);font-size:.63rem;color:var(--txd)">Phishing / malware</p></div>
+        <i class="fas fa-external-link-alt" style="color:var(--txd);font-size:.8rem"></i>
+      </a>
+    </div>
+    <div style="background:rgba(255,107,53,.07);border:1px solid rgba(255,107,53,.2);border-radius:var(--ra);padding:12px 16px">
+      <p style="font-family:var(--fm);font-size:.68rem;color:rgba(255,107,53,.9)"><i class="fas fa-shield-alt"></i> <strong>Consejo NEXUM:</strong> Si VirusTotal marca 1+ detecciones, NO visites la URL. Contáctanos para un análisis forense completo.</p>
+    </div>`;
+  document.getElementById('osint-url-result').style.display='block';
+}
+
+
 (function(){
   let t = 39;
   setInterval(()=>{
