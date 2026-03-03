@@ -507,19 +507,9 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
   50%{box-shadow:0 6px 30px rgba(0,229,255,.8),0 0 0 12px rgba(0,229,255,0)}
 }
 .chat-btn:hover{transform:scale(1.12);animation:none;box-shadow:0 6px 40px rgba(0,229,255,.9)}
-.chat-btn-label{
-  position:fixed;bottom:34px;right:94px;z-index:99998;
-  background:var(--cd);border:1px solid var(--c3);border-radius:20px;
-  font-family:var(--fm);font-size:.65rem;color:var(--c);
-  padding:6px 14px;white-space:nowrap;
-  box-shadow:var(--gs);
-  animation:labelBounce 4s ease-in-out infinite;
-}
-@keyframes labelBounce{0%,100%{transform:translateX(0)}50%{transform:translateX(-4px)}}
-.chat-btn-label::after{
-  content:'';position:absolute;right:-7px;top:50%;transform:translateY(-50%);
-  border:5px solid transparent;border-left-color:var(--c3);
-}
+
+
+
 .chat-pulse{position:absolute;top:0;right:0;width:16px;height:16px;background:var(--g);border-radius:50%;border:2px solid var(--bg);animation:cp 2s infinite;pointer-events:none}
 @keyframes cp{0%,100%{box-shadow:0 0 0 0 rgba(0,255,136,.5)}70%{box-shadow:0 0 0 10px rgba(0,255,136,0)}}
 .chatbox{
@@ -561,7 +551,8 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
 .chat-snd:disabled{opacity:.5;cursor:not-allowed;transform:none}
 
 /* ── REVEAL ── */
-.rv{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease}
+.rv{opacity:1;transform:none;transition:opacity .6s ease,transform .6s ease}
+.rv.hide{opacity:0;transform:translateY(24px)}
 .rv.vis{opacity:1;transform:none}
 .fu{animation:fu .7s ease both}
 .fu2{animation:fu .7s ease both}
@@ -594,7 +585,7 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
   .sn{font-size:2rem}
   .brand-name{font-size:3rem}
   .process-steps{grid-template-columns:1fr 1fr}
-  .chat-btn-label{right:86px;bottom:30px;font-size:.6rem;padding:5px 12px}
+  
   /* Mobile quick nav visible */
   .mobile-quick{display:block !important}
 }
@@ -1121,7 +1112,7 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
   <!-- Footer -->
   <footer class="foot">
     <div>
-      <div class="foot-logo">NEXUM</div>
+      <div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div>
       <p>Seguridad Informática &amp; Desarrollo de Software — Protegemos tu Vida Digital</p>
       <div class="socials">
         <a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
@@ -1185,33 +1176,23 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
           <i class="fas fa-bolt"></i>
           <h4>Excelencia Técnica</h4>
           <p>Utilizamos metodologías de clase mundial y las herramientas más avanzadas del sector.</p>
+        </div>
+        <div class="ecard rv">
+          <i class="fas fa-handshake"></i>
+          <h4>Compromiso Real</h4>
+          <p>Cada proyecto recibe la misma dedicación que si fuera nuestra propia infraestructura.</p>
+        </div>
+        <div class="ecard rv">
+          <i class="fas fa-lock"></i>
+          <h4>Confidencialidad</h4>
+          <p>NDA en cada proyecto. Tu información y vulnerabilidades nunca salen de nuestras manos.</p>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- URGENCY CTA SECTION -->
-  <section style="padding:60px 5%;background:linear-gradient(135deg,rgba(0,229,255,.06),rgba(0,100,200,.04));border-top:1px solid var(--br);border-bottom:1px solid var(--br);position:relative;overflow:hidden">
-    <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--c),var(--g),var(--c),transparent)"></div>
-    <div style="max-width:900px;margin:0 auto;text-align:center">
-      <p style="font-family:var(--fm);font-size:.7rem;color:var(--g);letter-spacing:4px;text-transform:uppercase;margin-bottom:10px">// Protección inmediata disponible</p>
-      <h2 style="font-family:var(--fh);font-size:clamp(1.6rem,4vw,2.6rem);color:var(--tx);margin-bottom:16px">¿Tu empresa está realmente <span style="color:var(--r)">segura</span>?</h2>
-      <p style="color:var(--txd);max-width:580px;margin:0 auto 32px;font-size:1rem;line-height:1.7">El 60% de las PyMEs que sufren un ciberataque cierran en menos de 6 meses. Una auditoría de NEXUM podría ser la diferencia entre seguir operando y perder todo.</p>
-      <div style="display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:28px">
-        <button class="btn" onclick="go('calculadora')" style="font-size:.85rem;padding:14px 28px;background:linear-gradient(135deg,var(--r),#aa0022);box-shadow:0 0 30px rgba(255,0,60,.3)"><i class="fas fa-exclamation-triangle"></i> Evalúa tu Riesgo GRATIS</button>
-        <a href="https://wa.me/51945366356?text=Hola%20Jair%2C%20quiero%20una%20consulta%20gratuita%20de%20seguridad" target="_blank" class="btn" style="font-size:.85rem;padding:14px 28px;background:#25d366;box-shadow:0 0 30px rgba(37,211,102,.3)"><i class="fab fa-whatsapp"></i> Consulta Gratuita Ahora</button>
-      </div>
-      <!-- Trust seals row -->
-      <div style="display:flex;justify-content:center;align-items:center;gap:24px;flex-wrap:wrap;opacity:.7">
-        <div style="display:flex;align-items:center;gap:7px;font-family:var(--fm);font-size:.65rem;color:var(--txd)"><i class="fas fa-shield-check" style="color:var(--g)"></i> Confidencialidad 100%</div>
-        <div style="display:flex;align-items:center;gap:7px;font-family:var(--fm);font-size:.65rem;color:var(--txd)"><i class="fas fa-clock" style="color:var(--c)"></i> Respuesta en &lt;24h</div>
-        <div style="display:flex;align-items:center;gap:7px;font-family:var(--fm);font-size:.65rem;color:var(--txd)"><i class="fas fa-award" style="color:var(--am)"></i> +5 años de experiencia</div>
-        <div style="display:flex;align-items:center;gap:7px;font-family:var(--fm);font-size:.65rem;color:var(--txd)"><i class="fas fa-check-circle" style="color:var(--g)"></i> Garantía de resultados</div>
-        <div style="display:flex;align-items:center;gap:7px;font-family:var(--fm);font-size:.65rem;color:var(--txd)"><i class="fab fa-whatsapp" style="color:#25d366"></i> Soporte por WhatsApp</div>
-      </div>
-    </div>
-    <div style="position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--g),var(--c),var(--g),transparent)"></div>
-  </section>
 
-  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 
@@ -1239,7 +1220,7 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
       </div>
     </div>
   </div>
-  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 
@@ -1267,7 +1248,7 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
       </div>
     </div>
   </div>
-  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 
@@ -1293,7 +1274,7 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
       </div>
     </div>
   </div>
-  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 
@@ -1319,7 +1300,7 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
       </div>
     </div>
   </div>
-  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 
@@ -1509,7 +1490,7 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
 
     </div>
   </section>
-  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 
@@ -1621,7 +1602,7 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
       </div>
     </div>
   </section>
-  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 
@@ -1684,7 +1665,7 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
       </button>
     </form>
   </div>
-  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 
@@ -1816,7 +1797,7 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
     </div>
   </div>
 
-  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://t.me/nexumsecurity" target="_blank"><i class="fab fa-telegram"></i> Telegram</a><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://t.me/nexumsecurity" target="_blank"><i class="fab fa-telegram"></i> Telegram</a><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 
@@ -1947,7 +1928,7 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
       <div id="miniAppContainer" style="margin-top:40px;display:none"></div>
     </div>
   </section>
-  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 
@@ -1986,7 +1967,7 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
       </a>
     </div>
   </div>
-  <footer class="foot"><div><div class="foot-logo">NEXUM</div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 
@@ -2113,7 +2094,7 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
       </div>
     </div>
   </div>
-  <footer class="foot"><div><div class="foot-logo">NEXUM</div><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 
@@ -2196,7 +2177,7 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
       </div>
     </div>
   </div>
-  <footer class="foot"><div><div class="foot-logo">NEXUM</div><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 
@@ -2277,7 +2258,7 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
       </div>
     </div>
   </div>
-  <footer class="foot"><div><div class="foot-logo">NEXUM</div><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 
@@ -2475,7 +2456,7 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
 
     </div>
   </section>
-  <footer class="foot"><div><div class="foot-logo">NEXUM</div><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 
@@ -2489,14 +2470,14 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
   <div class="chat-hdr">
     <div class="chat-av"><i class="fas fa-robot"></i></div>
     <div style="flex:1">
-      <h3>NEXUM IA</h3>
-      <span class="chat-st">Asistente de ciberseguridad</span>
+      <h3>NEXUM IA <span style="font-family:var(--fm);font-size:.5rem;color:var(--g);background:rgba(0,255,136,.12);padding:2px 7px;border-radius:8px;margin-left:4px;vertical-align:middle">Claude AI</span></h3>
+      <span class="chat-st">Inteligencia artificial avanzada</span>
     </div>
     <button class="chat-cls" onclick="toggleChat()"><i class="fas fa-times"></i></button>
   </div>
   <div class="chat-body" id="chatBody">
     <div class="msg bot">
-      ¡Hola! 👋 Soy el asistente IA de <strong>NEXUM</strong>. Puedo responder cualquier pregunta sobre ciberseguridad, desarrollo de software, precios, OSINT y más. ¿En qué te puedo ayudar hoy?
+      ¡Hola! 👋 Soy el asistente IA de <strong>NEXUM</strong>, potenciado por Claude de Anthropic. Puedo responder cualquier pregunta sobre ciberseguridad, desarrollo de software, precios, OSINT y más. ¿En qué puedo ayudarte hoy?
     </div>
   </div>
   <div class="chat-suggested" id="chatSuggested">
@@ -2512,7 +2493,7 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
 </div>
 
 <!-- CHAT LABEL (visible when closed) -->
-<div class="chat-btn-label" id="chatLabel">¿En qué te ayudo? 💬</div>
+
 
 <button class="chat-btn" id="chatBtn" onclick="toggleChat()" title="Asistente IA NEXUM" style="position:fixed">
   <i class="fas fa-robot"></i>
@@ -2566,15 +2547,16 @@ window.addEventListener('scroll',()=>document.getElementById('hdr').classList.to
 
 /* ── REVEAL ── */
 function initReveal(){
-  const obs = new IntersectionObserver((entries)=>{
+  if(location.protocol!=='https:'&&location.protocol!=='http:') return;
+  const obs=new IntersectionObserver((entries)=>{
     entries.forEach((e,i)=>{
       if(e.isIntersecting){
-        setTimeout(()=>e.target.classList.add('vis'),i*70);
+        setTimeout(()=>{e.target.classList.remove('hide');},i*70);
         obs.unobserve(e.target);
       }
     });
   },{threshold:0.1});
-  document.querySelectorAll('.rv:not(.vis)').forEach(el=>obs.observe(el));
+  document.querySelectorAll('.rv').forEach(el=>{el.classList.add('hide');obs.observe(el);});
 }
 initReveal();
 
@@ -3411,10 +3393,10 @@ const KB=[
 ];
 
 const fallbacks=[
-  '🤔 No tengo información específica sobre eso. ¿Puedes darme más detalles? También puedes revisar nuestras secciones de servicios o usar el cotizador en el menú.',
-  '📌 Esa consulta es más específica de lo que manejo aquí. Te recomiendo contactarnos directamente por WhatsApp: wa.me/51945366356 para una respuesta personalizada.',
-  '💡 No tengo datos precisos sobre ese tema. Prueba explorar el menú — tenemos secciones de Ciberseguridad, Desarrollo, Tutoriales y Herramientas gratuitas.',
-  '🛡️ Para ese tema en particular, lo mejor es hablarlo directamente con nuestro equipo. Contáctanos: wa.me/51945366356',
+  'Interesante. Para la respuesta más precisa, contáctale a Jair directamente: wa.me/51945366356 🔐 — responde personalmente y muy rápido.',
+  'Para ese tema específico, Jair puede orientarte mejor. WhatsApp: +51 945 366 356 😊',
+  'Esa consulta técnica requiere más contexto. Lo mejor es hablarlo con Jair: wa.me/51945366356 📲',
+  '¡Buena pregunta! Jair de NEXUM tiene la respuesta exacta para tu caso: wa.me/51945366356',
 ];
 
 function getReply(msg){
@@ -3430,10 +3412,8 @@ function getReply(msg){
 
 function toggleChat(){
   const box=document.getElementById('chatbox');
-  const lbl=document.getElementById('chatLabel');
   chatOpen=!chatOpen;
   box.classList.toggle('act',chatOpen);
-  if(lbl) lbl.style.display=chatOpen?'none':'block';
   if(chatOpen) document.getElementById('chatIn').focus();
 }
 
