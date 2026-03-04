@@ -157,25 +157,61 @@ img{max-width:100%;display:block}
 .risk-score-num{font-family:var(--fh);font-size:4rem;font-weight:900;line-height:1}
 .risk-score-lbl{font-family:var(--fm);font-size:.7rem;letter-spacing:3px;text-transform:uppercase;margin-top:4px;opacity:.7}
 
-/* ── QUOTE WIZARD ── */
-.quote-wrap{max-width:780px;margin:0 auto;padding:70px 5%}
-.quote-step{display:none;animation:fadeIn .3s ease}
+/* ── QUOTE WIZARD 2026 ── */
+.quote-wrap{max-width:860px;margin:0 auto;padding:70px 5%}
+.quote-step{display:none;animation:qStepIn .4s cubic-bezier(.34,1.56,.64,1)}
 .quote-step.active{display:block}
-.q-step-bar{display:flex;gap:8px;margin-bottom:36px}
-.q-step-dot{flex:1;height:4px;border-radius:2px;background:var(--br);transition:var(--tr)}
-.q-step-dot.done{background:var(--c)}
-.q-step-dot.active{background:var(--c);animation:pulse 1s ease-in-out infinite}
-.q-opt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;margin:20px 0}
-.q-opt{background:var(--cd);border:2px solid var(--br2);border-radius:var(--rl);padding:20px 16px;text-align:center;cursor:pointer;transition:var(--tr)}
-.q-opt:hover{border-color:var(--c3);transform:translateY(-3px)}
-.q-opt.sel{border-color:var(--c);background:var(--c2)}
-.q-opt i{font-size:2rem;color:var(--c);display:block;margin-bottom:10px}
-.q-opt span{font-family:var(--fh);font-size:.78rem;color:var(--tx);letter-spacing:1px}
-.q-opt p{font-family:var(--fm);font-size:.62rem;color:var(--txd);margin-top:4px}
-.quote-summary{background:var(--cd);border:1px solid var(--c3);border-radius:var(--rl);padding:28px;display:none}
-.quote-line{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--br2);font-family:var(--fm);font-size:.8rem}
+@keyframes qStepIn{from{opacity:0;transform:translateX(24px) scale(.98)}to{opacity:1;transform:none}}
+
+/* Progress bar — numbered nodes */
+.q-step-bar{display:flex;align-items:center;gap:0;margin-bottom:44px;position:relative}
+.q-step-bar::before{content:'';position:absolute;top:50%;left:0;right:0;height:2px;background:var(--br2);transform:translateY(-50%);z-index:0}
+.q-step-bar-fill{position:absolute;top:50%;left:0;height:2px;background:linear-gradient(90deg,var(--c),var(--g));transform:translateY(-50%);z-index:1;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.q-step-dot{flex:1;display:flex;flex-direction:column;align-items:center;gap:8px;position:relative;z-index:2}
+.q-step-node{width:36px;height:36px;border-radius:50%;background:var(--bg2);border:2px solid var(--br);display:flex;align-items:center;justify-content:center;font-family:var(--fm);font-size:.68rem;color:var(--txd);transition:all .4s cubic-bezier(.34,1.56,.64,1)}
+.q-step-dot.active .q-step-node{background:linear-gradient(135deg,var(--c),#00aadd);border-color:var(--c);color:var(--bg);font-weight:700;box-shadow:0 0 16px rgba(0,229,255,.5),0 0 40px rgba(0,229,255,.15)}
+.q-step-dot.done .q-step-node{background:linear-gradient(135deg,var(--g),#00bb66);border-color:var(--g);color:var(--bg)}
+.q-step-label{font-family:var(--fm);font-size:.55rem;color:var(--txf);text-transform:uppercase;letter-spacing:1.5px;transition:color .3s;white-space:nowrap}
+.q-step-dot.active .q-step-label{color:var(--c)}
+.q-step-dot.done .q-step-label{color:var(--g)}
+
+/* Step header */
+.q-step-header{margin-bottom:28px}
+.q-step-num{font-family:var(--fm);font-size:.6rem;color:var(--c);letter-spacing:3px;text-transform:uppercase;opacity:.7;margin-bottom:6px}
+.q-step-title{font-family:var(--fh);font-size:clamp(1rem,3vw,1.3rem);color:var(--tx);letter-spacing:1px;line-height:1.3}
+
+/* Option grid */
+.q-opt-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px;margin:0 0 8px}
+.q-opt{background:var(--cd2);border:1.5px solid var(--br2);border-radius:var(--rl);padding:22px 18px 18px;text-align:center;cursor:pointer;transition:all .25s cubic-bezier(.4,0,.2,1);position:relative;overflow:hidden;group:true}
+.q-opt::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 0%,rgba(0,229,255,.06),transparent 70%);opacity:0;transition:opacity .3s}
+.q-opt::after{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--c),transparent);transform:scaleX(0);transition:transform .3s cubic-bezier(.4,0,.2,1)}
+.q-opt:hover{border-color:var(--c3);transform:translateY(-4px);box-shadow:0 12px 40px rgba(0,0,0,.4),0 0 20px rgba(0,229,255,.08)}
+.q-opt:hover::before{opacity:1}
+.q-opt:hover::after{transform:scaleX(1)}
+.q-opt.sel{border-color:var(--c);background:rgba(0,229,255,.06);transform:translateY(-4px);box-shadow:0 0 0 1px var(--c),0 12px 40px rgba(0,0,0,.4),0 0 30px rgba(0,229,255,.12)}
+.q-opt.sel::before{opacity:1}
+.q-opt.sel::after{transform:scaleX(1)}
+.q-opt-icon{width:52px;height:52px;border-radius:14px;background:rgba(0,229,255,.07);border:1px solid var(--br2);display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:1.4rem;color:var(--c);transition:all .3s;position:relative}
+.q-opt.sel .q-opt-icon{background:rgba(0,229,255,.14);border-color:var(--c3);box-shadow:0 0 20px rgba(0,229,255,.2)}
+.q-opt-check{position:absolute;top:-6px;right:-6px;width:18px;height:18px;border-radius:50%;background:var(--g);display:none;align-items:center;justify-content:center;font-size:.5rem;color:var(--bg)}
+.q-opt.sel .q-opt-check{display:flex}
+.q-opt span{font-family:var(--fh);font-size:.76rem;color:var(--tx);letter-spacing:.5px;display:block;margin-bottom:5px}
+.q-opt p{font-family:var(--fm);font-size:.61rem;color:var(--txd);margin:0;line-height:1.5}
+.q-opt-tag{display:inline-block;font-family:var(--fm);font-size:.5rem;padding:2px 8px;border-radius:8px;margin-top:8px;background:rgba(0,229,255,.08);color:var(--c);border:1px solid var(--br2);text-transform:uppercase;letter-spacing:1px}
+
+/* Summary card */
+.quote-summary{background:var(--cd);border:1px solid var(--c3);border-radius:var(--rl);padding:0;display:none;overflow:hidden;animation:qStepIn .5s cubic-bezier(.34,1.56,.64,1)}
+.quote-summary-header{background:linear-gradient(135deg,rgba(0,229,255,.06),rgba(0,255,136,.03));border-bottom:1px solid var(--br2);padding:28px 28px 24px;position:relative;overflow:hidden}
+.quote-summary-header::before{content:'';position:absolute;top:-20px;right:-20px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(0,229,255,.08),transparent 70%)}
+.quote-summary-body{padding:24px 28px 28px}
+.quote-line{display:flex;justify-content:space-between;align-items:center;padding:13px 0;border-bottom:1px solid var(--br2);font-family:var(--fm);font-size:.78rem}
 .quote-line:last-child{border:none}
-.quote-total{font-family:var(--fh);font-size:2rem;color:var(--c);text-align:center;margin:20px 0;font-weight:900}
+.quote-line-key{color:var(--txd);display:flex;align-items:center;gap:8px}
+.quote-line-key i{width:18px;text-align:center;color:var(--txf)}
+.quote-total-wrap{background:linear-gradient(135deg,rgba(0,229,255,.05),rgba(0,255,136,.03));border:1px solid var(--c3);border-radius:var(--ra);padding:20px;text-align:center;margin:20px 0}
+.quote-total{font-family:var(--fh);font-size:clamp(1.8rem,5vw,2.8rem);color:var(--c);font-weight:900;line-height:1;text-shadow:0 0 30px rgba(0,229,255,.4)}
+.quote-total-sub{font-family:var(--fm);font-size:.62rem;color:var(--txd);letter-spacing:2px;text-transform:uppercase;margin-top:6px}
+.quote-disclaimer{background:rgba(255,196,0,.05);border:1px solid rgba(255,196,0,.15);border-radius:var(--ra);padding:10px 14px;font-family:var(--fm);font-size:.65rem;color:rgba(255,196,0,.75);display:flex;align-items:flex-start;gap:8px;margin-bottom:20px}
 
 /* ── METADATA EXTRACTOR ── */
 .meta-wrap{max-width:780px;margin:0 auto;padding:70px 5%}
@@ -860,7 +896,7 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
       <div class="ddmenu">
         <button class="dditem" onclick="go('cotizador')">
           <span class="dd-icon" style="background:rgba(0,255,136,.1);color:var(--g)"><i class="fas fa-calculator"></i></span>
-          Cotizador Inteligente
+          Calculadora Consultora de Precios Nexum
         </button>
         <button class="dditem" onclick="go('calculadora')">
           <span class="dd-icon" style="background:rgba(255,196,0,.1);color:var(--am)"><i class="fas fa-exclamation-triangle"></i></span>
@@ -1313,6 +1349,57 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
         </div>
       </div>
 
+      <!-- ══ BITCOIN — NEXUM ══ -->
+      <div class="rv" style="max-width:680px;margin:0 auto 30px;background:linear-gradient(135deg,rgba(247,147,26,.07),rgba(12,20,32,.9),rgba(247,147,26,.04));border:1px solid rgba(247,147,26,.22);border-radius:var(--rl);padding:32px 28px;position:relative;overflow:hidden">
+        <!-- Línea naranja top -->
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(247,147,26,.7),transparent)"></div>
+        <!-- Brillo ambiental fondo -->
+        <div style="position:absolute;top:-60px;right:-60px;width:200px;height:200px;border-radius:50%;background:radial-gradient(circle,rgba(247,147,26,.07),transparent 70%);pointer-events:none"></div>
+
+        <!-- Header -->
+        <div style="display:flex;align-items:center;gap:14px;margin-bottom:22px">
+          <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#f7931a,#c96a00);display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(247,147,26,.35);flex-shrink:0">
+            <i class="fab fa-bitcoin" style="color:#fff;font-size:1.3rem"></i>
+          </div>
+          <div style="text-align:left">
+            <p style="font-family:var(--fh);font-size:.8rem;color:#f7931a;letter-spacing:2px;text-transform:uppercase;margin-bottom:2px">Contribución · BTC</p>
+            <p style="font-family:var(--fm);font-size:.58rem;color:var(--txd);letter-spacing:1px">Si el trabajo de NEXUM te ha sido útil, puedes apoyar el proyecto.</p>
+          </div>
+        </div>
+
+        <!-- Layout: QR + dirección -->
+        <div style="display:flex;gap:24px;align-items:center;flex-wrap:wrap">
+          <!-- QR -->
+          <div style="flex-shrink:0;padding:3px;background:linear-gradient(135deg,rgba(247,147,26,.5),rgba(247,147,26,.1),rgba(247,147,26,.5));border-radius:14px">
+            <div style="background:#ffffff;border-radius:11px;padding:8px">
+              <img src="btc-nexum.jpg" alt="Bitcoin QR NEXUM" style="width:120px;height:120px;display:block;border-radius:6px"
+                onerror="this.parentElement.innerHTML='<div id=btc-qr-main></div>';(function(){try{new QRCode(document.getElementById('btc-qr-main'),{text:'1KgmdM7jADanzV1fy3NHBZYD5HZfE5L9Xg',width:120,height:120,colorDark:'#000000',colorLight:'#ffffff'});}catch(e){}})()">
+            </div>
+          </div>
+
+          <!-- Info dirección -->
+          <div style="flex:1;min-width:200px;text-align:left">
+            <p style="font-family:var(--fm);font-size:.58rem;color:rgba(247,147,26,.7);letter-spacing:3px;text-transform:uppercase;margin-bottom:8px">// Dirección Bitcoin</p>
+            <div onclick="copyBTC()" title="Clic para copiar dirección BTC"
+              style="cursor:pointer;background:rgba(0,0,0,.35);border:1px solid rgba(247,147,26,.18);border-radius:8px;padding:10px 14px;margin-bottom:12px;transition:all .25s"
+              onmouseover="this.style.borderColor='rgba(247,147,26,.5)';this.style.background='rgba(247,147,26,.05)'"
+              onmouseout="this.style.borderColor='rgba(247,147,26,.18)';this.style.background='rgba(0,0,0,.35)'">
+              <p style="font-family:var(--fm);font-size:.62rem;color:var(--tx);word-break:break-all;line-height:1.7;margin-bottom:4px">1KgmdM7jADanzV1fy3NHBZYD5HZfE5L9Xg</p>
+              <p style="font-family:var(--fm);font-size:.55rem;color:rgba(247,147,26,.5)"><i class="fas fa-copy"></i> &nbsp;Clic para copiar</p>
+            </div>
+            <div style="display:flex;gap:8px;flex-wrap:wrap">
+              <span style="font-family:var(--fm);font-size:.58rem;color:var(--txd);display:flex;align-items:center;gap:5px"><i class="fas fa-lock" style="color:rgba(247,147,26,.6)"></i> Red Bitcoin · BTC</span>
+              <span style="font-family:var(--fm);font-size:.58rem;color:var(--txd);display:flex;align-items:center;gap:5px"><i class="fas fa-shield-alt" style="color:rgba(247,147,26,.6)"></i> Dirección verificada</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Copied toast -->
+        <div id="btc-copied" style="display:none;margin-top:14px;font-family:var(--fm);font-size:.65rem;color:#f7931a;text-align:center;background:rgba(247,147,26,.08);border:1px solid rgba(247,147,26,.2);border-radius:6px;padding:7px">
+          <i class="fas fa-check-circle"></i> &nbsp;Dirección copiada al portapapeles
+        </div>
+      </div>
+
       <!-- Facebook Community -->
       <div class="rv" style="background:linear-gradient(135deg,rgba(24,119,242,.08),rgba(0,40,100,.05));border:1px solid rgba(24,119,242,.25);border-radius:var(--rl);padding:28px;display:flex;align-items:center;gap:22px;margin-bottom:30px;flex-wrap:wrap">
         <div style="width:56px;height:56px;background:linear-gradient(135deg,#1877f2,#0a5bcc);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;color:#fff;flex-shrink:0"><i class="fab fa-facebook-f"></i></div>
@@ -1321,6 +1408,89 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
           <div style="font-family:var(--fb);font-size:.88rem;color:var(--txd)">Grupo gratuito donde Jair comparte alertas, consejos de seguridad y ayuda a la comunidad peruana.</div>
         </div>
         <a href="https://www.facebook.com/share/g/1K3xjqkLwb/" target="_blank" class="btn" style="background:#1877f2;flex-shrink:0"><i class="fab fa-facebook-f"></i> Unirse Gratis</a>
+      </div>
+
+      <!-- ══ TELEGRAM PREMIUM ══ -->
+      <div class="rv" style="background:linear-gradient(135deg,rgba(0,136,204,.09),rgba(0,60,100,.05),rgba(0,229,255,.03));border:1px solid rgba(0,136,204,.3);border-radius:var(--rl);padding:0;margin-bottom:30px;overflow:hidden;position:relative">
+
+        <!-- Línea top cyan/telegram -->
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#0088cc,var(--c),#0088cc,transparent)"></div>
+
+        <!-- Badge PREMIUM arriba -->
+        <div style="background:linear-gradient(135deg,rgba(0,136,204,.15),rgba(0,229,255,.07));padding:18px 28px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+          <div style="display:flex;align-items:center;gap:10px">
+            <div style="width:44px;height:44px;background:linear-gradient(135deg,#0088cc,#006699);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff;flex-shrink:0;box-shadow:0 0 18px rgba(0,136,204,.4)"><i class="fab fa-telegram-plane"></i></div>
+            <div>
+              <div style="font-family:var(--fh);font-size:.85rem;color:#fff;letter-spacing:2px">NEXUM PREMIUM</div>
+              <div style="font-family:var(--fm);font-size:.55rem;color:rgba(0,229,255,.7);letter-spacing:2px;text-transform:uppercase">Canal privado · Telegram</div>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px">
+            <div style="background:linear-gradient(135deg,var(--c),#0088cc);color:var(--bg);font-family:var(--fh);font-size:.7rem;font-weight:900;padding:5px 14px;border-radius:20px;letter-spacing:2px">S/ 20 / mes</div>
+            <div style="background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:#00ff88;font-family:var(--fm);font-size:.55rem;padding:4px 10px;border-radius:20px;letter-spacing:1px;display:flex;align-items:center;gap:5px"><span class="live-dot"></span> ACTIVO</div>
+          </div>
+        </div>
+
+        <!-- Contenido principal -->
+        <div style="padding:20px 28px 26px;display:grid;grid-template-columns:1fr 1fr;gap:20px">
+
+          <!-- Izquierda: qué incluye -->
+          <div>
+            <p style="font-family:var(--fm);font-size:.58rem;color:var(--c);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px">// Qué obtienes</p>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <div style="display:flex;align-items:flex-start;gap:10px">
+                <div style="width:28px;height:28px;background:rgba(0,136,204,.15);border:1px solid rgba(0,136,204,.3);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.8rem"><i class="fas fa-tools" style="color:#0088cc"></i></div>
+                <div><p style="font-family:var(--fh);font-size:.72rem;color:var(--tx);margin-bottom:2px">Herramientas exclusivas</p><p style="font-family:var(--fm);font-size:.6rem;color:var(--txd)">Scripts, utilidades y software de seguridad listos para usar</p></div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px">
+                <div style="width:28px;height:28px;background:rgba(0,136,204,.15);border:1px solid rgba(0,136,204,.3);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.8rem"><i class="fas fa-file-download" style="color:#0088cc"></i></div>
+                <div><p style="font-family:var(--fh);font-size:.72rem;color:var(--tx);margin-bottom:2px">Recursos descargables</p><p style="font-family:var(--fm);font-size:.6rem;color:var(--txd)">PDFs, plantillas, checklists y guías de ciberseguridad</p></div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px">
+                <div style="width:28px;height:28px;background:rgba(0,136,204,.15);border:1px solid rgba(0,136,204,.3);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.8rem"><i class="fas fa-bell" style="color:#0088cc"></i></div>
+                <div><p style="font-family:var(--fh);font-size:.72rem;color:var(--tx);margin-bottom:2px">Alertas anticipadas</p><p style="font-family:var(--fm);font-size:.6rem;color:var(--txd)">Nuevas amenazas y vulnerabilidades antes que en redes sociales</p></div>
+              </div>
+              <div style="display:flex;align-items:flex-start;gap:10px">
+                <div style="width:28px;height:28px;background:rgba(0,136,204,.15);border:1px solid rgba(0,136,204,.3);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:.8rem"><i class="fas fa-user-shield" style="color:#0088cc"></i></div>
+                <div><p style="font-family:var(--fh);font-size:.72rem;color:var(--tx);margin-bottom:2px">Acceso directo a Jair</p><p style="font-family:var(--fm);font-size:.6rem;color:var(--txd)">Soporte y consultas con respuesta prioritaria</p></div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Derecha: cómo unirse -->
+          <div style="display:flex;flex-direction:column;justify-content:space-between">
+            <div>
+              <p style="font-family:var(--fm);font-size:.58rem;color:var(--c);letter-spacing:3px;text-transform:uppercase;margin-bottom:14px">// Cómo unirte</p>
+              <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:18px">
+                <div style="display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.2);border-radius:8px;padding:10px 12px">
+                  <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--c),#0088cc);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:.6rem;color:var(--bg);font-weight:900;flex-shrink:0">1</div>
+                  <p style="font-family:var(--fm);font-size:.63rem;color:var(--txd)">Escríbeme al WhatsApp</p>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.2);border-radius:8px;padding:10px 12px">
+                  <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--c),#0088cc);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:.6rem;color:var(--bg);font-weight:900;flex-shrink:0">2</div>
+                  <p style="font-family:var(--fm);font-size:.63rem;color:var(--txd)">Paga S/20 por Yape, Plin o BTC</p>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;background:rgba(0,0,0,.2);border-radius:8px;padding:10px 12px">
+                  <div style="width:22px;height:22px;border-radius:50%;background:linear-gradient(135deg,var(--c),#0088cc);display:flex;align-items:center;justify-content:center;font-family:var(--fh);font-size:.6rem;color:var(--bg);font-weight:900;flex-shrink:0">3</div>
+                  <p style="font-family:var(--fm);font-size:.63rem;color:var(--txd)">Recibe acceso inmediato al canal</p>
+                </div>
+              </div>
+            </div>
+            <a href="https://wa.me/51945366356?text=Hola%20Jair%2C%20quiero%20unirme%20al%20canal%20NEXUM%20Premium%20de%20Telegram" target="_blank"
+              style="display:flex;align-items:center;justify-content:center;gap:10px;background:linear-gradient(135deg,#0088cc,#006699);color:#fff;font-family:var(--fh);font-size:.72rem;font-weight:700;padding:13px 20px;border-radius:var(--ra);text-decoration:none;letter-spacing:1.5px;text-transform:uppercase;box-shadow:0 0 20px rgba(0,136,204,.3);transition:all .3s"
+              onmouseover="this.style.boxShadow='0 0 30px rgba(0,136,204,.5)';this.style.transform='translateY(-2px)'"
+              onmouseout="this.style.boxShadow='0 0 20px rgba(0,136,204,.3)';this.style.transform='none'">
+              <i class="fab fa-whatsapp" style="font-size:1rem"></i> Quiero unirme — S/20/mes
+            </a>
+          </div>
+        </div>
+
+        <!-- Footer de la card -->
+        <div style="background:rgba(0,0,0,.2);border-top:1px solid rgba(0,136,204,.15);padding:10px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px">
+          <span style="font-family:var(--fm);font-size:.58rem;color:var(--txd);display:flex;align-items:center;gap:6px"><i class="fas fa-lock" style="color:var(--c)"></i> Canal 100% privado</span>
+          <span style="font-family:var(--fm);font-size:.58rem;color:var(--txd);display:flex;align-items:center;gap:6px"><i class="fas fa-sync-alt" style="color:var(--c)"></i> Contenido nuevo cada semana</span>
+          <span style="font-family:var(--fm);font-size:.58rem;color:var(--txd);display:flex;align-items:center;gap:6px"><i class="fas fa-times-circle" style="color:var(--c)"></i> Cancela cuando quieras</span>
+        </div>
       </div>
       <div class="cta-banner rv">
         <h2>¿Listo para Blindar tu Negocio Digital?</h2>
@@ -1344,14 +1514,23 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
         <a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
         <a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a>
         <a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        <a href="https://wa.me/51945366356?text=Hola%20Jair%2C%20quiero%20unirme%20al%20canal%20NEXUM%20Premium%20de%20Telegram" target="_blank" style="color:#0088cc;border-color:rgba(0,136,204,.3)"><i class="fab fa-telegram-plane"></i> Premium</a>
       </div>
       <p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">
         <i class="fas fa-user-tie" style="color:var(--c)"></i> Jair Muñoz Candela &nbsp;|&nbsp; 
         <i class="fas fa-phone" style="color:var(--c)"></i> +51 945 366 356
       </p>
+
       <p class="copy">// NEXUM — CIBERSEGURIDAD &amp; SOFTWARE &copy; 2025 //</p>
     </div>
   </footer>
+  <script>
+  function copyBTC(){
+    var addr='1KgmdM7jADanzV1fy3NHBZYD5HZfE5L9Xg';
+    var show=function(){var el=document.getElementById('btc-copied');if(el){el.style.display='block';setTimeout(function(){el.style.display='none';},3000);}};
+    navigator.clipboard?navigator.clipboard.writeText(addr).then(show).catch(function(){var t=document.createElement('textarea');t.value=addr;document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);show();}):function(){var t=document.createElement('textarea');t.value=addr;document.body.appendChild(t);t.select();document.execCommand('copy');document.body.removeChild(t);show();}();
+  }
+  </script>
 </div>
 
 
@@ -1464,6 +1643,20 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
       <div class="fitem rv"><div class="ficon"><i class="fas fa-robot"></i></div><div class="fcont"><h3>Automatización e Inteligencia Artificial</h3><p>Bots, scripts de automatización y soluciones con IA para optimizar procesos de negocio. Integración con APIs de ChatGPT, Claude y otros modelos de lenguaje.</p></div></div>
       <div class="fitem rv"><div class="ficon"><i class="fas fa-database"></i></div><div class="fcont"><h3>Bases de Datos y Migración</h3><p>Diseño, optimización y migración de bases de datos relacionales (PostgreSQL, MySQL) y no relacionales (MongoDB, Redis) con énfasis en seguridad y rendimiento.</p></div></div>
     </div>
+    <!-- HOSTINGER AFFILIATE BANNER -->
+    <div style="margin:32px 0;background:linear-gradient(135deg,rgba(127,0,255,.1),rgba(0,229,255,.06));border:1px solid rgba(127,0,255,.3);border-radius:var(--rl);padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:14px">
+        <div style="width:40px;height:40px;background:linear-gradient(135deg,#7f00ff,#b44fff);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem">🚀</div>
+        <div>
+          <p style="font-family:var(--fh);font-size:.82rem;color:#fff;letter-spacing:1px;margin-bottom:3px">¿Necesitas hosting para tu proyecto?</p>
+          <p style="font-family:var(--fm);font-size:.67rem;color:var(--txd)">El hosting que usa NEXUM — rápido, seguro y con soporte 24/7. Hasta 80% de descuento.</p>
+        </div>
+      </div>
+      <a href="https://www.hostinger.com/es?REFERRALCODE=TZ3MUNOZC17B" target="_blank" rel="noopener" style="font-family:var(--fm);font-size:.73rem;font-weight:700;background:linear-gradient(135deg,#7f00ff,#b44fff);color:#fff;padding:10px 20px;border-radius:var(--ra);white-space:nowrap;letter-spacing:1px;text-decoration:none;box-shadow:0 0 20px rgba(127,0,255,.4);transition:var(--tr);display:inline-block" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 0 30px rgba(127,0,255,.6)'" onmouseout="this.style.transform='';this.style.boxShadow='0 0 20px rgba(127,0,255,.4)'">
+        🚀 Ver Planes Hostinger
+      </a>
+    </div>
+
     <div class="cta-sec rv">
       <p>¿Tiene un proyecto digital en mente? Hablemos.</p>
       <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
@@ -2282,6 +2475,20 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
       </div>
     </div>
 
+    <!-- NORDVPN AFFILIATE BANNER -->
+    <div style="margin-top:28px;background:linear-gradient(135deg,rgba(62,87,255,.1),rgba(0,229,255,.06));border:1px solid rgba(62,87,255,.3);border-radius:var(--rl);padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <div style="display:flex;align-items:center;gap:14px">
+        <div style="width:40px;height:40px;background:linear-gradient(135deg,#3e57ff,#00e5ff);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem">🛡️</div>
+        <div>
+          <p style="font-family:var(--fh);font-size:.82rem;color:#fff;letter-spacing:1px;margin-bottom:3px">¿Tu IP está expuesta? Protégete ahora</p>
+          <p style="font-family:var(--fm);font-size:.67rem;color:var(--txd)">La VPN que usamos y recomendamos en NEXUM — cifrado militar, sin logs, 7,400+ servidores.</p>
+        </div>
+      </div>
+      <a href="https://my.nordaccount.com/es/referral/?_gl=1*1b7mxvp*_gcl_aw*R0NMLjE3NzI1MzEyNTkuQ2p3S0NBaUFxcHJOQmhCNkVpd0FNZTN5aHBBWjVpMWhwSGtxY2c5dGF6bEZDWnhzZjRwMUxHcF93VTU0Y0pVNEhRb25rMVl1TEZtQmJ4b0NDcWtRQXZEX0J3RQ..*FPAU*Nzg3OTEzMjYzLjE3NzI1MzEyNjU.*_ga*Njk2MTUyNDc0LjE3NzI1MzEyNTk.*_ga_LEXMJ1N516*czE3NzI1MzEyNTkkbzEkZzEkdDE3NzI1MzE3MTUkajU5JGwwJGgwJGRsXzZmYkVZYjVLSm1KZkQtTGZwOE9ZRVBaMnplT2ZmM1d3&nv_tri=TC_5083550425046124_1772531257421&nv_trs=1772531257435_1772531716798_1_205" target="_blank" rel="noopener" style="font-family:var(--fm);font-size:.73rem;font-weight:700;background:linear-gradient(135deg,#3e57ff,#6b7fff);color:#fff;padding:10px 20px;border-radius:var(--ra);white-space:nowrap;letter-spacing:1px;text-decoration:none;box-shadow:0 0 20px rgba(62,87,255,.4);transition:var(--tr);display:inline-block" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 0 30px rgba(62,87,255,.6)'" onmouseout="this.style.transform='';this.style.boxShadow='0 0 20px rgba(62,87,255,.4)'">
+        🔒 Obtener NordVPN
+      </a>
+    </div>
+
     <!-- DISCLAIMER -->
     <div style="margin-top:30px;background:rgba(255,107,53,.05);border:1px solid rgba(255,107,53,.2);border-radius:var(--rl);padding:18px 22px">
       <p style="font-family:var(--fm);font-size:.68rem;color:rgba(255,107,53,.8)"><i class="fas fa-balance-scale"></i> <strong>Uso ético exclusivo.</strong> Estas herramientas consultan APIs públicas con fines de investigación legítima, ciberseguridad defensiva y educación. No uses estos datos para actividades ilegales.</p>
@@ -2420,82 +2627,213 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
 <div class="page" id="p-cotizador">
   <div class="quote-wrap">
     <button class="back-btn" onclick="go('home')"><i class="fas fa-arrow-left"></i> Volver</button>
-    <div style="text-align:center;margin-bottom:40px">
-      <h1 style="font-family:var(--fh);font-size:clamp(1.6rem,4vw,2.4rem);color:var(--g);text-transform:uppercase;letter-spacing:2px;text-shadow:0 0 30px rgba(0,255,136,.3)"><i class="fas fa-calculator"></i> Cotizador Inteligente</h1>
-      <div class="divdr" style="background:linear-gradient(90deg,var(--g),transparent);margin:12px auto 16px"></div>
-      <p style="color:var(--txd);max-width:580px;margin:0 auto">Obtén un presupuesto estimado en menos de 1 minuto. Sin compromiso, sin spam — solo una guía de precios para tu proyecto.</p>
+
+    <!-- Hero header -->
+    <div style="text-align:center;margin-bottom:48px">
+      <div style="display:inline-flex;align-items:center;gap:10px;background:rgba(0,255,136,.06);border:1px solid rgba(0,255,136,.2);border-radius:30px;padding:6px 18px;margin-bottom:18px">
+        <span style="width:7px;height:7px;border-radius:50%;background:var(--g);box-shadow:0 0 8px var(--g);animation:pulse 1.5s ease-in-out infinite;display:block"></span>
+        <span style="font-family:var(--fm);font-size:.6rem;color:var(--g);letter-spacing:2px;text-transform:uppercase">Calculadora en línea · Sin compromiso</span>
+      </div>
+      <h1 style="font-family:var(--fh);font-size:clamp(1.8rem,4vw,2.6rem);color:var(--tx);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px">
+        Calculadora Consultora de <span style="color:var(--g);text-shadow:0 0 30px rgba(0,255,136,.4)">Precios Nexum</span>
+      </h1>
+      <p style="color:var(--txd);max-width:520px;margin:0 auto;font-size:.95rem;line-height:1.7">Responde 4 preguntas y obtén un rango de precio para tu proyecto en menos de 60 segundos.</p>
     </div>
 
-    <div class="q-step-bar">
-      <div class="q-step-dot active" id="qd1"></div>
-      <div class="q-step-dot" id="qd2"></div>
-      <div class="q-step-dot" id="qd3"></div>
-      <div class="q-step-dot" id="qd4"></div>
+    <!-- Step progress — numbered nodes -->
+    <div class="q-step-bar" id="qStepBar">
+      <div class="q-step-bar-fill" id="qBarFill" style="width:12.5%"></div>
+      <div class="q-step-dot active" id="qd1">
+        <div class="q-step-node" id="qn1">1</div>
+        <span class="q-step-label">Servicio</span>
+      </div>
+      <div class="q-step-dot" id="qd2">
+        <div class="q-step-node" id="qn2">2</div>
+        <span class="q-step-label">Empresa</span>
+      </div>
+      <div class="q-step-dot" id="qd3">
+        <div class="q-step-node" id="qn3">3</div>
+        <span class="q-step-label">Urgencia</span>
+      </div>
+      <div class="q-step-dot" id="qd4">
+        <div class="q-step-node" id="qn4">4</div>
+        <span class="q-step-label">Presupuesto</span>
+      </div>
     </div>
 
     <!-- Step 1: Tipo de servicio -->
     <div class="quote-step active" id="qs1">
-      <h3 style="font-family:var(--fh);font-size:1rem;color:var(--tx);margin-bottom:6px;letter-spacing:1px">¿Qué tipo de servicio necesitas?</h3>
-      <p style="color:var(--txd);font-size:.85rem;margin-bottom:16px">Paso 1 de 4</p>
+      <div class="q-step-header">
+        <div class="q-step-num">// PASO 01 DE 04</div>
+        <h3 class="q-step-title">¿Qué tipo de servicio necesitas?</h3>
+      </div>
       <div class="q-opt-grid">
-        <div class="q-opt" onclick="selectQ(1,'Ciberseguridad / Pentesting','ciber')"><i class="fas fa-shield-alt"></i><span>Ciberseguridad</span><p>Auditorías, pentesting, forense</p></div>
-        <div class="q-opt" onclick="selectQ(1,'Desarrollo Web','web')"><i class="fas fa-globe"></i><span>Desarrollo Web</span><p>Sitios, apps, e-commerce</p></div>
-        <div class="q-opt" onclick="selectQ(1,'App Móvil','movil')"><i class="fas fa-mobile-alt"></i><span>App Móvil</span><p>iOS, Android, Flutter</p></div>
-        <div class="q-opt" onclick="selectQ(1,'Consultoría Integral','consul')"><i class="fas fa-brain"></i><span>Consultoría</span><p>ISO 27001, GDPR, IRP</p></div>
-        <div class="q-opt" onclick="selectQ(1,'Software a Medida','custom')"><i class="fas fa-code"></i><span>Software Custom</span><p>Sistemas, APIs, Backend</p></div>
-        <div class="q-opt" onclick="selectQ(1,'Cloud / DevOps','cloud')"><i class="fas fa-cloud"></i><span>Cloud / DevOps</span><p>AWS, Azure, CI/CD</p></div>
+        <div class="q-opt" onclick="selectQ(1,'Ciberseguridad / Pentesting','ciber')">
+          <div class="q-opt-icon"><i class="fas fa-shield-alt"></i><span class="q-opt-check"><i class="fas fa-check"></i></span></div>
+          <span>Ciberseguridad</span><p>Auditorías, pentesting, forense digital</p>
+          <span class="q-opt-tag">Más solicitado</span>
+        </div>
+        <div class="q-opt" onclick="selectQ(1,'Desarrollo Web','web')">
+          <div class="q-opt-icon"><i class="fas fa-globe"></i><span class="q-opt-check"><i class="fas fa-check"></i></span></div>
+          <span>Desarrollo Web</span><p>Sitios, apps web, e-commerce</p>
+        </div>
+        <div class="q-opt" onclick="selectQ(1,'App Móvil','movil')">
+          <div class="q-opt-icon"><i class="fas fa-mobile-alt"></i><span class="q-opt-check"><i class="fas fa-check"></i></span></div>
+          <span>App Móvil</span><p>iOS, Android, Flutter multiplataforma</p>
+        </div>
+        <div class="q-opt" onclick="selectQ(1,'Consultoría Integral','consul')">
+          <div class="q-opt-icon"><i class="fas fa-brain"></i><span class="q-opt-check"><i class="fas fa-check"></i></span></div>
+          <span>Consultoría</span><p>ISO 27001, GDPR, IRP, políticas</p>
+        </div>
+        <div class="q-opt" onclick="selectQ(1,'Software a Medida','custom')">
+          <div class="q-opt-icon"><i class="fas fa-code"></i><span class="q-opt-check"><i class="fas fa-check"></i></span></div>
+          <span>Software Custom</span><p>Sistemas internos, APIs, Backend</p>
+        </div>
+        <div class="q-opt" onclick="selectQ(1,'Cloud / DevOps','cloud')">
+          <div class="q-opt-icon"><i class="fas fa-cloud"></i><span class="q-opt-check"><i class="fas fa-check"></i></span></div>
+          <span>Cloud / DevOps</span><p>AWS, Azure, CI/CD, infraestructura</p>
+        </div>
       </div>
     </div>
 
     <!-- Step 2: Tamaño empresa -->
     <div class="quote-step" id="qs2">
-      <h3 style="font-family:var(--fh);font-size:1rem;color:var(--tx);margin-bottom:6px;letter-spacing:1px">¿Cuál es el tamaño de tu organización?</h3>
-      <p style="color:var(--txd);font-size:.85rem;margin-bottom:16px">Paso 2 de 4</p>
-      <div class="q-opt-grid">
-        <div class="q-opt" onclick="selectQ(2,'Freelancer / Personal','solo')"><i class="fas fa-user"></i><span>Solo / Freelancer</span><p>1 persona</p></div>
-        <div class="q-opt" onclick="selectQ(2,'Startup / PyME','sme')"><i class="fas fa-users"></i><span>Startup / PyME</span><p>2 – 50 personas</p></div>
-        <div class="q-opt" onclick="selectQ(2,'Empresa Mediana','mid')"><i class="fas fa-building"></i><span>Mediana</span><p>50 – 200 personas</p></div>
-        <div class="q-opt" onclick="selectQ(2,'Corporación / Enterprise','ent')"><i class="fas fa-city"></i><span>Corporativa</span><p>200+ personas</p></div>
+      <div class="q-step-header">
+        <div class="q-step-num">// PASO 02 DE 04</div>
+        <h3 class="q-step-title">¿Cuál es el tamaño de tu organización?</h3>
+      </div>
+      <div class="q-opt-grid" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+        <div class="q-opt" onclick="selectQ(2,'Freelancer / Personal','solo')">
+          <div class="q-opt-icon"><i class="fas fa-user"></i><span class="q-opt-check"><i class="fas fa-check"></i></span></div>
+          <span>Solo / Freelancer</span><p>1 persona, proyecto propio</p>
+        </div>
+        <div class="q-opt" onclick="selectQ(2,'Startup / PyME','sme')">
+          <div class="q-opt-icon"><i class="fas fa-users"></i><span class="q-opt-check"><i class="fas fa-check"></i></span></div>
+          <span>Startup / PyME</span><p>2 – 50 colaboradores</p>
+        </div>
+        <div class="q-opt" onclick="selectQ(2,'Empresa Mediana','mid')">
+          <div class="q-opt-icon"><i class="fas fa-building"></i><span class="q-opt-check"><i class="fas fa-check"></i></span></div>
+          <span>Empresa Mediana</span><p>50 – 200 colaboradores</p>
+        </div>
+        <div class="q-opt" onclick="selectQ(2,'Corporación / Enterprise','ent')">
+          <div class="q-opt-icon"><i class="fas fa-city"></i><span class="q-opt-check"><i class="fas fa-check"></i></span></div>
+          <span>Corporativa</span><p>200+ colaboradores</p>
+          <span class="q-opt-tag">Enterprise</span>
+        </div>
       </div>
     </div>
 
     <!-- Step 3: Urgencia -->
     <div class="quote-step" id="qs3">
-      <h3 style="font-family:var(--fh);font-size:1rem;color:var(--tx);margin-bottom:6px;letter-spacing:1px">¿Cuál es el nivel de urgencia?</h3>
-      <p style="color:var(--txd);font-size:.85rem;margin-bottom:16px">Paso 3 de 4</p>
-      <div class="q-opt-grid">
-        <div class="q-opt" onclick="selectQ(3,'Urgente — esta semana','urgent')"><i class="fas fa-fire" style="color:var(--r)"></i><span style="color:var(--r)">Urgente</span><p>Esta semana</p></div>
-        <div class="q-opt" onclick="selectQ(3,'Pronto — este mes','soon')"><i class="fas fa-clock" style="color:var(--am)"></i><span style="color:var(--am)">Pronto</span><p>Este mes</p></div>
-        <div class="q-opt" onclick="selectQ(3,'Normal — sin prisa','normal')"><i class="fas fa-calendar" style="color:var(--c)"></i><span>Normal</span><p>1-3 meses</p></div>
-        <div class="q-opt" onclick="selectQ(3,'Explorando opciones','explore')"><i class="fas fa-search"></i><span>Explorando</span><p>Sin fecha definida</p></div>
+      <div class="q-step-header">
+        <div class="q-step-num">// PASO 03 DE 04</div>
+        <h3 class="q-step-title">¿Cuál es el nivel de urgencia?</h3>
+      </div>
+      <div class="q-opt-grid" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+        <div class="q-opt" onclick="selectQ(3,'Urgente — esta semana','urgent')" style="--accent:var(--r)">
+          <div class="q-opt-icon" style="color:var(--r);background:rgba(255,0,60,.08);border-color:rgba(255,0,60,.2)"><i class="fas fa-fire"></i><span class="q-opt-check"><i class="fas fa-check"></i></span></div>
+          <span style="color:var(--r)">Urgente</span><p>Esta semana · +20% tarifa</p>
+          <span class="q-opt-tag" style="background:rgba(255,0,60,.08);color:var(--r);border-color:rgba(255,0,60,.2)">Prioritario</span>
+        </div>
+        <div class="q-opt" onclick="selectQ(3,'Pronto — este mes','soon')">
+          <div class="q-opt-icon" style="color:var(--am);background:rgba(255,196,0,.08);border-color:rgba(255,196,0,.2)"><i class="fas fa-clock"></i><span class="q-opt-check"><i class="fas fa-check"></i></span></div>
+          <span style="color:var(--am)">Pronto</span><p>Este mes · +5% tarifa</p>
+        </div>
+        <div class="q-opt" onclick="selectQ(3,'Normal — sin prisa','normal')">
+          <div class="q-opt-icon"><i class="fas fa-calendar-check"></i><span class="q-opt-check"><i class="fas fa-check"></i></span></div>
+          <span>Planificado</span><p>1 – 3 meses · Precio estándar</p>
+          <span class="q-opt-tag">Recomendado</span>
+        </div>
+        <div class="q-opt" onclick="selectQ(3,'Explorando opciones','explore')">
+          <div class="q-opt-icon"><i class="fas fa-search"></i><span class="q-opt-check"><i class="fas fa-check"></i></span></div>
+          <span>Explorando</span><p>Sin fecha definida aún</p>
+        </div>
       </div>
     </div>
 
     <!-- Step 4: Presupuesto -->
     <div class="quote-step" id="qs4">
-      <h3 style="font-family:var(--fh);font-size:1rem;color:var(--tx);margin-bottom:6px;letter-spacing:1px">¿Cuál es tu presupuesto aproximado?</h3>
-      <p style="color:var(--txd);font-size:.85rem;margin-bottom:16px">Paso 4 de 4 — Última pregunta</p>
-      <div class="q-opt-grid">
-        <div class="q-opt" onclick="selectQ(4,'Menos de $200 USD','low')"><i class="fas fa-dollar-sign"></i><span>Hasta $200</span><p>USD</p></div>
-        <div class="q-opt" onclick="selectQ(4,'$200 – $500 USD','mid')"><i class="fas fa-dollar-sign"></i><span>$200 – $500</span><p>USD</p></div>
-        <div class="q-opt" onclick="selectQ(4,'$500 – $1,500 USD','high')"><i class="fas fa-dollar-sign"></i><span>$500 – $1,500</span><p>USD</p></div>
-        <div class="q-opt" onclick="selectQ(4,'Más de $1,500 USD','vhigh')"><i class="fas fa-dollar-sign"></i><span>$1,500+</span><p>USD</p></div>
+      <div class="q-step-header">
+        <div class="q-step-num">// PASO 04 DE 04 — ÚLTIMA PREGUNTA</div>
+        <h3 class="q-step-title">¿Cuál es tu presupuesto aproximado?</h3>
+      </div>
+      <div class="q-opt-grid" style="grid-template-columns:repeat(auto-fill,minmax(180px,1fr))">
+        <div class="q-opt" onclick="selectQ(4,'Menos de $200 USD','low')">
+          <div class="q-opt-icon"><i class="fas fa-coins"></i><span class="q-opt-check"><i class="fas fa-check"></i></span></div>
+          <span>Hasta $200</span><p>USD · Proyectos básicos</p>
+        </div>
+        <div class="q-opt" onclick="selectQ(4,'$200 – $500 USD','mid')">
+          <div class="q-opt-icon"><i class="fas fa-dollar-sign"></i><span class="q-opt-check"><i class="fas fa-check"></i></span></div>
+          <span>$200 – $500</span><p>USD · PyME y startups</p>
+          <span class="q-opt-tag">Más común</span>
+        </div>
+        <div class="q-opt" onclick="selectQ(4,'$500 – $1,500 USD','high')">
+          <div class="q-opt-icon"><i class="fas fa-chart-bar"></i><span class="q-opt-check"><i class="fas fa-check"></i></span></div>
+          <span>$500 – $1,500</span><p>USD · Proyectos medianos</p>
+        </div>
+        <div class="q-opt" onclick="selectQ(4,'Más de $1,500 USD','vhigh')">
+          <div class="q-opt-icon" style="color:var(--am);background:rgba(255,196,0,.07);border-color:rgba(255,196,0,.2)"><i class="fas fa-gem"></i><span class="q-opt-check"><i class="fas fa-check"></i></span></div>
+          <span>$1,500+</span><p>USD · Enterprise / complejo</p>
+          <span class="q-opt-tag" style="background:rgba(255,196,0,.08);color:var(--am);border-color:rgba(255,196,0,.2)">Premium</span>
+        </div>
       </div>
     </div>
 
     <!-- Quote Summary -->
     <div class="quote-summary" id="quoteSummary">
-      <h3 style="font-family:var(--fh);font-size:1.1rem;color:var(--g);text-align:center;letter-spacing:2px;margin-bottom:20px"><i class="fas fa-file-invoice-dollar"></i> Tu Cotización Estimada</h3>
-      <div id="quoteLines"></div>
-      <div class="quote-total" id="quoteTotal">$0 USD</div>
-      <p style="font-family:var(--fm);font-size:.65rem;color:var(--txd);text-align:center;margin-bottom:20px">* Precio referencial. El costo final depende del alcance y complejidad del proyecto.</p>
-      <div style="display:flex;gap:12px;flex-wrap:wrap">
-        <button class="btn full" onclick="sendQuoteToWA()"><i class="fab fa-whatsapp"></i> Enviar Cotización por WhatsApp</button>
-        <button class="btn sec full" onclick="resetQuote()"><i class="fas fa-redo"></i> Nueva Cotización</button>
+      <!-- Header -->
+      <div class="quote-summary-header">
+        <div style="display:flex;align-items:center;gap:14px">
+          <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,rgba(0,229,255,.15),rgba(0,255,136,.08));border:1px solid var(--c3);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--g)">
+            <i class="fas fa-file-invoice-dollar"></i>
+          </div>
+          <div>
+            <h3 style="font-family:var(--fh);font-size:1rem;color:var(--tx);letter-spacing:1.5px;margin-bottom:3px">COTIZACIÓN ESTIMADA</h3>
+            <span style="font-family:var(--fm);font-size:.62rem;color:var(--g);letter-spacing:2px">// NEXUM · 2026</span>
+          </div>
+          <div style="margin-left:auto;text-align:right">
+            <div style="font-family:var(--fm);font-size:.58rem;color:var(--txd)">Referencia</div>
+            <div style="font-family:var(--fm);font-size:.7rem;color:var(--c)" id="quoteRef">#NXM-0001</div>
+          </div>
+        </div>
+      </div>
+      <!-- Body -->
+      <div class="quote-summary-body">
+        <div id="quoteLines"></div>
+
+        <!-- Price range -->
+        <div class="quote-total-wrap">
+          <div style="font-family:var(--fm);font-size:.58rem;color:var(--txd);letter-spacing:3px;text-transform:uppercase;margin-bottom:10px">Rango de inversión estimado</div>
+          <div class="quote-total" id="quoteTotal"></div>
+          <div class="quote-total-sub">Precio referencial en USD</div>
+        </div>
+
+        <!-- Disclaimer -->
+        <div class="quote-disclaimer">
+          <i class="fas fa-info-circle" style="margin-top:1px;flex-shrink:0"></i>
+          <span>Este es un rango orientativo. El precio final varía según el alcance, complejidad y requerimientos específicos de tu proyecto. Contáctanos para una propuesta formal y detallada.</span>
+        </div>
+
+        <!-- Actions -->
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+          <button class="btn full" onclick="sendQuoteToWA()" style="justify-content:center">
+            <i class="fab fa-whatsapp"></i> Enviar por WhatsApp
+          </button>
+          <button class="btn sec full" onclick="resetQuote()" style="justify-content:center">
+            <i class="fas fa-redo"></i> Nueva Cotización
+          </button>
+        </div>
+
+        <!-- Trust signals -->
+        <div style="display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin-top:24px;padding-top:20px;border-top:1px solid var(--br2)">
+          <span style="font-family:var(--fm);font-size:.62rem;color:var(--txd);display:flex;align-items:center;gap:6px"><i class="fas fa-lock" style="color:var(--g)"></i> Sin spam</span>
+          <span style="font-family:var(--fm);font-size:.62rem;color:var(--txd);display:flex;align-items:center;gap:6px"><i class="fas fa-check-circle" style="color:var(--g)"></i> Sin compromiso</span>
+          <span style="font-family:var(--fm);font-size:.62rem;color:var(--txd);display:flex;align-items:center;gap:6px"><i class="fas fa-headset" style="color:var(--c)"></i> Respuesta en &lt;24 h</span>
+        </div>
       </div>
     </div>
   </div>
-  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><p class="copy">// NEXUM &copy; 2026 //</p></div></footer>
 </div>
 
 
@@ -3870,6 +4208,9 @@ const priceMatrix = {
 };
 
 const urgencyFactor = {urgent:'+20% urgencia', soon:'+5%', normal:'Precio estándar', explore:'Precio estándar'};
+const stepBarPct = ['12.5%','37.5%','62.5%','87.5%','100%'];
+const stepIcons = ['fas fa-shield-alt','fas fa-users','fas fa-bolt','fas fa-coins'];
+const stepLabels = ['Servicio','Empresa','Urgencia','Presupuesto'];
 
 function selectQ(step, label, key){
   if(step===1){quoteData.service=label; quoteData.serviceKey=key;}
@@ -3885,31 +4226,54 @@ function selectQ(step, label, key){
     if(step < 4){
       document.getElementById('qs'+step).classList.remove('active');
       document.getElementById('qs'+(step+1)).classList.add('active');
-      document.getElementById('qd'+step).classList.remove('active');
-      document.getElementById('qd'+step).classList.add('done');
-      document.getElementById('qd'+(step+1)).classList.add('active');
+      // Update step dots
+      const dot = document.getElementById('qd'+step);
+      dot.classList.remove('active');
+      dot.classList.add('done');
+      document.getElementById('qn'+step).innerHTML = '<i class="fas fa-check" style="font-size:.6rem"></i>';
+      const nextDot = document.getElementById('qd'+(step+1));
+      nextDot.classList.add('active');
+      // Update progress bar fill
+      document.getElementById('qBarFill').style.width = stepBarPct[step];
     } else {
-      // Show summary
       showQuoteSummary();
     }
   }, 300);
 }
 
 function showQuoteSummary(){
+  const dot = document.getElementById('qd4');
+  dot.classList.remove('active');
+  dot.classList.add('done');
+  document.getElementById('qn4').innerHTML = '<i class="fas fa-check" style="font-size:.6rem"></i>';
+  document.getElementById('qBarFill').style.width = '100%';
   document.getElementById('qs4').classList.remove('active');
-  document.getElementById('qd4').classList.add('done');
+
   const s = quoteData;
   const priceRange = priceMatrix[s.serviceKey]?.[s.budgetKey] || 'A consultar';
-  const urgencyNote = urgencyFactor[quoteData.urgency?.includes('semana')?'urgent':quoteData.urgency?.includes('mes')?'soon':'normal'] || 'Precio estándar';
-  document.getElementById('quoteLines').innerHTML = `
-    <div class="quote-line"><span>Servicio solicitado</span><span style="color:var(--c)">${s.service}</span></div>
-    <div class="quote-line"><span>Tamaño organización</span><span style="color:var(--tx)">${s.company}</span></div>
-    <div class="quote-line"><span>Urgencia</span><span style="color:var(--am)">${s.urgency}</span></div>
-    <div class="quote-line"><span>Factor urgencia</span><span style="color:var(--txd)">${urgencyNote}</span></div>
-  `;
-  document.getElementById('quoteTotal').innerHTML = priceRange+' <span style="font-size:1rem;color:var(--txd)">USD estimado</span>';
-  document.getElementById('quoteSummary').style.display = 'block';
-  document.getElementById('quoteSummary').scrollIntoView({behavior:'smooth', block:'center'});
+  const urgencyKey = s.urgency?.includes('semana')?'urgent':s.urgency?.includes('mes')?'soon':'normal';
+  const urgencyNote = urgencyFactor[urgencyKey] || 'Precio estándar';
+
+  // Random quote ref
+  const ref = '#NXM-' + String(Math.floor(Math.random()*9000)+1000);
+  document.getElementById('quoteRef').textContent = ref;
+
+  const rows = [
+    ['fas fa-tools','Servicio', s.service, 'var(--c)'],
+    ['fas fa-building','Organización', s.company, 'var(--tx)'],
+    ['fas fa-bolt','Urgencia', s.urgency, 'var(--am)'],
+    ['fas fa-percent','Factor urgencia', urgencyNote, 'var(--txd)'],
+  ];
+  document.getElementById('quoteLines').innerHTML = rows.map(([ic,k,v,col])=>`
+    <div class="quote-line">
+      <span class="quote-line-key"><i class="${ic}"></i>${k}</span>
+      <span style="color:${col};font-weight:600">${v}</span>
+    </div>`).join('');
+
+  document.getElementById('quoteTotal').innerHTML = priceRange + ' <span style="font-size:1rem;color:var(--txd);font-weight:400">USD</span>';
+  const summEl = document.getElementById('quoteSummary');
+  summEl.style.display = 'block';
+  summEl.scrollIntoView({behavior:'smooth', block:'center'});
 }
 
 function sendQuoteToWA(){
@@ -3923,7 +4287,9 @@ function resetQuote(){
   ['service','company','urgency','budget','serviceKey','budgetKey'].forEach(k=>quoteData[k]='');
   document.querySelectorAll('.quote-step').forEach(s=>s.classList.remove('active'));
   document.getElementById('qs1').classList.add('active');
+  document.getElementById('qBarFill').style.width='12.5%';
   document.querySelectorAll('.q-step-dot').forEach((d,i)=>{d.classList.remove('done','active');if(i===0)d.classList.add('active');});
+  [1,2,3,4].forEach(i=>{const n=document.getElementById('qn'+i);if(n)n.textContent=i;});
   document.querySelectorAll('.q-opt').forEach(o=>o.classList.remove('sel'));
   document.getElementById('quoteSummary').style.display='none';
 }
