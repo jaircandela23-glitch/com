@@ -851,6 +851,11 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
           <span class="dd-icon" style="background:rgba(255,196,0,.1);color:var(--am)"><i class="fas fa-brain"></i></span>
           Consultoría
         </button>
+        <button class="dditem" onclick="go('autoflow')">
+          <span class="dd-icon" style="background:rgba(0,255,136,.12);color:#00ff88"><i class="fas fa-robot"></i></span>
+          AutoFlow IA
+          <span class="dd-badge" style="background:rgba(0,255,136,.12);color:#00ff88;border:1px solid rgba(0,255,136,.25)">NUEVO</span>
+        </button>
         <div class="dd-sep"></div>
         <button class="dditem" onclick="go('precios')">
           <span class="dd-icon" style="background:rgba(0,255,136,.1);color:var(--g)"><i class="fas fa-tags"></i></span>
@@ -1320,6 +1325,23 @@ position:fixed;bottom:90px;left:20px;width:42px;height:42px;background:var(--cd)
           <div style="display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex-shrink:0">
             <span style="font-family:var(--fm);font-size:.5rem;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:4px;background:rgba(200,64,255,.12);color:rgba(200,64,255,.85);border:1px solid rgba(200,64,255,.22)">● Activo</span>
             <i class="fas fa-arrow-right" style="font-size:.7rem;color:rgba(200,64,255,.5)"></i>
+          </div>
+        </div>
+
+        <!-- AutoFlow IA — NUEVO -->
+        <div onclick="go('autoflow')" role="link" tabindex="0"
+          style="position:relative;background:var(--cd);border:1px solid rgba(0,255,136,.2);border-radius:var(--rl);padding:22px 24px;display:flex;align-items:center;gap:18px;cursor:pointer;transition:var(--tr);overflow:hidden;"
+          onmouseover="this.style.borderColor='rgba(0,255,136,.5)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 36px rgba(0,255,136,.12)'"
+          onmouseout="this.style.borderColor='rgba(0,255,136,.2)';this.style.transform='none';this.style.boxShadow='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,255,136,.04),rgba(0,194,255,.03));pointer-events:none"></div>
+          <div style="width:46px;height:46px;border-radius:12px;flex-shrink:0;background:linear-gradient(135deg,#00ff88,#00c2ff);display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(0,255,136,.3);font-size:1.2rem">🤖</div>
+          <div style="flex:1;min-width:0;position:relative">
+            <div style="font-family:var(--fh);font-size:.82rem;color:#fff;letter-spacing:2px;margin-bottom:4px">AUTO<span style="color:rgba(0,255,136,.9)">FLOW IA</span></div>
+            <div style="font-family:var(--fm);font-size:.62rem;color:var(--txd);line-height:1.5">Automatización con IA para negocios peruanos · WhatsApp, citas, pagos · Desde S/ 180</div>
+          </div>
+          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex-shrink:0">
+            <span style="font-family:var(--fm);font-size:.5rem;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:4px;background:rgba(0,255,136,.12);color:#00ff88;border:1px solid rgba(0,255,136,.25)">● NUEVO</span>
+            <i class="fas fa-arrow-right" style="font-size:.7rem;color:rgba(0,255,136,.4)"></i>
           </div>
         </div>
 
@@ -3203,7 +3225,7 @@ const pages = {
   software:'p-software', precios:'p-precios', contacto:'p-contacto', qr:'p-qr',
   calculadora:'p-calculadora', cotizador:'p-cotizador',
   metadatos:'p-metadatos', proximamente:'p-proximamente',
-  osint:'p-osint'
+  osint:'p-osint', autoflow:'p-autoflow'
 };
 
 function go(key){
@@ -4961,5 +4983,1757 @@ function osintURL(){
 })();
 
 </script>
+
+<!-- ══════════════════════════════════════════════════════
+     AUTOFLOW IA — Página integrada en la SPA de NEXUM
+     Jair Muñoz Candela · NEXUM · +51 945 366 356
+══════════════════════════════════════════════════════ -->
+
+<!-- ═══════════════════════════════════════════════════════════════
+     AUTOFLOW IA — NEXUM  |  Página profesional v2
+     Jair Muñoz Candela · +51 945 366 356 · @jair.dev
+═══════════════════════════════════════════════════════════════ -->
+<div id="p-autoflow" class="page">
+<style>
+/* ── Tokens específicos AutoFlow (hereda todo de NEXUM) ── */
+#p-autoflow {
+  --af:   #00ff88;
+  --af2:  #00c2ff;
+  --afm:  #00e5a0;
+  --afc:  rgba(0,255,136,.08);
+  --afb:  rgba(0,255,136,.2);
+  --afb2: rgba(0,255,136,.4);
+  --afdk: #001a0e;
+}
+
+/* Reset y base */
+#p-autoflow * { box-sizing: border-box; }
+#p-autoflow a { text-decoration: none; }
+#p-autoflow section { position: relative; }
+
+/* ═══════ HERO ═══════ */
+#p-autoflow .af-hero {
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 100px 5% 80px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Grid de fondo animado */
+#p-autoflow .af-grid {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(0,255,136,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,136,.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 30%, transparent 100%);
+  animation: af-grid-drift 20s ease-in-out infinite alternate;
+}
+@keyframes af-grid-drift {
+  from { background-position: 0 0; }
+  to   { background-position: 28px 28px; }
+}
+
+/* Blobs de luz */
+#p-autoflow .af-blob {
+  position: absolute; border-radius: 50%;
+  filter: blur(80px); pointer-events: none; will-change: transform;
+}
+#p-autoflow .af-blob-1 {
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(0,255,136,.12), transparent 70%);
+  top: -100px; left: -100px;
+  animation: af-blob-move1 12s ease-in-out infinite alternate;
+}
+#p-autoflow .af-blob-2 {
+  width: 500px; height: 500px;
+  background: radial-gradient(circle, rgba(0,194,255,.1), transparent 70%);
+  bottom: 0; right: -80px;
+  animation: af-blob-move2 15s ease-in-out infinite alternate;
+}
+@keyframes af-blob-move1 { to { transform: translate(60px, 80px); } }
+@keyframes af-blob-move2 { to { transform: translate(-60px, -60px); } }
+
+/* Badge "NUEVO SERVICIO" */
+#p-autoflow .af-hero-badge {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--afc); border: 1px solid var(--afb);
+  border-radius: 100px; padding: 8px 20px;
+  font-family: var(--fm); font-size: .62rem; letter-spacing: 2.5px;
+  color: var(--af); text-transform: uppercase;
+  margin-bottom: 32px; position: relative; z-index: 2;
+  animation: af-fadein .6s ease both;
+}
+#p-autoflow .af-badge-pulse {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--af);
+  box-shadow: 0 0 0 0 rgba(0,255,136,.6);
+  animation: af-pulse-ring 1.8s ease-out infinite;
+}
+@keyframes af-pulse-ring {
+  0%   { box-shadow: 0 0 0 0 rgba(0,255,136,.6); }
+  70%  { box-shadow: 0 0 0 8px rgba(0,255,136,0); }
+  100% { box-shadow: 0 0 0 0 rgba(0,255,136,0); }
+}
+
+#p-autoflow .af-hero-title {
+  font-family: var(--fh);
+  font-size: clamp(2.2rem, 6vw, 5rem);
+  font-weight: 900; line-height: 1.0;
+  margin-bottom: 24px;
+  position: relative; z-index: 2;
+  animation: af-fadein .7s .1s ease both;
+}
+#p-autoflow .af-hero-title .af-grad {
+  background: linear-gradient(120deg, var(--af) 0%, var(--af2) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  display: block;
+}
+#p-autoflow .af-hero-sub {
+  font-family: var(--fs); font-size: clamp(.9rem, 1.8vw, 1.1rem);
+  color: var(--txd); max-width: 600px; line-height: 1.8;
+  margin: 0 auto 48px; position: relative; z-index: 2;
+  animation: af-fadein .7s .2s ease both;
+}
+
+/* Estadísticas hero */
+#p-autoflow .af-hero-stats {
+  display: flex; gap: 0; flex-wrap: wrap; justify-content: center;
+  margin-bottom: 48px; position: relative; z-index: 2;
+  border: 1px solid var(--afb); border-radius: var(--rl);
+  background: rgba(0,255,136,.04); overflow: hidden;
+  animation: af-fadein .7s .3s ease both;
+  max-width: 700px;
+}
+#p-autoflow .af-stat {
+  padding: 22px 36px; text-align: center;
+  border-right: 1px solid var(--afb); flex: 1; min-width: 130px;
+}
+#p-autoflow .af-stat:last-child { border-right: none; }
+#p-autoflow .af-stat-num {
+  font-family: var(--fh); font-size: 1.9rem; font-weight: 900;
+  color: var(--af); line-height: 1;
+  margin-bottom: 4px;
+}
+#p-autoflow .af-stat-lbl {
+  font-family: var(--fm); font-size: .6rem;
+  letter-spacing: 1.5px; color: var(--txd); text-transform: uppercase;
+}
+
+/* Botones hero */
+#p-autoflow .af-hero-btns {
+  display: flex; gap: 14px; flex-wrap: wrap;
+  justify-content: center; position: relative; z-index: 2;
+  animation: af-fadein .7s .35s ease both;
+}
+#p-autoflow .af-btn-primary {
+  background: linear-gradient(135deg, var(--af), var(--afm));
+  color: var(--afdk); font-family: var(--fm);
+  font-weight: 700; font-size: .78rem; letter-spacing: 1px;
+  padding: 15px 32px; border-radius: var(--ra);
+  border: none; cursor: pointer; transition: var(--tr);
+  box-shadow: 0 8px 28px rgba(0,255,136,.35);
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+}
+#p-autoflow .af-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 40px rgba(0,255,136,.55);
+  color: var(--afdk);
+}
+#p-autoflow .af-btn-ghost {
+  background: transparent; color: var(--af);
+  font-family: var(--fm); font-size: .78rem; letter-spacing: 1px;
+  padding: 15px 32px; border-radius: var(--ra);
+  border: 1px solid var(--afb); cursor: pointer; transition: var(--tr);
+  text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+}
+#p-autoflow .af-btn-ghost:hover {
+  background: var(--afc); border-color: var(--afb2); color: var(--af);
+}
+
+/* ═══════ SECCIÓN DOLOR ═══════ */
+#p-autoflow .af-pain {
+  padding: 90px 5%;
+  background: var(--bg2);
+  border-top: 1px solid var(--br); border-bottom: 1px solid var(--br);
+}
+#p-autoflow .af-section-label {
+  font-family: var(--fm); font-size: .6rem; letter-spacing: 3px;
+  color: var(--af); text-transform: uppercase; margin-bottom: 10px;
+}
+#p-autoflow .af-section-title {
+  font-family: var(--fh); font-size: clamp(1.4rem, 3vw, 2.4rem);
+  font-weight: 900; line-height: 1.1; margin-bottom: 12px;
+}
+#p-autoflow .af-section-title em {
+  font-style: normal;
+  background: linear-gradient(120deg, var(--af), var(--af2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+#p-autoflow .af-section-sub {
+  font-family: var(--fs); font-size: .9rem;
+  color: var(--txd); line-height: 1.75; max-width: 520px;
+  margin-bottom: 48px;
+}
+
+#p-autoflow .af-pain-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 16px; max-width: 1100px; margin: 0 auto;
+}
+#p-autoflow .af-pain-card {
+  background: var(--cd);
+  border: 1px solid rgba(255,90,90,.12);
+  border-radius: var(--rl); padding: 28px;
+  transition: var(--tr); position: relative; overflow: hidden;
+}
+#p-autoflow .af-pain-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, #ff5a5a, #ff8a5a);
+  opacity: 0; transition: opacity .3s;
+}
+#p-autoflow .af-pain-card:hover { border-color: rgba(255,90,90,.35); transform: translateY(-4px); }
+#p-autoflow .af-pain-card:hover::before { opacity: 1; }
+#p-autoflow .af-pain-icon {
+  font-size: 2rem; margin-bottom: 14px;
+  width: 52px; height: 52px; border-radius: 12px;
+  background: rgba(255,90,90,.08); display: flex;
+  align-items: center; justify-content: center;
+}
+#p-autoflow .af-pain-title {
+  font-family: var(--fh); font-size: .85rem; letter-spacing: 1px;
+  color: #ff8a8a; margin-bottom: 10px;
+}
+#p-autoflow .af-pain-text {
+  font-family: var(--fs); font-size: .8rem;
+  color: var(--txd); line-height: 1.75;
+}
+#p-autoflow .af-pain-cost {
+  margin-top: 14px; padding: 8px 12px;
+  background: rgba(255,90,90,.07); border-radius: 6px;
+  font-family: var(--fm); font-size: .62rem;
+  color: #ff8a8a; letter-spacing: 1px;
+}
+
+/* ═══════ DEMO INTERACTIVA ═══════ */
+#p-autoflow .af-demo {
+  padding: 90px 5%;
+  background: var(--bg3);
+  border-bottom: 1px solid var(--br);
+}
+#p-autoflow .af-demo-shell {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: 320px 1fr;
+  gap: 0; border: 1px solid var(--afb);
+  border-radius: var(--rl); overflow: hidden;
+  background: var(--cd);
+  box-shadow: 0 40px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(0,255,136,.05);
+}
+@media(max-width:900px){#p-autoflow .af-demo-shell{grid-template-columns:1fr}}
+
+/* Panel izquierdo — selector de negocio */
+#p-autoflow .af-demo-sidebar {
+  background: var(--cd2);
+  border-right: 1px solid var(--br);
+  display: flex; flex-direction: column;
+}
+#p-autoflow .af-demo-sidebar-hdr {
+  padding: 20px 20px 16px;
+  border-bottom: 1px solid var(--br);
+  font-family: var(--fm); font-size: .6rem;
+  letter-spacing: 2px; color: var(--af);
+}
+#p-autoflow .af-biz-btn {
+  display: flex; align-items: center; gap: 12px;
+  padding: 15px 20px; cursor: pointer;
+  border: none; background: none;
+  border-bottom: 1px solid var(--br2);
+  transition: var(--tr); text-align: left; width: 100%;
+}
+#p-autoflow .af-biz-btn:hover { background: var(--afc); }
+#p-autoflow .af-biz-btn.active {
+  background: linear-gradient(90deg, rgba(0,255,136,.12), rgba(0,255,136,.04));
+  border-left: 3px solid var(--af);
+}
+#p-autoflow .af-biz-icon {
+  font-size: 1.4rem; min-width: 32px;
+  text-align: center;
+}
+#p-autoflow .af-biz-info { flex: 1; }
+#p-autoflow .af-biz-name {
+  font-family: var(--fs); font-weight: 700; font-size: .82rem;
+  color: var(--tx); margin-bottom: 2px;
+}
+#p-autoflow .af-biz-btn.active .af-biz-name { color: var(--af); }
+#p-autoflow .af-biz-type {
+  font-family: var(--fm); font-size: .58rem;
+  color: var(--txd); letter-spacing: 1px;
+}
+
+/* Panel derecho — demo */
+#p-autoflow .af-demo-main {
+  display: flex; flex-direction: column;
+}
+
+/* Tabs: Conversación / Flujo / ROI */
+#p-autoflow .af-demo-tabs {
+  display: flex; border-bottom: 1px solid var(--br);
+  background: var(--cd2);
+}
+#p-autoflow .af-tab {
+  font-family: var(--fm); font-size: .65rem; letter-spacing: 1.5px;
+  padding: 14px 20px; cursor: pointer; border: none; background: none;
+  color: var(--txd); border-bottom: 2px solid transparent;
+  transition: var(--tr); text-transform: uppercase;
+}
+#p-autoflow .af-tab:hover { color: var(--tx); }
+#p-autoflow .af-tab.active { color: var(--af); border-bottom-color: var(--af); }
+
+/* Tab: Conversación */
+#p-autoflow .af-tab-pane { display: none; }
+#p-autoflow .af-tab-pane.active { display: flex; flex-direction: column; }
+
+/* WhatsApp mock */
+#p-autoflow .af-wa-bar {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 18px;
+  background: #0d1f16;
+  border-bottom: 1px solid rgba(0,255,136,.1);
+}
+#p-autoflow .af-wa-avatar {
+  width: 36px; height: 36px; border-radius: 50%;
+  background: linear-gradient(135deg, var(--af), var(--af2));
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1rem; flex-shrink: 0;
+}
+#p-autoflow .af-wa-botname {
+  font-family: var(--fs); font-weight: 700; font-size: .84rem;
+  color: var(--tx); margin-bottom: 1px;
+}
+#p-autoflow .af-wa-status {
+  font-family: var(--fm); font-size: .56rem; color: var(--af);
+}
+#p-autoflow .af-wa-indicators {
+  margin-left: auto; display: flex; gap: 6px; align-items: center;
+}
+#p-autoflow .af-wa-ind {
+  font-family: var(--fm); font-size: .5rem; color: var(--txd);
+  background: rgba(0,255,136,.07); border: 1px solid rgba(0,255,136,.15);
+  padding: 3px 8px; border-radius: 4px;
+}
+
+#p-autoflow .af-chat-scroll {
+  flex: 1; padding: 18px; overflow-y: auto;
+  min-height: 280px; max-height: 320px;
+  background:
+    radial-gradient(ellipse at top left, rgba(0,255,136,.03), transparent 60%),
+    var(--cd);
+  display: flex; flex-direction: column; gap: 10px;
+}
+#p-autoflow .af-chat-scroll::-webkit-scrollbar { width: 3px; }
+#p-autoflow .af-chat-scroll::-webkit-scrollbar-thumb { background: var(--afb); border-radius: 2px; }
+
+#p-autoflow .af-msg-row {
+  display: flex; gap: 8px;
+  animation: af-msg-in .35s cubic-bezier(.16,1,.3,1) both;
+}
+@keyframes af-msg-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: none; }
+}
+#p-autoflow .af-msg-row.bot { justify-content: flex-end; }
+#p-autoflow .af-bubble {
+  max-width: 75%; padding: 10px 14px;
+  border-radius: 16px; font-family: var(--fs);
+  font-size: .78rem; line-height: 1.55;
+  white-space: pre-line; position: relative;
+}
+#p-autoflow .af-bubble.client {
+  background: var(--cd2); color: var(--tx);
+  border-radius: 16px 16px 16px 4px;
+  border: 1px solid var(--br2);
+}
+#p-autoflow .af-bubble.bot {
+  background: linear-gradient(135deg, rgba(0,255,136,.14), rgba(0,194,255,.08));
+  color: var(--tx);
+  border: 1px solid rgba(0,255,136,.2);
+  border-radius: 16px 16px 4px 16px;
+}
+#p-autoflow .af-bubble-time {
+  font-family: var(--fm); font-size: .5rem;
+  color: var(--txd); text-align: right; margin-top: 4px;
+}
+#p-autoflow .af-typing {
+  display: flex; align-items: center; gap: 4px;
+  padding: 10px 14px; background: linear-gradient(135deg, rgba(0,255,136,.08), rgba(0,194,255,.04));
+  border: 1px solid rgba(0,255,136,.15); border-radius: 16px 16px 4px 16px;
+  max-width: 70px; align-self: flex-end;
+}
+#p-autoflow .af-typing span {
+  width: 6px; height: 6px; border-radius: 50%;
+  background: var(--af); animation: af-typing 1.2s ease-in-out infinite;
+}
+#p-autoflow .af-typing span:nth-child(2) { animation-delay: .2s; }
+#p-autoflow .af-typing span:nth-child(3) { animation-delay: .4s; }
+@keyframes af-typing {
+  0%,60%,100% { opacity: .3; transform: translateY(0); }
+  30% { opacity: 1; transform: translateY(-4px); }
+}
+
+/* Input de chat */
+#p-autoflow .af-chat-inp-row {
+  display: flex; gap: 10px; padding: 14px 18px;
+  border-top: 1px solid var(--br); background: var(--cd2);
+}
+#p-autoflow .af-chat-field {
+  flex: 1; background: var(--cd); border: 1px solid var(--br);
+  border-radius: 22px; padding: 10px 16px;
+  font-family: var(--fs); font-size: .8rem; color: var(--tx);
+  outline: none; transition: var(--tr);
+}
+#p-autoflow .af-chat-field:focus { border-color: var(--af); }
+#p-autoflow .af-chat-field::placeholder { color: var(--txf); }
+#p-autoflow .af-chat-send {
+  background: var(--af); border: none; border-radius: 50%;
+  width: 38px; height: 38px; cursor: pointer; flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: var(--tr);
+}
+#p-autoflow .af-chat-send:hover { transform: scale(1.1); box-shadow: 0 4px 16px rgba(0,255,136,.45); }
+
+/* Tab: Flujo de automatización */
+#p-autoflow .af-flow-wrap {
+  padding: 24px 20px; overflow-x: auto;
+}
+#p-autoflow .af-flow {
+  display: flex; align-items: flex-start; gap: 0;
+  min-width: 600px;
+}
+#p-autoflow .af-flow-step {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  position: relative;
+}
+#p-autoflow .af-flow-step:not(:last-child)::after {
+  content: ''; position: absolute;
+  top: 24px; left: calc(50% + 24px); right: calc(-50% + 24px);
+  height: 2px;
+  background: linear-gradient(90deg, var(--af), var(--af2));
+  opacity: .4;
+}
+#p-autoflow .af-flow-node {
+  width: 48px; height: 48px; border-radius: 50%;
+  border: 2px solid var(--af);
+  background: rgba(0,255,136,.08);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; margin-bottom: 12px;
+  position: relative; z-index: 1;
+  box-shadow: 0 0 20px rgba(0,255,136,.15);
+  animation: af-node-pulse 2s ease-in-out infinite;
+}
+#p-autoflow .af-flow-step:nth-child(2) .af-flow-node { animation-delay: .4s; }
+#p-autoflow .af-flow-step:nth-child(3) .af-flow-node { animation-delay: .8s; }
+#p-autoflow .af-flow-step:nth-child(4) .af-flow-node { animation-delay: 1.2s; }
+#p-autoflow .af-flow-step:nth-child(5) .af-flow-node { animation-delay: 1.6s; }
+@keyframes af-node-pulse {
+  0%,100% { box-shadow: 0 0 0 0 rgba(0,255,136,.3), 0 0 20px rgba(0,255,136,.1); }
+  50%      { box-shadow: 0 0 0 8px rgba(0,255,136,.0), 0 0 20px rgba(0,255,136,.2); }
+}
+#p-autoflow .af-flow-label {
+  font-family: var(--fm); font-size: .6rem;
+  letter-spacing: 1px; color: var(--af);
+  text-align: center; margin-bottom: 4px;
+}
+#p-autoflow .af-flow-desc {
+  font-family: var(--fs); font-size: .7rem;
+  color: var(--txd); text-align: center; line-height: 1.5;
+  max-width: 90px;
+}
+
+/* Tab: ROI */
+#p-autoflow .af-roi-wrap { padding: 24px 20px; }
+#p-autoflow .af-roi-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+@media(max-width:600px){#p-autoflow .af-roi-grid{grid-template-columns:1fr}}
+#p-autoflow .af-roi-card {
+  background: var(--cd2); border: 1px solid var(--br);
+  border-radius: 10px; padding: 16px;
+}
+#p-autoflow .af-roi-card.green { border-color: rgba(0,255,136,.25); }
+#p-autoflow .af-roi-card.red   { border-color: rgba(255,90,90,.2); }
+#p-autoflow .af-roi-label {
+  font-family: var(--fm); font-size: .58rem;
+  letter-spacing: 1.5px; color: var(--txd); margin-bottom: 8px;
+}
+#p-autoflow .af-roi-value {
+  font-family: var(--fh); font-size: 1.6rem;
+  font-weight: 900; line-height: 1;
+}
+#p-autoflow .af-roi-card.green .af-roi-value { color: var(--af); }
+#p-autoflow .af-roi-card.red   .af-roi-value { color: #ff8a8a; }
+#p-autoflow .af-roi-sub {
+  font-family: var(--fs); font-size: .72rem;
+  color: var(--txd); margin-top: 4px; line-height: 1.5;
+}
+#p-autoflow .af-roi-bar {
+  margin-top: 20px; padding: 14px 16px;
+  background: linear-gradient(135deg, rgba(0,255,136,.07), rgba(0,194,255,.04));
+  border: 1px solid var(--afb); border-radius: 10px;
+}
+#p-autoflow .af-roi-bar-label {
+  font-family: var(--fm); font-size: .6rem;
+  color: var(--af); letter-spacing: 1.5px; margin-bottom: 10px;
+}
+#p-autoflow .af-roi-progress {
+  height: 8px; background: var(--br); border-radius: 4px; overflow: hidden; margin-bottom: 6px;
+}
+#p-autoflow .af-roi-fill {
+  height: 100%; border-radius: 4px;
+  background: linear-gradient(90deg, var(--af), var(--af2));
+  width: 0; transition: width 1.2s cubic-bezier(.16,1,.3,1);
+}
+#p-autoflow .af-roi-prog-label {
+  display: flex; justify-content: space-between;
+  font-family: var(--fm); font-size: .58rem; color: var(--txd);
+}
+
+/* ═══════ QUÉ AUTOMATIZAMOS ═══════ */
+#p-autoflow .af-what { padding: 90px 5%; background: var(--bg2); border-bottom: 1px solid var(--br); }
+#p-autoflow .af-what-grid {
+  max-width: 1100px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 16px;
+}
+#p-autoflow .af-what-card {
+  background: var(--cd); border: 1px solid var(--br);
+  border-radius: var(--rl); padding: 28px;
+  transition: var(--tr); position: relative; overflow: hidden;
+}
+#p-autoflow .af-what-card::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(0,255,136,.04), transparent);
+  opacity: 0; transition: opacity .3s;
+}
+#p-autoflow .af-what-card:hover { border-color: var(--afb); transform: translateY(-4px); }
+#p-autoflow .af-what-card:hover::after { opacity: 1; }
+#p-autoflow .af-what-icon-wrap {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: var(--afc); border: 1px solid var(--afb);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.3rem; margin-bottom: 16px;
+}
+#p-autoflow .af-what-title {
+  font-family: var(--fh); font-size: .88rem;
+  letter-spacing: 1px; color: var(--tx); margin-bottom: 8px;
+}
+#p-autoflow .af-what-text {
+  font-family: var(--fs); font-size: .8rem;
+  color: var(--txd); line-height: 1.75; margin-bottom: 14px;
+}
+#p-autoflow .af-what-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+#p-autoflow .af-tag-chip {
+  font-family: var(--fm); font-size: .56rem; letter-spacing: 1px;
+  padding: 3px 10px; border-radius: 4px;
+  background: var(--afc); border: 1px solid var(--afb); color: var(--af);
+}
+
+/* ═══════ CASOS DE USO ═══════ */
+#p-autoflow .af-cases { padding: 90px 5%; border-bottom: 1px solid var(--br); }
+#p-autoflow .af-cases-tabs {
+  display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px;
+}
+#p-autoflow .af-case-tab {
+  background: var(--cd); border: 1px solid var(--br);
+  border-radius: 8px; padding: 10px 18px; cursor: pointer;
+  font-family: var(--fs); font-size: .8rem; font-weight: 600;
+  color: var(--txd); transition: var(--tr); border: none;
+}
+#p-autoflow .af-case-tab:hover { color: var(--tx); border-color: var(--afb); }
+#p-autoflow .af-case-tab.active {
+  background: var(--afc); color: var(--af);
+  border: 1px solid var(--afb);
+}
+#p-autoflow .af-case-panel { display: none; }
+#p-autoflow .af-case-panel.active {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start;
+}
+@media(max-width:760px){#p-autoflow .af-case-panel.active{grid-template-columns:1fr}}
+#p-autoflow .af-case-info { }
+#p-autoflow .af-case-title {
+  font-family: var(--fh); font-size: 1.4rem;
+  margin-bottom: 10px; color: var(--tx);
+}
+#p-autoflow .af-case-desc {
+  font-family: var(--fs); font-size: .84rem;
+  color: var(--txd); line-height: 1.75; margin-bottom: 24px;
+}
+#p-autoflow .af-case-autos { display: flex; flex-direction: column; gap: 10px; margin-bottom: 24px; }
+#p-autoflow .af-case-auto {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: var(--cd); border: 1px solid var(--br);
+  border-radius: 10px; padding: 14px 16px;
+  transition: var(--tr);
+}
+#p-autoflow .af-case-auto:hover { border-color: var(--afb); }
+#p-autoflow .af-auto-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: var(--af); flex-shrink: 0; margin-top: 5px;
+  box-shadow: 0 0 8px rgba(0,255,136,.5);
+}
+#p-autoflow .af-auto-title { font-family: var(--fs); font-weight: 700; font-size: .82rem; color: var(--tx); }
+#p-autoflow .af-auto-sub { font-family: var(--fs); font-size: .75rem; color: var(--txd); margin-top: 2px; }
+#p-autoflow .af-case-result {
+  background: linear-gradient(135deg, rgba(0,255,136,.07), rgba(0,194,255,.04));
+  border: 1px solid var(--afb); border-radius: 10px; padding: 16px 20px;
+}
+#p-autoflow .af-result-label {
+  font-family: var(--fm); font-size: .58rem; letter-spacing: 2px;
+  color: var(--af); margin-bottom: 10px;
+}
+#p-autoflow .af-result-metrics { display: flex; gap: 20px; flex-wrap: wrap; }
+#p-autoflow .af-metric { }
+#p-autoflow .af-metric-val {
+  font-family: var(--fh); font-size: 1.4rem; font-weight: 900;
+  color: var(--af); line-height: 1;
+}
+#p-autoflow .af-metric-lbl {
+  font-family: var(--fm); font-size: .56rem;
+  color: var(--txd); letter-spacing: 1px; margin-top: 2px;
+}
+/* Mockup panel derecho */
+#p-autoflow .af-case-visual {
+  background: var(--cd); border: 1px solid var(--afb);
+  border-radius: var(--rl); overflow: hidden;
+}
+#p-autoflow .af-visual-bar {
+  background: var(--cd2); padding: 12px 16px;
+  border-bottom: 1px solid var(--br);
+  display: flex; align-items: center; gap: 8px;
+  font-family: var(--fm); font-size: .62rem; color: var(--txd);
+}
+#p-autoflow .af-visual-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--af); }
+#p-autoflow .af-visual-body { padding: 20px; min-height: 260px; }
+#p-autoflow .af-flow-mini {
+  display: flex; flex-direction: column; gap: 8px;
+}
+#p-autoflow .af-flow-row {
+  display: flex; align-items: center; gap: 10px;
+  padding: 10px 14px; border-radius: 8px;
+  border: 1px solid var(--br); background: var(--cd2);
+  font-family: var(--fs); font-size: .75rem; color: var(--txd);
+  transition: all .3s;
+}
+#p-autoflow .af-flow-row.active-row {
+  border-color: var(--af); color: var(--tx);
+  background: rgba(0,255,136,.06);
+  box-shadow: 0 0 12px rgba(0,255,136,.1);
+}
+#p-autoflow .af-flow-row-icon { font-size: 1rem; width: 24px; text-align: center; }
+#p-autoflow .af-flow-row-status {
+  margin-left: auto; font-family: var(--fm); font-size: .56rem;
+  padding: 2px 8px; border-radius: 4px;
+}
+#p-autoflow .active-row .af-flow-row-status {
+  background: rgba(0,255,136,.12); color: var(--af);
+  border: 1px solid var(--afb);
+}
+
+/* ═══════ PROCESO ═══════ */
+#p-autoflow .af-proceso { padding: 90px 5%; background: var(--bg2); border-bottom: 1px solid var(--br); }
+#p-autoflow .af-proceso-grid {
+  max-width: 1000px; margin: 40px auto 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0;
+  background: var(--cd); border: 1px solid var(--afb);
+  border-radius: var(--rl); overflow: hidden;
+}
+#p-autoflow .af-step {
+  padding: 32px 24px; border-right: 1px solid var(--br);
+  transition: var(--tr); position: relative; overflow: hidden;
+}
+#p-autoflow .af-step:last-child { border-right: none; }
+#p-autoflow .af-step:hover { background: rgba(0,255,136,.03); }
+#p-autoflow .af-step::before {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--af), var(--af2));
+  transform: scaleX(0); transition: transform .3s;
+}
+#p-autoflow .af-step:hover::before { transform: scaleX(1); }
+#p-autoflow .af-step-num {
+  font-family: var(--fm); font-size: 2.8rem; font-weight: 300;
+  color: rgba(0,255,136,.18); line-height: 1; margin-bottom: 14px;
+}
+#p-autoflow .af-step-title {
+  font-family: var(--fh); font-size: .82rem; letter-spacing: 1px;
+  color: var(--tx); margin-bottom: 8px;
+}
+#p-autoflow .af-step-text {
+  font-family: var(--fs); font-size: .78rem;
+  color: var(--txd); line-height: 1.7;
+}
+#p-autoflow .af-step-day {
+  margin-top: 12px; font-family: var(--fm);
+  font-size: .58rem; color: var(--af); letter-spacing: 1.5px;
+}
+
+/* ═══════ PRECIOS ═══════ */
+#p-autoflow .af-precios { padding: 90px 5%; border-bottom: 1px solid var(--br); }
+#p-autoflow .af-price-grid {
+  max-width: 1000px; margin: 40px auto 0;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px; align-items: start;
+}
+#p-autoflow .af-pcard {
+  background: var(--cd); border: 1px solid var(--br);
+  border-radius: var(--rl); padding: 32px;
+  transition: var(--tr); position: relative; overflow: hidden;
+}
+#p-autoflow .af-pcard::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: linear-gradient(90deg, var(--af), var(--af2));
+  opacity: 0; transition: opacity .3s;
+}
+#p-autoflow .af-pcard:hover { border-color: var(--afb); transform: translateY(-5px); }
+#p-autoflow .af-pcard:hover::before { opacity: 1; }
+#p-autoflow .af-pcard.featured {
+  background: linear-gradient(160deg, rgba(0,255,136,.07), rgba(0,194,255,.04), var(--cd));
+  border-color: rgba(0,255,136,.32);
+}
+#p-autoflow .af-pcard.featured::before { opacity: 1; }
+#p-autoflow .af-pcard-badge {
+  position: absolute; top: 18px; right: 18px;
+  background: var(--af); color: var(--afdk);
+  font-family: var(--fm); font-size: .52rem; letter-spacing: 1.5px;
+  font-weight: 700; padding: 4px 10px; border-radius: 4px;
+}
+#p-autoflow .af-pname {
+  font-family: var(--fm); font-size: .6rem; letter-spacing: 2px;
+  color: var(--txd); text-transform: uppercase; margin-bottom: 12px;
+}
+#p-autoflow .af-pprice {
+  font-family: var(--fh); font-size: 3rem; font-weight: 900;
+  line-height: 1; color: var(--tx); margin-bottom: 6px;
+}
+#p-autoflow .af-pprice small { font-size: 1.1rem; font-weight: 400; color: var(--txd); }
+#p-autoflow .af-precur {
+  font-family: var(--fm); font-size: .65rem; color: var(--af);
+  margin-bottom: 10px;
+}
+#p-autoflow .af-pdesc {
+  font-family: var(--fs); font-size: .8rem; color: var(--txd);
+  line-height: 1.65; margin-bottom: 24px;
+  padding-bottom: 20px; border-bottom: 1px solid var(--br);
+}
+#p-autoflow .af-pfeats { list-style: none; margin-bottom: 28px; display: flex; flex-direction: column; gap: 9px; }
+#p-autoflow .af-pfeats li {
+  display: flex; align-items: flex-start; gap: 9px;
+  font-family: var(--fs); font-size: .8rem; color: var(--tx);
+}
+#p-autoflow .af-pfeats li::before {
+  content: '✓'; color: var(--af); font-weight: 700;
+  font-family: var(--fm); min-width: 14px; margin-top: 1px;
+}
+#p-autoflow .af-pfeats li.no { color: var(--txd); }
+#p-autoflow .af-pfeats li.no::before { content: '—'; color: var(--txf); }
+#p-autoflow .af-pbtn {
+  display: block; text-align: center; width: 100%;
+  font-family: var(--fm); font-weight: 700; font-size: .72rem; letter-spacing: 1px;
+  padding: 13px; border-radius: var(--ra); border: none;
+  cursor: pointer; transition: var(--tr); text-decoration: none;
+}
+#p-autoflow .af-pbtn.fill { background: var(--af); color: var(--afdk); }
+#p-autoflow .af-pbtn.fill:hover { box-shadow: 0 8px 24px rgba(0,255,136,.45); color: var(--afdk); }
+#p-autoflow .af-pbtn.outline { background: transparent; color: var(--af); border: 1px solid var(--afb); }
+#p-autoflow .af-pbtn.outline:hover { background: var(--afc); color: var(--af); }
+
+/* ═══════ CTA FINAL ═══════ */
+#p-autoflow .af-cta-section {
+  padding: 100px 5%; text-align: center;
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(0,255,136,.07), transparent),
+    var(--bg3);
+  border-top: 1px solid var(--br);
+}
+#p-autoflow .af-cta-title {
+  font-family: var(--fh); font-size: clamp(1.8rem, 4vw, 3rem);
+  font-weight: 900; line-height: 1.1; margin-bottom: 16px;
+}
+#p-autoflow .af-cta-sub {
+  font-family: var(--fs); font-size: .9rem;
+  color: var(--txd); max-width: 500px; margin: 0 auto 40px; line-height: 1.75;
+}
+#p-autoflow .af-cta-methods {
+  display: flex; gap: 12px; justify-content: center;
+  flex-wrap: wrap; margin-bottom: 40px;
+}
+#p-autoflow .af-method {
+  background: var(--cd); border: 1px solid var(--br);
+  border-radius: 12px; padding: 16px 22px;
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  transition: var(--tr); min-width: 110px;
+}
+#p-autoflow .af-method:hover { border-color: var(--afb); transform: translateY(-3px); }
+#p-autoflow .af-method-icon { font-size: 1.6rem; }
+#p-autoflow .af-method-name { font-family: var(--fs); font-weight: 700; font-size: .82rem; color: var(--tx); }
+#p-autoflow .af-method-num { font-family: var(--fm); font-size: .6rem; color: var(--txd); }
+#p-autoflow .af-cta-main-btn {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: linear-gradient(135deg, var(--af), var(--afm));
+  color: var(--afdk); font-family: var(--fm); font-weight: 700;
+  font-size: .88rem; letter-spacing: 1px;
+  padding: 20px 48px; border-radius: var(--ra);
+  text-decoration: none; border: none; cursor: pointer;
+  box-shadow: 0 8px 40px rgba(0,255,136,.4);
+  transition: var(--tr);
+}
+#p-autoflow .af-cta-main-btn:hover {
+  transform: translateY(-3px); color: var(--afdk);
+  box-shadow: 0 16px 56px rgba(0,255,136,.6);
+}
+#p-autoflow .af-cta-footer {
+  margin-top: 20px; font-family: var(--fm);
+  font-size: .58rem; color: var(--txd); letter-spacing: 2px;
+}
+
+/* Animaciones generales */
+@keyframes af-fadein {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: none; }
+}
+@media(max-width:760px){
+  #p-autoflow .af-hero-stats { flex-direction: column; }
+  #p-autoflow .af-stat { border-right: none; border-bottom: 1px solid var(--afb); }
+  #p-autoflow .af-stat:last-child { border-bottom: none; }
+  #p-autoflow .af-proceso-grid { grid-template-columns: 1fr 1fr; }
+  #p-autoflow .af-step { border-right: none; border-bottom: 1px solid var(--br); }
+}
+</style>
+
+<!-- ════════════════ HERO ════════════════ -->
+<section class="af-hero">
+  <div class="af-grid"></div>
+  <div class="af-blob af-blob-1"></div>
+  <div class="af-blob af-blob-2"></div>
+
+  <div class="af-hero-badge">
+    <div class="af-badge-pulse"></div>
+    NEXUM · NUEVO SERVICIO · AUTOFLOW IA
+  </div>
+
+  <h1 class="af-hero-title">
+    Tu negocio trabaja
+    <span class="af-grad">24 horas.</span>
+    Tú decides qué hacer con ese tiempo.
+  </h1>
+
+  <p class="af-hero-sub">
+    Automatizamos la atención, las citas, los pagos y los reportes de tu negocio con inteligencia artificial. Sin código, sin complicaciones. Instalado y funcionando en 3 a 5 días.
+  </p>
+
+  <!-- Stats -->
+  <div class="af-hero-stats rv">
+    <div class="af-stat">
+      <div class="af-stat-num">3h</div>
+      <div class="af-stat-lbl">diarias ahorradas</div>
+    </div>
+    <div class="af-stat">
+      <div class="af-stat-num">24/7</div>
+      <div class="af-stat-lbl">atención activa</div>
+    </div>
+    <div class="af-stat">
+      <div class="af-stat-num">-70%</div>
+      <div class="af-stat-lbl">citas perdidas</div>
+    </div>
+    <div class="af-stat">
+      <div class="af-stat-num">5 días</div>
+      <div class="af-stat-lbl">para arrancar</div>
+    </div>
+  </div>
+
+  <div class="af-hero-btns rv">
+    <a href="https://wa.me/51945366356?text=Hola%20Jair,%20quiero%20una%20demo%20gratuita%20de%20AutoFlow%20para%20mi%20negocio%20🚀" class="af-btn-primary" target="_blank">
+      <i class="fab fa-whatsapp"></i> Demo gratuita por WhatsApp
+    </a>
+    <button class="af-btn-ghost" onclick="document.getElementById('af-precios-anchor').scrollIntoView({behavior:'smooth'})">
+      Ver precios en soles <i class="fas fa-chevron-down" style="font-size:.7rem"></i>
+    </button>
+  </div>
+</section>
+
+<!-- ════════════════ DOLOR ════════════════ -->
+<section class="af-pain">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="af-section-label rv">El problema real</div>
+    <h2 class="af-section-title rv">¿Cuánto tiempo pierdes <em>haciendo esto a mano?</em></h2>
+    <p class="af-section-sub rv">Cada hora que pasas respondiendo mensajes repetitivos, coordinando citas o persiguiendo pagos es una hora que no usas para crecer. Eso tiene un costo real.</p>
+    <div class="af-pain-grid">
+      <div class="af-pain-card rv">
+        <div class="af-pain-icon">📱</div>
+        <div class="af-pain-title">Mensajes todo el día</div>
+        <div class="af-pain-text">Respondes "¿cuánto cuesta?", "¿hay disponibilidad?", "¿cómo pago?" una y otra vez. Cada respuesta toma 3 minutos. Con 40 consultas diarias eso son <strong style="color:#ff8a8a">2 horas perdidas solo en mensajes</strong>.</div>
+        <div class="af-pain-cost">// COSTO ESTIMADO: 60+ horas al mes</div>
+      </div>
+      <div class="af-pain-card rv">
+        <div class="af-pain-icon">🌙</div>
+        <div class="af-pain-title">Clientes perdidos de noche</div>
+        <div class="af-pain-text">El 35% de las consultas llegan fuera de tu horario. Sin respuesta inmediata, el cliente busca otra opción. <strong style="color:#ff8a8a">Cada cliente perdido es dinero que ya no vuelve</strong>, y no lo sabes porque nunca te llegó.</div>
+        <div class="af-pain-cost">// COSTO: 10–15 clientes potenciales por semana</div>
+      </div>
+      <div class="af-pain-card rv">
+        <div class="af-pain-icon">📋</div>
+        <div class="af-pain-title">Citas que no se confirman</div>
+        <div class="af-pain-text">Sin recordatorio automático, entre el 20% y el 40% de las citas no se presentan. Ese tiempo bloqueado es dinero que no ingresa y no puedes recuperar. <strong style="color:#ff8a8a">Una hora vacía en un salón o consultorio son S/ 40–80 de pérdida directa</strong>.</div>
+        <div class="af-pain-cost">// COSTO: S/ 300–600 al mes en citas vacías</div>
+      </div>
+      <div class="af-pain-card rv">
+        <div class="af-pain-icon">📊</div>
+        <div class="af-pain-title">Sin datos para decidir</div>
+        <div class="af-pain-text">¿Cuánto vendiste esta semana? ¿Qué servicio es más rentable? ¿Cuántos clientes nuevos tuviste? Si no tienes esa información, estás gestionando el negocio a ciegas. <strong style="color:#ff8a8a">Lo que no se mide no se puede mejorar</strong>.</div>
+        <div class="af-pain-cost">// COSTO: decisiones sin base real</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ DEMO INTERACTIVA ════════════════ -->
+<section class="af-demo">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="af-section-label rv">Demo interactiva</div>
+    <h2 class="af-section-title rv">Así funciona <em>en tu tipo de negocio</em></h2>
+    <p class="af-section-sub rv">Elige el tipo de negocio, cambia de pestaña y ve cómo responde el bot, qué flujo sigue y qué retorno genera la automatización.</p>
+
+    <div class="af-demo-shell rv">
+      <!-- Sidebar: selector de negocio -->
+      <div class="af-demo-sidebar">
+        <div class="af-demo-sidebar-hdr">// TIPO DE NEGOCIO</div>
+        <button class="af-biz-btn active" onclick="afSelectBiz(0,this)">
+          <div class="af-biz-icon">💇‍♀️</div>
+          <div class="af-biz-info">
+            <div class="af-biz-name">Salón de Belleza</div>
+            <div class="af-biz-type">Spa · Barbería · Estética</div>
+          </div>
+        </button>
+        <button class="af-biz-btn" onclick="afSelectBiz(1,this)">
+          <div class="af-biz-icon">🌸</div>
+          <div class="af-biz-info">
+            <div class="af-biz-name">Floristería</div>
+            <div class="af-biz-type">Regalos · Eventos</div>
+          </div>
+        </button>
+        <button class="af-biz-btn" onclick="afSelectBiz(2,this)">
+          <div class="af-biz-icon">🍕</div>
+          <div class="af-biz-info">
+            <div class="af-biz-name">Restaurante / Delivery</div>
+            <div class="af-biz-type">Cafetería · Dark Kitchen</div>
+          </div>
+        </button>
+        <button class="af-biz-btn" onclick="afSelectBiz(3,this)">
+          <div class="af-biz-icon">🏥</div>
+          <div class="af-biz-info">
+            <div class="af-biz-name">Consultorio / Clínica</div>
+            <div class="af-biz-type">Médico · Dentista · Psicólogo</div>
+          </div>
+        </button>
+        <button class="af-biz-btn" onclick="afSelectBiz(4,this)">
+          <div class="af-biz-icon">🛍️</div>
+          <div class="af-biz-info">
+            <div class="af-biz-name">Tienda / E-commerce</div>
+            <div class="af-biz-type">Ropa · Accesorios · Productos</div>
+          </div>
+        </button>
+      </div>
+
+      <!-- Main: tabs -->
+      <div class="af-demo-main">
+        <div class="af-demo-tabs">
+          <button class="af-tab active" onclick="afTab('chat',this)">💬 Conversación real</button>
+          <button class="af-tab" onclick="afTab('flow',this)">⚡ Flujo automático</button>
+          <button class="af-tab" onclick="afTab('roi',this)">📊 Retorno real (ROI)</button>
+        </div>
+
+        <!-- Tab: Chat -->
+        <div class="af-tab-pane active" id="af-pane-chat">
+          <div class="af-wa-bar">
+            <div class="af-wa-avatar" id="af-wa-icon">🤖</div>
+            <div>
+              <div class="af-wa-botname" id="af-wa-name">Salón Diana · Bot IA</div>
+              <div class="af-wa-status">● en línea · responde en segundos</div>
+            </div>
+            <div class="af-wa-indicators">
+              <div class="af-wa-ind">24/7</div>
+              <div class="af-wa-ind">IA ACTIVA</div>
+            </div>
+          </div>
+          <div class="af-chat-scroll" id="af-chat-area"></div>
+          <div class="af-chat-inp-row">
+            <input class="af-chat-field" id="af-chat-inp" placeholder="Escribe como si fueras un cliente..." onkeydown="if(event.key==='Enter')afUserSend()">
+            <button class="af-chat-send" onclick="afUserSend()">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#001a0e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Tab: Flujo -->
+        <div class="af-tab-pane" id="af-pane-flow">
+          <div class="af-flow-wrap">
+            <div class="af-flow" id="af-flow-steps"></div>
+          </div>
+          <div style="padding:0 20px 20px">
+            <div id="af-flow-visual" class="af-flow-mini"></div>
+          </div>
+        </div>
+
+        <!-- Tab: ROI -->
+        <div class="af-tab-pane" id="af-pane-roi">
+          <div class="af-roi-wrap">
+            <div class="af-roi-grid" id="af-roi-cards"></div>
+            <div class="af-roi-bar" id="af-roi-bar"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ QUÉ AUTOMATIZAMOS ════════════════ -->
+<section class="af-what">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="af-section-label rv">La solución</div>
+    <h2 class="af-section-title rv">6 automatizaciones que <em>transforman tu negocio</em></h2>
+    <p class="af-section-sub rv">Cada una ataca un punto de dolor específico y genera un resultado medible desde el primer día.</p>
+    <div class="af-what-grid">
+      <div class="af-what-card rv">
+        <div class="af-what-icon-wrap">💬</div>
+        <div class="af-what-title">Atención WhatsApp 24/7</div>
+        <div class="af-what-text">El bot responde preguntas frecuentes, precios, disponibilidad y horarios — incluso a las 2am. Cuando la consulta es compleja, escala al humano automáticamente. Tu negocio nunca duerme.</div>
+        <div class="af-what-tags">
+          <span class="af-tag-chip">RESPUESTA &lt;3 SEG</span>
+          <span class="af-tag-chip">ESCALA A HUMANO</span>
+          <span class="af-tag-chip">24/7</span>
+        </div>
+      </div>
+      <div class="af-what-card rv">
+        <div class="af-what-icon-wrap">📅</div>
+        <div class="af-what-title">Agenda y Citas Automáticas</div>
+        <div class="af-what-text">El cliente ve disponibilidad en tiempo real, elige horario y confirma — todo en la conversación de WhatsApp. El sistema envía recordatorio 24h antes y, si no confirma, lo vuelve a intentar.</div>
+        <div class="af-what-tags">
+          <span class="af-tag-chip">RECORDATORIO AUTO</span>
+          <span class="af-tag-chip">-70% AUSENCIAS</span>
+          <span class="af-tag-chip">LISTA DE ESPERA</span>
+        </div>
+      </div>
+      <div class="af-what-card rv">
+        <div class="af-what-icon-wrap">🧾</div>
+        <div class="af-what-title">Confirmación de Pagos</div>
+        <div class="af-what-text">El cliente paga por Yape, Plin o transferencia y envía el comprobante. El bot lo verifica, confirma la reserva y notifica al negocio. Sin pendientes, sin perseguir pagos manualmente.</div>
+        <div class="af-what-tags">
+          <span class="af-tag-chip">YAPE · PLIN</span>
+          <span class="af-tag-chip">VERIFICACIÓN AUTO</span>
+          <span class="af-tag-chip">NOTIFICACIÓN</span>
+        </div>
+      </div>
+      <div class="af-what-card rv">
+        <div class="af-what-icon-wrap">📦</div>
+        <div class="af-what-title">Seguimiento de Pedidos</div>
+        <div class="af-what-text">El cliente recibe actualizaciones automáticas del estado de su pedido — confirmado, en preparación, en camino, entregado. Menos llamadas de "¿dónde está mi pedido?" y más reseñas de 5 estrellas.</div>
+        <div class="af-what-tags">
+          <span class="af-tag-chip">ESTADOS EN TIEMPO REAL</span>
+          <span class="af-tag-chip">-80% RECLAMOS</span>
+        </div>
+      </div>
+      <div class="af-what-card rv">
+        <div class="af-what-icon-wrap">📊</div>
+        <div class="af-what-title">Reportes Diarios Automáticos</div>
+        <div class="af-what-text">Cada mañana recibes en WhatsApp un resumen de ventas del día anterior, citas confirmadas, pedidos pendientes y métricas clave. Gestionas el negocio con datos, no con suposiciones.</div>
+        <div class="af-what-tags">
+          <span class="af-tag-chip">DIARIO / SEMANAL</span>
+          <span class="af-tag-chip">VENTAS · CITAS</span>
+          <span class="af-tag-chip">MÉTRICAS REALES</span>
+        </div>
+      </div>
+      <div class="af-what-card rv">
+        <div class="af-what-icon-wrap">🔁</div>
+        <div class="af-what-title">Fidelización Post-Venta</div>
+        <div class="af-what-text">3 días después de la visita, el bot escribe al cliente para preguntar cómo le fue. Si todo estuvo bien, le pide una reseña en Google. Si algo falló, te avisa antes de que lo publique en redes.</div>
+        <div class="af-what-tags">
+          <span class="af-tag-chip">+60% RETORNO</span>
+          <span class="af-tag-chip">MÁS RESEÑAS</span>
+          <span class="af-tag-chip">GESTIÓN REPUTACIÓN</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ CASOS DE USO ════════════════ -->
+<section class="af-cases">
+  <div style="max-width:1100px;margin:0 auto">
+    <div class="af-section-label rv">Casos reales</div>
+    <h2 class="af-section-title rv">Cómo funciona <em>en cada negocio</em></h2>
+    <div class="af-cases-tabs rv" id="af-case-tabs"></div>
+    <div id="af-case-panels"></div>
+  </div>
+</section>
+
+<!-- ════════════════ PROCESO ════════════════ -->
+<section class="af-proceso">
+  <div style="max-width:1000px;margin:0 auto;text-align:center">
+    <div class="af-section-label rv">Implementación</div>
+    <h2 class="af-section-title rv">De cero a automatizado <em>en 5 días</em></h2>
+    <p class="af-section-sub rv" style="margin:0 auto 0">Sin burocracia. Sin tecnicismos. Tú usas WhatsApp como siempre, el sistema trabaja en segundo plano.</p>
+  </div>
+  <div class="af-proceso-grid rv">
+    <div class="af-step">
+      <div class="af-step-num">01</div>
+      <div class="af-step-title">Diagnóstico gratuito</div>
+      <div class="af-step-text">30 minutos por WhatsApp. Analizamos tu negocio, qué tareas consumen más tiempo y cuáles se pueden automatizar con mayor impacto inmediato.</div>
+      <div class="af-step-day">// DÍA 1 · GRATIS · SIN COMPROMISO</div>
+    </div>
+    <div class="af-step">
+      <div class="af-step-num">02</div>
+      <div class="af-step-title">Propuesta personalizada</div>
+      <div class="af-step-text">Te enviamos un plan concreto: qué automatizamos, cómo funciona, resultado esperado y precio exacto. Sin sorpresas ni costos ocultos.</div>
+      <div class="af-step-day">// DÍA 2</div>
+    </div>
+    <div class="af-step">
+      <div class="af-step-num">03</div>
+      <div class="af-step-title">Instalación y pruebas</div>
+      <div class="af-step-text">Configuramos todo en tu negocio, lo probamos contigo en vivo y ajustamos hasta que quede exactamente como necesitas. Tú apruebas cada detalle.</div>
+      <div class="af-step-day">// DÍA 3–5</div>
+    </div>
+    <div class="af-step">
+      <div class="af-step-num">04</div>
+      <div class="af-step-title">Piloto automático</div>
+      <div class="af-step-text">Tu negocio arranca automatizado. Monitoreamos el primer mes, hacemos ajustes incluidos y estamos disponibles por WhatsApp para cualquier situación.</div>
+      <div class="af-step-day">// DESDE DÍA 6 · SOPORTE CONTINUO</div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════ PRECIOS ════════════════ -->
+<div id="af-precios-anchor"></div>
+<section class="af-precios" style="padding:90px 5%;border-bottom:1px solid var(--br)">
+  <div style="max-width:1000px;margin:0 auto;text-align:center">
+    <div class="af-section-label rv">Precios en soles</div>
+    <h2 class="af-section-title rv">Inversión que se <em>recupera sola</em></h2>
+    <p class="af-section-sub rv" style="margin:0 auto 0">Sin contratos anuales. Sin costos ocultos. Si en el primer mes no ves resultados, no pagas el mantenimiento. Así de seguros estamos.</p>
+  </div>
+  <div class="af-price-grid rv">
+    <div class="af-pcard">
+      <div class="af-pname">Plan Básico</div>
+      <div class="af-pprice"><small>S/ </small>180</div>
+      <div class="af-precur">+ S/ 60 / mes · mantenimiento</div>
+      <div class="af-pdesc">Para negocios que quieren dar el primer paso. Un flujo bien configurado ya cambia la operación diaria.</div>
+      <ul class="af-pfeats">
+        <li>Bot WhatsApp básico · respuestas automáticas</li>
+        <li>1 flujo de automatización a elegir</li>
+        <li>Integración Yape / Plin</li>
+        <li>Horarios de atención configurados</li>
+        <li>Soporte por WhatsApp</li>
+        <li>Instalación incluida</li>
+        <li class="no">Múltiples flujos simultáneos</li>
+        <li class="no">Reportes automáticos</li>
+        <li class="no">Agenda integrada</li>
+      </ul>
+      <a href="https://wa.me/51945366356?text=Hola%20Jair,%20me%20interesa%20el%20Plan%20Básico%20de%20AutoFlow%20-%20S/180" class="af-pbtn outline" target="_blank">Consultar este plan</a>
+    </div>
+    <div class="af-pcard featured">
+      <div class="af-pcard-badge">MÁS PEDIDO</div>
+      <div class="af-pname">Plan Profesional</div>
+      <div class="af-pprice"><small>S/ </small>380</div>
+      <div class="af-precur">+ S/ 100 / mes · mantenimiento</div>
+      <div class="af-pdesc">La automatización completa para negocios que quieren crecer en serio. Cubre todos los puntos críticos de la operación.</div>
+      <ul class="af-pfeats">
+        <li>Bot WhatsApp con IA conversacional</li>
+        <li>Hasta 5 flujos de automatización</li>
+        <li>Agenda y citas con recordatorios</li>
+        <li>Confirmación y seguimiento de pagos</li>
+        <li>Reporte semanal automático</li>
+        <li>Seguimiento post-venta</li>
+        <li>Soporte prioritario · respuesta en 2h</li>
+        <li>1 ajuste mensual incluido</li>
+      </ul>
+      <a href="https://wa.me/51945366356?text=Hola%20Jair,%20quiero%20el%20Plan%20Profesional%20de%20AutoFlow%20-%20S/380" class="af-pbtn fill" target="_blank">Quiero este plan →</a>
+    </div>
+    <div class="af-pcard">
+      <div class="af-pname">Plan Negocios</div>
+      <div class="af-pprice"><small>S/ </small>650</div>
+      <div class="af-precur">+ S/ 180 / mes · mantenimiento</div>
+      <div class="af-pdesc">Para negocios con múltiples canales, equipo de trabajo y procesos complejos que necesitan automatización total.</div>
+      <ul class="af-pfeats">
+        <li>WhatsApp + Instagram + Facebook</li>
+        <li>Flujos de automatización ilimitados</li>
+        <li>CRM básico integrado</li>
+        <li>Dashboard de control personalizado</li>
+        <li>Reportes diarios automáticos</li>
+        <li>Capacitación para tu equipo</li>
+        <li>Soporte VIP · respuesta en 1h</li>
+        <li>Ajustes ilimitados incluidos</li>
+      </ul>
+      <a href="https://wa.me/51945366356?text=Hola%20Jair,%20me%20interesa%20el%20Plan%20Negocios%20de%20AutoFlow%20-%20S/650" class="af-pbtn outline" target="_blank">Consultar este plan</a>
+    </div>
+  </div>
+  <p style="text-align:center;font-family:var(--fs);font-size:.8rem;color:var(--txd);margin-top:24px">
+    💡 ¿No sabes qué plan necesitas? La consulta diagnóstica es completamente gratis. En 30 minutos te recomiendo la opción ideal para tu caso.
+  </p>
+</section>
+
+<!-- ════════════════ CTA FINAL ════════════════ -->
+<section class="af-cta-section">
+  <div class="af-section-label rv" style="display:block;text-align:center">Empieza hoy</div>
+  <h2 class="af-cta-title rv">
+    ¿Listo para que tu negocio
+    <span class="af-grad" style="display:inline">trabaje solo?</span>
+  </h2>
+  <p class="af-cta-sub rv">La consulta inicial es completamente gratis. En 30 minutos te digo exactamente qué puedo automatizar en tu negocio y cuánto te costaría. Sin compromiso.</p>
+  <div class="af-cta-methods rv">
+    <div class="af-method"><div class="af-method-icon">💚</div><div class="af-method-name">Yape</div><div class="af-method-num">945 366 356</div></div>
+    <div class="af-method"><div class="af-method-icon">💙</div><div class="af-method-name">Plin</div><div class="af-method-num">945 366 356</div></div>
+    <div class="af-method"><div class="af-method-icon">🏦</div><div class="af-method-name">Transferencia</div><div class="af-method-num">BCP · Interbank</div></div>
+    <div class="af-method"><div class="af-method-icon">💳</div><div class="af-method-name">Cuotas</div><div class="af-method-num">Coordinamos</div></div>
+  </div>
+  <a href="https://wa.me/51945366356?text=Hola%20Jair,%20quiero%20automatizar%20mi%20negocio.%20¿Podemos%20agendar%20una%20llamada%20diagnóstica?" class="af-cta-main-btn rv" target="_blank">
+    <i class="fab fa-whatsapp"></i> Escribir por WhatsApp · Demo gratuita
+  </a>
+  <div class="af-cta-footer rv">RESPUESTA EN MENOS DE 1 HORA · ATENCIÓN EN ESPAÑOL · 100% PERUANO 🇵🇪</div>
+</section>
+
+<!-- ════════════════ JAVASCRIPT ════════════════ -->
+<script>
+(function(){
+'use strict';
+
+/* ── Datos de negocios ── */
+const BIZDATA = [
+  {
+    id:0, icon:'💇‍♀️', name:'Salón Diana · Bot IA',
+    convo:[
+      {from:'client', text:'Hola, ¿tienen cita disponible para mañana?'},
+      {from:'bot',    text:'¡Hola! 👋 Bienvenida al Salón Diana. Sí tenemos disponibilidad para mañana. ¿Qué servicio te interesa?\n\n💅 Manicure — S/ 25\n💇‍♀️ Corte + peinado — S/ 45\n✨ Tratamiento keratina — S/ 90', delay:1200},
+      {from:'client', text:'Manicure por favor'},
+      {from:'bot',    text:'Perfecto 💅 Tenemos estos horarios para mañana:\n\n🕙 10:00 am\n🕑 2:00 pm\n🕓 4:30 pm\n\n¿Cuál te viene mejor?', delay:1000},
+      {from:'client', text:'A las 2pm'},
+      {from:'bot',    text:'Reservado ✅ Cita para mañana a las 2:00 pm — Manicure S/ 25.\n¿A qué nombre te la registro?', delay:900},
+      {from:'client', text:'Lucía Flores'},
+      {from:'bot',    text:'Listo Lucía 🌸 Te mando un recordatorio mañana a las 10am. El pago lo puedes hacer en el local o por Yape al 945 366 356.\n\n¡Nos vemos mañana! 😊', delay:1100},
+    ],
+    flow:[
+      {icon:'📱',label:'MENSAJE ENTRA',desc:'Cliente escribe'},
+      {icon:'🤖',label:'BOT ANALIZA',desc:'IA entiende intención'},
+      {icon:'📅',label:'VE AGENDA',desc:'Horarios en tiempo real'},
+      {icon:'✅',label:'CONFIRMA CITA',desc:'Reserva automática'},
+      {icon:'🔔',label:'RECORDATORIO',desc:'24h antes auto'},
+    ],
+    flowRows:[
+      {icon:'📱',text:'Mensaje de cliente recibido',status:'✓ RECIBIDO'},
+      {icon:'🤖',text:'IA identifica: solicitud de cita',status:'✓ PROCESADO'},
+      {icon:'📅',text:'Consulta agenda en tiempo real',status:'✓ DISPONIBLE'},
+      {icon:'💬',text:'Responde con opciones de horario',status:'✓ ENVIADO'},
+      {icon:'✅',text:'Cliente confirma → cita registrada',status:'✓ RESERVADO'},
+      {icon:'🔔',text:'Recordatorio programado: -24h',status:'⏰ PENDIENTE'},
+    ],
+    roi:[
+      {label:'HORAS AHORRADAS / MES',val:'60h+',sub:'En atención manual de mensajes y coordinación de citas',type:'green'},
+      {label:'REDUCCIÓN DE AUSENCIAS',val:'-68%',sub:'Por recordatorios automáticos 24h antes de cada cita',type:'green'},
+      {label:'COSTO DEL PLAN PROFESIONAL',val:'S/480',sub:'Setup S/380 + mantenimiento S/100 primer mes',type:'red'},
+      {label:'INGRESO RECUPERADO / MES',val:'S/900+',sub:'Solo con 3 citas adicionales diarias por atención 24/7',type:'green'},
+    ],
+    roiBar:{label:'TIEMPO DE RETORNO DE INVERSIÓN',fill:85,left:'Inversión inicial',right:'Recuperada en ~3 semanas'},
+  },
+  {
+    id:1, icon:'🌸', name:'Floristería Primavera · Bot IA',
+    convo:[
+      {from:'client', text:'Buenas, ¿tienen arreglos para aniversario?'},
+      {from:'bot',    text:'¡Hola! 🌸 Bienvenida a Floristería Primavera. Sí, tenemos hermosos arreglos para aniversario:\n\n💐 Básico — S/ 45\n🌹 Premium con rosas — S/ 75\n👑 Deluxe con caja — S/ 120\n\n¿Cuál te interesa?', delay:1100},
+      {from:'client', text:'El Premium de rosas'},
+      {from:'bot',    text:'Excelente elección 🌹 ¿Lo quieres con dedicatoria personalizada? También podemos agregar globos por S/ 15 extra o peluche por S/ 20.', delay:1000},
+      {from:'client', text:'Solo el arreglo con dedicatoria, sin extras'},
+      {from:'bot',    text:'Perfecto ✅ Arreglo Premium + dedicatoria — S/ 75.\n\n¿Para qué fecha y hora lo necesitas?\n¿Lo recoges en tienda o necesitas delivery?', delay:1000},
+      {from:'client', text:'Para mañana al mediodía, delivery a Miraflores'},
+      {from:'bot',    text:'Coordinado 🚀 Delivery a Miraflores — costo S/ 10 adicional. Total: S/ 85.\n\nPaga por Yape al 945 366 356 y envíanos el voucher. ¡El arreglo queda con su nombre y dedicatoria! 💐', delay:1200},
+    ],
+    flow:[
+      {icon:'💬',label:'CONSULTA',desc:'Cliente pregunta'},
+      {icon:'🛍️',label:'CATÁLOGO',desc:'Bot muestra opciones'},
+      {icon:'✍️',label:'PERSONALIZA',desc:'Nombre · dedicatoria'},
+      {icon:'💳',label:'PAGO YAPE',desc:'Confirma automático'},
+      {icon:'🚚',label:'COORDINA',desc:'Entrega notificada'},
+    ],
+    flowRows:[
+      {icon:'💬',text:'Consulta sobre arreglos recibida',status:'✓ ATENDIDO'},
+      {icon:'🛍️',text:'Catálogo enviado automáticamente',status:'✓ ENVIADO'},
+      {icon:'✅',text:'Cliente elige: Premium S/75',status:'✓ SELECCIONADO'},
+      {icon:'💳',text:'Solicitud de pago Yape enviada',status:'✓ SOLICITADO'},
+      {icon:'📸',text:'Cliente envía voucher → verificado',status:'✓ CONFIRMADO'},
+      {icon:'🚚',text:'Orden creada → delivery coordinado',status:'⏰ EN PROCESO'},
+    ],
+    roi:[
+      {label:'PEDIDOS EXTRA POR FECHAS ESPECIALES',val:'+35%',sub:'Por alertas automáticas a clientes antes de Día de la Madre, San Valentín, etc.',type:'green'},
+      {label:'TIEMPO EN COORDINACIÓN DE PEDIDOS',val:'-80%',sub:'Proceso de pedido, pago y confirmación completamente automatizado',type:'green'},
+      {label:'INVERSIÓN PLAN PROFESIONAL',val:'S/480',sub:'Mes 1 incluyendo setup y mantenimiento',type:'red'},
+      {label:'INGRESO ADICIONAL ESTIMADO',val:'S/1,200+',sub:'En fechas especiales con 15 pedidos adicionales promedio',type:'green'},
+    ],
+    roiBar:{label:'IMPACTO EN FECHAS ESPECIALES',fill:92,left:'Sin AutoFlow',right:'Con AutoFlow: +35% pedidos'},
+  },
+  {
+    id:2, icon:'🍕', name:'Pizzería Don Marco · Bot IA',
+    convo:[
+      {from:'client', text:'Quiero pedir una pizza familiar'},
+      {from:'bot',    text:'¡Hola! 🍕 Bienvenido a Pizzería Don Marco. Aquí nuestras familiares:\n\n🍕 Hawaiana — S/ 42\n🍕 Pepperoni — S/ 45\n🍕 Especial Don Marco — S/ 52\n🍕 Vegetariana — S/ 38\n\n¿Cuál te llama más?', delay:1000},
+      {from:'client', text:'La especial Don Marco'},
+      {from:'bot',    text:'Excelente elección 🌟 Pizza Especial Don Marco — S/ 52.\n¿Para recoger en tienda o prefieres delivery?\n\n📍 Recojo (listo en 20 min)\n🛵 Delivery +S/ 8 (35-45 min)', delay:1000},
+      {from:'client', text:'Delivery, estoy en San Isidro'},
+      {from:'bot',    text:'Cubrimos San Isidro ✅ Total: S/ 60. Paga por Yape al 945 366 356 y mándanos el voucher.\n\nEn cuanto confirmemos, tu pizza entra a producción. ¡En ~40 minutos está en tu puerta! 🚀', delay:1100},
+      {from:'client', text:'Listo, ya yapié'},
+      {from:'bot',    text:'¡Pago recibido ✅! Tu pedido está en preparación. Te avisamos cuando salga el repartidor con el link de seguimiento. ¡Buen provecho! 🍕', delay:800},
+    ],
+    flow:[
+      {icon:'📋',label:'TOMA PEDIDO',desc:'Menú digital'},
+      {icon:'📍',label:'VERIFICA ZONA',desc:'Cobertura delivery'},
+      {icon:'💳',label:'PAGO',desc:'Yape confirmado'},
+      {icon:'👨‍🍳',label:'PRODUCCIÓN',desc:'Notifica cocina'},
+      {icon:'🛵',label:'SEGUIMIENTO',desc:'Updates al cliente'},
+    ],
+    flowRows:[
+      {icon:'📋',text:'Pedido tomado: Pizza Especial S/52',status:'✓ REGISTRADO'},
+      {icon:'📍',text:'Zona de delivery verificada: San Isidro',status:'✓ COBERTURA OK'},
+      {icon:'💳',text:'Pago Yape S/60 recibido y verificado',status:'✓ CONFIRMADO'},
+      {icon:'👨‍🍳',text:'Orden enviada a cocina automáticamente',status:'✓ EN COCINA'},
+      {icon:'🛵',text:'Repartidor asignado → cliente notificado',status:'⏰ EN CAMINO'},
+      {icon:'⭐',text:'Post-entrega: encuesta satisfacción',status:'⏰ PROGRAMADO'},
+    ],
+    roi:[
+      {label:'PEDIDOS SIN ERRORES',val:'100%',sub:'El bot toma el pedido exacto, sin malentendidos por teléfono',type:'green'},
+      {label:'TIEMPO DE ATENCIÓN POR PEDIDO',val:'-90%',sub:'De 8 minutos manual a menos de 1 minuto automatizado',type:'green'},
+      {label:'INVERSIÓN PLAN PROFESIONAL',val:'S/480',sub:'Setup S/380 + mantenimiento S/100 primer mes',type:'red'},
+      {label:'PEDIDOS EXTRA POR HORARIO NOCTURNO',val:'+20%',sub:'Atención hasta las 11pm sin personal adicional',type:'green'},
+    ],
+    roiBar:{label:'REDUCCIÓN EN TIEMPO DE ATENCIÓN POR PEDIDO',fill:90,left:'Manual: 8 min/pedido',right:'AutoFlow: &lt;1 min/pedido'},
+  },
+  {
+    id:3, icon:'🏥', name:'Consultorio Dra. García · Bot IA',
+    convo:[
+      {from:'client', text:'Buenas tardes, necesito una cita con la doctora'},
+      {from:'bot',    text:'Buenas tardes 👋 Bienvenido al Consultorio Dra. García. Con gusto te ayudo a agendar tu cita.\n\n¿Es tu primera consulta o ya tienes historial con nosotros?', delay:1200},
+      {from:'client', text:'Primera vez'},
+      {from:'bot',    text:'Perfecto. Tenemos disponibilidad esta semana:\n\n📅 Miércoles 15 · 10:00 am\n📅 Jueves 16 · 3:00 pm\n📅 Viernes 17 · 9:00 am\n\n¿Qué horario te acomoda?', delay:1100},
+      {from:'client', text:'El jueves a las 3pm'},
+      {from:'bot',    text:'Cita confirmada ✅ Jueves 16 a las 3:00 pm.\n¿Tu nombre completo para el registro?', delay:900},
+      {from:'client', text:'Marco Antonio Torres'},
+      {from:'bot',    text:'Registrado Marco 🩺 El día anterior recibirás un recordatorio con las indicaciones previas. Consulta: S/ 80 — puedes pagar al llegar o por Yape.\n\nSi necesitas cancelar o reprogramar, escríbenos con 24h de anticipación. ¡Hasta el jueves!', delay:1300},
+    ],
+    flow:[
+      {icon:'📅',label:'SOLICITUD',desc:'Pide cita por WA'},
+      {icon:'🗓️',label:'DISPONIBILIDAD',desc:'Agenda en tiempo real'},
+      {icon:'📝',label:'REGISTRO',desc:'Datos del paciente'},
+      {icon:'✅',label:'CONFIRMACIÓN',desc:'Cita reservada'},
+      {icon:'🔔',label:'RECORDATORIO',desc:'-24h + indicaciones'},
+    ],
+    flowRows:[
+      {icon:'📅',text:'Solicitud de cita recibida',status:'✓ RECIBIDO'},
+      {icon:'🗓️',text:'Disponibilidad consultada: 3 opciones',status:'✓ DISPONIBLE'},
+      {icon:'📝',text:'Datos del paciente registrados',status:'✓ GUARDADO'},
+      {icon:'✅',text:'Cita confirmada: Jueves 16 · 3:00 pm',status:'✓ AGENDADO'},
+      {icon:'🔔',text:'Recordatorio + indicaciones: -24h',status:'⏰ PROGRAMADO'},
+      {icon:'📊',text:'Historial de cita agregado al reporte',status:'✓ REGISTRADO'},
+    ],
+    roi:[
+      {label:'REDUCCIÓN DE AUSENCIAS',val:'-70%',sub:'Recordatorios automáticos + confirmación obligatoria el día anterior',type:'green'},
+      {label:'TIEMPO SECRETARIA EN CITAS',val:'-85%',sub:'Todo el proceso de agendamiento completamente automatizado',type:'green'},
+      {label:'INVERSIÓN PLAN PROFESIONAL',val:'S/480',sub:'Setup S/380 + mantenimiento S/100 primer mes',type:'red'},
+      {label:'INGRESO RECUPERADO / MES',val:'S/800+',sub:'Solo con 10 citas menos perdidas a S/80 promedio',type:'green'},
+    ],
+    roiBar:{label:'RECUPERACIÓN DE INVERSIÓN',fill:88,left:'Mes 1: recuperas S/800+',right:'ROI positivo desde semana 3'},
+  },
+  {
+    id:4, icon:'🛍️', name:'Tienda ModaLima · Bot IA',
+    convo:[
+      {from:'client', text:'Hola, ¿tienen vestidos de verano?'},
+      {from:'bot',    text:'¡Hola! 👗 Bienvenida a ModaLima. Sí, tenemos nueva colección de verano recién llegada:\n\n🌸 Vestidos casual — desde S/ 45\n✨ Vestidos de noche — desde S/ 85\n☀️ Vestidos playa — desde S/ 55\n\n¿Qué estilo buscas?', delay:1100},
+      {from:'client', text:'Casual, talla M'},
+      {from:'bot',    text:'Perfecto 😊 En casual talla M tenemos 8 modelos disponibles ahora mismo. Te mando las fotos por aquí en un momento.\n\n¿Tienes preferencia de color?', delay:1000},
+      {from:'client', text:'Colores claros, pastel'},
+      {from:'bot',    text:'Tengo 3 opciones en pastel talla M:\n\n🌷 Vestido rosa — S/ 48\n💙 Vestido celeste — S/ 52\n🤍 Vestido blanco off — S/ 45\n\n¿Cuál te interesa? Puedo separártelo hoy con el 50% de adelanto por Yape.', delay:1200},
+    ],
+    flow:[
+      {icon:'🔍',label:'CONSULTA STOCK',desc:'Disponibilidad real'},
+      {icon:'🛍️',label:'MUESTRA CATÁLOGO',desc:'Fotos + precios'},
+      {icon:'❤️',label:'CLIENTE ELIGE',desc:'Talla · color'},
+      {icon:'💳',label:'SEPARADO / PAGO',desc:'Yape · Plin'},
+      {icon:'📦',label:'NOTIFICA ENVÍO',desc:'Tracking automático'},
+    ],
+    flowRows:[
+      {icon:'🔍',text:'Consulta de stock: vestidos talla M',status:'✓ VERIFICADO'},
+      {icon:'🛍️',text:'Catálogo filtrado enviado al cliente',status:'✓ ENVIADO'},
+      {icon:'❤️',text:'Cliente interesada en vestido celeste S/52',status:'✓ SELECCIONADO'},
+      {icon:'💳',text:'Adelanto 50% solicitado: S/26 Yape',status:'✓ SOLICITADO'},
+      {icon:'📦',text:'Separado registrado en inventario',status:'⏰ PENDIENTE PAGO'},
+      {icon:'🚚',text:'Envío coordinado al confirmar pago total',status:'⏰ PENDIENTE'},
+    ],
+    roi:[
+      {label:'VENTAS FUERA DE HORARIO',val:'+40%',sub:'Atención automática hasta las 11pm sin personal adicional',type:'green'},
+      {label:'TIEMPO EN ATENCIÓN DE CONSULTAS',val:'-75%',sub:'Consultas de stock, tallas y precios resueltas automáticamente',type:'green'},
+      {label:'INVERSIÓN PLAN PROFESIONAL',val:'S/480',sub:'Setup S/380 + mantenimiento S/100 primer mes',type:'red'},
+      {label:'VENTAS RECUPERADAS / MES',val:'S/1,500+',sub:'Clientes que antes no recibían respuesta inmediata y compraban en otro lado',type:'green'},
+    ],
+    roiBar:{label:'IMPACTO EN VENTAS NOCTURNAS (después 6pm)',fill:78,left:'Sin AutoFlow: 0 ventas',right:'Con AutoFlow: +40% ventas nocturnas'},
+  }
+];
+
+let currentBiz = 0;
+let currentTab = 'chat';
+let chatTimeouts = [];
+let roiAnimated = false;
+
+/* ── Render chat ── */
+function renderChat(bizIdx){
+  const chat = document.getElementById('af-chat-area');
+  const biz  = BIZDATA[bizIdx];
+  chat.innerHTML = '';
+  chatTimeouts.forEach(clearTimeout);
+  chatTimeouts = [];
+
+  document.getElementById('af-wa-name').textContent = biz.name;
+  document.getElementById('af-wa-icon').textContent = biz.icon;
+
+  let delay = 300;
+  biz.convo.forEach((msg) => {
+    const d = delay;
+    const t = chatTimeouts.length;
+    chatTimeouts.push(setTimeout(() => {
+      // Typing indicator for bot
+      if(msg.from === 'bot'){
+        const typ = document.createElement('div');
+        typ.className = 'af-msg-row bot'; typ.id = 'af-typing-ind';
+        typ.innerHTML = '<div class="af-typing"><span></span><span></span><span></span></div>';
+        chat.appendChild(typ); chat.scrollTop = chat.scrollHeight;
+
+        chatTimeouts.push(setTimeout(() => {
+          const ind = document.getElementById('af-typing-ind');
+          if(ind) ind.remove();
+          addBubble(chat, msg);
+        }, msg.delay || 1000));
+      } else {
+        addBubble(chat, msg);
+      }
+    }, d));
+    delay += (msg.delay || 900) + 600;
+  });
+}
+
+function addBubble(chat, msg){
+  const now  = new Date();
+  const time = now.getHours() + ':' + (now.getMinutes()<10?'0':'') + now.getMinutes();
+  const row  = document.createElement('div');
+  row.className = 'af-msg-row ' + msg.from;
+  const bub = document.createElement('div');
+  bub.className = 'af-bubble ' + msg.from;
+  bub.textContent = msg.text;
+  bub.style.whiteSpace = 'pre-line';
+  const t = document.createElement('div');
+  t.className = 'af-bubble-time';
+  t.textContent = time + (msg.from==='bot' ? ' · Bot IA' : '');
+  row.appendChild(bub); row.appendChild(t);
+  chat.appendChild(row); chat.scrollTop = chat.scrollHeight;
+}
+
+/* ── Render flujo ── */
+function renderFlow(bizIdx){
+  const biz = BIZDATA[bizIdx];
+  const stepsEl = document.getElementById('af-flow-steps');
+  const visEl   = document.getElementById('af-flow-visual');
+
+  stepsEl.innerHTML = biz.flow.map(s => `
+    <div class="af-flow-step">
+      <div class="af-flow-node">${s.icon}</div>
+      <div class="af-flow-label">${s.label}</div>
+      <div class="af-flow-desc">${s.desc}</div>
+    </div>
+  `).join('');
+
+  visEl.innerHTML = biz.flowRows.map((r, i) => `
+    <div class="af-flow-row ${i < 4 ? 'active-row' : ''}" id="afr-${i}">
+      <div class="af-flow-row-icon">${r.icon}</div>
+      <div style="flex:1;font-family:var(--fs);font-size:.78rem">${r.text}</div>
+      <div class="af-flow-row-status">${i < 4 ? r.status : r.status}</div>
+    </div>
+  `).join('');
+
+  // Animate rows progressively
+  let i = 4;
+  const interval = setInterval(() => {
+    const el = document.getElementById('afr-' + i);
+    if(el){ el.classList.add('active-row'); i++; }
+    if(i >= biz.flowRows.length) clearInterval(interval);
+  }, 800);
+}
+
+/* ── Render ROI ── */
+function renderROI(bizIdx){
+  const biz = BIZDATA[bizIdx];
+  const grid = document.getElementById('af-roi-cards');
+  const bar  = document.getElementById('af-roi-bar');
+
+  grid.innerHTML = biz.roi.map(r => `
+    <div class="af-roi-card ${r.type}">
+      <div class="af-roi-label">${r.label}</div>
+      <div class="af-roi-value">${r.val}</div>
+      <div class="af-roi-sub">${r.sub}</div>
+    </div>
+  `).join('');
+
+  bar.innerHTML = `
+    <div class="af-roi-bar-label">// ${biz.roiBar.label}</div>
+    <div class="af-roi-progress">
+      <div class="af-roi-fill" id="af-roi-fill" style="width:0%"></div>
+    </div>
+    <div class="af-roi-prog-label">
+      <span>${biz.roiBar.left}</span>
+      <span>${biz.roiBar.right}</span>
+    </div>
+  `;
+
+  setTimeout(() => {
+    const fill = document.getElementById('af-roi-fill');
+    if(fill) fill.style.width = biz.roiBar.fill + '%';
+  }, 200);
+}
+
+/* ── Casos de uso ── */
+const CASES = [
+  {
+    tab:'💇‍♀️ Salón', title:'Salón de Belleza / Spa / Barbería',
+    desc:'Los salones pierden entre 20% y 40% de sus citas por ausencias y mal coordinación. Con AutoFlow, la reserva es instantánea, el recordatorio automático y el pago confirmado antes de que el cliente llegue.',
+    autos:[
+      {t:'Bot reserva citas 24/7 por WhatsApp',s:'El cliente elige horario sin llamadas ni esperas'},
+      {t:'Recordatorio automático 24h antes',s:'Con confirmación obligatoria para reducir ausencias'},
+      {t:'Confirmación de pago por Yape / Plin',s:'El adelanto queda registrado automáticamente'},
+      {t:'Lista de espera inteligente',s:'Si alguien cancela, el siguiente en lista recibe oferta'},
+      {t:'Post-visita: solicitud de reseña Google',s:'Construye reputación online automáticamente'},
+    ],
+    metrics:[{v:'3h',l:'AHORRADAS/DÍA'},{v:'-68%',l:'AUSENCIAS'},{v:'+45%',l:'RESEÑAS'}],
+    flowRows:[
+      {icon:'📱',text:'Cliente escribe a las 10:47pm',active:true},
+      {icon:'🤖',text:'Bot responde en 2 segundos',active:true},
+      {icon:'📅',text:'Muestra horarios disponibles mañana',active:true},
+      {icon:'✅',text:'Cita reservada · pago Yape solicitado',active:true},
+      {icon:'🔔',text:'Recordatorio programado: -24h auto',active:false},
+      {icon:'⭐',text:'Post-visita: reseña Google solicitada',active:false},
+    ]
+  },
+  {
+    tab:'🌸 Floristería', title:'Floristería / Regalos / Eventos',
+    desc:'Las florerías tienen picos brutales en fechas especiales. Sin automatización, pierden pedidos porque no pueden atender todo. Con AutoFlow, el sistema atiende a todos simultáneamente.',
+    autos:[
+      {t:'Catálogo interactivo por WhatsApp',s:'Con fotos, precios y disponibilidad en tiempo real'},
+      {t:'Pedido completo sin llamadas',s:'Desde la elección hasta el pago en la misma conversación'},
+      {t:'Alertas automáticas a clientes frecuentes',s:'7 días antes de Día de la Madre, San Valentín, etc.'},
+      {t:'Seguimiento de entrega automático',s:'El cliente sabe en todo momento dónde está su pedido'},
+      {t:'Recompra inteligente',s:'Recordatorio anual para aniversarios y fechas repetidas'},
+    ],
+    metrics:[{v:'+35%',l:'PEDIDOS ESPECIALES'},{v:'0',l:'PEDIDOS PERDIDOS'},{v:'-80%',l:'TIEMPO/PEDIDO'}],
+    flowRows:[
+      {icon:'🌸',text:'Cliente consulta arreglos de aniversario',active:true},
+      {icon:'📸',text:'Catálogo con fotos enviado automáticamente',active:true},
+      {icon:'✅',text:'Cliente elige Premium S/75',active:true},
+      {icon:'💳',text:'Pago Yape recibido y verificado',active:true},
+      {icon:'📦',text:'Orden creada en sistema automáticamente',active:false},
+      {icon:'🚚',text:'Notificación de entrega enviada al cliente',active:false},
+    ]
+  },
+  {
+    tab:'🍕 Restaurante', title:'Restaurante / Delivery / Cafetería',
+    desc:'Tomar pedidos por WhatsApp consume tiempo y genera errores. AutoFlow convierte cada conversación en un pedido perfectamente registrado — sin intermediarios ni malentendidos.',
+    autos:[
+      {t:'Menú digital interactivo por WhatsApp',s:'Con fotos, precios y combos del día actualizables'},
+      {t:'Toma de pedido sin errores',s:'El bot confirma cada ítem antes de procesar'},
+      {t:'Verificación de pago Yape en tiempo real',s:'El pedido entra a cocina solo cuando el pago está confirmado'},
+      {t:'Tiempo estimado de entrega automático',s:'El cliente sabe cuánto esperar sin preguntar'},
+      {t:'Encuesta de satisfacción post-pedido',s:'Más reseñas de 5 estrellas en Google Maps'},
+    ],
+    metrics:[{v:'100%',l:'PEDIDOS SIN ERRORES'},{v:'+20%',l:'PEDIDOS NOCTURNOS'},{v:'-90%',l:'TIEMPO/ATENCIÓN'}],
+    flowRows:[
+      {icon:'🍕',text:'Pedido recibido por WhatsApp',active:true},
+      {icon:'📋',text:'Bot confirma ítems con el cliente',active:true},
+      {icon:'💳',text:'Pago Yape verificado automáticamente',active:true},
+      {icon:'👨‍🍳',text:'Orden enviada a cocina → producción',active:true},
+      {icon:'🛵',text:'Repartidor asignado · cliente notificado',active:false},
+      {icon:'⭐',text:'Encuesta enviada 30 min post-entrega',active:false},
+    ]
+  },
+  {
+    tab:'🏥 Consultorio', title:'Consultorio / Clínica / Centro de Salud',
+    desc:'El 30% de las citas médicas se pierden por no-shows. El bot de AutoFlow no solo recuerda la cita — también pide confirmación activa y puede reprogramar si el paciente cancela a tiempo.',
+    autos:[
+      {t:'Agendamiento de citas 24/7',s:'Pacientes reservan fuera de horario de oficina'},
+      {t:'Recordatorio + indicaciones previas',s:'Qué traer, si venir en ayunas, cómo llegar'},
+      {t:'Confirmación activa obligatoria',s:'El paciente debe responder para conservar su cita'},
+      {t:'Reprogramación automática si cancela',s:'El slot se libera y se ofrece al siguiente en lista'},
+      {t:'Seguimiento post-consulta',s:'Recordatorio de medicación o próxima cita programada'},
+    ],
+    metrics:[{v:'-70%',l:'AUSENCIAS'},{v:'-85%',l:'TRABAJO SECRETARIA'},{v:'S/800+',l:'INGRESO RECUPERADO'}],
+    flowRows:[
+      {icon:'📅',text:'Paciente agenda cita a las 11pm',active:true},
+      {icon:'📝',text:'Datos registrados automáticamente',active:true},
+      {icon:'🔔',text:'Recordatorio + indicaciones: -24h',active:true},
+      {icon:'✅',text:'Paciente confirma · cita asegurada',active:true},
+      {icon:'🩺',text:'Historial actualizado post-consulta',active:false},
+      {icon:'💊',text:'Recordatorio de medicación programado',active:false},
+    ]
+  },
+  {
+    tab:'🛍️ Tienda', title:'Tienda / E-commerce / Moda',
+    desc:'El 40% de las ventas online se pierden porque el cliente no recibe respuesta inmediata. Con AutoFlow, tu tienda atiende a las 11pm con la misma calidad que en horario de trabajo.',
+    autos:[
+      {t:'Catálogo con stock en tiempo real',s:'El cliente sabe si hay disponibilidad antes de interesarse'},
+      {t:'Asesoría de tallas y colores por chat',s:'El bot hace las preguntas correctas para dar la recomendación'},
+      {t:'Separado con adelanto Yape',s:'Reserva el producto con pago parcial para asegurar la venta'},
+      {t:'Seguimiento del pedido en WhatsApp',s:'Desde despacho hasta entrega con updates automáticos'},
+      {t:'Recuperación de carritos abandonados',s:'Si el cliente no completó la compra, el bot hace seguimiento'},
+    ],
+    metrics:[{v:'+40%',l:'VENTAS NOCTURNAS'},{v:'-75%',l:'CONSULTAS MANUALES'},{v:'S/1,500+',l:'VENTAS RECUPERADAS'}],
+    flowRows:[
+      {icon:'🔍',text:'Consulta de stock recibida a las 9:30pm',active:true},
+      {icon:'👗',text:'Catálogo filtrado por talla y color',active:true},
+      {icon:'❤️',text:'Cliente elige: vestido celeste talla M',active:true},
+      {icon:'💳',text:'Adelanto 50% por Yape — separado',active:true},
+      {icon:'📦',text:'Producto reservado en inventario',active:false},
+      {icon:'🚚',text:'Envío coordinado · tracking enviado',active:false},
+    ]
+  }
+];
+
+function renderCases(){
+  const tabsEl   = document.getElementById('af-case-tabs');
+  const panelsEl = document.getElementById('af-case-panels');
+
+  tabsEl.innerHTML = CASES.map((c,i) => `
+    <button class="af-case-tab ${i===0?'active':''}" onclick="afCaseTab(${i})">
+      ${c.tab}
+    </button>
+  `).join('');
+
+  panelsEl.innerHTML = CASES.map((c,i) => `
+    <div class="af-case-panel ${i===0?'active':''}" id="afcp-${i}">
+      <div class="af-case-info">
+        <h3 class="af-case-title">${c.title}</h3>
+        <p class="af-case-desc">${c.desc}</p>
+        <div class="af-case-autos">
+          ${c.autos.map(a=>`
+            <div class="af-case-auto">
+              <div class="af-auto-dot"></div>
+              <div>
+                <div class="af-auto-title">${a.t}</div>
+                <div class="af-auto-sub">${a.s}</div>
+              </div>
+            </div>
+          `).join('')}
+        </div>
+        <div class="af-case-result">
+          <div class="af-result-label">// RESULTADOS ESPERADOS</div>
+          <div class="af-result-metrics">
+            ${c.metrics.map(m=>`
+              <div class="af-metric">
+                <div class="af-metric-val">${m.v}</div>
+                <div class="af-metric-lbl">${m.l}</div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+      <div class="af-case-visual">
+        <div class="af-visual-bar">
+          <div class="af-visual-dot"></div>
+          AutoFlow · Flujo en tiempo real
+        </div>
+        <div class="af-visual-body">
+          <div class="af-flow-mini">
+            ${c.flowRows.map((r,ri)=>`
+              <div class="af-flow-row ${r.active?'active-row':''}">
+                <div class="af-flow-row-icon">${r.icon}</div>
+                <div style="flex:1;font-family:var(--fs);font-size:.75rem;color:${r.active?'var(--tx)':'var(--txd)'}">${r.text}</div>
+                <div class="af-flow-row-status" style="${r.active?'background:rgba(0,255,136,.1);color:var(--af);border:1px solid rgba(0,255,136,.2);font-family:var(--fm);font-size:.52rem;padding:2px 8px;border-radius:4px':'font-family:var(--fm);font-size:.52rem;color:var(--txd);padding:2px 8px'}">
+                  ${r.active?'✓ ACTIVO':'◌ PENDIENTE'}
+                </div>
+              </div>
+            `).join('')}
+          </div>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+window.afCaseTab = function(idx){
+  document.querySelectorAll('.af-case-tab').forEach((b,i) => b.classList.toggle('active', i===idx));
+  document.querySelectorAll('.af-case-panel').forEach((p,i) => p.classList.toggle('active', i===idx));
+};
+
+/* ── Selección de negocio en demo ── */
+window.afSelectBiz = function(idx, btn){
+  document.querySelectorAll('.af-biz-btn').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  currentBiz = idx;
+  if(currentTab === 'chat') renderChat(idx);
+  else if(currentTab === 'flow') renderFlow(idx);
+  else renderROI(idx);
+};
+
+/* ── Tabs de demo ── */
+window.afTab = function(tab, btn){
+  document.querySelectorAll('.af-tab').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  document.querySelectorAll('.af-tab-pane').forEach(p => p.classList.remove('active'));
+  document.getElementById('af-pane-' + tab).classList.add('active');
+  currentTab = tab;
+  if(tab === 'chat')  renderChat(currentBiz);
+  if(tab === 'flow')  renderFlow(currentBiz);
+  if(tab === 'roi')   renderROI(currentBiz);
+};
+
+/* ── Mensaje libre del usuario ── */
+window.afUserSend = function(){
+  const inp = document.getElementById('af-chat-inp');
+  const txt = inp.value.trim();
+  if(!txt) return;
+  inp.value = '';
+  const chat = document.getElementById('af-chat-area');
+  addBubble(chat, {from:'client', text:txt});
+
+  // Typing
+  setTimeout(() => {
+    const typ = document.createElement('div');
+    typ.className = 'af-msg-row bot'; typ.id = 'af-typing-free';
+    typ.innerHTML = '<div class="af-typing"><span></span><span></span><span></span></div>';
+    chat.appendChild(typ); chat.scrollTop = chat.scrollHeight;
+
+    const replies = [
+      'Entendido 👍 ¿Me puedes dar más detalles para ayudarte mejor?',
+      '¡Perfecto! Déjame verificar esa información para ti...',
+      'Con gusto te ayudo con eso. ¿Tienes alguna preferencia adicional?',
+      'Anotado ✅ En un momento te doy la información que necesitas.',
+      '¡Hola! Gracias por escribirnos. ¿En qué más puedo ayudarte?'
+    ];
+    setTimeout(() => {
+      const ind = document.getElementById('af-typing-free');
+      if(ind) ind.remove();
+      addBubble(chat, {from:'bot', text: replies[Math.floor(Math.random()*replies.length)]});
+    }, 1400);
+  }, 600);
+};
+
+/* ── Init ── */
+renderCases();
+renderChat(0);
+
+})();
+</script>
+</div>
 </body>
-</html>
