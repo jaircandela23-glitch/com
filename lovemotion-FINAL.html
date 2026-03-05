@@ -1,0 +1,1238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>LoveMotion · Dedicatorias Animadas · @jair.dev</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ═══════════════════════════════════════════
+   VARIABLES & RESET
+═══════════════════════════════════════════ */
+:root{
+  --bg:#04020a;--bg2:#07031a;--card:#0c071e;
+  --border:rgba(180,80,255,0.14);
+  --accent:#c840ff;--accent2:#ff3fa4;
+  --cyan:#00d4ff;--gold:#ffd060;
+  --text:#f0e8ff;--muted:rgba(200,180,255,0.45);
+  --font:'DM Sans',sans-serif;
+  --display:'Cormorant Garamond',serif;
+  --nav-h:60px;--bar-h:36px;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:var(--font);overflow-x:hidden;
+}
+
+/* ═══════════════════════════════════════════
+   CUSTOM CURSOR — desktop only
+═══════════════════════════════════════════ */
+@media(hover:hover){
+  body{cursor:none;}
+  #cur{position:fixed;width:10px;height:10px;border-radius:50%;background:var(--accent);pointer-events:none;z-index:9999;transform:translate(-50%,-50%);mix-blend-mode:screen;transition:width .15s,height .15s,background .15s;}
+  #cur2{position:fixed;width:36px;height:36px;border-radius:50%;border:1px solid rgba(200,64,255,.35);pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:left .06s,top .06s,width .2s,height .2s;}
+  body:has(a:hover) #cur,body:has(button:hover) #cur{width:16px;height:16px;background:var(--accent2);}
+  body:has(a:hover) #cur2,body:has(button:hover) #cur2{width:52px;height:52px;}
+}
+@media(hover:none){#cur,#cur2{display:none;}}
+
+/* ═══════════════════════════════════════════
+   TOP BAR + NAV
+═══════════════════════════════════════════ */
+.top-bar{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  height:var(--bar-h);
+  background:linear-gradient(90deg,#030010,#0d0025,#030010);
+  border-bottom:1px solid rgba(200,64,255,.2);
+  display:flex;align-items:center;justify-content:center;
+  gap:10px;font-size:12px;font-weight:500;letter-spacing:.3px;color:rgba(255,255,255,.5);
+}
+.top-bar a{color:var(--accent);text-decoration:none;font-weight:700;border-bottom:1px solid rgba(200,64,255,.35);}
+
+nav{
+  position:fixed;top:var(--bar-h);left:0;right:0;z-index:199;
+  height:var(--nav-h);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 5vw;
+  background:rgba(4,2,10,.75);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+}
+.logo{font-family:var(--display);font-size:21px;font-style:italic;color:#fff;letter-spacing:1px;text-decoration:none;}
+.logo span{color:var(--accent);}
+
+.nav-links{display:flex;gap:26px;}
+.nav-links a{color:var(--muted);font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;text-decoration:none;transition:color .2s;}
+.nav-links a:hover{color:#fff;}
+
+.nav-cta{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border:none;border-radius:8px;padding:9px 18px;
+  color:#fff;font-family:var(--font);font-size:13px;font-weight:600;
+  cursor:pointer;white-space:nowrap;
+}
+
+/* Hamburger */
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none;}
+.hamburger span{width:22px;height:2px;background:#fff;border-radius:2px;transition:all .3s;}
+
+/* Mobile nav drawer */
+.mobile-nav{
+  position:fixed;top:calc(var(--bar-h) + var(--nav-h));left:0;right:0;z-index:198;
+  background:rgba(4,2,10,.97);backdrop-filter:blur(20px);
+  border-bottom:1px solid var(--border);
+  display:flex;flex-direction:column;gap:0;
+  max-height:0;overflow:hidden;transition:max-height .35s ease;
+}
+.mobile-nav.open{max-height:320px;}
+.mobile-nav a{
+  display:block;padding:16px 5vw;color:rgba(200,180,255,.7);
+  font-size:15px;font-weight:500;text-decoration:none;
+  border-bottom:1px solid var(--border);transition:color .2s;
+}
+.mobile-nav a:hover{color:#fff;}
+.mobile-nav .mn-cta{
+  margin:16px 5vw;padding:14px;text-align:center;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border-radius:12px;color:#fff;font-weight:700;font-size:15px;
+  border:none;cursor:pointer;
+}
+
+@media(max-width:768px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+}
+
+/* ═══════════════════════════════════════════
+   SOCIAL PROOF TICKER
+═══════════════════════════════════════════ */
+.ticker-wrap{
+  position:relative;z-index:2;
+  margin-top:calc(var(--bar-h) + var(--nav-h));
+  background:rgba(200,64,255,.07);
+  border-bottom:1px solid var(--border);
+  padding:10px 0;overflow:hidden;
+}
+.ticker{display:flex;white-space:nowrap;animation:tick 24s linear infinite;}
+.ticker-item{display:inline-flex;align-items:center;gap:8px;font-size:11px;color:var(--muted);padding:0 28px;}
+.ticker-item strong{color:#fff;}
+.ticker-item::after{content:'✦';color:var(--accent);margin-left:28px;}
+@keyframes tick{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* ═══════════════════════════════════════════
+   HERO
+═══════════════════════════════════════════ */
+#hero{
+  position:relative;min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:80px 6vw 60px;overflow:hidden;
+}
+#heroCanvas{position:absolute;inset:0;z-index:0;}
+.hero-inner{position:relative;z-index:2;}
+
+.urgency{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,60,90,.08);border:1px solid rgba(255,60,90,.28);
+  border-radius:20px;padding:6px 14px;
+  font-size:11px;font-weight:600;letter-spacing:1.5px;color:#ff4d6d;
+  text-transform:uppercase;margin-bottom:14px;
+  animation:upulse 2s infinite;
+}
+.urgency::before{content:'';width:6px;height:6px;border-radius:50%;background:#ff4d6d;flex-shrink:0;animation:pulse 1.5s infinite;}
+@keyframes upulse{0%,100%{box-shadow:0 0 0 0 rgba(255,60,90,.2)}50%{box-shadow:0 0 0 8px rgba(255,60,90,0)}}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.3}}
+
+.hero-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(200,64,255,.1);border:1px solid rgba(200,64,255,.28);
+  border-radius:20px;padding:6px 14px;
+  font-size:11px;font-weight:500;letter-spacing:2px;color:var(--accent);
+  text-transform:uppercase;margin-bottom:24px;
+}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--accent);box-shadow:0 0 8px var(--accent);animation:pulse 2s infinite;}
+
+h1{
+  font-family:var(--display);
+  font-size:clamp(40px,8vw,86px);
+  line-height:1.05;margin-bottom:18px;letter-spacing:-.5px;
+}
+h1 em{
+  font-style:italic;color:transparent;
+  background:linear-gradient(135deg,var(--accent),var(--accent2),var(--cyan));
+  -webkit-background-clip:text;background-clip:text;
+}
+.hero-sub{
+  font-size:clamp(14px,2vw,18px);color:var(--muted);
+  max-width:500px;line-height:1.65;margin:0 auto 36px;
+}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+.btn-primary{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border:none;border-radius:12px;padding:15px 32px;
+  color:#fff;font-family:var(--font);font-size:15px;font-weight:700;
+  cursor:pointer;box-shadow:0 0 36px rgba(200,64,255,.3);
+  transition:transform .2s,box-shadow .2s;
+}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 0 56px rgba(200,64,255,.5);}
+.btn-ghost{
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);
+  border-radius:12px;padding:15px 32px;
+  color:#fff;font-family:var(--font);font-size:15px;font-weight:600;
+  cursor:pointer;transition:background .2s,border-color .2s;
+}
+.btn-ghost:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.28);}
+
+.hero-stats{display:flex;gap:36px;justify-content:center;margin-top:56px;flex-wrap:wrap;}
+.stat{text-align:center;}
+.stat-n{font-family:var(--display);font-size:34px;font-weight:700;color:#fff;}
+.stat-n span{color:var(--accent);}
+.stat-l{font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:4px;}
+
+/* ═══════════════════════════════════════════
+   SECTIONS COMMON
+═══════════════════════════════════════════ */
+section{position:relative;z-index:2;padding:80px 6vw;}
+.section-tag{display:inline-block;font-size:10px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--accent);margin-bottom:12px;}
+h2{font-family:var(--display);font-size:clamp(30px,5vw,50px);line-height:1.1;margin-bottom:14px;}
+h2 em{font-style:italic;color:var(--accent2);}
+.section-sub{color:var(--muted);font-size:15px;line-height:1.65;max-width:500px;}
+
+/* ═══════════════════════════════════════════
+   GALLERY
+═══════════════════════════════════════════ */
+#gallery{background:var(--bg2);}
+.gallery-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+  gap:18px;margin-top:48px;
+}
+.anim-card{
+  position:relative;background:var(--card);border:1px solid var(--border);
+  border-radius:18px;overflow:hidden;cursor:pointer;
+  transition:transform .25s,border-color .25s,box-shadow .25s;
+  aspect-ratio:9/14;
+}
+.anim-card:hover{transform:translateY(-5px) scale(1.015);border-color:rgba(200,64,255,.45);box-shadow:0 18px 50px rgba(200,64,255,.18);}
+.anim-card canvas{width:100%;height:100%;display:block;}
+.card-info{position:absolute;bottom:0;left:0;right:0;padding:18px 16px 16px;background:linear-gradient(transparent,rgba(4,2,10,.95));z-index:3;}
+.card-name{font-family:var(--display);font-size:17px;font-style:italic;color:#fff;margin-bottom:4px;}
+.card-tags{display:flex;gap:5px;flex-wrap:wrap;}
+.tag{font-size:9px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;padding:3px 7px;border-radius:4px;}
+.tag.hot{background:rgba(255,63,164,.2);color:var(--accent2);border:1px solid rgba(255,63,164,.28);}
+.tag.new{background:rgba(0,212,255,.14);color:var(--cyan);border:1px solid rgba(0,212,255,.22);}
+.tag.pro{background:rgba(255,208,96,.1);color:var(--gold);border:1px solid rgba(255,208,96,.2);}
+.card-select{
+  position:absolute;top:12px;right:12px;
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  border:none;border-radius:8px;padding:6px 12px;
+  color:#fff;font-family:var(--font);font-size:11px;font-weight:700;
+  cursor:pointer;opacity:0;transition:opacity .2s;z-index:4;
+}
+.anim-card:hover .card-select{opacity:1;}
+/* touch devices — always show */
+@media(hover:none){.card-select{opacity:1;}}
+
+/* ═══════════════════════════════════════════
+   EDITOR
+═══════════════════════════════════════════ */
+#editor{background:var(--bg);}
+.editor-wrap{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:32px;margin-top:48px;align-items:start;
+}
+@media(max-width:820px){.editor-wrap{grid-template-columns:1fr;}}
+
+.editor-panel{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:28px;}
+.editor-title{font-family:var(--display);font-size:21px;font-style:italic;margin-bottom:24px;color:#fff;}
+.field{margin-bottom:20px;}
+.field label{display:block;font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:9px;}
+.field input,.field select,.field textarea{
+  width:100%;background:rgba(255,255,255,.05);border:1px solid var(--border);
+  border-radius:10px;padding:12px 15px;color:#fff;font-family:var(--font);font-size:15px;outline:none;
+  transition:border-color .2s;-webkit-appearance:none;appearance:none;
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:rgba(200,64,255,.5);}
+.field input::placeholder,.field textarea::placeholder{color:rgba(255,255,255,.2);}
+.field select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='rgba(200,180,255,0.4)' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px;}
+.field select option{background:#0c071e;color:#fff;}
+.field textarea{resize:vertical;min-height:75px;line-height:1.5;}
+
+.anim-selector{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px;}
+.anim-opt{
+  background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:10px;padding:11px 6px;text-align:center;cursor:pointer;
+  transition:all .2s;font-size:11px;color:var(--muted);
+}
+.anim-opt:hover{border-color:rgba(200,64,255,.38);color:#fff;}
+.anim-opt.active{background:rgba(200,64,255,.11);border-color:var(--accent);color:var(--accent);}
+.anim-opt .anim-icon{font-size:20px;margin-bottom:5px;}
+
+.color-row{display:flex;gap:9px;flex-wrap:wrap;margin-top:4px;}
+.color-opt{width:34px;height:34px;border-radius:50%;cursor:pointer;border:2px solid transparent;transition:transform .2s,border-color .2s;}
+.color-opt:hover{transform:scale(1.14);}
+.color-opt.active{border-color:#fff;transform:scale(1.1);}
+
+.preview-box{
+  background:var(--card);border:1px solid var(--border);border-radius:22px;
+  overflow:hidden;aspect-ratio:9/14;position:relative;display:flex;flex-direction:column;
+}
+#previewCanvas{flex:1;width:100%;display:block;}
+.preview-bar{
+  padding:14px 18px;border-top:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(4,2,10,.8);flex-shrink:0;
+}
+.preview-label{font-size:11px;color:var(--muted);letter-spacing:1px;}
+.preview-name{font-family:var(--display);font-size:15px;font-style:italic;color:#fff;}
+
+/* ═══════════════════════════════════════════
+   HOW IT WORKS
+═══════════════════════════════════════════ */
+#how{background:var(--bg);}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:28px;margin-top:48px;}
+.step{text-align:center;position:relative;}
+.step::after{content:'→';position:absolute;right:-14px;top:22px;color:var(--border);font-size:18px;}
+.step:last-child::after{display:none;}
+@media(max-width:600px){.step::after{display:none;}}
+.step-num{width:48px;height:48px;border-radius:50%;background:rgba(200,64,255,.09);border:1px solid rgba(200,64,255,.28);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-size:20px;font-weight:700;color:var(--accent);margin:0 auto 18px;}
+.step-title{font-size:15px;font-weight:600;margin-bottom:7px;}
+.step-desc{font-size:13px;color:var(--muted);line-height:1.5;}
+
+/* ═══════════════════════════════════════════
+   PRICING
+═══════════════════════════════════════════ */
+#pricing{background:var(--bg2);}
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px;margin-top:48px;}
+.price-card{background:var(--card);border:1px solid var(--border);border-radius:22px;padding:32px 26px;position:relative;transition:transform .2s,box-shadow .2s;}
+.price-card:hover{transform:translateY(-4px);}
+.price-card.featured{border-color:rgba(200,64,255,.45);box-shadow:0 0 50px rgba(200,64,255,.12);}
+.price-card.featured::before{content:'MÁS POPULAR';position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--accent),var(--accent2));font-size:9px;font-weight:700;letter-spacing:2px;padding:5px 14px;border-radius:0 0 10px 10px;color:#fff;white-space:nowrap;}
+.plan-name{font-size:12px;font-weight:600;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:14px;}
+.plan-price{font-family:var(--display);font-size:48px;font-weight:700;color:#fff;line-height:1;}
+.plan-price sup{font-size:20px;color:var(--muted);font-family:var(--font);}
+.plan-price sub{font-size:13px;color:var(--muted);font-family:var(--font);}
+.plan-desc{color:var(--muted);font-size:13px;margin:12px 0 24px;line-height:1.5;}
+.plan-features{list-style:none;margin-bottom:28px;}
+.plan-features li{font-size:13px;color:rgba(240,232,255,.7);padding:7px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:9px;}
+.plan-features li::before{content:'✦';color:var(--accent);font-size:9px;flex-shrink:0;}
+.plan-features li.dim{color:var(--muted);opacity:.45;}
+.plan-features li.dim::before{color:var(--muted);}
+.plan-btn{width:100%;padding:13px;border-radius:11px;font-family:var(--font);font-size:14px;font-weight:700;cursor:pointer;letter-spacing:.4px;transition:all .2s;}
+.plan-btn.outline{background:transparent;border:1px solid var(--border);color:#fff;}
+.plan-btn.outline:hover{border-color:var(--accent);color:var(--accent);}
+.plan-btn.filled{background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;color:#fff;box-shadow:0 0 26px rgba(200,64,255,.28);}
+.plan-btn.filled:hover{box-shadow:0 0 44px rgba(200,64,255,.48);transform:translateY(-1px);}
+
+/* ═══════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════ */
+#testimonials{background:var(--bg2);}
+.testi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin-top:48px;}
+.testi-card{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;}
+.testi-stars{color:var(--gold);font-size:13px;margin-bottom:12px;letter-spacing:2px;}
+.testi-text{font-size:14px;line-height:1.6;color:rgba(240,232,255,.72);font-style:italic;margin-bottom:16px;}
+.testi-text::before{content:'"';}
+.testi-text::after{content:'"';}
+.testi-author{display:flex;align-items:center;gap:11px;}
+.testi-avatar{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;flex-shrink:0;}
+.testi-name{font-size:13px;font-weight:600;}
+.testi-handle{font-size:11px;color:var(--muted);}
+
+/* ═══════════════════════════════════════════
+   TIKTOK CTA SECTION
+═══════════════════════════════════════════ */
+#tiktok-cta{background:var(--bg);}
+.tiktok-wrap{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;}
+@media(max-width:768px){.tiktok-wrap{grid-template-columns:1fr;}}
+.tiktok-badges{display:flex;flex-direction:column;gap:12px;margin-top:24px;}
+.tiktok-badge{display:flex;align-items:center;gap:12px;background:rgba(255,255,255,.03);border:1px solid var(--border);border-radius:12px;padding:12px 15px;}
+.tiktok-badge-icon{font-size:20px;flex-shrink:0;}
+.tiktok-badge-text{font-size:13px;color:rgba(240,232,255,.65);line-height:1.4;}
+.tiktok-badge-text strong{color:#fff;display:block;margin-bottom:1px;}
+.tiktok-phone{
+  width:200px;flex-shrink:0;
+  background:var(--card);border:1px solid var(--border);
+  border-radius:32px;padding:16px 12px;
+  box-shadow:0 16px 50px rgba(200,64,255,.22);
+}
+.tiktok-phone::before{content:'';width:52px;height:5px;background:rgba(255,255,255,.1);border-radius:3px;display:block;margin:0 auto 16px;}
+.tiktok-screen{background:#000;border-radius:16px;aspect-ratio:9/16;overflow:hidden;position:relative;}
+.tiktok-screen canvas{width:100%;height:100%;display:block;}
+.tiktok-overlay{position:absolute;bottom:12px;left:12px;right:12px;}
+.tiktok-handle-pill{background:rgba(0,0,0,.6);border-radius:8px;padding:6px 10px;font-size:10px;font-weight:700;color:#fff;}
+.tiktok-handle-pill small{display:block;font-size:9px;font-weight:300;opacity:.7;margin-top:1px;}
+@media(max-width:768px){.tiktok-phone{display:none;}}
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:48px 6vw 28px;text-align:center;}
+.footer-logo{font-family:var(--display);font-size:26px;font-style:italic;color:#fff;margin-bottom:6px;}
+.footer-logo span{color:var(--accent);}
+.footer-nexum{font-size:10px;letter-spacing:4px;text-transform:uppercase;color:rgba(200,180,255,.3);margin-bottom:24px;}
+.footer-nexum strong{color:rgba(200,180,255,.5);}
+.footer-links{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:24px;}
+.footer-links a{color:var(--muted);font-size:12px;text-decoration:none;transition:color .2s;}
+.footer-links a:hover{color:#fff;}
+.footer-socials{display:flex;gap:12px;justify-content:center;margin-bottom:24px;}
+.social-btn{
+  display:flex;align-items:center;gap:7px;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);
+  border-radius:40px;padding:8px 16px;
+  color:rgba(200,180,255,.65);font-size:12px;font-weight:600;letter-spacing:.5px;
+  text-decoration:none;transition:all .2s;
+}
+.social-btn.tik:hover{background:rgba(200,64,255,.12);border-color:rgba(200,64,255,.3);color:#fff;}
+.social-btn.wa:hover{background:rgba(37,211,102,.1);border-color:rgba(37,211,102,.3);color:#fff;}
+.footer-copy{color:rgba(200,180,255,.25);font-size:11px;letter-spacing:.5px;line-height:1.7;}
+.footer-copy a{color:rgba(200,64,255,.5);text-decoration:none;}
+
+/* ═══════════════════════════════════════════
+   ORDER MODAL
+═══════════════════════════════════════════ */
+#modal{position:fixed;inset:0;z-index:500;display:none;align-items:flex-end;justify-content:center;padding:0;}
+#modal.open{display:flex;}
+@media(min-width:600px){#modal{align-items:center;padding:20px;}}
+#modal-bg{position:absolute;inset:0;background:rgba(0,0,0,.65);backdrop-filter:blur(8px);}
+#modal-box{
+  position:relative;z-index:1;
+  background:var(--card);border:1px solid rgba(200,64,255,.28);
+  border-radius:24px 24px 0 0;
+  padding:28px 24px 32px;width:100%;max-width:480px;
+  max-height:92vh;overflow-y:auto;
+  box-shadow:0 -10px 60px rgba(200,64,255,.18);
+}
+@media(min-width:600px){
+  #modal-box{border-radius:24px;padding:36px 32px;box-shadow:0 0 70px rgba(200,64,255,.18);}
+}
+.modal-handle{width:40px;height:4px;background:rgba(255,255,255,.15);border-radius:2px;margin:0 auto 22px;}
+@media(min-width:600px){.modal-handle{display:none;}}
+#modal-box h3{font-family:var(--display);font-size:24px;margin-bottom:6px;}
+#modal-box .modal-sub{color:var(--muted);font-size:13px;margin-bottom:24px;line-height:1.5;}
+.modal-field{margin-bottom:16px;}
+.modal-field label{display:block;font-size:10px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:7px;}
+.modal-field input,.modal-field select{
+  width:100%;background:rgba(255,255,255,.06);border:1px solid var(--border);
+  border-radius:10px;padding:12px 14px;color:#fff;font-family:var(--font);font-size:15px;outline:none;
+  transition:border-color .2s;-webkit-appearance:none;appearance:none;
+}
+.modal-field input:focus,.modal-field select:focus{border-color:rgba(200,64,255,.5);}
+.modal-field input::placeholder{color:rgba(255,255,255,.2);}
+.modal-field select option{background:#0c071e;color:#fff;}
+.modal-actions{display:flex;gap:10px;margin-top:22px;}
+.modal-close-btn{background:rgba(255,255,255,.06);border:1px solid var(--border);border-radius:10px;padding:12px 20px;color:var(--muted);font-family:var(--font);font-size:14px;cursor:pointer;transition:all .2s;white-space:nowrap;}
+.modal-close-btn:hover{color:#fff;}
+.modal-submit{flex:1;background:linear-gradient(135deg,var(--accent),var(--accent2));border:none;border-radius:10px;padding:13px;color:#fff;font-family:var(--font);font-size:15px;font-weight:700;cursor:pointer;}
+#orderSuccess{display:none;text-align:center;padding:16px 0;}
+.success-icon{font-size:48px;margin-bottom:14px;}
+.success-title{font-family:var(--display);font-size:24px;margin-bottom:8px;}
+.success-text{color:var(--muted);font-size:13px;line-height:1.6;margin-bottom:20px;}
+.wa-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:#25d366;border:none;border-radius:12px;padding:14px 26px;
+  color:#fff;font-family:var(--font);font-size:15px;font-weight:700;
+  cursor:pointer;text-decoration:none;transition:transform .2s,box-shadow .2s;
+}
+.wa-btn:hover{transform:translateY(-2px);box-shadow:0 8px 28px rgba(37,211,102,.38);}
+
+/* ═══════════════════════════════════════════
+   FLOATING WHATSAPP
+═══════════════════════════════════════════ */
+.float-wa{
+  position:fixed;bottom:24px;right:20px;z-index:300;
+  display:flex;align-items:center;gap:9px;
+  background:#25d366;border:none;border-radius:50px;
+  padding:13px 18px 13px 15px;
+  color:#fff;font-family:var(--font);font-size:13px;font-weight:700;
+  cursor:pointer;text-decoration:none;
+  box-shadow:0 6px 28px rgba(37,211,102,.42);
+  animation:wabounce 3s ease-in-out infinite;
+}
+@keyframes wabounce{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+.float-wa:hover{transform:translateY(-3px) scale(1.03);box-shadow:0 10px 36px rgba(37,211,102,.55);animation:none;}
+.float-wa-txt{display:flex;flex-direction:column;line-height:1.2;}
+.float-wa-txt small{font-size:9px;font-weight:400;opacity:.82;}
+
+/* ═══════════════════════════════════════════
+   OCCASIONS GRID
+═══════════════════════════════════════════ */
+.occ-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(180px,1fr));
+  gap:14px;margin-top:48px;
+}
+.occ-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:18px;padding:24px 18px;text-align:center;
+  transition:transform .22s,border-color .22s,box-shadow .22s;
+}
+.occ-card:hover{transform:translateY(-4px);border-color:rgba(200,64,255,.4);box-shadow:0 12px 40px rgba(200,64,255,.12);}
+.occ-card--cta{cursor:pointer;border-style:dashed;border-color:rgba(200,64,255,.25);background:rgba(200,64,255,.04);}
+.occ-card--cta:hover{border-style:solid;border-color:var(--accent);}
+.occ-icon{font-size:32px;margin-bottom:10px;display:block;}
+.occ-name{font-family:var(--display);font-size:16px;font-style:italic;color:#fff;margin-bottom:6px;}
+.occ-desc{font-size:12px;color:var(--muted);line-height:1.5;}
+
+/* ─ pricing note ─ */
+.pricing-note{
+  text-align:center;margin-top:28px;
+  font-size:14px;color:var(--muted);line-height:1.6;
+}
+
+/* ═══════════════════════════════════════════
+   WHY US
+═══════════════════════════════════════════ */
+.why-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
+  gap:16px;margin-top:48px;
+}
+.why-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:18px;padding:26px 20px;
+  transition:transform .2s,border-color .2s;
+}
+.why-card:hover{transform:translateY(-3px);border-color:rgba(200,64,255,.35);}
+.why-icon{font-size:28px;margin-bottom:12px;display:block;}
+.why-title{font-size:15px;font-weight:600;color:#fff;margin-bottom:7px;}
+.why-desc{font-size:13px;color:var(--muted);line-height:1.55;}
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════ */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .65s,transform .65s;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* ═══════════════════════════════════════════
+   NOISE TEXTURE
+═══════════════════════════════════════════ */
+body::before{
+  content:'';position:fixed;inset:0;pointer-events:none;z-index:1;opacity:.4;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div><div id="cur2"></div>
+
+<!-- ═══ TOP BAR ═══ -->
+<div class="top-bar">
+  <span>🎵</span>
+  <span>Síguenos en TikTok →</span>
+  <a href="https://tiktok.com/@jair.dev" target="_blank">@jair.dev</a>
+</div>
+
+<!-- ═══ NAV ═══ -->
+<nav>
+  <a href="#" class="logo">Love<span>Motion</span></a>
+  <div class="nav-links">
+    <a href="#gallery">Animaciones</a>
+    <a href="#ocasiones">Ocasiones</a>
+    <a href="#pricing">Precios</a>
+    <a href="#how">Cómo funciona</a>
+  </div>
+  <button class="nav-cta" onclick="openModal()">Pedir ahora</button>
+  <button class="hamburger" id="hambtn" onclick="toggleMenu()" aria-label="Menú">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- Mobile drawer -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="#gallery" onclick="closeMenu()">✨ Animaciones</a>
+  <a href="#ocasiones" onclick="closeMenu()">🎉 Ocasiones</a>
+  <a href="#editor" onclick="closeMenu()">🎨 Editor en vivo</a>
+  <a href="#pricing" onclick="closeMenu()">💰 Precios en Soles</a>
+  <a href="#how" onclick="closeMenu()">📋 Cómo funciona</a>
+  <a href="#tiktok-cta" onclick="closeMenu()">🎵 TikTok @jair.dev</a>
+  <button class="mn-cta" onclick="closeMenu();openModal()">✦ Pedir mi dedicatoria</button>
+</div>
+
+<!-- ═══ TICKER ═══ -->
+<div class="ticker-wrap">
+  <div class="ticker">
+    <span class="ticker-item">💜 <strong>Karla de Lima</strong> pidió una dedicatoria para su quinceañera</span>
+    <span class="ticker-item">💍 <strong>Marco y Sofía</strong> usaron LoveMotion en su boda</span>
+    <span class="ticker-item">💐 <strong>Kevin</strong> sorprendió a su mamá por S/ 20</span>
+    <span class="ticker-item">🔥 <strong>+47 pedidos</strong> esta semana en Perú</span>
+    <span class="ticker-item">👑 <strong>Floristería Rosas</strong> compró el Pack Negocios</span>
+    <span class="ticker-item">🎂 <strong>Lucía de Arequipa</strong> hizo llorar a su novio</span>
+    <span class="ticker-item">🎩 <strong>Valentina</strong> le dedicó esto a su papá</span>
+    <span class="ticker-item">🔥 <strong>Solo 3 espacios</strong> disponibles hoy</span>
+    <span class="ticker-item">💜 <strong>Karla de Lima</strong> pidió una dedicatoria para su quinceañera</span>
+    <span class="ticker-item">💍 <strong>Marco y Sofía</strong> usaron LoveMotion en su boda</span>
+    <span class="ticker-item">💐 <strong>Kevin</strong> sorprendió a su mamá por S/ 20</span>
+    <span class="ticker-item">🔥 <strong>+47 pedidos</strong> esta semana en Perú</span>
+    <span class="ticker-item">👑 <strong>Floristería Rosas</strong> compró el Pack Negocios</span>
+    <span class="ticker-item">🎂 <strong>Lucía de Arequipa</strong> hizo llorar a su novio</span>
+    <span class="ticker-item">🎩 <strong>Valentina</strong> le dedicó esto a su papá</span>
+    <span class="ticker-item">🔥 <strong>Solo 3 espacios</strong> disponibles hoy</span>
+  </div>
+</div>
+
+<!-- ═══ HERO ═══ -->
+<section id="hero">
+  <canvas id="heroCanvas"></canvas>
+  <div class="hero-inner">
+    <div class="urgency">🔥 Solo quedan 3 espacios disponibles hoy</div>
+    <div class="hero-badge">✦ Desde S/ 20 · Entrega en horas</div>
+    <h1>El regalo que<br><em>nadie olvida</em></h1>
+    <p class="hero-sub">Animaciones de partículas con el nombre de esa persona especial. Para bodas, quinceañeras, mamás, papás y mucho más. Listo para enviar por WhatsApp.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="document.getElementById('ocasiones').scrollIntoView({behavior:'smooth'})">✦ Ver ocasiones</button>
+      <button class="btn-ghost" onclick="document.getElementById('editor').scrollIntoView({behavior:'smooth'})">Probar gratis →</button>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-n">2<span>K+</span></div><div class="stat-l">Dedicatorias enviadas</div></div>
+      <div class="stat"><div class="stat-n">S/<span>20</span></div><div class="stat-l">Desde</div></div>
+      <div class="stat"><div class="stat-n">2<span>h</span></div><div class="stat-l">Entrega rápida</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ GALLERY ═══ -->
+<section id="gallery">
+  <div class="reveal">
+    <div class="section-tag">Colección</div>
+    <h2>Elige tu <em>animación</em></h2>
+    <p class="section-sub">Cada una es una obra única. Partículas, corazones 3D, galaxias y más.</p>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="anim-card" onclick="selectAnim(0)">
+      <canvas class="mini-canvas" data-idx="0"></canvas>
+      <div class="card-info"><div class="card-name">Declaración de Amor</div><div class="card-tags"><span class="tag hot">HOT</span><span class="tag new">💕 PAREJA</span></div></div>
+      <button class="card-select">Elegir</button>
+    </div>
+    <div class="anim-card" onclick="selectAnim(1)">
+      <canvas class="mini-canvas" data-idx="1"></canvas>
+      <div class="card-info"><div class="card-name">Quinceañera Mágica</div><div class="card-tags"><span class="tag pro">✨ PRO</span><span class="tag hot">👑 REINA</span></div></div>
+      <button class="card-select">Elegir</button>
+    </div>
+    <div class="anim-card" onclick="selectAnim(2)">
+      <canvas class="mini-canvas" data-idx="2"></canvas>
+      <div class="card-info"><div class="card-name">Día de la Madre</div><div class="card-tags"><span class="tag new">💐 MAMÁ</span><span class="tag pro">ESPECIAL</span></div></div>
+      <button class="card-select">Elegir</button>
+    </div>
+    <div class="anim-card" onclick="selectAnim(0)">
+      <canvas class="mini-canvas" data-idx="3"></canvas>
+      <div class="card-info"><div class="card-name">Boda & Aniversario</div><div class="card-tags"><span class="tag hot">💍 BODA</span><span class="tag new">ETERNO</span></div></div>
+      <button class="card-select">Elegir</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ EDITOR ═══ -->
+<section id="editor">
+  <div class="reveal">
+    <div class="section-tag">Editor en vivo</div>
+    <h2>Personaliza <em>en tiempo real</em></h2>
+    <p class="section-sub">Escribe el nombre, elige colores y ve el resultado al instante.</p>
+  </div>
+  <div class="editor-wrap reveal">
+    <div class="editor-panel">
+      <div class="editor-title">Tu dedicatoria</div>
+      <div class="field">
+        <label>Nombre a dedicar</label>
+        <input id="edName" type="text" placeholder="ej: María, Carlos, mi amor…" maxlength="16" oninput="updatePreview()"/>
+      </div>
+      <div class="field">
+        <label>Mensaje (opcional)</label>
+        <textarea id="edMsg" placeholder="ej: Feliz cumpleaños, te amo mucho…"></textarea>
+      </div>
+      <div class="field">
+        <label>Animación</label>
+        <div class="anim-selector">
+          <div class="anim-opt active" onclick="setAnimType(0,this)"><div class="anim-icon">✨</div>Flash</div>
+          <div class="anim-opt" onclick="setAnimType(1,this)"><div class="anim-icon">💥</div>Supernova</div>
+          <div class="anim-opt" onclick="setAnimType(2,this)"><div class="anim-icon">🚀</div>HyperDrive</div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Paleta de color</label>
+        <div class="color-row">
+          <div class="color-opt active" style="background:linear-gradient(135deg,#c840ff,#ff3fa4)" onclick="setColor(0,this)" title="Amor"></div>
+          <div class="color-opt" style="background:linear-gradient(135deg,#ff6020,#ffcc00)" onclick="setColor(1,this)" title="Fuego"></div>
+          <div class="color-opt" style="background:linear-gradient(135deg,#00d4ff,#0050ff)" onclick="setColor(2,this)" title="Océano"></div>
+          <div class="color-opt" style="background:linear-gradient(135deg,#00ff88,#00ccff)" onclick="setColor(3,this)" title="Aurora"></div>
+          <div class="color-opt" style="background:linear-gradient(135deg,#fff,#aaa)" onclick="setColor(4,this)" title="Plata"></div>
+        </div>
+      </div>
+      <div class="field">
+        <label>Ocasión</label>
+        <select id="edOcasion">
+          <option>💕 Declaración de amor</option>
+          <option>💍 Boda / Aniversario</option>
+          <option>👑 Quinceañera</option>
+          <option>💐 Día de la Madre</option>
+          <option>🎩 Día del Padre</option>
+          <option>🎂 Cumpleaños</option>
+          <option>🎓 Graduación</option>
+          <option>🤝 Amistad</option>
+          <option>✨ Dedicatoria especial</option>
+        </select>
+      </div>
+      <button class="btn-primary" style="width:100%;margin-top:4px" onclick="openModal()">✦ Pedir esta dedicatoria</button>
+    </div>
+    <div class="preview-box">
+      <canvas id="previewCanvas"></canvas>
+      <div class="preview-bar">
+        <div><div class="preview-label">VISTA PREVIA</div><div class="preview-name" id="previewName">Para Ti</div></div>
+        <div style="font-size:10px;color:var(--muted);text-align:right">Tiempo real<br>✦ interactivo</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ HOW IT WORKS ═══ -->
+<section id="how">
+  <div class="reveal">
+    <div class="section-tag">Proceso</div>
+    <h2>Súper <em>sencillo</em></h2>
+  </div>
+  <div class="steps reveal">
+    <div class="step"><div class="step-num">1</div><div class="step-title">Elige la animación</div><div class="step-desc">Selecciona entre nuestra colección de efectos únicos</div></div>
+    <div class="step"><div class="step-num">2</div><div class="step-title">Personaliza</div><div class="step-desc">Escribe el nombre y elige colores en el editor en vivo</div></div>
+    <div class="step"><div class="step-num">3</div><div class="step-title">Paga y recibe</div><div class="step-desc">En menos de 2 horas recibes tu archivo listo</div></div>
+    <div class="step"><div class="step-num">4</div><div class="step-title">¡Sorprende!</div><div class="step-desc">Comparte por WhatsApp, Instagram o como quieras</div></div>
+  </div>
+</section>
+
+<!-- ═══ OCCASIONS ═══ -->
+<section id="ocasiones" style="background:var(--bg);">
+  <div class="reveal">
+    <div class="section-tag">Para cada momento</div>
+    <h2>Una animación para <em>cada ocasión</em></h2>
+    <p class="section-sub">Cada fecha especial merece algo que se recuerde para siempre.</p>
+  </div>
+  <div class="occ-grid reveal">
+    <div class="occ-card">
+      <div class="occ-icon">💕</div>
+      <div class="occ-name">Declaración</div>
+      <div class="occ-desc">Dile lo que sientes con partículas que forman su nombre</div>
+    </div>
+    <div class="occ-card">
+      <div class="occ-icon">👑</div>
+      <div class="occ-name">Quinceañera</div>
+      <div class="occ-desc">Un regalo único que ella guardará toda la vida</div>
+    </div>
+    <div class="occ-card">
+      <div class="occ-icon">💐</div>
+      <div class="occ-name">Día de la Madre</div>
+      <div class="occ-desc">Hazla llorar de emoción con su nombre en luz</div>
+    </div>
+    <div class="occ-card">
+      <div class="occ-icon">🎩</div>
+      <div class="occ-name">Día del Padre</div>
+      <div class="occ-desc">Un detalle que ningún papá esperaría recibir</div>
+    </div>
+    <div class="occ-card">
+      <div class="occ-icon">💍</div>
+      <div class="occ-name">Boda & Aniversario</div>
+      <div class="occ-desc">Los dos nombres juntos, eternos en partículas de luz</div>
+    </div>
+    <div class="occ-card">
+      <div class="occ-icon">🎂</div>
+      <div class="occ-name">Cumpleaños</div>
+      <div class="occ-desc">El cumpleaños más recordado que le hayan celebrado</div>
+    </div>
+    <div class="occ-card">
+      <div class="occ-icon">🎓</div>
+      <div class="occ-name">Graduación</div>
+      <div class="occ-desc">Celebra su logro con un regalo que brilla tanto como él</div>
+    </div>
+    <div class="occ-card occ-card--cta" onclick="openModal()">
+      <div class="occ-icon">✦</div>
+      <div class="occ-name">¿Tu ocasión?</div>
+      <div class="occ-desc">Cuéntanos y lo hacemos realidad</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ PRICING ═══ -->
+<section id="pricing">
+  <div class="reveal">
+    <div class="section-tag">Precios en Soles</div>
+    <h2>Accesible para <em>todos</em></h2>
+    <p class="section-sub">Precios en soles peruanos. Sin costos ocultos. Paga una vez y sorprende para siempre.</p>
+  </div>
+  <div class="pricing-grid reveal">
+    <div class="price-card">
+      <div class="plan-name">Básico</div>
+      <div class="plan-price"><sup>S/</sup>20</div>
+      <div class="plan-desc">Para empezar a sorprender</div>
+      <ul class="plan-features">
+        <li>1 animación personalizada</li>
+        <li>1 nombre a elegir</li>
+        <li>3 paletas de color</li>
+        <li>Todas las ocasiones</li>
+        <li>Entrega en 24h</li>
+        <li class="dim">Mensaje personalizado</li>
+        <li class="dim">Revisión incluida</li>
+      </ul>
+      <button class="plan-btn outline" onclick="openModal('basico')">Elegir básico</button>
+    </div>
+    <div class="price-card featured">
+      <div class="plan-name">Premium</div>
+      <div class="plan-price"><sup>S/</sup>35</div>
+      <div class="plan-desc">La experiencia completa y sin límites</div>
+      <ul class="plan-features">
+        <li>1 animación personalizada</li>
+        <li>Nombre + mensaje de amor</li>
+        <li>Todas las paletas</li>
+        <li>Todas las ocasiones</li>
+        <li>Entrega en 2 horas</li>
+        <li>1 revisión incluida</li>
+        <li>Paleta exclusiva</li>
+      </ul>
+      <button class="plan-btn filled" onclick="openModal('premium')">Elegir premium</button>
+    </div>
+    <div class="price-card">
+      <div class="plan-name">Pack Negocios</div>
+      <div class="plan-price"><sup>S/</sup>99</div>
+      <div class="plan-desc">Ideal para florerías, pastelerías y eventos</div>
+      <ul class="plan-features">
+        <li>5 animaciones únicas</li>
+        <li>Logo de tu negocio</li>
+        <li>Todas las paletas</li>
+        <li>Todas las ocasiones</li>
+        <li>Entrega en 6 horas</li>
+        <li>Licencia comercial</li>
+        <li>Soporte prioritario</li>
+      </ul>
+      <button class="plan-btn outline" onclick="openModal('negocios')">Elegir pack</button>
+    </div>
+  </div>
+  <div class="pricing-note reveal">
+    💡 ¿Necesitas algo diferente? Escríbenos y armamos un plan a tu medida.
+    <button onclick="openModal()" style="background:none;border:none;color:var(--accent);cursor:pointer;font-family:var(--font);font-size:inherit;font-weight:700;padding:0 4px;">Consultar →</button>
+  </div>
+</section>
+
+<!-- ═══ WHY US ═══ -->
+<section id="why" style="background:var(--bg);">
+  <div class="reveal" style="text-align:center;margin-bottom:0;">
+    <div class="section-tag">¿Por qué LoveMotion?</div>
+    <h2 style="max-width:600px;margin:0 auto 14px;">El detalle que hace<br><em>la diferencia</em></h2>
+    <p class="section-sub" style="margin:0 auto;">No es solo una imagen. Es un momento que la persona va a recordar y reenviar.</p>
+  </div>
+  <div class="why-grid reveal">
+    <div class="why-card">
+      <div class="why-icon">⚡</div>
+      <div class="why-title">Listo en horas</div>
+      <div class="why-desc">No esperes días. Tu animación llega en 2 a 24 horas según el plan.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🎨</div>
+      <div class="why-title">100% personalizado</div>
+      <div class="why-desc">Con el nombre exacto, los colores que elijas y la ocasión que necesitas.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">📱</div>
+      <div class="why-title">Fácil de compartir</div>
+      <div class="why-desc">Formato listo para WhatsApp, TikTok, Instagram o como quieras enviarla.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💜</div>
+      <div class="why-title">Genera emoción real</div>
+      <div class="why-desc">Nuestros clientes reportan que sus destinatarios lloran, gritan y lo reenvían a todos.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">💰</div>
+      <div class="why-title">Desde S/ 20</div>
+      <div class="why-desc">El regalo más impactante que existe al precio de un almuerzo.</div>
+    </div>
+    <div class="why-card">
+      <div class="why-icon">🇵🇪</div>
+      <div class="why-title">Hecho en Perú</div>
+      <div class="why-desc">Proyecto peruano, con pago en soles y atención en minutos por WhatsApp.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TESTIMONIALS ═══ -->
+<section id="testimonials">
+  <div class="reveal">
+    <div class="section-tag">Opiniones</div>
+    <h2>Lo que dicen <em>nuestros clientes</em></h2>
+  </div>
+  <div class="testi-grid reveal">
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">Mi novio lloró cuando le mandé su animación. Nunca había visto algo así por WhatsApp. Totalmente vale la pena.</div>
+      <div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Ana García</div><div class="testi-handle">@anagarcia_pe</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">Lo usé para el cumpleaños de mi mamá. Quedó increíble. El nombre en 3D con corazones explotando, demasiado bonito.</div>
+      <div class="testi-author"><div class="testi-avatar">R</div><div><div class="testi-name">Roberto M.</div><div class="testi-handle">Lima, Perú</div></div></div>
+    </div>
+    <div class="testi-card">
+      <div class="testi-stars">★★★★★</div>
+      <div class="testi-text">Compré el pack negocios para mi floristería. Mis clientes se vuelven locos cuando les mando la animación con su nombre.</div>
+      <div class="testi-author"><div class="testi-avatar">L</div><div><div class="testi-name">Laura Flores</div><div class="testi-handle">Floristería Primavera</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ TIKTOK CTA ═══ -->
+<section id="tiktok-cta">
+  <div class="tiktok-wrap reveal">
+    <div>
+      <div class="section-tag">TikTok · @jair.dev</div>
+      <h2>Ve las animaciones <em>en vivo</em></h2>
+      <p class="section-sub">Antes de comprar, mira cómo quedan. Miles de personas ya las compartieron.</p>
+      <div class="tiktok-badges">
+        <div class="tiktok-badge"><div class="tiktok-badge-icon">🎯</div><div class="tiktok-badge-text"><strong>Sigue @jair.dev</strong>Demos reales, nuevas animaciones cada semana</div></div>
+        <div class="tiktok-badge"><div class="tiktok-badge-icon">💬</div><div class="tiktok-badge-text"><strong>Comenta tu nombre</strong>Y lo hacemos en vivo en el siguiente video</div></div>
+        <div class="tiktok-badge"><div class="tiktok-badge-icon">🎁</div><div class="tiktok-badge-text"><strong>DM para pedidos</strong>Pídela directo por TikTok o WhatsApp</div></div>
+      </div>
+      <a href="https://tiktok.com/@jair.dev" target="_blank" class="btn-primary" style="display:inline-flex;align-items:center;gap:9px;margin-top:24px;text-decoration:none;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+        Seguir en TikTok
+      </a>
+    </div>
+    <div class="tiktok-phone">
+      <div class="tiktok-screen">
+        <canvas class="mini-canvas" data-idx="4"></canvas>
+        <div class="tiktok-overlay">
+          <div class="tiktok-handle-pill">@jair.dev<small>LoveMotion · Dedicatorias</small></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ═══ -->
+<footer>
+  <div class="footer-logo">Love<span>Motion</span></div>
+  <div class="footer-nexum">Una marca de <strong>NEXUM</strong> · Jair Muñoz Candela</div>
+  <div class="footer-links">
+    <a href="#gallery">Animaciones</a>
+    <a href="#editor">Editor</a>
+    <a href="#pricing">Precios</a>
+    <a href="#how">Cómo funciona</a>
+  </div>
+  <div class="footer-socials">
+    <a class="social-btn tik" href="https://tiktok.com/@jair.dev" target="_blank">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
+      @jair.dev
+    </a>
+    <a class="social-btn wa" href="https://wa.me/51945366356" target="_blank">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.122 1.523 5.857L0 24l6.293-1.506A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.65-.49-5.184-1.349l-.371-.22-3.735.894.939-3.637-.242-.386A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+      WhatsApp
+    </a>
+  </div>
+  <div class="footer-copy">
+    © 2025 LoveMotion · <a href="https://tiktok.com/@jair.dev" target="_blank">@jair.dev</a> · Nexum · Jair Muñoz Candela · Todos los derechos reservados
+  </div>
+</footer>
+
+<!-- ═══ FLOATING WA ═══ -->
+<a class="float-wa" href="https://wa.me/51945366356?text=Hola%20Jair!%20Vi%20LoveMotion%20y%20quiero%20una%20dedicatoria%20animada%20💜" target="_blank">
+  <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.122 1.523 5.857L0 24l6.293-1.506A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.65-.49-5.184-1.349l-.371-.22-3.735.894.939-3.637-.242-.386A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+  <div class="float-wa-txt">Pedir ahora<small>Respuesta en minutos</small></div>
+</a>
+
+<!-- ═══ ORDER MODAL ═══ -->
+<div id="modal">
+  <div id="modal-bg" onclick="closeModal()"></div>
+  <div id="modal-box">
+    <div class="modal-handle"></div>
+    <div id="modal-form-wrap">
+      <h3>Pedir dedicatoria ✦</h3>
+      <p class="modal-sub">Completa los datos y te contactamos en minutos por WhatsApp.</p>
+      <div class="modal-field"><label>Tu nombre</label><input id="mName" type="text" placeholder="Tu nombre"/></div>
+      <div class="modal-field"><label>WhatsApp / Contacto</label><input id="mWa" type="tel" placeholder="+51 999 999 999"/></div>
+      <div class="modal-field"><label>Nombre a dedicar</label><input id="mDed" type="text" placeholder="ej: María"/></div>
+      <div class="modal-field">
+        <label>Plan seleccionado</label>
+        <select id="mPlan">
+          <option value="basico">Básico — S/ 20</option>
+          <option value="premium" selected>Premium — S/ 35</option>
+          <option value="negocios">Pack Negocios — S/ 99</option>
+        </select>
+      </div>
+      <div class="modal-field">
+        <label>Ocasión</label>
+        <select id="mOcasion">
+          <option>💕 Declaración de amor</option>
+          <option>💍 Boda / Aniversario</option>
+          <option>👑 Quinceañera</option>
+          <option>💐 Día de la Madre</option>
+          <option>🎩 Día del Padre</option>
+          <option>🎂 Cumpleaños</option>
+          <option>🎓 Graduación</option>
+          <option>✨ Dedicatoria especial</option>
+        </select>
+      </div>
+      <div class="modal-field">
+        <label>Animación preferida</label>
+        <select id="mAnim">
+          <option>Flash Love ✨</option>
+          <option>Supernova Heart 💥</option>
+          <option>HyperDrive 🚀</option>
+          <option>Sorpréndeme 🎆</option>
+        </select>
+      </div>
+      <div class="modal-actions">
+        <button class="modal-close-btn" onclick="closeModal()">Cancelar</button>
+        <button class="modal-submit" onclick="submitOrder()">Enviar pedido 💜</button>
+      </div>
+    </div>
+    <div id="orderSuccess">
+      <div class="success-icon">🎉</div>
+      <div class="success-title">¡Pedido recibido!</div>
+      <p class="success-text">Te contactaremos en minutos por WhatsApp. Prepárate para sorprender a alguien especial.</p>
+      <a class="wa-btn" id="waLink" href="#" target="_blank">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.122 1.523 5.857L0 24l6.293-1.506A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.65-.49-5.184-1.349l-.371-.22-3.735.894.939-3.637-.242-.386A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        Hablar por WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ═══ CURSOR (desktop) ═══ */
+const cur=document.getElementById('cur'),cur2=document.getElementById('cur2');
+let mx=0,my=0,cx2=0,cy2=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px';});
+setInterval(()=>{cx2+=(mx-cx2)*.12;cy2+=(my-cy2)*.12;cur2.style.left=cx2+'px';cur2.style.top=cy2+'px';},16);
+
+/* ═══ HAMBURGER ═══ */
+function toggleMenu(){
+  const nav=document.getElementById('mobileNav');
+  const btn=document.getElementById('hambtn');
+  nav.classList.toggle('open');
+  btn.classList.toggle('open');
+}
+function closeMenu(){document.getElementById('mobileNav').classList.remove('open');document.getElementById('hambtn').classList.remove('open');}
+document.addEventListener('click',e=>{
+  if(!e.target.closest('nav')&&!e.target.closest('.mobile-nav'))closeMenu();
+});
+
+/* ═══ HERO CANVAS ═══ */
+(function(){
+  const cv=document.getElementById('heroCanvas'),c=cv.getContext('2d');
+  function resize(){cv.width=cv.offsetWidth;cv.height=cv.offsetHeight;}
+  resize();window.addEventListener('resize',resize);
+  const N=100;
+  const pts=Array.from({length:N},()=>({
+    x:Math.random(),y:Math.random(),
+    vx:(Math.random()-.5)*.0003,vy:(Math.random()-.5)*.0003,
+    r:.4+Math.random()*1.4,h:280+Math.random()*80,
+    a:Math.random()*.35+.05,ph:Math.random()*Math.PI*2
+  }));
+  function draw(){
+    const W=cv.width,H=cv.height;
+    c.clearRect(0,0,W,H);
+    pts.forEach(p=>{
+      p.ph+=.01;p.x+=p.vx;p.y+=p.vy;
+      if(p.x<0||p.x>1)p.vx*=-1;if(p.y<0||p.y>1)p.vy*=-1;
+      const a=p.a*(0.5+0.5*Math.sin(p.ph));
+      c.beginPath();c.arc(p.x*W,p.y*H,p.r,0,Math.PI*2);
+      c.fillStyle=`hsla(${p.h},100%,70%,${a})`;c.fill();
+    });
+    for(let i=0;i<N;i++)for(let j=i+1;j<N;j++){
+      const dx=(pts[i].x-pts[j].x)*W,dy=(pts[i].y-pts[j].y)*H;
+      const d=Math.sqrt(dx*dx+dy*dy);
+      if(d<90){
+        c.beginPath();c.moveTo(pts[i].x*W,pts[i].y*H);c.lineTo(pts[j].x*W,pts[j].y*H);
+        c.strokeStyle=`rgba(200,64,255,${(1-d/90)*.07})`;c.lineWidth=.7;c.stroke();
+      }
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ═══ MINI CANVASES ═══ */
+const COLORS=[[300,360],[330,30],[190,240],[260,320],[290,355]];
+document.querySelectorAll('.mini-canvas').forEach((cv)=>{
+  const idx=parseInt(cv.dataset.idx)||0;
+  const c=cv.getContext('2d');
+  function resize(){cv.width=Math.max(cv.offsetWidth,10)||160;cv.height=Math.max(cv.offsetHeight,10)||200;}
+  resize();
+  const [h1,h2]=COLORS[idx%COLORS.length];
+  const range=h2>h1?h2-h1:h2-h1+360;
+  const N=500;
+  const W0=cv.width,H0=cv.height;
+  const sc=Math.min(W0,H0)*.016||2;
+  const pts=Array.from({length:N},(_,i)=>{
+    const t=(i/N)*Math.PI*2+(Math.random()-.5)*.3;
+    const hx=16*Math.pow(Math.sin(t),3);
+    const hy=-(13*Math.cos(t)-5*Math.cos(2*t)-2*Math.cos(3*t)-Math.cos(4*t));
+    return{
+      x:W0/2+(Math.random()-.5)*50,y:H0/2+(Math.random()-.5)*50,
+      vx:0,vy:0,
+      tx:W0/2+hx*sc,ty:H0/2+hy*sc,
+      hue:h1+Math.random()*range,
+      size:.7+Math.random()*1.3,
+      ph:Math.random()*Math.PI*2,a:0
+    };
+  });
+  function draw(){
+    const W=cv.width,H=cv.height;
+    c.fillStyle='rgba(4,2,10,.14)';c.fillRect(0,0,W,H);
+    pts.forEach(p=>{
+      p.ph+=.045;
+      const dx=p.tx-p.x,dy=p.ty-p.y;
+      p.vx+=dx*.085;p.vy+=dy*.085;p.vx*=.83;p.vy*=.83;
+      p.x+=p.vx;p.y+=p.vy;
+      const ta=.75+.25*Math.sin(p.ph);p.a+=(ta-p.a)*.07;
+      c.beginPath();c.arc(p.x,p.y,Math.max(.3,p.size),0,Math.PI*2);
+      c.fillStyle=`hsla(${p.hue},100%,65%,${p.a})`;
+      c.shadowColor=`hsl(${p.hue},100%,65%)`;c.shadowBlur=3;c.fill();c.shadowBlur=0;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+});
+
+/* ═══ PREVIEW CANVAS ═══ */
+(function(){
+  const cv=document.getElementById('previewCanvas'),c=cv.getContext('2d');
+  function resize(){cv.width=Math.max(cv.offsetWidth,10);cv.height=Math.max(cv.offsetHeight,10);}
+  resize();window.addEventListener('resize',()=>{resize();build(currentName);});
+  const PAL=[[300,360],[20,60],[190,230],[120,180],[0,360]];
+  let palIdx=0,currentName='Para Ti',t=0,pT=0,phase='form';
+  const N=1600;
+  const pts=Array.from({length:N},()=>({
+    x:cv.offsetWidth/2,y:cv.offsetHeight/2,vx:0,vy:0,
+    tx:cv.offsetWidth/2,ty:cv.offsetHeight/2,
+    hue:300+Math.random()*60,size:.8+Math.random()*1.6,
+    ph:Math.random()*Math.PI*2,a:0
+  }));
+  function sample(msg){
+    const W=cv.width,H=cv.height;
+    const off=document.createElement('canvas');off.width=W;off.height=H;
+    const oc=off.getContext('2d');
+    let fs=Math.min(W*.22,H*.15,85);
+    if(msg.length>7)fs=Math.min(fs,W*.14);
+    if(msg.length>11)fs=Math.min(fs,W*.1);
+    oc.fillStyle='#fff';oc.font=`900 ${fs}px 'Courier New',monospace`;
+    oc.textAlign='center';oc.textBaseline='middle';oc.fillText(msg,W/2,H/2);
+    const d=oc.getImageData(0,0,W,H).data,out=[];
+    const step=Math.max(3,Math.ceil(5-msg.length*.1));
+    for(let y=0;y<H;y+=step)for(let x=0;x<W;x+=step)
+      if(d[(y*W+x)*4]>100)out.push({x,y});
+    return out;
+  }
+  function build(name){
+    currentName=name||'Para Ti';
+    const tgs=sample(currentName);
+    if(!tgs.length)return;
+    const[h1,h2]=PAL[palIdx];
+    pts.forEach((p,i)=>{
+      const tg=tgs[i%tgs.length];
+      p.tx=tg.x+(Math.random()-.5)*2;p.ty=tg.y+(Math.random()-.5)*2;
+      p.hue=h1+Math.random()*(h2>h1?h2-h1:h2-h1+360);
+    });
+    phase='form';pT=0;
+  }
+  function scatter(){
+    const W=cv.width,H=cv.height;
+    pts.forEach(p=>{const a=Math.random()*Math.PI*2,s=3+Math.random()*10;p.vx+=Math.cos(a)*s;p.vy+=Math.sin(a)*s;p.tx=-100+Math.random()*(W+200);p.ty=-100+Math.random()*(H+200);});
+    phase='out';pT=0;setTimeout(()=>build(currentName),380);
+  }
+  window.updatePreview=function(){
+    const n=document.getElementById('edName').value.trim()||'Para Ti';
+    document.getElementById('previewName').textContent=n;
+    build(n);
+  };
+  window.setAnimType=function(idx,el){
+    document.querySelectorAll('.anim-opt').forEach(e=>e.classList.remove('active'));
+    el.classList.add('active');scatter();
+  };
+  window.setColor=function(idx,el){
+    palIdx=idx;
+    document.querySelectorAll('.color-opt').forEach(e=>e.classList.remove('active'));
+    el.classList.add('active');scatter();
+  };
+  window.selectAnim=function(idx){
+    document.getElementById('editor').scrollIntoView({behavior:'smooth'});
+    setTimeout(()=>{const o=document.querySelectorAll('.anim-opt')[idx];if(o)o.click();},600);
+  };
+  build('Para Ti');
+  function draw(){
+    const W=cv.width,H=cv.height;
+    c.fillStyle='rgba(4,2,10,.16)';c.fillRect(0,0,W,H);
+    t+=.025;pT+=.025;
+    if(phase==='form'&&pT>1.5){phase='hold';pT=0;}
+    if(phase==='hold'&&pT>2.5){scatter();}
+    const ease=phase==='form'?.13:phase==='out'?.05:.055;
+    pts.forEach(p=>{
+      p.ph+=.05;
+      const dx=p.tx-p.x,dy=p.ty-p.y;
+      p.vx+=dx*ease;p.vy+=dy*ease;p.vx*=.8;p.vy*=.8;
+      if(phase==='hold'){p.x+=Math.sin(t*1.2+p.ph*.4)*.22;p.y+=Math.cos(t*.9+p.ph*.3)*.22;}
+      p.x+=p.vx;p.y+=p.vy;
+      const d2=Math.sqrt(dx*dx+dy*dy);
+      const ta=phase==='out'?.25:Math.min(1,1.4-d2/(W*.08));
+      p.a+=(ta-p.a)*.09;
+      const sz=p.size*(0.85+0.15*Math.sin(p.ph));
+      c.beginPath();c.arc(p.x,p.y,Math.max(.3,sz),0,Math.PI*2);
+      c.fillStyle=`hsla(${p.hue},100%,65%,${p.a})`;
+      c.shadowColor=`hsl(${p.hue},100%,68%)`;c.shadowBlur=sz*2.2;c.fill();c.shadowBlur=0;
+    });
+    if(phase==='hold'){
+      const b=1+.1*Math.sin(t*3.5);
+      const g=c.createRadialGradient(W/2,H/2,0,W/2,H/2,Math.min(W,H)*.25*b);
+      g.addColorStop(0,`hsla(${PAL[palIdx][0]},100%,70%,.08)`);g.addColorStop(1,'transparent');
+      c.fillStyle=g;c.fillRect(0,0,W,H);
+    }
+    requestAnimationFrame(draw);
+  }
+  draw();
+  cv.addEventListener('click',()=>{if(phase==='hold')scatter();});
+})();
+
+/* ═══ MODAL ═══ */
+const WA='51945366356';
+function openModal(plan){
+  document.getElementById('modal').classList.add('open');
+  document.getElementById('modal-form-wrap').style.display='block';
+  document.getElementById('orderSuccess').style.display='none';
+  document.body.style.overflow='hidden';
+  if(plan)document.getElementById('mPlan').value=plan;
+  const n=document.getElementById('edName').value.trim();
+  if(n)document.getElementById('mDed').value=n;
+}
+function closeModal(){
+  document.getElementById('modal').classList.remove('open');
+  document.body.style.overflow='';
+}
+window.openModal=openModal;window.closeModal=closeModal;
+
+function submitOrder(){
+  const name=document.getElementById('mName').value.trim();
+  const wa=document.getElementById('mWa').value.trim();
+  const ded=document.getElementById('mDed').value.trim();
+  const plan=document.getElementById('mPlan').value;
+  const ocas=document.getElementById('mOcasion').value;
+  const anim=document.getElementById('mAnim').value;
+  if(!name||!wa){alert('Por favor completa tu nombre y WhatsApp.');return;}
+  const labels={basico:'Básico S/ 20',premium:'Premium S/ 35',negocios:'Pack Negocios S/ 99'};
+  const msg=encodeURIComponent(
+    `¡Hola Jair! Quiero pedir una dedicatoria animada 💜\n\n`+
+    `👤 Mi nombre: ${name}\n`+
+    `📱 Mi WhatsApp: ${wa}\n`+
+    `💖 Nombre a dedicar: ${ded||'por definir'}\n`+
+    `🎉 Ocasión: ${ocas}\n`+
+    `📦 Plan: ${labels[plan]||plan}\n`+
+    `✨ Animación: ${anim}\n\n`+
+    `¿Cómo procedo con el pago? ¡Gracias!`
+  );
+  document.getElementById('modal-form-wrap').style.display='none';
+  document.getElementById('orderSuccess').style.display='block';
+  document.getElementById('waLink').href=`https://wa.me/${WA}?text=${msg}`;
+}
+window.submitOrder=submitOrder;
+
+/* ═══ SCROLL REVEAL ═══ */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');}),{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+</script>
+</body>
+</html>
