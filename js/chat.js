@@ -450,7 +450,7 @@ function renderCases(){
               <div class="af-flow-row ${r.active?'active-row':''}">
                 <div class="af-flow-row-icon">${r.icon}</div>
                 <div style="flex:1;font-family:var(--fs);font-size:.75rem;color:${r.active?'var(--tx)':'var(--txd)'}">${r.text}</div>
-                <div class="af-flow-row-status" style="${r.active?'background:rgba(0,255,136,.1);color:var(--af);border:1px solid rgba(0,255,136,.2);font-family:var(--fm);font-size:.52rem;padding:2px 8px;border-radius:4px':'font-family:var(--fm);font-size:.52rem;color:var(--txd);padding:2px 8px'}">
+                <div class="af-flow-row-status" style="${r.active?'background:rgba(59,130,246,.1);color:var(--af);border:1px solid rgba(59,130,246,.2);font-family:var(--fm);font-size:.52rem;padding:2px 8px;border-radius:4px':'font-family:var(--fm);font-size:.52rem;color:var(--txd);padding:2px 8px'}">
                   ${r.active?'✓ ACTIVO':'◌ PENDIENTE'}
                 </div>
               </div>

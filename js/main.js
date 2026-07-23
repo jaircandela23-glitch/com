@@ -6,7 +6,8 @@ const pages = {
   software:'p-software', precios:'p-precios', contacto:'p-contacto', qr:'p-qr',
   calculadora:'p-calculadora', cotizador:'p-cotizador',
   metadatos:'p-metadatos', proximamente:'p-proximamente',
-  osint:'p-osint', autoflow:'p-autoflow', scanner:'p-scanner'
+  osint:'p-osint', autoflow:'p-autoflow', scanner:'p-scanner',
+  portafolio:'p-portafolio'
 };
 
 function go(key){
@@ -41,37 +42,37 @@ document.addEventListener('click',e=>{
 /* BUSCADOR NEXUM */
 const NX_INDEX = [
   // SERVICIOS
-  {name:'Ciberseguridad',desc:'Pentesting, hacking ético, auditorías de seguridad',page:'ciber',icon:'🛡️',color:'rgba(0,229,255,.12)',tag:'Servicio'},
-  {name:'Desarrollo Web',desc:'Sitios, apps web, e-commerce, landing pages',page:'dev',icon:'💻',color:'rgba(0,255,136,.1)',tag:'Servicio'},
-  {name:'Apps Móviles',desc:'Flutter, React Native, iOS y Android',page:'movil',icon:'📱',color:'rgba(0,229,255,.1)',tag:'Servicio'},
+  {name:'Ciberseguridad',desc:'Pentesting, hacking ético, auditorías de seguridad',page:'ciber',icon:'🛡️',color:'rgba(212,175,55,.12)',tag:'Servicio'},
+  {name:'Desarrollo Web',desc:'Sitios, apps web, e-commerce, landing pages',page:'dev',icon:'💻',color:'rgba(59,130,246,.1)',tag:'Servicio'},
+  {name:'Apps Móviles',desc:'Flutter, React Native, iOS y Android',page:'movil',icon:'📱',color:'rgba(212,175,55,.1)',tag:'Servicio'},
   {name:'Consultoría',desc:'ISO 27001, GDPR, IRP, capacitaciones de seguridad',page:'consul',icon:'🧠',color:'rgba(255,196,0,.1)',tag:'Servicio'},
-  {name:'AutoFlow IA',desc:'Automatización de WhatsApp con inteligencia artificial',page:'autoflow',icon:'🤖',color:'rgba(0,255,136,.12)',tag:'Nuevo'},
+  {name:'AutoFlow IA',desc:'Automatización de WhatsApp con inteligencia artificial',page:'autoflow',icon:'🤖',color:'rgba(59,130,246,.12)',tag:'Nuevo'},
   {name:'Pentesting',desc:'Pruebas de penetración y hacking ético',page:'ciber',icon:'🔓',color:'rgba(255,0,60,.1)',tag:'Servicio'},
-  {name:'Análisis Forense',desc:'Investigación digital y análisis de incidentes',page:'ciber',icon:'🔍',color:'rgba(0,229,255,.1)',tag:'Servicio'},
-  {name:'OSINT',desc:'Inteligencia de fuentes abiertas y recopilación de datos',page:'ciber',icon:'👁️',color:'rgba(255,107,53,.1)',tag:'Servicio'},
-  {name:'Hardening',desc:'Configuración segura de servidores y sistemas',page:'ciber',icon:'🔒',color:'rgba(0,229,255,.1)',tag:'Servicio'},
-  {name:'Recuperación de Datos',desc:'Rescate de archivos perdidos en cualquier dispositivo',page:'movil',icon:'💾',color:'rgba(176,128,255,.1)',tag:'Servicio'},
+  {name:'Análisis Forense',desc:'Investigación digital y análisis de incidentes',page:'ciber',icon:'🔍',color:'rgba(212,175,55,.1)',tag:'Servicio'},
+  {name:'OSINT',desc:'Inteligencia de fuentes abiertas y recopilación de datos',page:'ciber',icon:'👁️',color:'rgba(201,162,39,.1)',tag:'Servicio'},
+  {name:'Hardening',desc:'Configuración segura de servidores y sistemas',page:'ciber',icon:'🔒',color:'rgba(212,175,55,.1)',tag:'Servicio'},
+  {name:'Recuperación de Datos',desc:'Rescate de archivos perdidos en cualquier dispositivo',page:'movil',icon:'💾',color:'rgba(79,142,247,.1)',tag:'Servicio'},
   // HERRAMIENTAS
-  {name:'Scanner IA de Seguridad',desc:'Analiza vulnerabilidades de tu dominio con Claude AI',page:'scanner',icon:'🔎',color:'rgba(0,229,255,.12)',tag:'IA'},
-  {name:'OSINT Intelligence Suite',desc:'IP lookup, email breach, WHOIS, URL threat',page:'osint',icon:'🌐',color:'rgba(255,107,53,.1)',tag:'Herramienta'},
-  {name:'Extractor de Metadatos',desc:'Analiza metadatos EXIF ocultos en tus imágenes',page:'metadatos',icon:'📸',color:'rgba(176,128,255,.1)',tag:'Herramienta'},
-  {name:'QR Tool',desc:'Generador de códigos QR personalizados',page:'qr',icon:'📱',color:'rgba(0,229,255,.1)',tag:'Herramienta'},
+  {name:'Scanner IA de Seguridad',desc:'Analiza vulnerabilidades de tu dominio con Claude AI',page:'scanner',icon:'🔎',color:'rgba(212,175,55,.12)',tag:'IA'},
+  {name:'OSINT Intelligence Suite',desc:'IP lookup, email breach, WHOIS, URL threat',page:'osint',icon:'🌐',color:'rgba(201,162,39,.1)',tag:'Herramienta'},
+  {name:'Extractor de Metadatos',desc:'Analiza metadatos EXIF ocultos en tus imágenes',page:'metadatos',icon:'📸',color:'rgba(79,142,247,.1)',tag:'Herramienta'},
+  {name:'QR Tool',desc:'Generador de códigos QR personalizados',page:'qr',icon:'📱',color:'rgba(212,175,55,.1)',tag:'Herramienta'},
   {name:'Calculadora de Riesgo',desc:'Evalúa el nivel de exposición digital de tu empresa',page:'calculadora',icon:'⚠️',color:'rgba(255,196,0,.1)',tag:'Herramienta'},
-  {name:'Cotizador de Precios',desc:'Calcula el precio estimado de tu proyecto en 60 segundos',page:'cotizador',icon:'💰',color:'rgba(0,255,136,.1)',tag:'Herramienta'},
-  {name:'IP Lookup',desc:'Geolocalización e información de IPs y dominios',page:'osint',icon:'🌍',color:'rgba(255,107,53,.1)',tag:'OSINT'},
+  {name:'Cotizador de Precios',desc:'Calcula el precio estimado de tu proyecto en 60 segundos',page:'cotizador',icon:'💰',color:'rgba(59,130,246,.1)',tag:'Herramienta'},
+  {name:'IP Lookup',desc:'Geolocalización e información de IPs y dominios',page:'osint',icon:'🌍',color:'rgba(201,162,39,.1)',tag:'OSINT'},
   {name:'Email Breach Checker',desc:'Verifica si tu email está en filtraciones de datos',page:'osint',icon:'📧',color:'rgba(255,0,60,.1)',tag:'OSINT'},
-  {name:'WHOIS',desc:'Información de registro de dominios y servidores DNS',page:'osint',icon:'🔍',color:'rgba(255,107,53,.1)',tag:'OSINT'},
+  {name:'WHOIS',desc:'Información de registro de dominios y servidores DNS',page:'osint',icon:'🔍',color:'rgba(201,162,39,.1)',tag:'OSINT'},
   {name:'URL Threat Analyzer',desc:'Analiza URLs sospechosas en motores de amenazas',page:'osint',icon:'🦠',color:'rgba(255,0,60,.1)',tag:'OSINT'},
   // PRODUCTOS
-  {name:'Software Educativo',desc:'Yape Clone, PaySim, PlinClone, FaceIntel y más',page:'software',icon:'📦',color:'rgba(176,128,255,.12)',tag:'Producto'},
+  {name:'Software Educativo',desc:'Yape Clone, PaySim, PlinClone, FaceIntel y más',page:'software',icon:'📦',color:'rgba(79,142,247,.12)',tag:'Producto'},
   {name:'Yape Clone',desc:'Réplica educativa para pentesting e ingeniería social',page:'software',icon:'💜',color:'rgba(168,85,247,.15)',tag:'Premium'},
-  {name:'Apps & Herramientas',desc:'Suite completa de aplicaciones NEXUM',page:'apps',icon:'🧰',color:'rgba(0,229,255,.1)',tag:'Producto'},
+  {name:'Apps & Herramientas',desc:'Suite completa de aplicaciones NEXUM',page:'apps',icon:'🧰',color:'rgba(212,175,55,.1)',tag:'Producto'},
   {name:'Tutoriales',desc:'Contraseñas, phishing, ransomware, OWASP y más',page:'tutoriales',icon:'🎓',color:'rgba(255,196,0,.1)',tag:'Educativo'},
-  {name:'Próximamente',desc:'NEXUM Vault, OSINT Mobile, CyberMap Perú y más',page:'proximamente',icon:'🚀',color:'rgba(0,229,255,.08)',tag:'Próximo'},
+  {name:'Próximamente',desc:'NEXUM Vault, OSINT Mobile, CyberMap Perú y más',page:'proximamente',icon:'🚀',color:'rgba(212,175,55,.08)',tag:'Próximo'},
   // PÁGINAS
-  {name:'Precios',desc:'Planes Essential, Professional, Elite y Enterprise 360',page:'precios',icon:'💳',color:'rgba(0,255,136,.1)',tag:'Página'},
-  {name:'Nosotros',desc:'Quiénes somos, misión, valores y equipo NEXUM',page:'nosotros',icon:'🏢',color:'rgba(0,229,255,.08)',tag:'Página'},
-  {name:'Contacto',desc:'Formulario de contacto y WhatsApp directo',page:'contacto',icon:'📩',color:'rgba(0,229,255,.08)',tag:'Página'},
+  {name:'Precios',desc:'Planes Essential, Professional, Elite y Enterprise 360',page:'precios',icon:'💳',color:'rgba(59,130,246,.1)',tag:'Página'},
+  {name:'Nosotros',desc:'Quiénes somos, misión, valores y equipo NEXUM',page:'nosotros',icon:'🏢',color:'rgba(212,175,55,.08)',tag:'Página'},
+  {name:'Contacto',desc:'Formulario de contacto y WhatsApp directo',page:'contacto',icon:'📩',color:'rgba(212,175,55,.08)',tag:'Página'},
 ];
 
 let nxSearchOpen = false;
@@ -232,7 +233,7 @@ function initMoneyCanvas(){
     drops.forEach((y,i)=>{
       const c=chars[Math.floor(Math.random()*chars.length)];
       const alpha=Math.random()>.7?0.9:0.3;
-      ctx.fillStyle=c==='$'||c==='€'||c==='¥'||c==='₿'?`rgba(0,255,136,${alpha})`:`rgba(0,229,255,${alpha})`;
+      ctx.fillStyle=c==='$'||c==='€'||c==='¥'||c==='₿'?`rgba(59,130,246,${alpha})`:`rgba(212,175,55,${alpha})`;
       ctx.fillText(c,i*12,y*12);
       if(y*12>H&&Math.random()>.97) drops[i]=0;
       drops[i]+=.6;
@@ -260,7 +261,7 @@ function initTxFeed(){
   function addTx(){
     const tx=txs[idx%txs.length];idx++;
     const row=document.createElement('div');
-    row.style.cssText='display:flex;justify-content:space-between;align-items:center;font-family:var(--fm);font-size:.6rem;animation:mIn .3s ease;border-bottom:1px solid rgba(0,229,255,0.05);padding:2px 0';
+    row.style.cssText='display:flex;justify-content:space-between;align-items:center;font-family:var(--fm);font-size:.6rem;animation:mIn .3s ease;border-bottom:1px solid rgba(212,175,55,0.05);padding:2px 0';
     const color=tx.c==='ok'?'var(--g)':'var(--am)';
     row.innerHTML=`<span style="color:var(--txd)">${tx.t}</span><span style="color:var(--txd)">${tx.a}</span><span style="color:${color};font-weight:700">${tx.v}</span>`;
     feed.insertBefore(row,feed.firstChild);
@@ -1130,7 +1131,7 @@ function calcRisk(){
     num.style.color = 'var(--g)';
     lbl.textContent = '✅ Riesgo Bajo';
     desc.textContent = '¡Excelente! Tu empresa tiene buenas prácticas de seguridad. Sin embargo, la ciberseguridad requiere revisión continua. Te recomendamos una auditoría anual para identificar vulnerabilidades emergentes.';
-    recs.innerHTML = '<div style="background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.2);border-radius:8px;padding:14px"><p style="font-family:var(--fm);font-size:.75rem;color:var(--g);margin-bottom:8px">RECOMENDACIONES</p><p style="font-size:.87rem;color:var(--txd)">✓ Mantén las buenas prácticas actuales<br>✓ Programa una auditoría preventiva anual<br>✓ Capacita al equipo en nuevas amenazas</p></div>';
+    recs.innerHTML = '<div style="background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.2);border-radius:8px;padding:14px"><p style="font-family:var(--fm);font-size:.75rem;color:var(--g);margin-bottom:8px">RECOMENDACIONES</p><p style="font-size:.87rem;color:var(--txd)">✓ Mantén las buenas prácticas actuales<br>✓ Programa una auditoría preventiva anual<br>✓ Capacita al equipo en nuevas amenazas</p></div>';
   } else if(score < 45){
     num.style.color = 'var(--am)';
     lbl.textContent = '⚠️ Riesgo Moderado';
@@ -1487,106 +1488,6 @@ if(dz){
 
 /* --- */
 (function(){
-  // Only on desktop with real mouse
-  if(!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
-  const dot = document.getElementById('cursorDot');
-  const ring = document.getElementById('cursorRing');
-  if(!dot || !ring) return;
-  let mx=0,my=0,rx=0,ry=0;
-  document.addEventListener('mousemove', e=>{
-    mx=e.clientX; my=e.clientY;
-    dot.style.left=mx+'px'; dot.style.top=my+'px';
-  });
-  function animRing(){
-    rx += (mx-rx)*.15; ry += (my-ry)*.15;
-    ring.style.left=rx+'px'; ring.style.top=ry+'px';
-    requestAnimationFrame(animRing);
-  }
-  animRing();
-  document.querySelectorAll('a,button,.ecard,.scard,.q-opt,.risk-opt,.blog-card,.ni,.cbtn,.btn').forEach(el=>{
-    el.addEventListener('mouseenter',()=>ring.classList.add('hover'));
-    el.addEventListener('mouseleave',()=>ring.classList.remove('hover'));
-  });
-  document.addEventListener('mousedown',()=>{dot.style.transform='translate(-50%,-50%) scale(.6)';});
-  document.addEventListener('mouseup',()=>{dot.style.transform='translate(-50%,-50%) scale(1)';});
-})();
-
-/* --- */
-(function(){
-  const canvas = document.getElementById('particleCanvas');
-  if(!canvas) return;
-  const ctx = canvas.getContext('2d');
-  let W, H, particles=[], mouse={x:0,y:0};
-  const PARTICLE_COUNT = 60;
-
-  function resize(){ W=canvas.width=window.innerWidth; H=canvas.height=window.innerHeight; }
-  resize();
-  window.addEventListener('resize', resize);
-  document.addEventListener('mousemove', e=>{mouse.x=e.clientX; mouse.y=e.clientY;});
-
-  class Particle {
-    constructor(){this.reset();}
-    reset(){
-      this.x = Math.random()*W; this.y = Math.random()*H;
-      this.size = Math.random()*2+.5;
-      this.vx = (Math.random()-.5)*.3; this.vy = (Math.random()-.5)*.3;
-      this.alpha = Math.random()*.4+.1;
-      this.color = Math.random()>.5 ? '0,229,255' : '0,255,136';
-    }
-    update(){
-      this.x+=this.vx; this.y+=this.vy;
-      if(this.x<0||this.x>W||this.y<0||this.y>H) this.reset();
-    }
-    draw(){
-      ctx.beginPath();
-      ctx.arc(this.x,this.y,this.size,0,Math.PI*2);
-      ctx.fillStyle=`rgba(${this.color},${this.alpha})`;
-      ctx.fill();
-    }
-  }
-
-  for(let i=0;i<PARTICLE_COUNT;i++) particles.push(new Particle());
-
-  function connectParticles(){
-    for(let i=0;i<particles.length;i++){
-      for(let j=i+1;j<particles.length;j++){
-        const dx=particles[i].x-particles[j].x;
-        const dy=particles[i].y-particles[j].y;
-        const dist=Math.sqrt(dx*dx+dy*dy);
-        if(dist<120){
-          ctx.beginPath();
-          ctx.strokeStyle=`rgba(0,229,255,${.08*(1-dist/120)})`;
-          ctx.lineWidth=.5;
-          ctx.moveTo(particles[i].x,particles[i].y);
-          ctx.lineTo(particles[j].x,particles[j].y);
-          ctx.stroke();
-        }
-      }
-      // Mouse repulsion
-      const dmx=particles[i].x-mouse.x;
-      const dmy=particles[i].y-mouse.y;
-      const mdist=Math.sqrt(dmx*dmx+dmy*dmy);
-      if(mdist<100){
-        particles[i].vx+=(dmx/mdist)*.05;
-        particles[i].vy+=(dmy/mdist)*.05;
-        // Speed limit
-        const speed=Math.sqrt(particles[i].vx**2+particles[i].vy**2);
-        if(speed>1.5){particles[i].vx*=.95;particles[i].vy*=.95;}
-      }
-    }
-  }
-
-  function animate(){
-    ctx.clearRect(0,0,W,H);
-    particles.forEach(p=>{p.update();p.draw();});
-    connectParticles();
-    requestAnimationFrame(animate);
-  }
-  animate();
-})();
-
-/* --- */
-(function(){
   const el = document.querySelector('.brand-tagline');
   if(!el) return;
   const texts = ['Protege Tu Vida Digital', 'Seguridad de Clase Mundial', 'Hacking Ético Certificado', 'Software Blindado'];
@@ -1696,7 +1597,7 @@ async function osintEmail(){
     loading.style.display='none';
     // Direct HIBP email API requires key — show professional guidance + deep links
     res.innerHTML = `
-      <div style="background:rgba(0,229,255,.05);border:1px solid var(--br);border-radius:var(--rl);padding:20px">
+      <div style="background:rgba(212,175,55,.05);border:1px solid var(--br);border-radius:var(--rl);padding:20px">
         <p style="font-family:var(--fm);font-size:.72rem;color:var(--txd);margin-bottom:14px">
           <i class="fas fa-info-circle" style="color:var(--c)"></i> La API de email de HIBP requiere clave de acceso para uso directo (política anti-scraping). 
           Consulta directamente en los servicios verificados:
@@ -1862,8 +1763,8 @@ function osintURL(){
         <i class="fas fa-external-link-alt" style="color:var(--txd);font-size:.8rem"></i>
       </a>
     </div>
-    <div style="background:rgba(255,107,53,.07);border:1px solid rgba(255,107,53,.2);border-radius:var(--ra);padding:12px 16px">
-      <p style="font-family:var(--fm);font-size:.68rem;color:rgba(255,107,53,.9)"><i class="fas fa-shield-alt"></i> <strong>Consejo NEXUM:</strong> Si VirusTotal marca 1+ detecciones, NO visites la URL. Contáctanos para un análisis forense completo.</p>
+    <div style="background:rgba(201,162,39,.07);border:1px solid rgba(201,162,39,.2);border-radius:var(--ra);padding:12px 16px">
+      <p style="font-family:var(--fm);font-size:.68rem;color:rgba(201,162,39,.9)"><i class="fas fa-shield-alt"></i> <strong>Consejo NEXUM:</strong> Si VirusTotal marca 1+ detecciones, NO visites la URL. Contáctanos para un análisis forense completo.</p>
     </div>`;
   document.getElementById('osint-url-result').style.display='block';
 }
@@ -1877,4 +1778,32 @@ function osintURL(){
     if(t <= 0){ t = 39; }
     el.textContent = t;
   }, 1000);
+})();
+/* ============================================================
+   PORTAFOLIO — barras de dominio técnico animadas
+   ============================================================ */
+function initSkillBars(){
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(!e.isIntersecting) return;
+      const el = e.target;
+      const pct = el.getAttribute('data-pct');
+      requestAnimationFrame(()=>{ el.style.width = pct + '%'; });
+      obs.unobserve(el);
+    });
+  },{threshold:.3});
+  document.querySelectorAll('.skill-fill').forEach(el=>obs.observe(el));
+}
+initSkillBars();
+
+/* Reinicia las barras cada vez que se entra a la página de portafolio */
+(function(){
+  const _go = go;
+  window.go = function(key){
+    _go(key);
+    if(key === 'portafolio'){
+      document.querySelectorAll('.skill-fill').forEach(el=>{ el.style.width='0%'; });
+      setTimeout(initSkillBars, 60);
+    }
+  };
 })();

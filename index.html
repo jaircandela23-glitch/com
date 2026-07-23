@@ -3,37 +3,32 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-  <meta name="theme-color" content="#00e5ff">
-  <meta name="description" content="NEXUM — Ciberseguridad, Desarrollo Web y LoveMotion dedicatorias animadas">
+  <meta name="theme-color" content="#d4af37">
+  <meta name="description" content="NEXUM — Ciberseguridad y Desarrollo de Software profesional en Perú">
   <title>NEXUM — Ciberseguridad &amp; Desarrollo de Software</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@400;500;600;700&family=JetBrains+Mono:wght@400;700&family=Space+Grotesk:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,600;1,400;1,600&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
 <!-- Premium cursor -->
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-
 <!-- Particle background -->
-<canvas id="particleCanvas"></canvas>
-
 <header class="hdr" id="hdr">
   <div class="logo-wrap" onclick="go('home')">
     <!-- NEXUM LOGO v6 — Premium Shield Mark -->
     <svg width="46" height="46" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg" style="flex-shrink:0" class="nexum-logo-svg">
       <defs>
         <linearGradient id="lgMain" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#00e5ff"/>
-          <stop offset="50%" stop-color="#00aadd"/>
-          <stop offset="100%" stop-color="#005577"/>
+          <stop offset="0%" stop-color="#d4af37"/>
+          <stop offset="50%" stop-color="#b8860b"/>
+          <stop offset="100%" stop-color="#0a1f3d"/>
         </linearGradient>
         <linearGradient id="lgAccent" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" stop-color="#00ff88" stop-opacity="0.9"/>
-          <stop offset="100%" stop-color="#00e5ff" stop-opacity="0.2"/>
+          <stop offset="0%" stop-color="#3b82f6" stop-opacity="0.9"/>
+          <stop offset="100%" stop-color="#d4af37" stop-opacity="0.2"/>
         </linearGradient>
         <linearGradient id="lgInner" x1="0%" y1="0%" x2="100%" y2="100%">
           <stop offset="0%" stop-color="#001a2e"/>
@@ -57,19 +52,19 @@
       <!-- Green accent trim -->
       <path d="M23 3 L40 10.5 L40 24 C40 33.5 32.5 41 23 44 C13.5 41 6 33.5 6 24 L6 10.5 Z" fill="url(#lgAccent)" opacity="0.15"/>
       <!-- Shield border highlight -->
-      <path d="M23 3 L40 10.5 L40 24 C40 33.5 32.5 41 23 44 C13.5 41 6 33.5 6 24 L6 10.5 Z" fill="none" stroke="rgba(0,229,255,0.5)" stroke-width="0.8"/>
+      <path d="M23 3 L40 10.5 L40 24 C40 33.5 32.5 41 23 44 C13.5 41 6 33.5 6 24 L6 10.5 Z" fill="none" stroke="rgba(212,175,55,0.5)" stroke-width="0.8"/>
       <!-- N letterform — bold geometric -->
       <g filter="url(#logoGlow2)">
         <path d="M13.5 31 L13.5 15 L17.5 15 L24.5 25.5 L24.5 15 L28.5 15 L28.5 31 L24.5 31 L17.5 20.5 L17.5 31 Z" fill="url(#lgMain)" opacity="0.95"/>
         <!-- N highlight -->
         <path d="M13.5 15 L17.5 15 L17.5 20.5 L13.5 15 Z" fill="rgba(255,255,255,0.2)"/>
-        <path d="M24.5 25.5 L28.5 31 L24.5 31 Z" fill="rgba(0,255,136,0.3)"/>
+        <path d="M24.5 25.5 L28.5 31 L24.5 31 Z" fill="rgba(59,130,246,0.3)"/>
       </g>
       <!-- Corner scan lines decoration -->
-      <line x1="6" y1="24" x2="40" y2="24" stroke="rgba(0,229,255,0.1)" stroke-width="0.5"/>
+      <line x1="6" y1="24" x2="40" y2="24" stroke="rgba(212,175,55,0.1)" stroke-width="0.5"/>
       <!-- Bottom pulse dot -->
-      <circle cx="23" cy="41.5" r="1.5" fill="#00e5ff" opacity="0.8"/>
-      <circle cx="23" cy="41.5" r="3" fill="none" stroke="#00e5ff" stroke-width="0.5" opacity="0.4"/>
+      <circle cx="23" cy="41.5" r="1.5" fill="#d4af37" opacity="0.8"/>
+      <circle cx="23" cy="41.5" r="3" fill="none" stroke="#d4af37" stroke-width="0.5" opacity="0.4"/>
     </svg>
     <div style="display:flex;flex-direction:column;line-height:1.2">
       <span class="logo-txt">NEXUM</span>
@@ -86,6 +81,10 @@
       <svg class="nav-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
       Nosotros
     </button>
+    <button class="ni" onclick="go('portafolio')">
+      <svg class="nav-svg-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      Portafolio
+    </button>
 
     <!-- SERVICIOS -->
     <div class="ndrop">
@@ -95,15 +94,15 @@
       </button>
       <div class="ddmenu">
         <button class="dditem" onclick="go('ciber')">
-          <span class="dd-icon" style="background:rgba(0,229,255,.12);color:var(--c)"><i class="fas fa-shield-alt"></i></span>
+          <span class="dd-icon" style="background:rgba(212,175,55,.12);color:var(--c)"><i class="fas fa-shield-alt"></i></span>
           Ciberseguridad
         </button>
         <button class="dditem" onclick="go('dev')">
-          <span class="dd-icon" style="background:rgba(0,255,136,.1);color:var(--g)"><i class="fas fa-code"></i></span>
+          <span class="dd-icon" style="background:rgba(59,130,246,.1);color:var(--g)"><i class="fas fa-code"></i></span>
           Desarrollo Web
         </button>
         <button class="dditem" onclick="go('movil')">
-          <span class="dd-icon" style="background:rgba(0,229,255,.1);color:var(--c)"><i class="fas fa-mobile-alt"></i></span>
+          <span class="dd-icon" style="background:rgba(212,175,55,.1);color:var(--c)"><i class="fas fa-mobile-alt"></i></span>
           Apps Móviles
         </button>
         <button class="dditem" onclick="go('consul')">
@@ -111,13 +110,13 @@
           Consultoría
         </button>
         <button class="dditem" onclick="go('autoflow')">
-          <span class="dd-icon" style="background:rgba(0,255,136,.12);color:#00ff88"><i class="fas fa-robot"></i></span>
+          <span class="dd-icon" style="background:rgba(59,130,246,.12);color:#3b82f6"><i class="fas fa-robot"></i></span>
           AutoFlow IA
-          <span class="dd-badge" style="background:rgba(0,255,136,.12);color:#00ff88;border:1px solid rgba(0,255,136,.25)">NUEVO</span>
+          <span class="dd-badge" style="background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.25)">NUEVO</span>
         </button>
         <div class="dd-sep"></div>
         <button class="dditem" onclick="go('precios')">
-          <span class="dd-icon" style="background:rgba(0,255,136,.1);color:var(--g)"><i class="fas fa-tags"></i></span>
+          <span class="dd-icon" style="background:rgba(59,130,246,.1);color:var(--g)"><i class="fas fa-tags"></i></span>
           Ver Precios
         </button>
       </div>
@@ -131,11 +130,11 @@
       </button>
       <div class="ddmenu">
         <button class="dditem" onclick="go('apps')">
-          <span class="dd-icon" style="background:rgba(0,229,255,.1);color:var(--c)"><i class="fas fa-th"></i></span>
+          <span class="dd-icon" style="background:rgba(212,175,55,.1);color:var(--c)"><i class="fas fa-th"></i></span>
           Apps
         </button>
         <button class="dditem" onclick="go('software')">
-          <span class="dd-icon" style="background:rgba(176,128,255,.12);color:var(--purple)"><i class="fas fa-box-open"></i></span>
+          <span class="dd-icon" style="background:rgba(79,142,247,.12);color:var(--purple)"><i class="fas fa-box-open"></i></span>
           Software Educativo
         </button>
         <button class="dditem" onclick="go('tutoriales')">
@@ -144,22 +143,22 @@
         </button>
         <div class="dd-sep"></div>
         <button class="dditem" onclick="go('proximamente')">
-          <span class="dd-icon" style="background:rgba(0,229,255,.1);color:var(--c)"><i class="fas fa-rocket"></i></span>
+          <span class="dd-icon" style="background:rgba(212,175,55,.1);color:var(--c)"><i class="fas fa-rocket"></i></span>
           Próximamente
-          <span class="dd-badge" style="background:rgba(0,229,255,.12);color:var(--c);border:1px solid var(--br)">NUEVO</span>
+          <span class="dd-badge" style="background:rgba(212,175,55,.12);color:var(--c);border:1px solid var(--br)">NUEVO</span>
         </button>
       </div>
     </div>
 
     <!-- HERRAMIENTAS -->
     <div class="ndrop">
-      <button class="ndrop-btn" style="color:#ff6b35">
-        <svg class="nav-svg-icon" viewBox="0 0 24 24" fill="none" stroke="#ff6b35" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+      <button class="ndrop-btn" style="color:#c9a227">
+        <svg class="nav-svg-icon" viewBox="0 0 24 24" fill="none" stroke="#c9a227" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
         Herramientas <i class="fas fa-chevron-down arr"></i>
       </button>
       <div class="ddmenu">
         <button class="dditem" onclick="go('cotizador')">
-          <span class="dd-icon" style="background:rgba(0,255,136,.1);color:var(--g)"><i class="fas fa-calculator"></i></span>
+          <span class="dd-icon" style="background:rgba(59,130,246,.1);color:var(--g)"><i class="fas fa-calculator"></i></span>
           Calculadora Consultora de Precios Nexum
         </button>
         <button class="dditem" onclick="go('calculadora')">
@@ -168,22 +167,22 @@
         </button>
         <div class="dd-sep"></div>
         <button class="dditem" onclick="go('metadatos')">
-          <span class="dd-icon" style="background:rgba(176,128,255,.1);color:var(--purple)"><i class="fas fa-search"></i></span>
+          <span class="dd-icon" style="background:rgba(79,142,247,.1);color:var(--purple)"><i class="fas fa-search"></i></span>
           Extractor Metadatos
         </button>
         <button class="dditem" onclick="go('qr')">
-          <span class="dd-icon" style="background:rgba(0,229,255,.1);color:var(--c)"><i class="fas fa-qrcode"></i></span>
+          <span class="dd-icon" style="background:rgba(212,175,55,.1);color:var(--c)"><i class="fas fa-qrcode"></i></span>
           QR Tool
         </button>
         <button class="dditem" onclick="go('osint')">
-          <span class="dd-icon" style="background:rgba(255,107,53,.1);color:var(--orange)"><i class="fas fa-globe"></i></span>
+          <span class="dd-icon" style="background:rgba(201,162,39,.1);color:var(--orange)"><i class="fas fa-globe"></i></span>
           OSINT Tools
         </button>
         <div class="dd-sep"></div>
         <button class="dditem" onclick="go('scanner')" style="color:var(--c)">
-          <span class="dd-icon" style="background:rgba(0,229,255,.12);color:var(--c)"><i class="fas fa-search-plus"></i></span>
+          <span class="dd-icon" style="background:rgba(212,175,55,.12);color:var(--c)"><i class="fas fa-search-plus"></i></span>
           Scanner IA de Seguridad
-          <span class="dd-badge" style="background:linear-gradient(135deg,rgba(0,229,255,.2),rgba(0,255,136,.1));color:var(--c);border:1px solid rgba(0,229,255,.3)">IA</span>
+          <span class="dd-badge" style="background:linear-gradient(135deg,rgba(212,175,55,.2),rgba(59,130,246,.1));color:var(--c);border:1px solid rgba(212,175,55,.3)">IA</span>
         </button>
       </div><!-- close ddmenu -->
     </div><!-- close ndrop -->
@@ -219,6 +218,10 @@
     <svg style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
     Nosotros
   </button>
+  <button class="ni" onclick="go('portafolio');closeMnav()">
+    <svg style="width:14px;height:14px" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+    Portafolio
+  </button>
 
   <div class="mnav-group">
     <span class="mnav-label">// Servicios</span>
@@ -232,7 +235,7 @@
   <div class="mnav-group">
     <span class="mnav-label">// Productos</span>
     <button class="ni" onclick="go('apps');closeMnav()"><i class="fas fa-th" style="color:var(--c)"></i> Apps</button>
-    <button class="ni" onclick="go('software');closeMnav()"><i class="fas fa-box-open" style="color:#b080ff"></i> Software Educativo</button>
+    <button class="ni" onclick="go('software');closeMnav()"><i class="fas fa-box-open" style="color:#4f8ef7"></i> Software Educativo</button>
     <button class="ni" onclick="go('tutoriales');closeMnav()"><i class="fas fa-graduation-cap" style="color:var(--am)"></i> Tutoriales</button>
     <button class="ni" onclick="go('proximamente');closeMnav()" style="color:var(--c)"><i class="fas fa-rocket"></i> Próximamente</button>
   </div>
@@ -241,9 +244,9 @@
     <span class="mnav-label">// Herramientas</span>
     <button class="ni" onclick="go('cotizador');closeMnav()" style="color:var(--g)"><i class="fas fa-calculator"></i> Cotizador</button>
     <button class="ni" onclick="go('calculadora');closeMnav()" style="color:var(--am)"><i class="fas fa-exclamation-triangle"></i> Calculadora de Riesgo</button>
-    <button class="ni" onclick="go('metadatos');closeMnav()" style="color:#b080ff"><i class="fas fa-search"></i> Extractor Metadatos</button>
+    <button class="ni" onclick="go('metadatos');closeMnav()" style="color:#4f8ef7"><i class="fas fa-search"></i> Extractor Metadatos</button>
     <button class="ni" onclick="go('qr');closeMnav()"><i class="fas fa-qrcode" style="color:var(--c)"></i> QR Tool</button>
-    <button class="ni" onclick="go('osint');closeMnav()" style="color:#ff6b35"><i class="fas fa-globe"></i> OSINT Tools</button>
+    <button class="ni" onclick="go('osint');closeMnav()" style="color:#c9a227"><i class="fas fa-globe"></i> OSINT Tools</button>
     <button class="ni" onclick="go('scanner');closeMnav()" style="color:var(--c)"><i class="fas fa-search-plus"></i> Scanner IA <span style="font-size:.5rem;background:var(--c2);border:1px solid var(--br);padding:2px 7px;border-radius:8px;margin-left:4px">IA</span></button>
   </div>
 
@@ -270,6 +273,12 @@
         <h1 class="brand-name">NEXUM</h1>
         <p class="brand-tagline">Protege Tu Vida Digital</p>
         <p class="brand-sub">Somos expertos en ciberseguridad ofensiva, desarrollo de software a medida y consultoría estratégica. Protegemos lo que más importa: tu infraestructura digital.</p>
+        <div class="rv" style="display:flex;flex-wrap:wrap;gap:6px;margin:14px 0 4px">
+          <img src="https://img.shields.io/badge/status-activo-d4af37?style=for-the-badge&labelColor=0c1420" alt="status activo" style="height:22px">
+          <img src="https://img.shields.io/badge/ubicaci%C3%B3n-Lima%2C%20Per%C3%BA-3b82f6?style=for-the-badge&labelColor=0c1420" alt="ubicación Lima Perú" style="height:22px">
+          <img src="https://img.shields.io/badge/stack-Python%20%7C%20React%20%7C%20Node.js-3b82f6?style=for-the-badge&labelColor=0c1420" alt="stack" style="height:22px">
+          <img src="https://img.shields.io/badge/uso-acad%C3%A9mico%20%26%20profesional-d4af37?style=for-the-badge&labelColor=0c1420" alt="uso académico y profesional" style="height:22px">
+        </div>
         <div class="hero-btns">
           <button class="btn btn-sm" onclick="go('ciber')"><i class="fas fa-shield-alt"></i> Servicios</button>
           <button class="btn sec btn-sm" onclick="go('nosotros')"><i class="fas fa-info-circle"></i> Nosotros</button>
@@ -281,7 +290,7 @@
             <button class="scard" onclick="go('ciber')" style="padding:14px;text-align:center"><i class="fas fa-shield-alt" style="font-size:1.4rem;margin-bottom:6px;display:block"></i><span style="font-size:.75rem">Ciberseguridad</span></button>
             <button class="scard" onclick="go('dev')" style="padding:14px;text-align:center"><i class="fas fa-code" style="font-size:1.4rem;margin-bottom:6px;display:block"></i><span style="font-size:.75rem">Desarrollo</span></button>
             <button class="scard" onclick="go('apps')" style="padding:14px;text-align:center"><i class="fas fa-tools" style="font-size:1.4rem;margin-bottom:6px;display:block"></i><span style="font-size:.75rem">Herramientas</span></button>
-            <button class="scard" onclick="go('software')" style="padding:14px;text-align:center;border-color:rgba(0,255,136,.3)"><i class="fas fa-box-open" style="font-size:1.4rem;margin-bottom:6px;display:block;color:var(--g)"></i><span style="font-size:.75rem;color:var(--g)">Software</span></button>
+            <button class="scard" onclick="go('software')" style="padding:14px;text-align:center;border-color:rgba(59,130,246,.3)"><i class="fas fa-box-open" style="font-size:1.4rem;margin-bottom:6px;display:block;color:var(--g)"></i><span style="font-size:.75rem;color:var(--g)">Software</span></button>
           </div>
         </div>
       </div>
@@ -323,6 +332,7 @@
   <!-- Servicios: Ciberseguridad -->
   <section class="sec">
     <div class="sec-inner">
+      <div class="sec-icon-badge rv"><i class="fas fa-shield-alt"></i></div>
       <h2 class="rv"><i class="fas fa-shield-alt"></i> Ciberseguridad Élite</h2>
       <div class="divdr"></div>
       <p class="sub rv">Máxima protección en la era digital. Blindamos su infraestructura con mentalidad ofensiva.</p>
@@ -349,6 +359,7 @@
   <!-- Servicios: Desarrollo -->
   <section class="sec alt">
     <div class="sec-inner">
+      <div class="sec-icon-badge rv"><i class="fas fa-code"></i></div>
       <h2 class="rv"><i class="fas fa-code"></i> Desarrollo de Software</h2>
       <div class="divdr"></div>
       <p class="sub rv">Soluciones digitales de alto rendimiento construidas con seguridad como pilar fundamental.</p>
@@ -374,6 +385,7 @@
     <div class="sec-inner">
       <div style="display:grid;grid-template-columns:1fr 1fr;gap:60px" class="rv">
         <div>
+          <div class="sec-icon-badge left rv"><i class="fas fa-mobile-alt"></i></div>
           <h2 style="text-align:left;margin-bottom:14px"><i class="fas fa-mobile-alt"></i> Soporte Móvil</h2>
           <div class="divdr" style="margin:0 0 16px"></div>
           <div style="display:flex;flex-direction:column;gap:14px">
@@ -383,6 +395,7 @@
           </div>
         </div>
         <div>
+          <div class="sec-icon-badge left rv"><i class="fas fa-brain"></i></div>
           <h2 style="text-align:left;margin-bottom:14px"><i class="fas fa-brain"></i> Consultoría</h2>
           <div class="divdr" style="margin:0 0 16px"></div>
           <div style="display:flex;flex-direction:column;gap:14px">
@@ -401,21 +414,20 @@
       <h2 class="rv"><i class="fas fa-layer-group"></i> Stack Tecnológico</h2>
       <div class="divdr"></div>
       <p class="sub rv">Trabajamos con las herramientas más avanzadas del mercado.</p>
-      <div class="tech-row rv">
-        <span class="tech-badge"><i class="fab fa-python"></i> Python</span>
-        <span class="tech-badge"><i class="fab fa-node-js"></i> Node.js</span>
-        <span class="tech-badge"><i class="fab fa-react"></i> React</span>
-        <span class="tech-badge"><i class="fas fa-mobile-alt"></i> Flutter</span>
-        <span class="tech-badge"><i class="fab fa-aws"></i> AWS</span>
-        <span class="tech-badge"><i class="fab fa-microsoft"></i> Azure</span>
-        <span class="tech-badge"><i class="fas fa-terminal"></i> Kali Linux</span>
-        <span class="tech-badge"><i class="fas fa-bug"></i> Burp Suite</span>
-        <span class="tech-badge"><i class="fas fa-network-wired"></i> Wireshark</span>
-        <span class="tech-badge"><i class="fab fa-docker"></i> Docker</span>
-        <span class="tech-badge"><i class="fas fa-database"></i> PostgreSQL</span>
-        <span class="tech-badge"><i class="fab fa-php"></i> PHP</span>
-        <span class="tech-badge"><i class="fas fa-shield-alt"></i> Metasploit</span>
-        <span class="tech-badge"><i class="fas fa-code-branch"></i> Git / CI/CD</span>
+      <div class="tech-row rv" style="gap:8px">
+        <img src="https://img.shields.io/badge/Python-d4af37?style=for-the-badge&logo=python&logoColor=0c1420" alt="Python" style="height:26px">
+        <img src="https://img.shields.io/badge/Node.js-3b82f6?style=for-the-badge&logo=node.js&logoColor=white" alt="Node.js" style="height:26px">
+        <img src="https://img.shields.io/badge/React-0c1420?style=for-the-badge&logo=react&logoColor=3b82f6" alt="React" style="height:26px">
+        <img src="https://img.shields.io/badge/TypeScript-3b82f6?style=for-the-badge&logo=typescript&logoColor=white" alt="TypeScript" style="height:26px">
+        <img src="https://img.shields.io/badge/Flutter-d4af37?style=for-the-badge&logo=flutter&logoColor=0c1420" alt="Flutter" style="height:26px">
+        <img src="https://img.shields.io/badge/Firebase-d4af37?style=for-the-badge&logo=firebase&logoColor=0c1420" alt="Firebase" style="height:26px">
+        <img src="https://img.shields.io/badge/AWS-0c1420?style=for-the-badge&logo=amazon-aws&logoColor=d4af37" alt="AWS" style="height:26px">
+        <img src="https://img.shields.io/badge/Azure-3b82f6?style=for-the-badge&logo=microsoftazure&logoColor=white" alt="Azure" style="height:26px">
+        <img src="https://img.shields.io/badge/Kali%20Linux-0c1420?style=for-the-badge&logo=kalilinux&logoColor=d4af37" alt="Kali Linux" style="height:26px">
+        <img src="https://img.shields.io/badge/Docker-3b82f6?style=for-the-badge&logo=docker&logoColor=white" alt="Docker" style="height:26px">
+        <img src="https://img.shields.io/badge/PostgreSQL-0c1420?style=for-the-badge&logo=postgresql&logoColor=3b82f6" alt="PostgreSQL" style="height:26px">
+        <img src="https://img.shields.io/badge/PHP-d4af37?style=for-the-badge&logo=php&logoColor=0c1420" alt="PHP" style="height:26px">
+        <img src="https://img.shields.io/badge/Git%20%2F%20CI--CD-3b82f6?style=for-the-badge&logo=git&logoColor=white" alt="Git CI/CD" style="height:26px">
       </div>
     </div>
   </section>
@@ -538,7 +550,7 @@
         <div class="recent-avatars">
           <div class="recent-av">CM</div>
           <div class="recent-av" style="background:linear-gradient(135deg,var(--g),#005533)">AT</div>
-          <div class="recent-av" style="background:linear-gradient(135deg,#b080ff,#4400aa)">RS</div>
+          <div class="recent-av" style="background:linear-gradient(135deg,#4f8ef7,#4400aa)">RS</div>
         </div>
         <span class="recent-txt"><strong>+47 empresas</strong> ya están en lista de espera este mes</span>
       </div>
@@ -635,7 +647,7 @@
           <p>Sistema de reconocimiento facial con OpenCV e IA. Python + notebooks Jupyter.</p>
           <p style="font-family:var(--fh);font-size:1.1rem;color:var(--c);margin-top:14px;font-weight:900">S/ 249</p>
         </div>
-        <div class="ecard rv" onclick="go('software')" style="border-color:rgba(0,229,255,.2);text-align:center">
+        <div class="ecard rv" onclick="go('software')" style="border-color:rgba(212,175,55,.2);text-align:center">
           <div style="font-size:2.5rem;margin-bottom:12px">🕵️</div>
           <h4 style="color:var(--c)">NEXUM OSINT Suite v4.0</h4>
           <p>Suite completa OSINT: 50+ plataformas, geolocalización, reportes PDF automáticos.</p>
@@ -690,37 +702,20 @@
 
       <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px;margin-bottom:60px">
 
-        <!-- LoveMotion -->
-        <div onclick="window.open('lovemotion-FINAL.html','_blank')" role="link" tabindex="0"
-          style="position:relative;background:var(--cd);border:1px solid rgba(200,64,255,.2);border-radius:var(--rl);padding:22px 24px;display:flex;align-items:center;gap:18px;cursor:pointer;transition:var(--tr);overflow:hidden;"
-          onmouseover="this.style.borderColor='rgba(200,64,255,.5)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 36px rgba(200,64,255,.15)'"
-          onmouseout="this.style.borderColor='rgba(200,64,255,.2)';this.style.transform='none';this.style.boxShadow='none'">
-          <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(200,64,255,.05),rgba(255,63,164,.03));pointer-events:none"></div>
-          <div style="width:46px;height:46px;border-radius:12px;flex-shrink:0;background:linear-gradient(135deg,#c840ff,#ff3fa4);display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(200,64,255,.35);font-family:'Orbitron',sans-serif;font-size:.75rem;font-weight:900;color:#fff;letter-spacing:0">LM</div>
-          <div style="flex:1;min-width:0;position:relative">
-            <div style="font-family:var(--fh);font-size:.82rem;color:#fff;letter-spacing:2px;margin-bottom:4px">LOVE<span style="color:rgba(200,64,255,.9)">MOTION</span></div>
-            <div style="font-family:var(--fm);font-size:.62rem;color:var(--txd);line-height:1.5">Dedicatorias animadas con partículas · Bodas, quinceañeras, fechas especiales · Desde S/ 20</div>
-          </div>
-          <div style="display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex-shrink:0">
-            <span style="font-family:var(--fm);font-size:.5rem;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:4px;background:rgba(200,64,255,.12);color:rgba(200,64,255,.85);border:1px solid rgba(200,64,255,.22)">● Activo</span>
-            <i class="fas fa-arrow-right" style="font-size:.7rem;color:rgba(200,64,255,.5)"></i>
-          </div>
-        </div>
-
         <!-- AutoFlow IA — NUEVO -->
         <div onclick="go('autoflow')" role="link" tabindex="0"
-          style="position:relative;background:var(--cd);border:1px solid rgba(0,255,136,.2);border-radius:var(--rl);padding:22px 24px;display:flex;align-items:center;gap:18px;cursor:pointer;transition:var(--tr);overflow:hidden;"
-          onmouseover="this.style.borderColor='rgba(0,255,136,.5)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 36px rgba(0,255,136,.12)'"
-          onmouseout="this.style.borderColor='rgba(0,255,136,.2)';this.style.transform='none';this.style.boxShadow='none'">
-          <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(0,255,136,.04),rgba(0,194,255,.03));pointer-events:none"></div>
-          <div style="width:46px;height:46px;border-radius:12px;flex-shrink:0;background:linear-gradient(135deg,#00ff88,#00c2ff);display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(0,255,136,.3);font-size:1.2rem">🤖</div>
+          style="position:relative;background:var(--cd);border:1px solid rgba(59,130,246,.2);border-radius:var(--rl);padding:22px 24px;display:flex;align-items:center;gap:18px;cursor:pointer;transition:var(--tr);overflow:hidden;"
+          onmouseover="this.style.borderColor='rgba(59,130,246,.5)';this.style.transform='translateY(-3px)';this.style.boxShadow='0 10px 36px rgba(59,130,246,.12)'"
+          onmouseout="this.style.borderColor='rgba(59,130,246,.2)';this.style.transform='none';this.style.boxShadow='none'">
+          <div style="position:absolute;inset:0;background:linear-gradient(135deg,rgba(59,130,246,.04),rgba(0,194,255,.03));pointer-events:none"></div>
+          <div style="width:46px;height:46px;border-radius:12px;flex-shrink:0;background:linear-gradient(135deg,#3b82f6,#60a5fa);display:flex;align-items:center;justify-content:center;box-shadow:0 0 20px rgba(59,130,246,.3);font-size:1.2rem">🤖</div>
           <div style="flex:1;min-width:0;position:relative">
-            <div style="font-family:var(--fh);font-size:.82rem;color:#fff;letter-spacing:2px;margin-bottom:4px">AUTO<span style="color:rgba(0,255,136,.9)">FLOW IA</span></div>
+            <div style="font-family:var(--fh);font-size:.82rem;color:#fff;letter-spacing:2px;margin-bottom:4px">AUTO<span style="color:rgba(59,130,246,.9)">FLOW IA</span></div>
             <div style="font-family:var(--fm);font-size:.62rem;color:var(--txd);line-height:1.5">Automatización con IA para negocios peruanos · WhatsApp, citas, pagos · Desde S/ 180</div>
           </div>
           <div style="display:flex;flex-direction:column;align-items:flex-end;gap:7px;flex-shrink:0">
-            <span style="font-family:var(--fm);font-size:.5rem;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:4px;background:rgba(0,255,136,.12);color:#00ff88;border:1px solid rgba(0,255,136,.25)">● NUEVO</span>
-            <i class="fas fa-arrow-right" style="font-size:.7rem;color:rgba(0,255,136,.4)"></i>
+            <span style="font-family:var(--fm);font-size:.5rem;letter-spacing:1.5px;text-transform:uppercase;padding:3px 9px;border-radius:4px;background:rgba(59,130,246,.12);color:#3b82f6;border:1px solid rgba(59,130,246,.25)">● NUEVO</span>
+            <i class="fas fa-arrow-right" style="font-size:.7rem;color:rgba(59,130,246,.4)"></i>
           </div>
         </div>
 
@@ -742,19 +737,19 @@
       <p class="sub rv">Lo que nos diferencia de cualquier otra empresa del mercado.</p>
 
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-bottom:60px">
-        <div class="rv" style="background:linear-gradient(135deg,rgba(0,255,136,.06),rgba(0,229,255,.03));border:1px solid rgba(0,255,136,.2);border-radius:var(--rl);padding:28px;text-align:left">
+        <div class="rv" style="background:linear-gradient(135deg,rgba(59,130,246,.06),rgba(212,175,55,.03));border:1px solid rgba(59,130,246,.2);border-radius:var(--rl);padding:28px;text-align:left">
           <div style="font-size:2rem;margin-bottom:12px">🎯</div>
           <h4 style="font-family:var(--fh);font-size:.9rem;color:var(--g);letter-spacing:1px;margin-bottom:8px">RESULTADOS GARANTIZADOS</h4>
           <p style="color:var(--txd);font-size:.87rem;line-height:1.6">Si no encontramos vulnerabilidades en tu sistema o no recuperamos tus datos, no cobramos. Así de seguros estamos de nuestro trabajo.</p>
         </div>
-        <div class="rv" style="background:linear-gradient(135deg,rgba(0,229,255,.06),rgba(0,100,255,.03));border:1px solid rgba(0,229,255,.2);border-radius:var(--rl);padding:28px;text-align:left">
+        <div class="rv" style="background:linear-gradient(135deg,rgba(212,175,55,.06),rgba(0,100,255,.03));border:1px solid rgba(212,175,55,.2);border-radius:var(--rl);padding:28px;text-align:left">
           <div style="font-size:2rem;margin-bottom:12px">⚡</div>
           <h4 style="font-family:var(--fh);font-size:.9rem;color:var(--c);letter-spacing:1px;margin-bottom:8px">RESPUESTA EN MENOS DE 24H</h4>
           <p style="color:var(--txd);font-size:.87rem;line-height:1.6">Jair atiende personalmente cada caso. Sin bots, sin call centers. Respuesta rápida vía WhatsApp para emergencias y consultas.</p>
         </div>
-        <div class="rv" style="background:linear-gradient(135deg,rgba(176,128,255,.06),rgba(100,0,200,.03));border:1px solid rgba(176,128,255,.2);border-radius:var(--rl);padding:28px;text-align:left">
+        <div class="rv" style="background:linear-gradient(135deg,rgba(79,142,247,.06),rgba(100,0,200,.03));border:1px solid rgba(79,142,247,.2);border-radius:var(--rl);padding:28px;text-align:left">
           <div style="font-size:2rem;margin-bottom:12px">🔏</div>
-          <h4 style="font-family:var(--fh);font-size:.9rem;color:#b080ff;letter-spacing:1px;margin-bottom:8px">CONFIDENCIALIDAD TOTAL</h4>
+          <h4 style="font-family:var(--fh);font-size:.9rem;color:#4f8ef7;letter-spacing:1px;margin-bottom:8px">CONFIDENCIALIDAD TOTAL</h4>
           <p style="color:var(--txd);font-size:.87rem;line-height:1.6">Cada proyecto incluye NDA (contrato de confidencialidad). Tus datos, vulnerabilidades y código nunca son compartidos con terceros.</p>
         </div>
         <div class="rv" style="background:linear-gradient(135deg,rgba(255,196,0,.06),rgba(200,100,0,.03));border:1px solid rgba(255,196,0,.2);border-radius:var(--rl);padding:28px;text-align:left">
@@ -767,7 +762,7 @@
           <h4 style="font-family:var(--fh);font-size:.9rem;color:var(--r);letter-spacing:1px;margin-bottom:8px">MENTALIDAD OFENSIVA</h4>
           <p style="color:var(--txd);font-size:.87rem;line-height:1.6">Pensamos como atacantes para defenderte mejor. Nuestros pentesters son hackers éticos certificados, no solo auditores de checklist.</p>
         </div>
-        <div class="rv" style="background:linear-gradient(135deg,rgba(0,229,255,.06),rgba(0,80,150,.03));border:1px solid rgba(0,229,255,.2);border-radius:var(--rl);padding:28px;text-align:left">
+        <div class="rv" style="background:linear-gradient(135deg,rgba(212,175,55,.06),rgba(0,80,150,.03));border:1px solid rgba(212,175,55,.2);border-radius:var(--rl);padding:28px;text-align:left">
           <div style="font-size:2rem;margin-bottom:12px">📱</div>
           <h4 style="font-family:var(--fh);font-size:.9rem;color:var(--c);letter-spacing:1px;margin-bottom:8px">SOPORTE POST-PROYECTO</h4>
           <p style="color:var(--txd);font-size:.87rem;line-height:1.6">No desaparecemos al entregar. Incluimos soporte post-entrega, revisiones de correcciones y seguimiento para asegurar que todo funcione perfecto.</p>
@@ -848,23 +843,23 @@
       </div>
 
       <!-- TELEGRAM PREMIUM -->
-      <div class="rv" style="background:linear-gradient(135deg,rgba(0,136,204,.09),rgba(0,60,100,.05),rgba(0,229,255,.03));border:1px solid rgba(0,136,204,.3);border-radius:var(--rl);padding:0;margin-bottom:30px;overflow:hidden;position:relative">
+      <div class="rv" style="background:linear-gradient(135deg,rgba(0,136,204,.09),rgba(0,60,100,.05),rgba(212,175,55,.03));border:1px solid rgba(0,136,204,.3);border-radius:var(--rl);padding:0;margin-bottom:30px;overflow:hidden;position:relative">
 
         <!-- Línea top cyan/telegram -->
         <div style="position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,#0088cc,var(--c),#0088cc,transparent)"></div>
 
         <!-- Badge PREMIUM arriba -->
-        <div style="background:linear-gradient(135deg,rgba(0,136,204,.15),rgba(0,229,255,.07));padding:18px 28px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+        <div style="background:linear-gradient(135deg,rgba(0,136,204,.15),rgba(212,175,55,.07));padding:18px 28px 0;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
           <div style="display:flex;align-items:center;gap:10px">
             <div style="width:44px;height:44px;background:linear-gradient(135deg,#0088cc,#006699);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.3rem;color:#fff;flex-shrink:0;box-shadow:0 0 18px rgba(0,136,204,.4)"><i class="fab fa-telegram-plane"></i></div>
             <div>
               <div style="font-family:var(--fh);font-size:.85rem;color:#fff;letter-spacing:2px">NEXUM PREMIUM</div>
-              <div style="font-family:var(--fm);font-size:.55rem;color:rgba(0,229,255,.7);letter-spacing:2px;text-transform:uppercase">Canal privado · Telegram</div>
+              <div style="font-family:var(--fm);font-size:.55rem;color:rgba(212,175,55,.7);letter-spacing:2px;text-transform:uppercase">Canal privado · Telegram</div>
             </div>
           </div>
           <div style="display:flex;align-items:center;gap:8px">
             <div style="background:linear-gradient(135deg,var(--c),#0088cc);color:var(--bg);font-family:var(--fh);font-size:.7rem;font-weight:900;padding:5px 14px;border-radius:20px;letter-spacing:2px">S/ 20 / mes</div>
-            <div style="background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);color:#00ff88;font-family:var(--fm);font-size:.55rem;padding:4px 10px;border-radius:20px;letter-spacing:1px;display:flex;align-items:center;gap:5px"><span class="live-dot"></span> ACTIVO</div>
+            <div style="background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);color:#3b82f6;font-family:var(--fm);font-size:.55rem;padding:4px 10px;border-radius:20px;letter-spacing:1px;display:flex;align-items:center;gap:5px"><span class="live-dot"></span> ACTIVO</div>
           </div>
         </div>
 
@@ -942,375 +937,13 @@
 
   <!-- Footer -->
   
-<!-- LoveMotion -->
-<div class="page" id="p-lovemotion">
-  <section id="hero">
-  <canvas id="heroCanvas"></canvas>
-  <div class="hero-inner">
-    <div class="urgency">🔥 Solo quedan 3 espacios disponibles hoy</div>
-    <div class="hero-badge">✦ Desde S/ 20 · Entrega en horas</div>
-    <h1>El regalo que<br><em>nadie olvida</em></h1>
-    <p class="hero-sub">Animaciones de partículas con el nombre de esa persona especial. Para bodas, quinceañeras, mamás, papás y mucho más. Listo para enviar por WhatsApp.</p>
-    <div class="hero-btns">
-      <button class="btn-primary" onclick="document.getElementById('ocasiones').scrollIntoView({behavior:'smooth'})">✦ Ver ocasiones</button>
-      <button class="btn-ghost" onclick="document.getElementById('editor').scrollIntoView({behavior:'smooth'})">Probar gratis →</button>
-    </div>
-    <div class="hero-stats">
-      <div class="stat"><div class="stat-n">2<span>K+</span></div><div class="stat-l">Dedicatorias enviadas</div></div>
-      <div class="stat"><div class="stat-n">S/<span>20</span></div><div class="stat-l">Desde</div></div>
-      <div class="stat"><div class="stat-n">2<span>h</span></div><div class="stat-l">Entrega rápida</div></div>
-    </div>
-  </div>
-</section><section id="gallery">
-  <div class="reveal">
-    <div class="section-tag">Colección</div>
-    <h2>Elige tu <em>animación</em></h2>
-    <p class="section-sub">Cada una es una obra única. Partículas, corazones 3D, galaxias y más.</p>
-  </div>
-  <div class="gallery-grid reveal">
-    <div class="anim-card" onclick="selectAnim(0)">
-      <canvas class="mini-canvas" data-idx="0"></canvas>
-      <div class="card-info"><div class="card-name">Declaración de Amor</div><div class="card-tags"><span class="tag hot">HOT</span><span class="tag new">💕 PAREJA</span></div></div>
-      <button class="card-select">Elegir</button>
-    </div>
-    <div class="anim-card" onclick="selectAnim(1)">
-      <canvas class="mini-canvas" data-idx="1"></canvas>
-      <div class="card-info"><div class="card-name">Quinceañera Mágica</div><div class="card-tags"><span class="tag pro">✨ PRO</span><span class="tag hot">👑 REINA</span></div></div>
-      <button class="card-select">Elegir</button>
-    </div>
-    <div class="anim-card" onclick="selectAnim(2)">
-      <canvas class="mini-canvas" data-idx="2"></canvas>
-      <div class="card-info"><div class="card-name">Día de la Madre</div><div class="card-tags"><span class="tag new">💐 MAMÁ</span><span class="tag pro">ESPECIAL</span></div></div>
-      <button class="card-select">Elegir</button>
-    </div>
-    <div class="anim-card" onclick="selectAnim(0)">
-      <canvas class="mini-canvas" data-idx="3"></canvas>
-      <div class="card-info"><div class="card-name">Boda & Aniversario</div><div class="card-tags"><span class="tag hot">💍 BODA</span><span class="tag new">ETERNO</span></div></div>
-      <button class="card-select">Elegir</button>
-    </div>
-  </div>
-</section><section id="editor">
-  <div class="reveal">
-    <div class="section-tag">Editor en vivo</div>
-    <h2>Personaliza <em>en tiempo real</em></h2>
-    <p class="section-sub">Escribe el nombre, elige colores y ve el resultado al instante.</p>
-  </div>
-  <div class="editor-wrap reveal">
-    <div class="editor-panel">
-      <div class="editor-title">Tu dedicatoria</div>
-      <div class="field">
-        <label>Nombre a dedicar</label>
-        <input id="edName" type="text" placeholder="ej: María, Carlos, mi amor…" maxlength="16" oninput="updatePreview()"/>
-      </div>
-      <div class="field">
-        <label>Mensaje (opcional)</label>
-        <textarea id="edMsg" placeholder="ej: Feliz cumpleaños, te amo mucho…"></textarea>
-      </div>
-      <div class="field">
-        <label>Animación</label>
-        <div class="anim-selector">
-          <div class="anim-opt active" onclick="setAnimType(0,this)"><div class="anim-icon">✨</div>Flash</div>
-          <div class="anim-opt" onclick="setAnimType(1,this)"><div class="anim-icon">💥</div>Supernova</div>
-          <div class="anim-opt" onclick="setAnimType(2,this)"><div class="anim-icon">🚀</div>HyperDrive</div>
-        </div>
-      </div>
-      <div class="field">
-        <label>Paleta de color</label>
-        <div class="color-row">
-          <div class="color-opt active" style="background:linear-gradient(135deg,#c840ff,#ff3fa4)" onclick="setColor(0,this)" title="Amor"></div>
-          <div class="color-opt" style="background:linear-gradient(135deg,#ff6020,#ffcc00)" onclick="setColor(1,this)" title="Fuego"></div>
-          <div class="color-opt" style="background:linear-gradient(135deg,#00d4ff,#0050ff)" onclick="setColor(2,this)" title="Océano"></div>
-          <div class="color-opt" style="background:linear-gradient(135deg,#00ff88,#00ccff)" onclick="setColor(3,this)" title="Aurora"></div>
-          <div class="color-opt" style="background:linear-gradient(135deg,#fff,#aaa)" onclick="setColor(4,this)" title="Plata"></div>
-        </div>
-      </div>
-      <div class="field">
-        <label>Ocasión</label>
-        <select id="edOcasion">
-          <option>💕 Declaración de amor</option>
-          <option>💍 Boda / Aniversario</option>
-          <option>👑 Quinceañera</option>
-          <option>💐 Día de la Madre</option>
-          <option>🎩 Día del Padre</option>
-          <option>🎂 Cumpleaños</option>
-          <option>🎓 Graduación</option>
-          <option>🤝 Amistad</option>
-          <option>✨ Dedicatoria especial</option>
-        </select>
-      </div>
-      <button class="btn-primary" style="width:100%;margin-top:4px" onclick="openModal()">✦ Pedir esta dedicatoria</button>
-    </div>
-    <div class="preview-box">
-      <canvas id="previewCanvas"></canvas>
-      <div class="preview-bar">
-        <div><div class="preview-label">VISTA PREVIA</div><div class="preview-name" id="previewName">Para Ti</div></div>
-        <div style="font-size:10px;color:var(--muted);text-align:right">Tiempo real<br>✦ interactivo</div>
-      </div>
-    </div>
-  </div>
-</section><section id="how">
-  <div class="reveal">
-    <div class="section-tag">Proceso</div>
-    <h2>Súper <em>sencillo</em></h2>
-  </div>
-  <div class="steps reveal">
-    <div class="step"><div class="step-num">1</div><div class="step-title">Elige la animación</div><div class="step-desc">Selecciona entre nuestra colección de efectos únicos</div></div>
-    <div class="step"><div class="step-num">2</div><div class="step-title">Personaliza</div><div class="step-desc">Escribe el nombre y elige colores en el editor en vivo</div></div>
-    <div class="step"><div class="step-num">3</div><div class="step-title">Paga y recibe</div><div class="step-desc">En menos de 2 horas recibes tu archivo listo</div></div>
-    <div class="step"><div class="step-num">4</div><div class="step-title">¡Sorprende!</div><div class="step-desc">Comparte por WhatsApp, Instagram o como quieras</div></div>
-  </div>
-</section><section id="ocasiones" style="background:var(--bg);">
-  <div class="reveal">
-    <div class="section-tag">Para cada momento</div>
-    <h2>Una animación para <em>cada ocasión</em></h2>
-    <p class="section-sub">Cada fecha especial merece algo que se recuerde para siempre.</p>
-  </div>
-  <div class="occ-grid reveal">
-    <div class="occ-card">
-      <div class="occ-icon">💕</div>
-      <div class="occ-name">Declaración</div>
-      <div class="occ-desc">Dile lo que sientes con partículas que forman su nombre</div>
-    </div>
-    <div class="occ-card">
-      <div class="occ-icon">👑</div>
-      <div class="occ-name">Quinceañera</div>
-      <div class="occ-desc">Un regalo único que ella guardará toda la vida</div>
-    </div>
-    <div class="occ-card">
-      <div class="occ-icon">💐</div>
-      <div class="occ-name">Día de la Madre</div>
-      <div class="occ-desc">Hazla llorar de emoción con su nombre en luz</div>
-    </div>
-    <div class="occ-card">
-      <div class="occ-icon">🎩</div>
-      <div class="occ-name">Día del Padre</div>
-      <div class="occ-desc">Un detalle que ningún papá esperaría recibir</div>
-    </div>
-    <div class="occ-card">
-      <div class="occ-icon">💍</div>
-      <div class="occ-name">Boda & Aniversario</div>
-      <div class="occ-desc">Los dos nombres juntos, eternos en partículas de luz</div>
-    </div>
-    <div class="occ-card">
-      <div class="occ-icon">🎂</div>
-      <div class="occ-name">Cumpleaños</div>
-      <div class="occ-desc">El cumpleaños más recordado que le hayan celebrado</div>
-    </div>
-    <div class="occ-card">
-      <div class="occ-icon">🎓</div>
-      <div class="occ-name">Graduación</div>
-      <div class="occ-desc">Celebra su logro con un regalo que brilla tanto como él</div>
-    </div>
-    <div class="occ-card occ-card--cta" onclick="openModal()">
-      <div class="occ-icon">✦</div>
-      <div class="occ-name">¿Tu ocasión?</div>
-      <div class="occ-desc">Cuéntanos y lo hacemos realidad</div>
-    </div>
-  </div>
-</section><section id="pricing">
-  <div class="reveal">
-    <div class="section-tag">Precios en Soles</div>
-    <h2>Accesible para <em>todos</em></h2>
-    <p class="section-sub">Precios en soles peruanos. Sin costos ocultos. Paga una vez y sorprende para siempre.</p>
-  </div>
-  <div class="pricing-grid reveal">
-    <div class="price-card">
-      <div class="plan-name">Básico</div>
-      <div class="plan-price"><sup>S/</sup>20</div>
-      <div class="plan-desc">Para empezar a sorprender</div>
-      <ul class="plan-features">
-        <li>1 animación personalizada</li>
-        <li>1 nombre a elegir</li>
-        <li>3 paletas de color</li>
-        <li>Todas las ocasiones</li>
-        <li>Entrega en 24h</li>
-        <li class="dim">Mensaje personalizado</li>
-        <li class="dim">Revisión incluida</li>
-      </ul>
-      <button class="plan-btn outline" onclick="openModal('basico')">Elegir básico</button>
-    </div>
-    <div class="price-card featured">
-      <div class="plan-name">Premium</div>
-      <div class="plan-price"><sup>S/</sup>35</div>
-      <div class="plan-desc">La experiencia completa y sin límites</div>
-      <ul class="plan-features">
-        <li>1 animación personalizada</li>
-        <li>Nombre + mensaje de amor</li>
-        <li>Todas las paletas</li>
-        <li>Todas las ocasiones</li>
-        <li>Entrega en 2 horas</li>
-        <li>1 revisión incluida</li>
-        <li>Paleta exclusiva</li>
-      </ul>
-      <button class="plan-btn filled" onclick="openModal('premium')">Elegir premium</button>
-    </div>
-    <div class="price-card">
-      <div class="plan-name">Pack Negocios</div>
-      <div class="plan-price"><sup>S/</sup>99</div>
-      <div class="plan-desc">Ideal para florerías, pastelerías y eventos</div>
-      <ul class="plan-features">
-        <li>5 animaciones únicas</li>
-        <li>Logo de tu negocio</li>
-        <li>Todas las paletas</li>
-        <li>Todas las ocasiones</li>
-        <li>Entrega en 6 horas</li>
-        <li>Licencia comercial</li>
-        <li>Soporte prioritario</li>
-      </ul>
-      <button class="plan-btn outline" onclick="openModal('negocios')">Elegir pack</button>
-    </div>
-  </div>
-  <div class="pricing-note reveal">
-    💡 ¿Necesitas algo diferente? Escríbenos y armamos un plan a tu medida.
-    <button onclick="openModal()" style="background:none;border:none;color:var(--accent);cursor:pointer;font-family:var(--font);font-size:inherit;font-weight:700;padding:0 4px;">Consultar →</button>
-  </div>
-</section><section id="why" style="background:var(--bg);">
-  <div class="reveal" style="text-align:center;margin-bottom:0;">
-    <div class="section-tag">¿Por qué LoveMotion?</div>
-    <h2 style="max-width:600px;margin:0 auto 14px;">El detalle que hace<br><em>la diferencia</em></h2>
-    <p class="section-sub" style="margin:0 auto;">No es solo una imagen. Es un momento que la persona va a recordar y reenviar.</p>
-  </div>
-  <div class="why-grid reveal">
-    <div class="why-card">
-      <div class="why-icon">⚡</div>
-      <div class="why-title">Listo en horas</div>
-      <div class="why-desc">No esperes días. Tu animación llega en 2 a 24 horas según el plan.</div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">🎨</div>
-      <div class="why-title">100% personalizado</div>
-      <div class="why-desc">Con el nombre exacto, los colores que elijas y la ocasión que necesitas.</div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">📱</div>
-      <div class="why-title">Fácil de compartir</div>
-      <div class="why-desc">Formato listo para WhatsApp, TikTok, Instagram o como quieras enviarla.</div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">💜</div>
-      <div class="why-title">Genera emoción real</div>
-      <div class="why-desc">Nuestros clientes reportan que sus destinatarios lloran, gritan y lo reenvían a todos.</div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">💰</div>
-      <div class="why-title">Desde S/ 20</div>
-      <div class="why-desc">El regalo más impactante que existe al precio de un almuerzo.</div>
-    </div>
-    <div class="why-card">
-      <div class="why-icon">🇵🇪</div>
-      <div class="why-title">Hecho en Perú</div>
-      <div class="why-desc">Proyecto peruano, con pago en soles y atención en minutos por WhatsApp.</div>
-    </div>
-  </div>
-</section><section id="testimonials">
-  <div class="reveal">
-    <div class="section-tag">Opiniones</div>
-    <h2>Lo que dicen <em>nuestros clientes</em></h2>
-  </div>
-  <div class="testi-grid reveal">
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">Mi novio lloró cuando le mandé su animación. Nunca había visto algo así por WhatsApp. Totalmente vale la pena.</div>
-      <div class="testi-author"><div class="testi-avatar">A</div><div><div class="testi-name">Ana García</div><div class="testi-handle">@anagarcia_pe</div></div></div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">Lo usé para el cumpleaños de mi mamá. Quedó increíble. El nombre en 3D con corazones explotando, demasiado bonito.</div>
-      <div class="testi-author"><div class="testi-avatar">R</div><div><div class="testi-name">Roberto M.</div><div class="testi-handle">Lima, Perú</div></div></div>
-    </div>
-    <div class="testi-card">
-      <div class="testi-stars">★★★★★</div>
-      <div class="testi-text">Compré el pack negocios para mi floristería. Mis clientes se vuelven locos cuando les mando la animación con su nombre.</div>
-      <div class="testi-author"><div class="testi-avatar">L</div><div><div class="testi-name">Laura Flores</div><div class="testi-handle">Floristería Primavera</div></div></div>
-    </div>
-  </div>
-</section><section id="tiktok-cta">
-  <div class="tiktok-wrap reveal">
-    <div>
-      <div class="section-tag">TikTok · @jair.dev</div>
-      <h2>Ve las animaciones <em>en vivo</em></h2>
-      <p class="section-sub">Antes de comprar, mira cómo quedan. Miles de personas ya las compartieron.</p>
-      <div class="tiktok-badges">
-        <div class="tiktok-badge"><div class="tiktok-badge-icon">🎯</div><div class="tiktok-badge-text"><strong>Sigue @jair.dev</strong>Demos reales, nuevas animaciones cada semana</div></div>
-        <div class="tiktok-badge"><div class="tiktok-badge-icon">💬</div><div class="tiktok-badge-text"><strong>Comenta tu nombre</strong>Y lo hacemos en vivo en el siguiente video</div></div>
-        <div class="tiktok-badge"><div class="tiktok-badge-icon">🎁</div><div class="tiktok-badge-text"><strong>DM para pedidos</strong>Pídela directo por TikTok o WhatsApp</div></div>
-      </div>
-      <a href="https://tiktok.com/@jair.dev" target="_blank" class="btn-primary" style="display:inline-flex;align-items:center;gap:9px;margin-top:24px;text-decoration:none;">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.18 8.18 0 004.78 1.52V6.76a4.85 4.85 0 01-1.01-.07z"/></svg>
-        Seguir en TikTok
-      </a>
-    </div>
-    <div class="tiktok-phone">
-      <div class="tiktok-screen">
-        <canvas class="mini-canvas" data-idx="4"></canvas>
-        <div class="tiktok-overlay">
-          <div class="tiktok-handle-pill">@jair.dev<small>LoveMotion · Dedicatorias</small></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-  <div id="modal">
-  <div id="modal-bg" onclick="closeModal()"></div>
-  <div id="modal-box">
-    <div class="modal-handle"></div>
-    <div id="modal-form-wrap">
-      <h3>Pedir dedicatoria ✦</h3>
-      <p class="modal-sub">Completa los datos y te contactamos en minutos por WhatsApp.</p>
-      <div class="modal-field"><label>Tu nombre</label><input id="mName" type="text" placeholder="Tu nombre"/></div>
-      <div class="modal-field"><label>WhatsApp / Contacto</label><input id="mWa" type="tel" placeholder="+51 999 999 999"/></div>
-      <div class="modal-field"><label>Nombre a dedicar</label><input id="mDed" type="text" placeholder="ej: María"/></div>
-      <div class="modal-field">
-        <label>Plan seleccionado</label>
-        <select id="mPlan">
-          <option value="basico">Básico — S/ 20</option>
-          <option value="premium" selected>Premium — S/ 35</option>
-          <option value="negocios">Pack Negocios — S/ 99</option>
-        </select>
-      </div>
-      <div class="modal-field">
-        <label>Ocasión</label>
-        <select id="mOcasion">
-          <option>💕 Declaración de amor</option>
-          <option>💍 Boda / Aniversario</option>
-          <option>👑 Quinceañera</option>
-          <option>💐 Día de la Madre</option>
-          <option>🎩 Día del Padre</option>
-          <option>🎂 Cumpleaños</option>
-          <option>🎓 Graduación</option>
-          <option>✨ Dedicatoria especial</option>
-        </select>
-      </div>
-      <div class="modal-field">
-        <label>Animación preferida</label>
-        <select id="mAnim">
-          <option>Flash Love ✨</option>
-          <option>Supernova Heart 💥</option>
-          <option>HyperDrive 🚀</option>
-          <option>Sorpréndeme 🎆</option>
-        </select>
-      </div>
-      <div class="modal-actions">
-        <button class="modal-close-btn" onclick="closeModal()">Cancelar</button>
-        <button class="modal-submit" onclick="submitOrder()">Enviar pedido 💜</button>
-      </div>
-    </div>
-    <div id="orderSuccess">
-      <div class="success-icon">🎉</div>
-      <div class="success-title">¡Pedido recibido!</div>
-      <p class="success-text">Te contactaremos en minutos por WhatsApp. Prepárate para sorprender a alguien especial.</p>
-      <a class="wa-btn" id="waLink" href="#" target="_blank">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.123.554 4.122 1.523 5.857L0 24l6.293-1.506A11.94 11.94 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-1.886 0-3.65-.49-5.184-1.349l-.371-.22-3.735.894.939-3.637-.242-.386A9.944 9.944 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
-        Hablar por WhatsApp
-      </a>
-    </div>
-  </div>
 </div>
-</div>
+
+
 
 <footer class="foot">
     <div>
-      <div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div>
+      <div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#0a1f3d);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div>
       <p>Seguridad Informática &amp; Desarrollo de Software — Protegemos tu Vida Digital</p>
       <div class="socials">
         <a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a>
@@ -1329,6 +962,227 @@
     </div>
   </footer>
   
+
+<div class="page" id="p-portafolio">
+  <section class="sec" style="padding-top:80px">
+    <button class="back-btn" onclick="go('home')"><i class="fas fa-arrow-left"></i> Volver</button>
+    <div class="sec-inner">
+      <h2 class="rv"><i class="fas fa-diagram-project"></i> Portafolio NEXUM</h2>
+      <div class="divdr"></div>
+      <p class="sub rv">Proyectos que hemos construido y el stack con el que trabajamos — desarrollo de software, ciberseguridad y automatización.</p>
+
+      <!-- STATS + CONTACTO DIRECTO -->
+      <div class="pf-stats rv">
+        <div class="pf-stat"><span class="pf-stat-n">10+</span><span class="pf-stat-l">Proyectos propios</span></div>
+        <div class="pf-stat"><span class="pf-stat-n">2</span><span class="pf-stat-l">Países (Perú / México)</span></div>
+        <div class="pf-stat"><span class="pf-stat-n">70+</span><span class="pf-stat-l">Herramientas en NEXUM CyberBot</span></div>
+        <div class="pf-stat"><span class="pf-stat-n">100%</span><span class="pf-stat-l">Código propio, sin plantillas</span></div>
+      </div>
+
+      <a href="https://wa.me/51945366356?text=Hola%20Jair%2C%20vi%20tu%20portafolio%20NEXUM%20y%20quiero%20conversar%20sobre%20un%20proyecto" target="_blank" class="pf-contact-strip rv">
+        <span class="pf-contact-icon"><i class="fab fa-whatsapp"></i></span>
+        <span class="pf-contact-text">
+          <strong>Jair Muñoz Candela</strong> — Fundador de NEXUM
+          <span>+51 945 366 356 · Respuesta directa por WhatsApp</span>
+        </span>
+        <i class="fas fa-arrow-right" style="color:var(--am)"></i>
+      </a>
+
+      <!-- PROYECTOS REALIZADOS -->
+      <h2 class="rv" style="margin-bottom:10px"><i class="fas fa-diagram-project"></i> Proyectos Realizados</h2>
+      <div class="divdr"></div>
+      <p class="sub rv">Selección de proyectos propios desarrollados con fines académicos, de práctica y de portafolio.</p>
+
+      <div class="proj-grid rv" style="margin-top:30px">
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-icon" style="background:rgba(212,175,55,.12);color:var(--c)"><i class="fas fa-wallet"></i></div>
+            <span class="proj-badge" style="background:rgba(59,130,246,.1);color:var(--g);border:1px solid rgba(59,130,246,.25)">Producción</span>
+          </div>
+          <div class="proj-title">Simulador Yape Pro</div>
+          <div class="proj-desc">Simulador de billetera móvil peruana de alta fidelidad, con flujos de transferencia, comprobantes y assets extraídos del APK original. Proyecto educativo, sin fines comerciales.</div>
+          <div class="proj-meta"><i class="fas fa-code-branch"></i> Multiplataforma iOS / Android · CI/CD</div>
+          <div class="proj-tags" style="align-items:center"><img src="https://img.shields.io/badge/React-0c1420?style=flat-square&logo=react&logoColor=3b82f6" alt="React" style="height:20px"><img src="https://img.shields.io/badge/TypeScript-3b82f6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" style="height:20px"><img src="https://img.shields.io/badge/Vite-d4af37?style=flat-square&logo=vite&logoColor=0c1420" alt="Vite" style="height:20px"><img src="https://img.shields.io/badge/Capacitor-3b82f6?style=flat-square&logo=capacitor&logoColor=white" alt="Capacitor" style="height:20px"><img src="https://img.shields.io/badge/Firebase-d4af37?style=flat-square&logo=firebase&logoColor=0c1420" alt="Firebase" style="height:20px"></div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-icon" style="background:rgba(212,175,55,.12);color:var(--c)"><i class="fas fa-university"></i></div>
+            <span class="proj-badge" style="background:rgba(212,175,55,.1);color:var(--c);border:1px solid var(--br)">PWA</span>
+          </div>
+          <div class="proj-title">Simulador BBVA Perú</div>
+          <div class="proj-desc">Réplica funcional de banca móvil con flujos completos de transferencia, historial de movimientos y reconstrucción de comprobantes. Compatible como PWA instalable.</div>
+          <div class="proj-meta"><i class="fas fa-code-branch"></i> Desarrollo iterativo por versiones</div>
+          <div class="proj-tags" style="align-items:center"><img src="https://img.shields.io/badge/React-0c1420?style=flat-square&logo=react&logoColor=3b82f6" alt="React" style="height:20px"><img src="https://img.shields.io/badge/TypeScript-3b82f6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" style="height:20px"><img src="https://img.shields.io/badge/Vite-d4af37?style=flat-square&logo=vite&logoColor=0c1420" alt="Vite" style="height:20px"><img src="https://img.shields.io/badge/Tailwind-CSS-0c1420?style=flat-square&logo=tailwindcss&logoColor=3b82f6" alt="Tailwind" style="height:20px"></div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-icon" style="background:rgba(255,196,0,.12);color:var(--am)"><i class="fas fa-money-bill-transfer"></i></div>
+            <span class="proj-badge" style="background:rgba(255,196,0,.1);color:var(--am);border:1px solid rgba(255,196,0,.25)">Académico</span>
+          </div>
+          <div class="proj-title">Simulador Interbank</div>
+          <div class="proj-desc">Simulador de banca móvil construido para una competencia universitaria, con selector multicuenta, pagos de servicios e interoperabilidad Plin/Yape.</div>
+          <div class="proj-meta"><i class="fas fa-university"></i> Proyecto de competencia universitaria</div>
+          <div class="proj-tags" style="align-items:center"><img src="https://img.shields.io/badge/React-0c1420?style=flat-square&logo=react&logoColor=3b82f6" alt="React" style="height:20px"><img src="https://img.shields.io/badge/TypeScript-3b82f6?style=flat-square&logo=typescript&logoColor=white" alt="TypeScript" style="height:20px"><img src="https://img.shields.io/badge/Vite-d4af37?style=flat-square&logo=vite&logoColor=0c1420" alt="Vite" style="height:20px"></div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-icon" style="background:rgba(79,142,247,.12);color:var(--purple)"><i class="fas fa-credit-card"></i></div>
+            <span class="proj-badge" style="background:rgba(79,142,247,.1);color:var(--purple);border:1px solid rgba(79,142,247,.25)">Académico</span>
+          </div>
+          <div class="proj-title">Simulador BCP Pro</div>
+          <div class="proj-desc">Reconstrucción y depuración de un simulador bancario existente: corrección de ruteo, especificidad CSS y flujos de pago/transferencia con assets reales.</div>
+          <div class="proj-meta"><i class="fas fa-bug"></i> Refactor + hardening de bugs estructurales</div>
+          <div class="proj-tags" style="align-items:center"><img src="https://img.shields.io/badge/React-0c1420?style=flat-square&logo=react&logoColor=3b82f6" alt="React" style="height:20px"><img src="https://img.shields.io/badge/HashRouter-3b82f6?style=flat-square&logo=reactrouter&logoColor=white" alt="HashRouter" style="height:20px"><img src="https://img.shields.io/badge/CSS3-d4af37?style=flat-square&logo=css3&logoColor=0c1420" alt="CSS" style="height:20px"></div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-icon" style="background:rgba(59,130,246,.12);color:var(--g)"><i class="fab fa-telegram"></i></div>
+            <span class="proj-badge" style="background:rgba(59,130,246,.1);color:var(--g);border:1px solid rgba(59,130,246,.25)">Activo</span>
+          </div>
+          <div class="proj-title">NEXUM CyberBot</div>
+          <div class="proj-desc">Bot de Telegram con más de 70 herramientas de ciberseguridad: sistema premium, referidos, límites de uso y panel de administración con analítica.</div>
+          <div class="proj-meta"><i class="fas fa-server"></i> 16+ versiones · Desplegado en Render</div>
+          <div class="proj-tags" style="align-items:center"><img src="https://img.shields.io/badge/Python-d4af37?style=flat-square&logo=python&logoColor=0c1420" alt="Python" style="height:20px"><img src="https://img.shields.io/badge/python--telegram--bot-3b82f6?style=flat-square&logo=telegram&logoColor=white" alt="python-telegram-bot" style="height:20px"><img src="https://img.shields.io/badge/Render-0c1420?style=flat-square&logo=render&logoColor=d4af37" alt="Render" style="height:20px"></div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-icon" style="background:rgba(212,175,55,.12);color:var(--c)"><i class="fas fa-hand-holding-dollar"></i></div>
+            <span class="proj-badge" style="background:rgba(212,175,55,.1);color:var(--c);border:1px solid var(--br)">Activo</span>
+          </div>
+          <div class="proj-title">NEXUM LoanBot</div>
+          <div class="proj-desc">Bot de Telegram para gestión de préstamos personales con amortización francesa, panel de administración y persistencia en base de datos.</div>
+          <div class="proj-meta"><i class="fas fa-database"></i> Backend con SQLite</div>
+          <div class="proj-tags" style="align-items:center"><img src="https://img.shields.io/badge/Python-d4af37?style=flat-square&logo=python&logoColor=0c1420" alt="Python" style="height:20px"><img src="https://img.shields.io/badge/SQLite-3b82f6?style=flat-square&logo=sqlite&logoColor=white" alt="SQLite" style="height:20px"><img src="https://img.shields.io/badge/Telegram%20API-3b82f6?style=flat-square&logo=telegram&logoColor=white" alt="Telegram API" style="height:20px"></div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-icon" style="background:rgba(201,162,39,.12);color:var(--orange)"><i class="fas fa-terminal"></i></div>
+            <span class="proj-badge" style="background:rgba(201,162,39,.1);color:var(--orange);border:1px solid rgba(201,162,39,.25)">Expo</span>
+          </div>
+          <div class="proj-title">NEXUM TITAN</div>
+          <div class="proj-desc">Estación de trabajo de ciberseguridad en una sola página HTML, con 21 herramientas de API real: DNS lookup, buscador de subdominios, generador HMAC, formateador JSON y más.</div>
+          <div class="proj-meta"><i class="fas fa-graduation-cap"></i> Presentado en expo académica</div>
+          <div class="proj-tags" style="align-items:center"><img src="https://img.shields.io/badge/HTML5-d4af37?style=flat-square&logo=html5&logoColor=0c1420" alt="HTML5" style="height:20px"><img src="https://img.shields.io/badge/JavaScript-d4af37?style=flat-square&logo=javascript&logoColor=0c1420" alt="JavaScript" style="height:20px"><img src="https://img.shields.io/badge/APIs%20p%C3%BAblicas-3b82f6?style=flat-square&logo=fastapi&logoColor=white" alt="APIs públicas" style="height:20px"></div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-icon" style="background:rgba(59,130,246,.12);color:var(--g)"><i class="fas fa-file-invoice-dollar"></i></div>
+            <span class="proj-badge" style="background:rgba(59,130,246,.1);color:var(--g);border:1px solid rgba(59,130,246,.25)">Multi-país</span>
+          </div>
+          <div class="proj-title">CrecePerú / CreceMéxico Financiera</div>
+          <div class="proj-desc">Sitio web de fintech de préstamos con banners animados, generación de comprobantes en PDF y envío por WhatsApp. Adaptado a México con localización regulatoria y de moneda.</div>
+          <div class="proj-meta"><i class="fas fa-globe-americas"></i> Perú &amp; México</div>
+          <div class="proj-tags" style="align-items:center"><img src="https://img.shields.io/badge/JavaScript-d4af37?style=flat-square&logo=javascript&logoColor=0c1420" alt="JavaScript" style="height:20px"><img src="https://img.shields.io/badge/PDF%20Generation-d4af37?style=flat-square&logo=adobeacrobatreader&logoColor=0c1420" alt="PDF Generation" style="height:20px"><img src="https://img.shields.io/badge/WhatsApp%20API-3b82f6?style=flat-square&logo=whatsapp&logoColor=white" alt="WhatsApp API" style="height:20px"></div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-icon" style="background:rgba(212,175,55,.12);color:var(--c)"><i class="fas fa-plane"></i></div>
+            <span class="proj-badge" style="background:rgba(212,175,55,.1);color:var(--c);border:1px solid var(--br)">Práctica</span>
+          </div>
+          <div class="proj-title">Despegar Clone MX</div>
+          <div class="proj-desc">Réplica de app de viajes para el mercado mexicano, con flujo de reserva completo, autenticación y pasarela de pagos local (OXXO, SPEI, Mercado Pago, CoDi, Kueski Pay).</div>
+          <div class="proj-meta"><i class="fas fa-credit-card"></i> Integración de múltiples pasarelas de pago</div>
+          <div class="proj-tags" style="align-items:center"><img src="https://img.shields.io/badge/React-0c1420?style=flat-square&logo=react&logoColor=3b82f6" alt="React" style="height:20px"><img src="https://img.shields.io/badge/Auth-3b82f6?style=flat-square&logo=auth0&logoColor=white" alt="Auth" style="height:20px"><img src="https://img.shields.io/badge/Pagos%20MX-d4af37?style=flat-square&logo=mercadopago&logoColor=0c1420" alt="Pagos MX" style="height:20px"></div>
+        </div>
+
+        <div class="proj-card">
+          <div class="proj-top">
+            <div class="proj-icon" style="background:rgba(201,162,39,.12);color:var(--orange)"><i class="fas fa-magnifying-glass-location"></i></div>
+            <span class="proj-badge" style="background:rgba(201,162,39,.1);color:var(--orange);border:1px solid rgba(201,162,39,.25)">Ético</span>
+          </div>
+          <div class="proj-title">OSINT Phone Tool NEXUM</div>
+          <div class="proj-desc">Herramienta de inteligencia de fuentes abiertas para análisis de números telefónicos, construida solo con fuentes públicas legítimas: mapeo de prefijos, geocodificación y Google dorks.</div>
+          <div class="proj-meta"><i class="fas fa-shield-halved"></i> Solo fuentes de acceso público y legal</div>
+          <div class="proj-tags" style="align-items:center"><img src="https://img.shields.io/badge/Python-d4af37?style=flat-square&logo=python&logoColor=0c1420" alt="Python" style="height:20px"><img src="https://img.shields.io/badge/Nominatim-3b82f6?style=flat-square&logo=openstreetmap&logoColor=white" alt="Nominatim" style="height:20px"><img src="https://img.shields.io/badge/OSINT-d4af37?style=flat-square&logo=targetprocess&logoColor=0c1420" alt="OSINT" style="height:20px"></div>
+        </div>
+
+      </div>
+
+      <!-- DOMINIO TÉCNICO -->
+      <h2 class="rv" style="margin-bottom:10px"><i class="fas fa-layer-group"></i> Dominio Técnico</h2>
+      <div class="divdr"></div>
+      <p class="sub rv">Lenguajes y herramientas que usamos a diario para construir estos proyectos.</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin:36px 0 60px">
+
+        <div class="pf-cat rv">
+          <div class="pf-cat-h"><i class="fas fa-code"></i> Frontend &amp; Apps</div>
+          <div class="skill-item">
+            <div class="skill-head"><span>JavaScript / TypeScript</span><span>Avanzado</span></div>
+            <div class="skill-track"><span class="skill-fill" data-pct="92"></span></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-head"><span>React + Vite</span><span>Avanzado</span></div>
+            <div class="skill-track"><span class="skill-fill" data-pct="88"></span></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-head"><span>HTML5 &amp; CSS3</span><span>Avanzado</span></div>
+            <div class="skill-track"><span class="skill-fill" data-pct="95"></span></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-head"><span>Flutter / Capacitor</span><span>Intermedio</span></div>
+            <div class="skill-track"><span class="skill-fill" data-pct="72"></span></div>
+          </div>
+        </div>
+
+        <div class="pf-cat rv">
+          <div class="pf-cat-h"><i class="fas fa-server"></i> Backend &amp; Datos</div>
+          <div class="skill-item">
+            <div class="skill-head"><span>Python</span><span>Avanzado</span></div>
+            <div class="skill-track"><span class="skill-fill" data-pct="90"></span></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-head"><span>Node.js</span><span>Avanzado</span></div>
+            <div class="skill-track"><span class="skill-fill" data-pct="84"></span></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-head"><span>Firebase</span><span>Avanzado</span></div>
+            <div class="skill-track"><span class="skill-fill" data-pct="86"></span></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-head"><span>SQL (PostgreSQL / SQLite)</span><span>Intermedio</span></div>
+            <div class="skill-track"><span class="skill-fill" data-pct="78"></span></div>
+          </div>
+        </div>
+
+        <div class="pf-cat rv">
+          <div class="pf-cat-h"><i class="fas fa-shield-alt"></i> Ciberseguridad &amp; DevOps</div>
+          <div class="skill-item">
+            <div class="skill-head"><span>Bash / Linux (Kali)</span><span>Avanzado</span></div>
+            <div class="skill-track"><span class="skill-fill" data-pct="89"></span></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-head"><span>Git &amp; CI/CD</span><span>Avanzado</span></div>
+            <div class="skill-track"><span class="skill-fill" data-pct="83"></span></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-head"><span>OSINT &amp; Pentesting</span><span>Intermedio-Avanzado</span></div>
+            <div class="skill-track"><span class="skill-fill" data-pct="80"></span></div>
+          </div>
+          <div class="skill-item">
+            <div class="skill-head"><span>Docker</span><span>Intermedio</span></div>
+            <div class="skill-track"><span class="skill-fill" data-pct="70"></span></div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="rv" style="text-align:center;margin-top:50px">
+        <a href="https://wa.me/51945366356?text=Hola%20Jair%2C%20vi%20tu%20portafolio%20NEXUM%20y%20quiero%20conversar%20sobre%20un%20proyecto" target="_blank" class="cbtn" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none">
+          <i class="fab fa-whatsapp"></i> Escríbeme al +51 945 366 356
+        </a>
+      </div>
+
+    </div>
+  </section>
 </div>
 
 <div class="page" id="p-nosotros">
@@ -1390,7 +1244,7 @@
     </div>
   </section>
 
-  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#0a1f3d);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 <div class="page" id="p-ciber">
@@ -1416,7 +1270,7 @@
       </div>
     </div>
   </div>
-  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#0a1f3d);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 <div class="page" id="p-dev">
@@ -1435,7 +1289,7 @@
       <div class="fitem rv"><div class="ficon"><i class="fas fa-database"></i></div><div class="fcont"><h3>Bases de Datos y Migración</h3><p>Diseño, optimización y migración de bases de datos relacionales (PostgreSQL, MySQL) y no relacionales (MongoDB, Redis) con énfasis en seguridad y rendimiento.</p></div></div>
     </div>
     <!-- HOSTINGER AFFILIATE BANNER -->
-    <div style="margin:32px 0;background:linear-gradient(135deg,rgba(127,0,255,.1),rgba(0,229,255,.06));border:1px solid rgba(127,0,255,.3);border-radius:var(--rl);padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <div style="margin:32px 0;background:linear-gradient(135deg,rgba(127,0,255,.1),rgba(212,175,55,.06));border:1px solid rgba(127,0,255,.3);border-radius:var(--rl);padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
       <div style="display:flex;align-items:center;gap:14px">
         <div style="width:40px;height:40px;background:linear-gradient(135deg,#7f00ff,#b44fff);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem">🚀</div>
         <div>
@@ -1456,7 +1310,7 @@
       </div>
     </div>
   </div>
-  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#0a1f3d);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 <div class="page" id="p-movil">
@@ -1480,7 +1334,7 @@
       </div>
     </div>
   </div>
-  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#0a1f3d);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 <div class="page" id="p-consul">
@@ -1504,7 +1358,7 @@
       </div>
     </div>
   </div>
-  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#0a1f3d);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 <div class="page" id="p-software">
@@ -1524,7 +1378,7 @@
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap">
           <span style="font-family:var(--fm);font-size:.58rem;color:#a855f7;background:rgba(168,85,247,.15);border:1px solid rgba(168,85,247,.4);padding:4px 12px;border-radius:20px;letter-spacing:2px;text-transform:uppercase">⭐ Proyecto Estrella</span>
           <span style="font-family:var(--fm);font-size:.58rem;color:var(--r);background:rgba(255,0,60,.1);border:1px solid rgba(255,0,60,.3);padding:4px 12px;border-radius:20px;letter-spacing:2px;text-transform:uppercase">Solo Educativo</span>
-          <span style="font-family:var(--fm);font-size:.58rem;color:var(--g);background:rgba(0,255,136,.08);border:1px solid rgba(0,255,136,.25);padding:4px 12px;border-radius:20px;letter-spacing:2px;text-transform:uppercase">✓ 100% NEXUM</span>
+          <span style="font-family:var(--fm);font-size:.58rem;color:var(--g);background:rgba(59,130,246,.08);border:1px solid rgba(59,130,246,.25);padding:4px 12px;border-radius:20px;letter-spacing:2px;text-transform:uppercase">✓ 100% NEXUM</span>
         </div>
 
         <!-- Logo + Título -->
@@ -1642,12 +1496,12 @@
         </div>
 
         <!-- App Fintech Educativa 1 -->
-        <div class="ecard" style="cursor:default;border-color:rgba(0,255,136,.2)">
+        <div class="ecard" style="cursor:default;border-color:rgba(59,130,246,.2)">
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px">
             <div style="width:50px;height:50px;background:linear-gradient(135deg,#00b14f,#007a35);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 0 20px rgba(0,177,79,.3);flex-shrink:0">💸</div>
             <div>
               <h4 style="font-family:var(--fh);font-size:.95rem;color:var(--tx);letter-spacing:1px;margin-bottom:2px">PaySim Edu v2.1</h4>
-              <span style="font-family:var(--fm);font-size:.6rem;color:var(--g);background:rgba(0,255,136,.1);border:1px solid rgba(0,255,136,.3);padding:2px 8px;border-radius:10px">FINTECH EDUCATIVO</span>
+              <span style="font-family:var(--fm);font-size:.6rem;color:var(--g);background:rgba(59,130,246,.1);border:1px solid rgba(59,130,246,.3);padding:2px 8px;border-radius:10px">FINTECH EDUCATIVO</span>
             </div>
           </div>
           <p style="color:var(--txd);font-size:.86rem;line-height:1.6;margin-bottom:16px">Simulador educativo de pasarela de pagos móviles para entender arquitecturas fintech, flujos de autenticación QR y sistemas de validación en tiempo real. Ideal para desarrolladores que estudian el ecosistema de pagos digitales.</p>
@@ -1744,9 +1598,9 @@
         </div>
 
         <!-- Network Intel -->
-        <div class="ecard" style="cursor:default;border-color:rgba(0,229,255,.25);box-shadow:0 0 30px rgba(0,229,255,.06)">
+        <div class="ecard" style="cursor:default;border-color:rgba(212,175,55,.25);box-shadow:0 0 30px rgba(212,175,55,.06)">
           <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
-            <div style="width:50px;height:50px;background:linear-gradient(135deg,var(--c),#005577);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 0 20px rgba(0,229,255,.3);flex-shrink:0">🕵️</div>
+            <div style="width:50px;height:50px;background:linear-gradient(135deg,var(--c),#0a1f3d);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;box-shadow:0 0 20px rgba(212,175,55,.3);flex-shrink:0">🕵️</div>
             <div>
               <h4 style="font-family:var(--fh);font-size:.95rem;color:var(--tx);letter-spacing:1px;margin-bottom:2px">NEXUM OSINT Suite v4.0</h4>
               <span style="font-family:var(--fm);font-size:.6rem;color:var(--c);background:var(--c2);border:1px solid var(--br);padding:2px 8px;border-radius:10px">OSINT PRO</span>
@@ -1788,7 +1642,7 @@
             <div style="font-family:var(--fh);font-size:.85rem;color:var(--am);letter-spacing:1px;margin-bottom:4px">TRANSFERENCIA</div>
             <div style="font-family:var(--fm);font-size:.7rem;color:var(--txd)">BCP / Interbank</div>
           </div>
-          <div style="background:var(--cd);border:1px solid rgba(0,229,255,.2);border-radius:var(--rl);padding:20px;text-align:center">
+          <div style="background:var(--cd);border:1px solid rgba(212,175,55,.2);border-radius:var(--rl);padding:20px;text-align:center">
             <div style="font-size:2rem;margin-bottom:8px">💬</div>
             <div style="font-family:var(--fh);font-size:.85rem;color:var(--c);letter-spacing:1px;margin-bottom:4px">WHATSAPP</div>
             <div style="font-family:var(--fm);font-size:.7rem;color:var(--txd)">Coordinamos método</div>
@@ -1801,7 +1655,7 @@
 
     </div>
   </section>
-  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#0a1f3d);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 <div class="page" id="p-precios">
@@ -1911,7 +1765,7 @@
       </div>
     </div>
   </section>
-  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#0a1f3d);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 <div class="page" id="p-contacto">
@@ -1972,7 +1826,7 @@
       </button>
     </form>
   </div>
-  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#0a1f3d);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 <div class="page" id="p-apps">
@@ -2101,7 +1955,7 @@
       <div id="miniAppContainer" style="margin-top:40px;display:none"></div>
     </div>
   </section>
-  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#0a1f3d);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a><a href="https://www.instagram.com/jair_munoz_candela/" target="_blank"><i class="fab fa-instagram"></i> Instagram</a><a href="https://www.facebook.com/jairlpb" target="_blank"><i class="fab fa-facebook-f"></i> Facebook</a><a href="https://www.tiktok.com/@fritooo23" target="_blank"><i class="fab fa-tiktok"></i> TikTok</a></div><p style="color:var(--txd);font-size:.8rem;margin-bottom:10px">Jair Muñoz Candela — +51 945 366 356</p><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 <div class="page" id="p-qr">
@@ -2138,14 +1992,14 @@
       </a>
     </div>
   </div>
-  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#0a1f3d);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><div class="socials"><a href="https://wa.me/51945366356" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 <div class="page" id="p-scanner">
   <div class="scanner-wrap">
     <button class="back-btn" onclick="go('home')"><i class="fas fa-arrow-left"></i> Volver al Inicio</button>
     <div class="scanner-hdr">
-      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.2);border-radius:20px;padding:6px 16px;font-family:var(--fm);font-size:.62rem;color:var(--c);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px">
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(212,175,55,.08);border:1px solid rgba(212,175,55,.2);border-radius:20px;padding:6px 16px;font-family:var(--fm);font-size:.62rem;color:var(--c);letter-spacing:2px;text-transform:uppercase;margin-bottom:16px">
         <i class="fas fa-robot"></i> Powered by Claude AI
       </div>
       <h1><i class="fas fa-search-plus"></i> Scanner de Seguridad IA</h1>
@@ -2223,8 +2077,8 @@
   <div style="max-width:900px;margin:0 auto;padding:60px 5%">
     <button class="back-btn" onclick="go('home')"><i class="fas fa-arrow-left"></i> Volver</button>
     <div style="text-align:center;margin-bottom:44px">
-      <h1 style="font-family:var(--fh);font-size:clamp(1.6rem,4vw,2.4rem);color:#ff6b35;text-transform:uppercase;letter-spacing:2px;text-shadow:0 0 30px rgba(255,107,53,.35)"><i class="fas fa-globe"></i> OSINT Intelligence Suite</h1>
-      <div class="divdr" style="background:linear-gradient(90deg,#ff6b35,transparent);margin:12px auto 16px"></div>
+      <h1 style="font-family:var(--fh);font-size:clamp(1.6rem,4vw,2.4rem);color:#c9a227;text-transform:uppercase;letter-spacing:2px;text-shadow:0 0 30px rgba(201,162,39,.35)"><i class="fas fa-globe"></i> OSINT Intelligence Suite</h1>
+      <div class="divdr" style="background:linear-gradient(90deg,#c9a227,transparent);margin:12px auto 16px"></div>
       <p style="color:var(--txd);max-width:580px;margin:0 auto">Herramientas de inteligencia de fuentes abiertas. Investiga IPs, dominios, emails y URLs sospechosas — todo desde tu navegador, sin instalar nada.</p>
     </div>
 
@@ -2306,9 +2160,9 @@
     </div>
 
     <!-- NORDVPN AFFILIATE BANNER -->
-    <div style="margin-top:28px;background:linear-gradient(135deg,rgba(62,87,255,.1),rgba(0,229,255,.06));border:1px solid rgba(62,87,255,.3);border-radius:var(--rl);padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+    <div style="margin-top:28px;background:linear-gradient(135deg,rgba(62,87,255,.1),rgba(212,175,55,.06));border:1px solid rgba(62,87,255,.3);border-radius:var(--rl);padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
       <div style="display:flex;align-items:center;gap:14px">
-        <div style="width:40px;height:40px;background:linear-gradient(135deg,#3e57ff,#00e5ff);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem">🛡️</div>
+        <div style="width:40px;height:40px;background:linear-gradient(135deg,#3e57ff,#d4af37);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.1rem">🛡️</div>
         <div>
           <p style="font-family:var(--fh);font-size:.82rem;color:#fff;letter-spacing:1px;margin-bottom:3px">¿Tu IP está expuesta? Protégete ahora</p>
           <p style="font-family:var(--fm);font-size:.67rem;color:var(--txd)">La VPN que usamos y recomendamos en NEXUM — cifrado militar, sin logs, 7,400+ servidores.</p>
@@ -2320,8 +2174,8 @@
     </div>
 
     <!-- DISCLAIMER -->
-    <div style="margin-top:30px;background:rgba(255,107,53,.05);border:1px solid rgba(255,107,53,.2);border-radius:var(--rl);padding:18px 22px">
-      <p style="font-family:var(--fm);font-size:.68rem;color:rgba(255,107,53,.8)"><i class="fas fa-balance-scale"></i> <strong>Uso ético exclusivo.</strong> Estas herramientas consultan APIs públicas con fines de investigación legítima, ciberseguridad defensiva y educación. No uses estos datos para actividades ilegales.</p>
+    <div style="margin-top:30px;background:rgba(201,162,39,.05);border:1px solid rgba(201,162,39,.2);border-radius:var(--rl);padding:18px 22px">
+      <p style="font-family:var(--fm);font-size:.68rem;color:rgba(201,162,39,.8)"><i class="fas fa-balance-scale"></i> <strong>Uso ético exclusivo.</strong> Estas herramientas consultan APIs públicas con fines de investigación legítima, ciberseguridad defensiva y educación. No uses estos datos para actividades ilegales.</p>
     </div>
   </div>
 </div>
@@ -2445,7 +2299,7 @@
       </div>
     </div>
   </div>
-  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#0a1f3d);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 <div class="page" id="p-cotizador">
@@ -2454,12 +2308,12 @@
 
     <!-- Hero header -->
     <div style="text-align:center;margin-bottom:48px">
-      <div style="display:inline-flex;align-items:center;gap:10px;background:rgba(0,255,136,.06);border:1px solid rgba(0,255,136,.2);border-radius:30px;padding:6px 18px;margin-bottom:18px">
+      <div style="display:inline-flex;align-items:center;gap:10px;background:rgba(59,130,246,.06);border:1px solid rgba(59,130,246,.2);border-radius:30px;padding:6px 18px;margin-bottom:18px">
         <span style="width:7px;height:7px;border-radius:50%;background:var(--g);box-shadow:0 0 8px var(--g);animation:pulse 1.5s ease-in-out infinite;display:block"></span>
         <span style="font-family:var(--fm);font-size:.6rem;color:var(--g);letter-spacing:2px;text-transform:uppercase">Calculadora en línea · Sin compromiso</span>
       </div>
       <h1 style="font-family:var(--fh);font-size:clamp(1.8rem,4vw,2.6rem);color:var(--tx);text-transform:uppercase;letter-spacing:2px;margin-bottom:10px">
-        Calculadora Consultora de <span style="color:var(--g);text-shadow:0 0 30px rgba(0,255,136,.4)">Precios Nexum</span>
+        Calculadora Consultora de <span style="color:var(--g);text-shadow:0 0 30px rgba(59,130,246,.4)">Precios Nexum</span>
       </h1>
       <p style="color:var(--txd);max-width:520px;margin:0 auto;font-size:.95rem;line-height:1.7">Responde 4 preguntas y obtén un rango de precio para tu proyecto en menos de 60 segundos.</p>
     </div>
@@ -2608,7 +2462,7 @@
       <!-- Header -->
       <div class="quote-summary-header">
         <div style="display:flex;align-items:center;gap:14px">
-          <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,rgba(0,229,255,.15),rgba(0,255,136,.08));border:1px solid var(--c3);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--g)">
+          <div style="width:48px;height:48px;border-radius:12px;background:linear-gradient(135deg,rgba(212,175,55,.15),rgba(59,130,246,.08));border:1px solid var(--c3);display:flex;align-items:center;justify-content:center;font-size:1.4rem;color:var(--g)">
             <i class="fas fa-file-invoice-dollar"></i>
           </div>
           <div>
@@ -2657,15 +2511,15 @@
       </div>
     </div>
   </div>
-  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><p class="copy">// NEXUM &copy; 2026 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#0a1f3d);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><p class="copy">// NEXUM &copy; 2026 //</p></div></footer>
 </div>
 
 <div class="page" id="p-metadatos">
   <div class="meta-wrap">
     <button class="back-btn" onclick="go('home')"><i class="fas fa-arrow-left"></i> Volver</button>
     <div style="text-align:center;margin-bottom:40px">
-      <h1 style="font-family:var(--fh);font-size:clamp(1.6rem,4vw,2.4rem);color:#b080ff;text-transform:uppercase;letter-spacing:2px;text-shadow:0 0 30px rgba(176,128,255,.3)"><i class="fas fa-search"></i> Extractor de Metadatos</h1>
-      <div class="divdr" style="background:linear-gradient(90deg,#b080ff,transparent);margin:12px auto 16px"></div>
+      <h1 style="font-family:var(--fh);font-size:clamp(1.6rem,4vw,2.4rem);color:#4f8ef7;text-transform:uppercase;letter-spacing:2px;text-shadow:0 0 30px rgba(79,142,247,.3)"><i class="fas fa-search"></i> Extractor de Metadatos</h1>
+      <div class="divdr" style="background:linear-gradient(90deg,#4f8ef7,transparent);margin:12px auto 16px"></div>
       <p style="color:var(--txd);max-width:600px;margin:0 auto">Analiza los metadatos ocultos en tus imágenes (EXIF). Detecta información sensible como coordenadas GPS, dispositivo, fecha y más — todo en tu navegador, sin subir nada a ningún servidor.</p>
     </div>
 
@@ -2683,7 +2537,7 @@
 
     <div class="meta-result" id="metaResult">
       <div style="padding:16px;border-bottom:1px solid var(--br2);display:flex;align-items:center;gap:12px">
-        <i class="fas fa-file-image" style="color:#b080ff;font-size:1.2rem"></i>
+        <i class="fas fa-file-image" style="color:#4f8ef7;font-size:1.2rem"></i>
         <span style="font-family:var(--fh);font-size:.9rem;color:var(--tx)" id="metaFileName">archivo.jpg</span>
         <button class="btn-sm btn sec" onclick="clearMeta()" style="margin-left:auto;font-size:.65rem;padding:5px 12px"><i class="fas fa-times"></i> Limpiar</button>
       </div>
@@ -2736,7 +2590,7 @@
       </div>
     </div>
   </div>
-  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#0a1f3d);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 <div class="page" id="p-proximamente">
@@ -2762,7 +2616,7 @@
           <span style="font-family:var(--fm);font-size:.65rem;color:var(--txd)">PLANEADOS</span>
         </div>
         <div style="background:var(--cd);border:1px solid var(--br2);border-radius:var(--rl);padding:20px">
-          <span style="font-family:var(--fh);font-size:2rem;color:#b080ff;display:block">∞</span>
+          <span style="font-family:var(--fh);font-size:2rem;color:#4f8ef7;display:block">∞</span>
           <span style="font-family:var(--fm);font-size:.65rem;color:var(--txd)">IDEAS</span>
         </div>
       </div>
@@ -2819,10 +2673,10 @@
         <div class="coming-card rv">
           <div class="coming-badge wip"><i class="fas fa-circle" style="font-size:.4rem;animation:blink 1s step-end infinite"></i> En desarrollo activo</div>
           <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px">
-            <div style="width:50px;height:50px;background:linear-gradient(135deg,#b080ff,#5500aa);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem">🎓</div>
+            <div style="width:50px;height:50px;background:linear-gradient(135deg,#4f8ef7,#5500aa);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.5rem">🎓</div>
             <div>
               <h4 style="font-family:var(--fh);font-size:1rem;color:var(--tx);letter-spacing:1px">NEXUM Academy</h4>
-              <span style="font-family:var(--fm);font-size:.6rem;color:#b080ff">Plataforma de Cursos Interactivos</span>
+              <span style="font-family:var(--fm);font-size:.6rem;color:#4f8ef7">Plataforma de Cursos Interactivos</span>
             </div>
           </div>
           <p style="color:var(--txd);font-size:.87rem;line-height:1.6;margin-bottom:14px">Plataforma de cursos de ciberseguridad con labs virtuales, retos CTF, certificaciones NEXUM y una comunidad de aprendizaje latinoamericana.</p>
@@ -2885,7 +2739,7 @@
         </div>
 
         <!-- CTA Notificaciones -->
-        <div class="coming-card rv" style="border-color:rgba(0,255,136,.2);background:linear-gradient(135deg,rgba(0,255,136,.03),transparent)">
+        <div class="coming-card rv" style="border-color:rgba(59,130,246,.2);background:linear-gradient(135deg,rgba(59,130,246,.03),transparent)">
           <div style="text-align:center;padding:20px 0">
             <div style="font-size:2.5rem;margin-bottom:16px">🔔</div>
             <h4 style="font-family:var(--fh);font-size:1rem;color:var(--g);letter-spacing:1px;margin-bottom:12px">¿Quieres ser el primero en saber?</h4>
@@ -2921,9 +2775,9 @@
             <h4 style="font-family:var(--fh);font-size:.85rem;color:var(--tx);margin:4px 0">CyberMap Perú + OSINT Mobile App</h4>
             <p style="color:var(--txd);font-size:.8rem">Herramientas de inteligencia y visibilidad regional.</p>
           </div>
-          <div style="position:absolute;left:-5px;top:264px;width:8px;height:8px;border-radius:50%;background:#b080ff"></div>
+          <div style="position:absolute;left:-5px;top:264px;width:8px;height:8px;border-radius:50%;background:#4f8ef7"></div>
           <div>
-            <span style="font-family:var(--fm);font-size:.65rem;color:#b080ff">Q4 2025</span>
+            <span style="font-family:var(--fm);font-size:.65rem;color:#4f8ef7">Q4 2025</span>
             <h4 style="font-family:var(--fh);font-size:.85rem;color:var(--tx);margin:4px 0">NEXUM Academy — Lanzamiento oficial</h4>
             <p style="color:var(--txd);font-size:.8rem">Plataforma educativa de ciberseguridad en español.</p>
           </div>
@@ -2932,7 +2786,7 @@
 
     </div>
   </section>
-  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#005577);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
+  <footer class="foot"><div><div class="foot-logo"><span style="display:inline-flex;align-items:center;gap:9px"><span style="width:30px;height:30px;background:linear-gradient(135deg,var(--c),#0a1f3d);border-radius:5px;display:inline-flex;align-items:center;justify-content:center;font-size:.85rem;color:#020408;font-family:var(--fh);font-weight:900;flex-shrink:0">N</span><span style="font-family:var(--fh);font-size:1.3rem;font-weight:900;color:var(--c);letter-spacing:4px">NEXUM</span></span></div><p class="copy">// NEXUM &copy; 2025 //</p></div></footer>
 </div>
 
 <!-- SCROLL TO TOP -->
@@ -2977,12 +2831,12 @@
 <style>
 /* Tokens específicos AutoFlow (hereda todo de NEXUM) */
 #p-autoflow {
-  --af:   #00ff88;
-  --af2:  #00c2ff;
+  --af:   #3b82f6;
+  --af2:  #60a5fa;
   --afm:  #00e5a0;
-  --afc:  rgba(0,255,136,.08);
-  --afb:  rgba(0,255,136,.2);
-  --afb2: rgba(0,255,136,.4);
+  --afc:  rgba(59,130,246,.08);
+  --afb:  rgba(59,130,246,.2);
+  --afb2: rgba(59,130,246,.4);
   --afdk: #001a0e;
 }
 
@@ -3006,8 +2860,8 @@
 #p-autoflow .af-grid {
   position: absolute; inset: 0; pointer-events: none;
   background-image:
-    linear-gradient(rgba(0,255,136,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,255,136,.04) 1px, transparent 1px);
+    linear-gradient(rgba(59,130,246,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59,130,246,.04) 1px, transparent 1px);
   background-size: 56px 56px;
   mask-image: radial-gradient(ellipse 90% 80% at 50% 40%, black 30%, transparent 100%);
   animation: af-grid-drift 20s ease-in-out infinite alternate;
@@ -3024,7 +2878,7 @@
 }
 #p-autoflow .af-blob-1 {
   width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(0,255,136,.12), transparent 70%);
+  background: radial-gradient(circle, rgba(59,130,246,.12), transparent 70%);
   top: -100px; left: -100px;
   animation: af-blob-move1 12s ease-in-out infinite alternate;
 }
@@ -3050,13 +2904,13 @@
 #p-autoflow .af-badge-pulse {
   width: 7px; height: 7px; border-radius: 50%;
   background: var(--af);
-  box-shadow: 0 0 0 0 rgba(0,255,136,.6);
+  box-shadow: 0 0 0 0 rgba(59,130,246,.6);
   animation: af-pulse-ring 1.8s ease-out infinite;
 }
 @keyframes af-pulse-ring {
-  0%   { box-shadow: 0 0 0 0 rgba(0,255,136,.6); }
-  70%  { box-shadow: 0 0 0 8px rgba(0,255,136,0); }
-  100% { box-shadow: 0 0 0 0 rgba(0,255,136,0); }
+  0%   { box-shadow: 0 0 0 0 rgba(59,130,246,.6); }
+  70%  { box-shadow: 0 0 0 8px rgba(59,130,246,0); }
+  100% { box-shadow: 0 0 0 0 rgba(59,130,246,0); }
 }
 
 #p-autoflow .af-hero-title {
@@ -3085,7 +2939,7 @@
   display: flex; gap: 0; flex-wrap: wrap; justify-content: center;
   margin-bottom: 48px; position: relative; z-index: 2;
   border: 1px solid var(--afb); border-radius: var(--rl);
-  background: rgba(0,255,136,.04); overflow: hidden;
+  background: rgba(59,130,246,.04); overflow: hidden;
   animation: af-fadein .7s .3s ease both;
   max-width: 700px;
 }
@@ -3116,12 +2970,12 @@
   font-weight: 700; font-size: .78rem; letter-spacing: 1px;
   padding: 15px 32px; border-radius: var(--ra);
   border: none; cursor: pointer; transition: var(--tr);
-  box-shadow: 0 8px 28px rgba(0,255,136,.35);
+  box-shadow: 0 8px 28px rgba(59,130,246,.35);
   text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
 }
 #p-autoflow .af-btn-primary:hover {
   transform: translateY(-2px);
-  box-shadow: 0 14px 40px rgba(0,255,136,.55);
+  box-shadow: 0 14px 40px rgba(59,130,246,.55);
   color: var(--afdk);
 }
 #p-autoflow .af-btn-ghost {
@@ -3210,7 +3064,7 @@
   gap: 0; border: 1px solid var(--afb);
   border-radius: var(--rl); overflow: hidden;
   background: var(--cd);
-  box-shadow: 0 40px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(0,255,136,.05);
+  box-shadow: 0 40px 80px rgba(0,0,0,.6), 0 0 0 1px rgba(59,130,246,.05);
 }
 @media(max-width:900px){#p-autoflow .af-demo-shell{grid-template-columns:1fr}}
 
@@ -3235,7 +3089,7 @@
 }
 #p-autoflow .af-biz-btn:hover { background: var(--afc); }
 #p-autoflow .af-biz-btn.active {
-  background: linear-gradient(90deg, rgba(0,255,136,.12), rgba(0,255,136,.04));
+  background: linear-gradient(90deg, rgba(59,130,246,.12), rgba(59,130,246,.04));
   border-left: 3px solid var(--af);
 }
 #p-autoflow .af-biz-icon {
@@ -3281,7 +3135,7 @@
   display: flex; align-items: center; gap: 12px;
   padding: 14px 18px;
   background: #0d1f16;
-  border-bottom: 1px solid rgba(0,255,136,.1);
+  border-bottom: 1px solid rgba(59,130,246,.1);
 }
 #p-autoflow .af-wa-avatar {
   width: 36px; height: 36px; border-radius: 50%;
@@ -3301,7 +3155,7 @@
 }
 #p-autoflow .af-wa-ind {
   font-family: var(--fm); font-size: .5rem; color: var(--txd);
-  background: rgba(0,255,136,.07); border: 1px solid rgba(0,255,136,.15);
+  background: rgba(59,130,246,.07); border: 1px solid rgba(59,130,246,.15);
   padding: 3px 8px; border-radius: 4px;
 }
 
@@ -3309,7 +3163,7 @@
   flex: 1; padding: 18px; overflow-y: auto;
   min-height: 280px; max-height: 320px;
   background:
-    radial-gradient(ellipse at top left, rgba(0,255,136,.03), transparent 60%),
+    radial-gradient(ellipse at top left, rgba(59,130,246,.03), transparent 60%),
     var(--cd);
   display: flex; flex-direction: column; gap: 10px;
 }
@@ -3337,9 +3191,9 @@
   border: 1px solid var(--br2);
 }
 #p-autoflow .af-bubble.bot {
-  background: linear-gradient(135deg, rgba(0,255,136,.14), rgba(0,194,255,.08));
+  background: linear-gradient(135deg, rgba(59,130,246,.14), rgba(0,194,255,.08));
   color: var(--tx);
-  border: 1px solid rgba(0,255,136,.2);
+  border: 1px solid rgba(59,130,246,.2);
   border-radius: 16px 16px 4px 16px;
 }
 #p-autoflow .af-bubble-time {
@@ -3348,8 +3202,8 @@
 }
 #p-autoflow .af-typing {
   display: flex; align-items: center; gap: 4px;
-  padding: 10px 14px; background: linear-gradient(135deg, rgba(0,255,136,.08), rgba(0,194,255,.04));
-  border: 1px solid rgba(0,255,136,.15); border-radius: 16px 16px 4px 16px;
+  padding: 10px 14px; background: linear-gradient(135deg, rgba(59,130,246,.08), rgba(0,194,255,.04));
+  border: 1px solid rgba(59,130,246,.15); border-radius: 16px 16px 4px 16px;
   max-width: 70px; align-self: flex-end;
 }
 #p-autoflow .af-typing span {
@@ -3382,7 +3236,7 @@
   display: flex; align-items: center; justify-content: center;
   transition: var(--tr);
 }
-#p-autoflow .af-chat-send:hover { transform: scale(1.1); box-shadow: 0 4px 16px rgba(0,255,136,.45); }
+#p-autoflow .af-chat-send:hover { transform: scale(1.1); box-shadow: 0 4px 16px rgba(59,130,246,.45); }
 
 /* Tab: Flujo de automatización */
 #p-autoflow .af-flow-wrap {
@@ -3406,11 +3260,11 @@
 #p-autoflow .af-flow-node {
   width: 48px; height: 48px; border-radius: 50%;
   border: 2px solid var(--af);
-  background: rgba(0,255,136,.08);
+  background: rgba(59,130,246,.08);
   display: flex; align-items: center; justify-content: center;
   font-size: 1.1rem; margin-bottom: 12px;
   position: relative; z-index: 1;
-  box-shadow: 0 0 20px rgba(0,255,136,.15);
+  box-shadow: 0 0 20px rgba(59,130,246,.15);
   animation: af-node-pulse 2s ease-in-out infinite;
 }
 #p-autoflow .af-flow-step:nth-child(2) .af-flow-node { animation-delay: .4s; }
@@ -3418,8 +3272,8 @@
 #p-autoflow .af-flow-step:nth-child(4) .af-flow-node { animation-delay: 1.2s; }
 #p-autoflow .af-flow-step:nth-child(5) .af-flow-node { animation-delay: 1.6s; }
 @keyframes af-node-pulse {
-  0%,100% { box-shadow: 0 0 0 0 rgba(0,255,136,.3), 0 0 20px rgba(0,255,136,.1); }
-  50%      { box-shadow: 0 0 0 8px rgba(0,255,136,.0), 0 0 20px rgba(0,255,136,.2); }
+  0%,100% { box-shadow: 0 0 0 0 rgba(59,130,246,.3), 0 0 20px rgba(59,130,246,.1); }
+  50%      { box-shadow: 0 0 0 8px rgba(59,130,246,.0), 0 0 20px rgba(59,130,246,.2); }
 }
 #p-autoflow .af-flow-label {
   font-family: var(--fm); font-size: .6rem;
@@ -3443,7 +3297,7 @@
   background: var(--cd2); border: 1px solid var(--br);
   border-radius: 10px; padding: 16px;
 }
-#p-autoflow .af-roi-card.green { border-color: rgba(0,255,136,.25); }
+#p-autoflow .af-roi-card.green { border-color: rgba(59,130,246,.25); }
 #p-autoflow .af-roi-card.red   { border-color: rgba(255,90,90,.2); }
 #p-autoflow .af-roi-label {
   font-family: var(--fm); font-size: .58rem;
@@ -3461,7 +3315,7 @@
 }
 #p-autoflow .af-roi-bar {
   margin-top: 20px; padding: 14px 16px;
-  background: linear-gradient(135deg, rgba(0,255,136,.07), rgba(0,194,255,.04));
+  background: linear-gradient(135deg, rgba(59,130,246,.07), rgba(0,194,255,.04));
   border: 1px solid var(--afb); border-radius: 10px;
 }
 #p-autoflow .af-roi-bar-label {
@@ -3494,7 +3348,7 @@
 }
 #p-autoflow .af-what-card::after {
   content: ''; position: absolute; inset: 0;
-  background: linear-gradient(135deg, rgba(0,255,136,.04), transparent);
+  background: linear-gradient(135deg, rgba(59,130,246,.04), transparent);
   opacity: 0; transition: opacity .3s;
 }
 #p-autoflow .af-what-card:hover { border-color: var(--afb); transform: translateY(-4px); }
@@ -3560,12 +3414,12 @@
 #p-autoflow .af-auto-dot {
   width: 8px; height: 8px; border-radius: 50%;
   background: var(--af); flex-shrink: 0; margin-top: 5px;
-  box-shadow: 0 0 8px rgba(0,255,136,.5);
+  box-shadow: 0 0 8px rgba(59,130,246,.5);
 }
 #p-autoflow .af-auto-title { font-family: var(--fs); font-weight: 700; font-size: .82rem; color: var(--tx); }
 #p-autoflow .af-auto-sub { font-family: var(--fs); font-size: .75rem; color: var(--txd); margin-top: 2px; }
 #p-autoflow .af-case-result {
-  background: linear-gradient(135deg, rgba(0,255,136,.07), rgba(0,194,255,.04));
+  background: linear-gradient(135deg, rgba(59,130,246,.07), rgba(0,194,255,.04));
   border: 1px solid var(--afb); border-radius: 10px; padding: 16px 20px;
 }
 #p-autoflow .af-result-label {
@@ -3607,8 +3461,8 @@
 }
 #p-autoflow .af-flow-row.active-row {
   border-color: var(--af); color: var(--tx);
-  background: rgba(0,255,136,.06);
-  box-shadow: 0 0 12px rgba(0,255,136,.1);
+  background: rgba(59,130,246,.06);
+  box-shadow: 0 0 12px rgba(59,130,246,.1);
 }
 #p-autoflow .af-flow-row-icon { font-size: 1rem; width: 24px; text-align: center; }
 #p-autoflow .af-flow-row-status {
@@ -3616,7 +3470,7 @@
   padding: 2px 8px; border-radius: 4px;
 }
 #p-autoflow .active-row .af-flow-row-status {
-  background: rgba(0,255,136,.12); color: var(--af);
+  background: rgba(59,130,246,.12); color: var(--af);
   border: 1px solid var(--afb);
 }
 
@@ -3633,7 +3487,7 @@
   transition: var(--tr); position: relative; overflow: hidden;
 }
 #p-autoflow .af-step:last-child { border-right: none; }
-#p-autoflow .af-step:hover { background: rgba(0,255,136,.03); }
+#p-autoflow .af-step:hover { background: rgba(59,130,246,.03); }
 #p-autoflow .af-step::before {
   content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 2px;
   background: linear-gradient(90deg, var(--af), var(--af2));
@@ -3642,7 +3496,7 @@
 #p-autoflow .af-step:hover::before { transform: scaleX(1); }
 #p-autoflow .af-step-num {
   font-family: var(--fm); font-size: 2.8rem; font-weight: 300;
-  color: rgba(0,255,136,.18); line-height: 1; margin-bottom: 14px;
+  color: rgba(59,130,246,.18); line-height: 1; margin-bottom: 14px;
 }
 #p-autoflow .af-step-title {
   font-family: var(--fh); font-size: .82rem; letter-spacing: 1px;
@@ -3676,8 +3530,8 @@
 #p-autoflow .af-pcard:hover { border-color: var(--afb); transform: translateY(-5px); }
 #p-autoflow .af-pcard:hover::before { opacity: 1; }
 #p-autoflow .af-pcard.featured {
-  background: linear-gradient(160deg, rgba(0,255,136,.07), rgba(0,194,255,.04), var(--cd));
-  border-color: rgba(0,255,136,.32);
+  background: linear-gradient(160deg, rgba(59,130,246,.07), rgba(0,194,255,.04), var(--cd));
+  border-color: rgba(59,130,246,.32);
 }
 #p-autoflow .af-pcard.featured::before { opacity: 1; }
 #p-autoflow .af-pcard-badge {
@@ -3722,14 +3576,14 @@
   cursor: pointer; transition: var(--tr); text-decoration: none;
 }
 #p-autoflow .af-pbtn.fill { background: var(--af); color: var(--afdk); }
-#p-autoflow .af-pbtn.fill:hover { box-shadow: 0 8px 24px rgba(0,255,136,.45); color: var(--afdk); }
+#p-autoflow .af-pbtn.fill:hover { box-shadow: 0 8px 24px rgba(59,130,246,.45); color: var(--afdk); }
 #p-autoflow .af-pbtn.outline { background: transparent; color: var(--af); border: 1px solid var(--afb); }
 #p-autoflow .af-pbtn.outline:hover { background: var(--afc); color: var(--af); }
 
 #p-autoflow .af-cta-section {
   padding: 100px 5%; text-align: center;
   background:
-    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(0,255,136,.07), transparent),
+    radial-gradient(ellipse 80% 60% at 50% 100%, rgba(59,130,246,.07), transparent),
     var(--bg3);
   border-top: 1px solid var(--br);
 }
@@ -3762,12 +3616,12 @@
   font-size: .88rem; letter-spacing: 1px;
   padding: 20px 48px; border-radius: var(--ra);
   text-decoration: none; border: none; cursor: pointer;
-  box-shadow: 0 8px 40px rgba(0,255,136,.4);
+  box-shadow: 0 8px 40px rgba(59,130,246,.4);
   transition: var(--tr);
 }
 #p-autoflow .af-cta-main-btn:hover {
   transform: translateY(-3px); color: var(--afdk);
-  box-shadow: 0 16px 56px rgba(0,255,136,.6);
+  box-shadow: 0 16px 56px rgba(59,130,246,.6);
 }
 #p-autoflow .af-cta-footer {
   margin-top: 20px; font-family: var(--fm);
@@ -4203,6 +4057,5 @@
   <script src="js/main.js"></script>
   <script src="js/chat.js"></script>
   <script src="js/tools.js"></script>
-  <script src="js/lovemotion.js"></script>
 </body>
 </html>
